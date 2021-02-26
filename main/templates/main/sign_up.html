@@ -1,14 +1,30 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html style="margin: 0; height: 100%; overflow: hidden">
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 	<link href='https://fonts.googleapis.com/css?family=Montserrat Alternates' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title>Реєстрація</title>
 </head>
 <body>
+	<div class="flex_sign_up">
+		<div class="part_w_image">
+			<img class="sign_up_ph" src="{% static 'img/sign_up_photo.png' %}">
+		</div>
+		<section class="forms_and_btns">
+			<p class="sign_up_text" align="center">Приєдатися до сотень<br>успішних кухарів</p>
+			<form method="POST" class="form_signup">
+				<span class="input-field-label">Ваш email</span>
+				<p align="center" class="email_p_cen"><input type="email" id="id_email" name="email" required ><br></p>
+				<span class="input-field-label_ps">Ваш пароль</span>
+				<p align="center" class="pass_p_cen"><input type="password" id="id_password" name="password" required></p>
+				<input type="submit" value="Приєднатись" class="join_sign_up">
+			</form>
+		</section>
+	</div>
 </body>
 </html>

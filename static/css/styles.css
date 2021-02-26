@@ -1,0 +1,300 @@
+
+
+
+
+
+
+
+@media screen and (min-width: 720px) and (max-width: 1270px){
+.sign_up_ph{
+background-repeat: no-repeat;
+    object-fit: cover;
+	margin-left: -10px;
+	margin-top:-10px;
+    width: 101%;
+    height: 100vh;
+}
+.flex_sign_up{
+	display: flex;
+	width: 100%;
+	flex-direction: row;
+
+}
+.part_w_image{
+	width: 40%;
+}
+.forms_and_btns{
+	width: 60%;
+    max-width: 400px;
+    margin: auto;
+}
+.sign_up_text{
+	font-family: Montserrat;
+	font-size: 30px;
+	margin-top: 0px;
+	color:#7D7D7D;
+	font-weight: normal;
+	text-align: center;
+}
+#id_email, #id_password{
+	width: 90%;
+    padding: 16px;
+    font-family: Montserrat;
+    font-size: 20px;
+    line-height: 25px;
+    font-weight: 400;
+    border-width: 1px;
+    border-style: solid;
+    border-color: lightgrey;
+    border-radius: 15px;
+    background-color: transparent;
+    outline: none;
+    margin-top: 9px;
+}
+.input-field-label{
+	margin-bottom: 0px;
+	font-family: Montserrat;
+	color: #7C7C7C;
+	margin-left: 20px;
+	font-size: 14px;
+	position: absolute;
+	background: white;
+	width: 87px;
+	text-align: center;
+
+}
+.input-field-label_ps{
+	margin-bottom: 0px;
+	font-family: Montserrat;
+	color: #7C7C7C;
+	margin-left: 20px;
+	font-size: 14px;
+	position: absolute;
+	background: white;
+	width: 100px;
+	text-align: center;
+
+}
+.email_p_cen, .pass_p_cen{
+	margin-bottom: 15px;
+	margin-top: 0px;
+}
+.join_sign_up{
+	height: 58.8px;
+	margin-top: 10px;
+	border-radius: 15px;
+	background: #FF9431;
+	width: 100%;
+	font-size: 16px;
+	color:white;
+	border:0px;
+	text-align: center;
+	outline: none;
+	font-family: Montserrat;
+}
+.join_sign_up:focus{
+	background: #F87A5D;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+}
+
+@media screen and (min-width: 1271px) and (max-width: 1920px){
+.sign_up_ph{
+background-repeat: no-repeat;
+    object-fit: cover;
+	margin-left: -10px;
+	margin-top:-10px;
+    width: 101%;
+    height: 100vh;
+}
+.flex_sign_up{
+	display: flex;
+	width: 100%;
+	flex-direction: row;
+
+}
+.part_w_image{
+	width: 40%;
+}
+.forms_and_btns{
+	width: 60%;
+    max-width: 400px;
+    margin: auto;
+}
+.sign_up_text{
+	font-family: Montserrat;
+	font-size: 30px;
+	margin-top: 0px;
+	color:#7D7D7D;
+	font-weight: normal;
+	text-align: center;
+}
+#id_email, #id_password{
+	width: 90%;
+    padding: 16px;
+    font-family: Montserrat;
+    font-size: 20px;
+    line-height: 25px;
+    font-weight: 400;
+    border-width: 1px;
+    border-style: solid;
+    border-color: lightgrey;
+    border-radius: 15px;
+    background-color: transparent;
+    outline: none;
+    margin-top: 9px;
+}
+.input-field-label{
+	margin-bottom: 0px;
+	font-family: Montserrat;
+	color: #7C7C7C;
+	margin-left: 20px;
+	font-size: 14px;
+	position: absolute;
+	background: white;
+	width: 87px;
+	text-align: center;
+
+}
+.input-field-label_ps{
+	margin-bottom: 0px;
+	font-family: Montserrat;
+	color: #7C7C7C;
+	margin-left: 20px;
+	font-size: 14px;
+	position: absolute;
+	background: white;
+	width: 100px;
+	text-align: center;
+
+}
+.email_p_cen, .pass_p_cen{
+	margin-bottom: 15px;
+	margin-top: 0px;
+}
+.join_sign_up{
+	height: 58.8px;
+	margin-top: 10px;
+	border-radius: 15px;
+	background: #FF9431;
+	width: 100%;
+	font-size: 16px;
+	color:white;
+	border:0px;
+	text-align: center;
+	outline: none;
+	font-family: Montserrat;
+}
+.join_sign_up:focus{
+	background: #F87A5D;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+}
+
+@media screen and (min-width: 1921px){
+.sign_up_ph{
+background-repeat: no-repeat;
+    object-fit: cover;
+	margin-left: -10px;
+	margin-top:-10px;
+    width: 101%;
+    height: 100vh;
+}
+.flex_sign_up{
+	display: flex;
+	width: 100%;
+	flex-direction: row;
+
+}
+.part_w_image{
+	width: 40%;
+}
+.forms_and_btns{
+	width: 60%;
+    max-width: 400px;
+    margin: auto;
+}
+.sign_up_text{
+	font-family: Montserrat;
+	font-size: 30px;
+	margin-top: 0px;
+	color:#7D7D7D;
+	font-weight: normal;
+	text-align: center;
+}
+#id_email, #id_password{
+	width: 90%;
+    padding: 16px;
+    font-family: Montserrat;
+    font-size: 20px;
+    line-height: 25px;
+    font-weight: 400;
+    border-width: 1px;
+    border-style: solid;
+    border-color: lightgrey;
+    border-radius: 15px;
+    background-color: transparent;
+    outline: none;
+    margin-top: 9px;
+}
+.input-field-label{
+	margin-bottom: 0px;
+	font-family: Montserrat;
+	color: #7C7C7C;
+	margin-left: 20px;
+	font-size: 14px;
+	position: absolute;
+	background: white;
+	width: 87px;
+	text-align: center;
+
+}
+.input-field-label_ps{
+	margin-bottom: 0px;
+	font-family: Montserrat;
+	color: #7C7C7C;
+	margin-left: 20px;
+	font-size: 14px;
+	position: absolute;
+	background: white;
+	width: 100px;
+	text-align: center;
+
+}
+.email_p_cen, .pass_p_cen{
+	margin-bottom: 15px;
+	margin-top: 0px;
+}
+.join_sign_up{
+	height: 58.8px;
+	margin-top: 10px;
+	border-radius: 15px;
+	background: #FF9431;
+	width: 100%;
+	font-size: 16px;
+	color:white;
+	border:0px;
+	text-align: center;
+	outline: none;
+	font-family: Montserrat;
+}
+.join_sign_up:focus{
+	background: #F87A5D;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+}
