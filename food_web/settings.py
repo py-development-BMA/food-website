@@ -76,11 +76,14 @@ WSGI_APPLICATION = 'food_web.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'food_website',
+        'USER':'postgres',
+        'PASSWORD':'Tornado2004',
+        'HOST':'localhost',
+        'PORT':'5432'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -131,3 +134,4 @@ STATICFILES_DIRS = [
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, '/img')
+AUTH_USER_MODEL = "main.CustomUser" 

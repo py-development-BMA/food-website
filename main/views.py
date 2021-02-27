@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
-#from .forms import *
+from .forms import *
 from django.views.generic import DetailView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
@@ -15,4 +15,18 @@ import re
 
 
 def signup(request):
-	return render(request, 'main/sign_up.html')
+	if 1==1:
+		print(1) 
+		form = CustomUserCreationForm()
+		context = {'form': form}
+
+		if request.method == "POST":
+			print("got")
+			form = CustomUserCreationForm(request.POST)
+			print(request.POST)
+			if form.is_valid():
+				user = form.save()
+				print("SAVED!")
+				#username = form.cleaned_data.get('username')
+				#email = form.cleaned_data.get('email')
+	return render(request, 'main/sign_up.html', context)
