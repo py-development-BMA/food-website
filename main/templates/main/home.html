@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html style="margin: 0; height: 100%; overflow: hidden">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Montserrat Alternates' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>Home page</title>
+</head>
+<body>
+<p align="center" style="font-family: Montserrat;">Registration completed!<br>
+Hello, {{ request.user }}</p>
+</body>
+</html>

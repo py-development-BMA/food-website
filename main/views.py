@@ -27,6 +27,11 @@ def signup(request):
 			if form.is_valid():
 				user = form.save()
 				print("SAVED!")
+				return redirect('home')
 				#username = form.cleaned_data.get('username')
 				#email = form.cleaned_data.get('email')
-	return render(request, 'main/sign_up.html', context)
+		return render(request, 'main/sign_up.html', context)
+
+
+def homePage(request):
+	return render(request, 'main/home.html')
