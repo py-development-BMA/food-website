@@ -19,3 +19,14 @@
     }
     return render(request, 'main/name_of_file_html.html', context)
   ```
+  #### Part 3, checking if working ####
+ Open browser and write there
+ ```
+ localhost:8000/name_of_your_link
+ ```
+ 
+## How to paste images in html using django ##
+example
+```python
+<img src="{% static 'img/image_name.png' %}">
+```
