@@ -30,3 +30,19 @@ example
 ```python
 <img src="{% static 'img/image_name.png' %}">
 ```
+## How to paste info in html using django ##
+for example we wanna to paste some info from server into out html page, that is pretty easy
+First of all you need to make object named context in views.py function that we have already created
+```python
+context = {
+    'your_name':'Alex',
+    }
+```
+After that you should return to your html code and use this brackets for pasting it from django server
+```python
+{{ your_name }}
+```
+Lets look at example
+```html
+{{ your_name }}
+```
