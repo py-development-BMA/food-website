@@ -1,5 +1,5 @@
 ## How to create page ##
-  #### Part 1, reating html file in main/templates/main ####
+  #### Part 1, creating html file in main/templates/main ####
   ```python
   {% extends "main/header.html" %}
   {% load static %}
