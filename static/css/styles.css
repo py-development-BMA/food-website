@@ -168,7 +168,122 @@ margin-top:13px;
 .custom-checkbox:not(:disabled):not(:checked)+label:hover::before {
   border-color: #FEB169;
 }
+header{
+	display: flex;
+	flex-direction: row;
+	height: 60px;
+	background: white;
+	width:102%;
+	margin-top:-10px;
+	margin-left:-10px;
+}
+.logo_div{
+	border-radius: 50px;
+	width: 40px;
+	height: 40px;
+	background: #4AD6AD;
+	margin-left:20px;
+	margin-top:11px; 
+}
+.logo_div p {
+	line-height: 40px;
+	margin-top:0px;
+	margin-bottom: 0px;
+	border-radius: 50px;
+	text-align: center;
+	font-size: 30px;
+	color:white;
+	font-family: Montserrat;
+}
+#id_findfood{
+	height: 30px;
+	border-radius: 12px;
+	width:200px;
+	padding-left:15px;
+	outline: none;
+	background: #F0F0F0;
+	margin-left:20px;
+	margin-top:15px;
+	color:#828282;
+	border:0px solid lightgrey;
+	font-family: Montserrat;
+	font-size: 16px;
 
+}
+#id_findfood::placeholder{
+	font-family: Montserrat;
+	font-size: 16px;
+}
+.links_btns{
+	display: flex;
+    flex-flow: row;
+    height: 60px;
+    margin: 0 auto;
+}
+.linktomain{
+	height: 50px;
+	margin-top:5px;
+	border-radius: 10px;
+	width:100px;
+	background: white;
+	margin-right: 10px;
+	transition: 0.2s;
+}
+.linktomain:hover{
+	background: #F4F4F4;
+}
+.linktomain p{
+	margin-top:1px;
+	margin-bottom: 0px;
+	line-height: 50px;
+}
+.settings_btn{
+	border-radius: 50px;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	margin-right:20px;
+	margin-top:11px;
+
+}
+.create_new_recipe{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width:280px;
+
+}
+.create_rep_btn{
+	width: 200px;
+	height: 35px;
+	color: #FFFFFF;
+	background: #4AD6AD;
+	border-radius: 10px;
+	margin-top:12.5px;
+	margin-right: 20px;
+}
+.create_rep_btn p {
+font-family: Montserrat;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	text-align: center;
+	line-height: 35px;
+	margin-top:0px;
+	margin-bottom: 0px;
+}
+.img_head{
+	height: 50px;
+
+}
+.img_head_norm{
+	height: 35px;
+	margin-top:7.5px;
+}
+.img_head_norm1{
+	height: 32px;
+	margin-top:9px;
+}
 }
 
 
@@ -363,7 +478,122 @@ margin-top:13px;
 .custom-checkbox:not(:disabled):not(:checked)+label:hover::before {
   border-color: #FEB169;
 }
+header{
+	display: flex;
+	flex-direction: row;
+	height: 60px;
+	background: white;
+	width:101%;
+	margin-top:-10px;
+	margin-left:-10px;
+}
+.logo_div{
+	border-radius: 50px;
+	width: 40px;
+	height: 40px;
+	background: #4AD6AD;
+	margin-left:20px;
+	margin-top:11px; 
+}
+.logo_div p {
+	line-height: 40px;
+	margin-top:0px;
+	margin-bottom: 0px;
+	border-radius: 50px;
+	text-align: center;
+	font-size: 30px;
+	color:white;
+	font-family: Montserrat;
+}
+#id_findfood{
+	height: 30px;
+	border-radius: 12px;
+	width:200px;
+	padding-left:15px;
+	outline: none;
+	background: #F0F0F0;
+	margin-left:20px;
+	margin-top:15px;
+	color:#828282;
+	border:0px solid lightgrey;
+	font-family: Montserrat;
+	font-size: 16px;
 
+}
+#id_findfood::placeholder{
+	font-family: Montserrat;
+	font-size: 16px;
+}
+.links_btns{
+	display: flex;
+    flex-flow: row;
+    height: 60px;
+    margin: 0 auto;
+}
+.linktomain{
+	height: 50px;
+	margin-top:5px;
+	border-radius: 10px;
+	width:100px;
+	background: white;
+	margin-right: 10px;
+	transition: 0.2s;
+}
+.linktomain:hover{
+	background: #F4F4F4;
+}
+.linktomain p{
+	margin-top:1px;
+	margin-bottom: 0px;
+	line-height: 50px;
+}
+.settings_btn{
+	border-radius: 50px;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	margin-right:20px;
+	margin-top:11px;
+
+}
+.create_new_recipe{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width:280px;
+
+}
+.create_rep_btn{
+	width: 200px;
+	height: 35px;
+	color: #FFFFFF;
+	background: #4AD6AD;
+	border-radius: 10px;
+	margin-top:12.5px;
+	margin-right: 10px;
+}
+.create_rep_btn p {
+font-family: Montserrat;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	text-align: center;
+	line-height: 35px;
+	margin-top:0px;
+	margin-bottom: 0px;
+}
+.img_head{
+	height: 50px;
+
+}
+.img_head_norm{
+	height: 35px;
+	margin-top:7.5px;
+}
+.img_head_norm1{
+	height: 32px;
+	margin-top:9px;
+}
 }
 
 
@@ -580,5 +810,122 @@ margin-top:13px;
 .custom-checkbox:not(:disabled):not(:checked)+label:hover::before {
   border-color: #FEB169;
 }
+header{
+	display: flex;
+	flex-direction: row;
+	height: 60px;
+	background: white;
+	width:101%;
+	margin-top:-8px;
+	margin-left:-10px;
+}
+.logo_div{
+	border-radius: 50px;
+	width: 40px;
+	height: 40px;
+	background: #4AD6AD;
+	margin-left:20px;
+	margin-top:11px; 
+}
+.logo_div p {
+	line-height: 40px;
+	margin-top:0px;
+	margin-bottom: 0px;
+	border-radius: 50px;
+	text-align: center;
+	font-size: 30px;
+	color:white;
+	font-family: Montserrat;
+}
+#id_findfood{
+	height: 30px;
+	border-radius: 12px;
+	width:200px;
+	padding-left:15px;
+	outline: none;
+	background: #F0F0F0;
+	margin-left:20px;
+	margin-top:15px;
+	color:#828282;
+	border:0px solid lightgrey;
+	font-family: Montserrat;
+	font-size: 16px;
 
+}
+#id_findfood::placeholder{
+	font-family: Montserrat;
+	font-size: 16px;
+}
+.links_btns{
+	display: flex;
+    flex-flow: row;
+    height: 60px;
+    margin: 0 auto;
+}
+.linktomain{
+	height: 50px;
+	margin-top:5px;
+	border-radius: 10px;
+	width:100px;
+	background: white;
+	margin-right: 10px;
+	transition: 0.2s;
+	cursor: pointer;
+}
+.linktomain:hover{
+	background: #F4F4F4;
+}
+.linktomain p{
+	margin-top:1px;
+	margin-bottom: 0px;
+	line-height: 50px;
+}
+.settings_btn{
+	border-radius: 50px;
+	width: 35px;
+	height: 35px;
+	line-height: 40px;
+	margin-right:20px;
+	margin-top:12.5px;
+
+}
+.create_new_recipe{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width:280px;
+
+}
+.create_rep_btn{
+	width: 200px;
+	height: 35px;
+	color: #FFFFFF;
+	cursor: pointer;
+	background: #4AD6AD;
+	border-radius: 10px;
+	margin-top:12.5px;
+	margin-right: 20px;
+}
+.create_rep_btn p {
+font-family: Montserrat;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	text-align: center;
+	line-height: 35px;
+	margin-top:0px;
+	margin-bottom: 0px;
+}
+.img_head{
+	height: 50px;
+
+}
+.img_head_norm{
+	height: 35px;
+	margin-top:7.5px;
+}
+.img_head_norm1{
+	height: 32px;
+	margin-top:9px;
+}
 }

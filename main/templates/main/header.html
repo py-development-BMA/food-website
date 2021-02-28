@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html style="margin: 0; height: 100%; overflow: hidden; background: #FFF9F9;">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Montserrat Alternates' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>My account</title>
+</head>
+
+<header>
+	<div class="logo_div"><p>F</p></div>
+	<form method="POST">
+		{% csrf_token %}
+		<input type='text' id="id_findfood" name="findfood" placeholder="Пошук на Food Inc.">
+	</form>
+	<div class="links_btns">
+			<div class="linktomain"><p align="center"><img src="{% static 'img/myacc.png' %}" class="img_head"></p></div>
+			<div class="linktomain"><p align="center"><img src="{% static 'img/mycart.png' %}" class="img_head_norm"></p></div>
+			<div class="linktomain"><p align="center"><img src="{% static 'img/recipesall.png' %}" class="img_head_norm1"></p></div>
+	</div>
+	<div class="create_new_recipe">
+		<img src='{% static "img/settings_icon.png" %}' class="settings_btn">
+		<div class="create_rep_btn"><p>Створити рецепт</p></div>
+	</div>
+</header>
+
+{% block content %}
+
+{% endblock %}
+</html>

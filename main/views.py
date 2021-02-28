@@ -35,3 +35,10 @@ def signup(request):
 
 def homePage(request):
 	return render(request, 'main/home.html')
+
+
+def profile(request):
+	context = {
+	'test':123,
+	}
+	return render(request, 'main/myaccount.html', context)
