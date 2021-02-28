@@ -43,6 +43,12 @@ After that you should return to your html code and use this brackets for pasting
 {{ your_name }}
 ```
 Lets look at example
-```html
-{{ your_name }}
 ```
+{% extends "main/header.html" %}
+  {% load static %}
+  {% block content %}
+  <p>{{ your_name }}</p>
+  {% endblock %}
+```
+The result will be page with header that Misha made with text Alex places under the header and in the left part of the page
+
