@@ -1,4 +1,5 @@
 {% load static %}
+{% load static %}
 <!DOCTYPE html>
 <html style="margin: 0; height: 100%; overflow: hidden">
 <head>
@@ -8,24 +9,24 @@
 	<link href='https://fonts.googleapis.com/css?family=Montserrat Alternates' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<title>Реєстрація</title>
+	<title>Вхід</title>
 </head>
 <body>
 	<div class="flex_sign_up">
 		<div class="part_w_image">
-			<img class="sign_up_ph" src="{% static 'img/sign_up_photo.png' %}">
+			<img class="sign_up_ph" src="{% static 'img/login_page.png' %}">
 
 		</div>
 		<section class="part_2_flex_div_2">
 			<section class="logo_plus_name">
-				<!--<p class="logo_name_company">Food comF</p>
-				<div class="logo_block">
+				<!--<p class="logo_name_company">Food comF</p>-->
+				<!--<div class="logo_block">
 					
 				</div>-->
 			</section>
 			<section class="forms_and_btns">
 				<p class="sign_up_text" align="center">
-					Приєднатися до сотень<br>успішних кухарів
+					Увійти до аккаунту
 				</p>
 				<form method="POST">
 					{% csrf_token %}
@@ -37,12 +38,12 @@
 					<p align="center" class="pass_p_cen">
 						<input type="password" id="id_password" name="password1" required>
 					</p>
-					<p class="i_agree">
+					<!--<p class="i_agree">
 						<input type="checkbox" class="custom-checkbox" id="id_access_to_data" name="access_to_data" required>
 						<label for="id_access_to_data">Я згоден з умовами користування foodName</label> 
 						
-					</p>
-					<input type="submit" value="Приєднатись" class="join_sign_up">
+					</p>-->
+					<input type="submit" value="Увійти" class="join_sign_up">
 				</form>
 			</section>
 		</section>

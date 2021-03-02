@@ -42,3 +42,30 @@ def profile(request):
 	'test':123,
 	}
 	return render(request, 'main/myaccount.html', context)
+
+
+def login_page(request):
+    if request.user.is_authenticated:
+        return redirect('profile')
+    else: 
+        error = ''
+        if request.method == "POST":
+            username = request.POST.get('email')
+            password = request.POST.get("password1")
+            user = authenticate(request, email=username, password=password)
+            print(user)
+            if user is not None:
+                login(request, user)
+                return redirect('profile')
+            else:
+                error = "Не верное имя пользователя или пароль"
+                context = {'error':error}
+                return render(request, 'main/login.html', context)
+        context = {'error':error}
+        return render(request, 'main/login.html')
+
+def logout_page(request):
+	logout(request)
+	return redirect('login_page')
+
+
