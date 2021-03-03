@@ -930,6 +930,211 @@ font-family: Montserrat;
 	height: 32px;
 	margin-top:9px;
 }
+	.account_info{
+	display: flex;
+	flex-direction: row;
+	width:900px;
+	height: 200px;
+	margin:70px auto;
+	margin-bottom: 30px;
+}
+.profile_photo{
+	height: 200px;
+	width:200px;
+	border:0px solid grey;
+}
+.profile_info{
+	height: 200px;
+	width:700px;
+	margin-left:-1px;
+	border:0px solid grey;
+}
+.name_and_lname{
+	font-family: Montserrat;
+	font-size: 30px;
+	margin-left:20px;
+	color:#686868;
+	margin-top:1px;
+	margin-bottom: 0px;
+}
+.username_profile{
+	font-family: Montserrat;
+	font-size: 20px;
+	margin-left:20px;
+	color:#494949;
+	margin-top:6px;
+	margin-bottom: 0px;
+}
+.description_profile{
+	font-family: Montserrat;
+	font-size: 20px;
+	margin-left:20px;
+	color:#686868;
+	margin-top:26px;
+}
+.my_rank_img{
+	height: 40px;
+	margin-left:20px;
+}
+.flex_rank{
+	display: flex;
+	flex-direction: row;
+}
+.rank_name{
+	font-family: Montserrat;
+	color:#5A5A5A;
+	font-size: 22px;
+	margin-top:0px;
+	margin-left:7px;
+	margin-bottom: 7px;
+}
+.progress_flex{
+	display: flex;
+	flex-direction: column;
+}
+.grey_progress{
+	width:210px;
+	height: 8px;
+	border-radius: 10px;
+	background: #EDEDED;
+	margin-left:7px;
+}
+.red_progress{
+	width:78%;
+	height: 8px;
+	border-radius: 10px;
+	background: #F87A5D;
+}
+.subs_follows{
+	height: 100px;
+	width:900px;
+	display: flex;
+	justify-content: space-around;
+	margin:0 auto;
+	margin-top:0px;
+}
+.subs_follows p{
+	font-family: Montserrat;
+	color:#585858;
+	font-size: 16px;
+	margin-top:2px;
+	margin-bottom: 0px;
+	text-align: center;
+}
+.sbs_flex_part{
+	display: flex;
+	flex-direction: column;
+}
+.best_recipes_rewards{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	margin:0 auto;
+	width:900px;
+}
+.my_rewards{
+	height: 150px;
+	width:400px;
+	border-radius: 15px;
+	background: #F3F3F3;
+	text-decoration: none;
+}
+.my_rewards_1{
+	display: flex;
+	flex-direction: row;
+	width:380px;
+	margin-left:10px;
+}
+.my_best_recipes{
+	height: 150px;
+	width:400px;
+	text-decoration: none;
+	border-radius: 15px;
+	background: #F3F3F3;
+}
+.rew_pra{
+	font-family: Montserrat;
+	font-size: 20px;
+	color:#7C7C7C;
+}
+.reward_img{
+	height: 60px;
+	margin-right: -40px;
+	margin-left:20px;
+}
+.reward_last{
+	height: 60px;
+	width:60px;
+	background: #F87A5D;
+	border-radius: 50px;
+	margin-left:20px;
+}
+.reward_last p {
+	color:white;
+	line-height: 60px;
+	text-align: center;
+	font-family: Montserrat;
+
+	font-size:20px;
+	margin-top:0px;
+	margin-bottom: 0px;
+}
+.my_popular{
+		display: flex;
+	flex-direction: row;
+	width:380px;
+	margin-left:10px;
+}
+.popular_img{
+	height: 60px;
+	width:60px;
+	object-fit: cover;
+	border-radius: 50px;
+	margin-left:13px;
+}
+.all_recipes_my_profile{
+	display: flex;
+	flex-flow:row wrap;
+	width:1130px;
+	margin:50px auto;
+	height: auto;
+}
+.recipe_link_profile{
+	height: 250px;
+	width:350px;
+	border-radius: 10px;
+	background: #F3F3F3;
+	margin-left:10px;
+	margin-right: 10px;
+	transition:0.2s;
+}
+.my_chedevres_name{
+	font-family: Montserrat;
+	font-size:25px;
+	color:#686868;
+	margin-top:50px;
+	text-align:center;
+}
+.add_btn_recipe_photo{
+	height: 90px;
+	margin-top:0px;
+}
+.centering_img_addbtn{
+	line-height: 250px;
+	padding-top:45px;
+	margin-top:0px;
+	margin-bottom: 0px;
+	text-align: center;
+}
+.recipe_link_profile:hover{
+	background:#FFF4F4;
+	transition:0.3s;
+	margin-top:-3px;
+	margin-right: 7px;
+	height: 256px;
+	width:356px;
+	margin-left:7px;
+}
 }
 
 
