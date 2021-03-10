@@ -4,23 +4,23 @@
 											<!-- Profile information section -->
 <section class="account_info">
 	<div class="profile_photo">
-		<p align="center"><img class="img_profile" src="{% static 'img/profile_ph.png' %}"></p>
+		<p align="center"><img class="img_profile" src="{{ request.user.image_profile.url }}"></p>
 	</div>
 	<div class="profile_info">
 
 
-		<p class="name_and_lname">Misha Gavura</p>
-		<p class="username_profile">@mishagavura</p>
-		<p class="description_profile">I love to cook and everything that you can imagine is on my profile) </p>
+		<p class="name_and_lname">{{ request.user.first_name }} {{ request.user.last_name }}</p>
+		<p class="username_profile">@{{ request.user.username }}</p>
+		<p class="description_profile">{{ request.user.about }}</p>
 
 
 
 		<div class="flex_rank">
 			<img src="{% static 'img/rank.png' %}" class="my_rank_img">
 			<div class='progress_flex'>
-				<p class="rank_name">Ранг: Початківець</p>
+				<p class="rank_name">Ранг: {{ request.user.rank }}</p>
 				<div class='grey_progress'>
-					<div class='red_progress'>
+					<div style="width:{{ request.user.rank_percentage }}%;height: 8px;border-radius: 10px;background: #F87A5D;">
 					
 					</div>
 				</div>

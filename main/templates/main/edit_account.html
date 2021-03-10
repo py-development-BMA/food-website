@@ -1,0 +1,104 @@
+{% extends "main/header.html" %}
+{% load static %}
+{% block content %}
+											<!-- Profile information section -->
+<section class="account_info">
+	<div class="profile_photo">
+		<p align="center"><img class="img_profile" src="{% static 'img/profile_ph.png' %}"></p>
+	</div>
+	<div class="profile_info">
+		<form method="POST">
+			{% csrf_token %}
+			<p class="name_and_lname_change">
+				Ім'я: <input type="text" id="id_first_name" name="first_name" class="change_first_name" value="{{ request.user.first_name }}"> 
+				Прізвище: <input type="text" id="id_last_name" name="last_name" class="change_last_name" value="{{ request.user.last_name }}"> </p>
+			<p class="username_profile_edit">
+				Ім'я користувача: <input type="text" id="id_username" name="username" class="change_username" value="{{ request.user.username }}"></p>
+			<p class="description_profile_edit">
+				Про мене: <textarea name="about" cols="40" rows="2" id="id_about" spellcheck="false" class="about_user_edit" value="{{ request.user.about }}"></textarea></p>
+			<p align="right"><input type="submit" class="save_editinfo" value="Зберегти"></p>
+		</form>
+
+
+	
+
+
+
+
+
+	</div>
+</section>
+												<!-- Subscribers section -->
+<section class="subs_follows">
+	<div class="sbs_flex_part">
+		<p>12k</p>
+		<p>Підписники</p>
+	</div>
+	<div class="sbs_flex_part">
+		<p>178</p>
+		<p>Підписки</p>
+	</div>
+	<div class="sbs_flex_part">
+		<p>12</p>
+		<p>Публікації</p>
+	</div>
+</section>
+
+
+												<!-- Rewards and best recipes section -->
+<section class="best_recipes_rewards">
+<a class="my_rewards" href="#">
+	<p align="center" class="rew_pra">Нагороди</p>
+<div class="my_rewards_1">
+	<img src="{% static 'img/exreward_1.png' %}" class='reward_img'>
+	<img src="{% static 'img/exreward.png' %}" class='reward_img'>
+	<img src="{% static 'img/exreward_1.png' %}" class='reward_img'>
+	<img src="{% static 'img/exreward.png' %}" class='reward_img'>
+	<img src="{% static 'img/exreward_1.png' %}" class='reward_img'>
+	<img src="{% static 'img/exreward.png' %}" class='reward_img'>
+	<img src="{% static 'img/exreward_1.png' %}" class='reward_img'>
+	<div class="reward_last"><p>+17</p></div>
+</div>
+</a>
+<a class="my_best_recipes" href="#">
+	<p align="center" class="rew_pra">Популярні рецепти</p>
+	<div class="my_popular">
+		<img src="{% static 'img/photo-1467003909585-2f8a72700288.jpg' %}" class='popular_img'>
+		<img src="{% static 'img/photo-1481931098730-318b6f776db0.jpg' %}" class='popular_img'>
+		<img src="{% static 'img/photo-1567620905732-2d1ec7ab7445.jpg' %}" class='popular_img'>
+		<img src="{% static 'img/photo-1484980972926-edee96e0960d.jpg' %}" class='popular_img'>
+		<img src="{% static 'img/photo-1481070555726-e2fe8357725c.jpg' %}" class='popular_img'>
+	</div>
+</a>
+</section>
+
+
+												<!-- All my recipes section -->
+<p class="my_chedevres_name">Мої шедеври</p>
+<section class="all_recipes_my_profile">
+	<a class="recipe_link_profile_add" href="#">
+		<p class="centering_img_addbtn"><img src="{% static 'img/add_recipe.png' %}" class="add_btn_recipe_photo"></p>
+	</a>
+	<div class="recipe_link_profile">
+		<img src="{% static 'img/photo-1481931098730-318b6f776db0.jpg' %}" class="image_recipe">
+		<div class="hover_info_show">
+			<p align="center" class="main_in_hidden_recipe">Спагеті з морепродуктами</p>
+			<p align="center" class="normal_hidden">30-40 хв</p>
+			<p align="center" class="normal_hidden">Середня складність</p>
+			<p align="center" class="normal_hidden">Дорогі продукти</p>
+		</div>
+	</div>
+	<div class="recipe_link_profile">
+		<img src="{% static 'img/photo-1467003909585-2f8a72700288.jpg' %}" class="image_recipe">
+		<div class="hover_info_show">
+			<p align="center" class="main_in_hidden_recipe">Суп з філе лосося</p>
+			<p align="center" class="normal_hidden">40-50 хв</p>
+			<p align="center" class="normal_hidden">Легко</p>
+			<p align="center" class="normal_hidden">Популярні продукти</p>
+		</div>
+	</div>
+</section>
+<div style="height: 500px;"></div>
+<script>
+</script>
+{% endblock %}
