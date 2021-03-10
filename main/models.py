@@ -31,22 +31,35 @@ class Achievements(models.Model):
 	#here to put names of achiements they are already connected to CustomUser
 
 
+
+class Purchases(models.Model):
+	shop_name = models.CharField("Shop", max_length=100, blank=True)
+	def __str__(self):
+		return self.shop_name
+
+
 class CustomUser(AbstractBaseUser):
+	RANKS = (("Початківець","Початківець"),("Професіонал","Професіонал"))
 	first_name = models.CharField("first_name", max_length=50, blank=True)
 	last_name = models.CharField("last_name", max_length=50, blank=True)
 	email = models.CharField("email", max_length=250, unique=True)
 	about = models.TextField('about', blank=True)
+	amount_of_reciped = models.IntegerField('Recipes amount', default=0)
 	SEX = (('Чоловіча','male'),('Жіноча','female'))
 	username = models.CharField("username", max_length=50, unique=True, blank=True)
-	achievements = models.ManyToManyField(Achievements)
+	achievements = models.ManyToManyField(Achievements, blank=True)
+	purchases = models.ManyToManyField(Purchases, blank=True)
 	sex = models.CharField('Стать', max_length=200, null=True, choices=SEX, blank=True)
 	date_joined = models.DateTimeField('date_creat',auto_now_add=True, null=True)
+	date_of_birth = models.DateTimeField('Birthday', null=True, blank=True)
 	ip_adress = models.CharField('ip_user', max_length=200, null=True, blank=True)
+	rank = models.CharField('rank', max_length=200, null=True, choices=RANKS, blank=True, default=RANKS[0][0])
+	rank_percentage = models.IntegerField("Percents rank", default=15)
 	access_to_data = models.BooleanField(default=False)
-	is_active = models.BooleanField(default=True)
+	is_user = models.BooleanField(default=True)
 	is_staff = models.BooleanField(default=False)
 	is_superuser = models.BooleanField(default=False)
-	
+	#ADD FIELDS WITH PERSONAL PREFERENCES
 
 	USERNAME_FIELD = 'email'
 
@@ -73,38 +86,38 @@ class RecipeProduct(models.Model):
 	adderOf = models.CharField("adderOf", max_length=100, null=True)
 	category = models.CharField('category', max_length=200, null=True, choices=CATEGORY)
 	hardnessCook = models.CharField('hardness', max_length=200, null=True, choices=HARDNESS)
-	ingredient1 = models.CharField('ingredients1', null=True, blank=True, max_length=200)
-	ingredient2 = models.CharField('ingredients2', null=True, blank=True, max_length=200)
-	ingredient3 = models.CharField('ingredients3', null=True, blank=True, max_length=200)
-	ingredient4 = models.CharField('ingredients4', null=True, blank=True, max_length=200)
-	ingredient5 = models.CharField('ingredients5', null=True, blank=True, max_length=200)
-	ingredient6 = models.CharField('ingredients6', null=True, blank=True, max_length=200)
-	ingredient7 = models.CharField('ingredients7', null=True, blank=True, max_length=200)
-	ingredient8 = models.CharField('ingredients8', null=True, blank=True, max_length=200)
-	ingredient9 = models.CharField('ingredients9', null=True, blank=True, max_length=200)
-	ingredient10 = models.CharField('ingredients10', null=True, blank=True, max_length=200)
-	mas1 = models.CharField("mas1", null=True, blank=True, max_length=100)
-	mas2 = models.CharField("mas2", null=True, blank=True, max_length=100)
-	mas3 = models.CharField("mas3", null=True, blank=True, max_length=100)
-	mas4 = models.CharField("mas4", null=True, blank=True, max_length=100)
-	mas5 = models.CharField("mas5", null=True, blank=True, max_length=100)
-	mas6 = models.CharField("mas6", null=True, blank=True, max_length=100)
-	mas7 = models.CharField("mas7", null=True, blank=True, max_length=100)
-	mas8 = models.CharField("mas8", null=True, blank=True, max_length=100)
-	mas9 = models.CharField("mas9", null=True, blank=True, max_length=100)
-	mas10 = models.CharField("mas10", null=True, blank=True, max_length=100)
+	ingredient1 = models.CharField('ingredient1', null=True, blank=True, max_length=200)
+	ingredient2 = models.CharField('ingredient2', null=True, blank=True, max_length=200)
+	ingredient3 = models.CharField('ingredient3', null=True, blank=True, max_length=200)
+	ingredient4 = models.CharField('ingredient4', null=True, blank=True, max_length=200)
+	ingredient5 = models.CharField('ingredient5', null=True, blank=True, max_length=200)
+	ingredient6 = models.CharField('ingredient6', null=True, blank=True, max_length=200)
+	ingredient7 = models.CharField('ingredient7', null=True, blank=True, max_length=200)
+	ingredient8 = models.CharField('ingredient8', null=True, blank=True, max_length=200)
+	ingredient9 = models.CharField('ingredient9', null=True, blank=True, max_length=200)
+	ingredient10 = models.CharField('ingredient10', null=True, blank=True, max_length=200)
+	mas1 = models.CharField("massa1", null=True, blank=True, max_length=100)
+	mas2 = models.CharField("massa2", null=True, blank=True, max_length=100)
+	mas3 = models.CharField("massa3", null=True, blank=True, max_length=100)
+	mas4 = models.CharField("massa4", null=True, blank=True, max_length=100)
+	mas5 = models.CharField("massa5", null=True, blank=True, max_length=100)
+	mas6 = models.CharField("massa6", null=True, blank=True, max_length=100)
+	mas7 = models.CharField("massa7", null=True, blank=True, max_length=100)
+	mas8 = models.CharField("massa8", null=True, blank=True, max_length=100)
+	mas9 = models.CharField("massa9", null=True, blank=True, max_length=100)
+	mas10 = models.CharField("masssa10", null=True, blank=True, max_length=100)
 	description = models.CharField('description', max_length=200, null=True, blank=True)
 	date_created = models.DateTimeField('date_creat',auto_now_add=True, null=True)
-	desc1 = models.TextField('desc1', null=True, blank=True)
-	desc2 = models.TextField('desc2', null=True, blank=True)
-	desc3 = models.TextField('desc3', null=True, blank=True)
-	desc4 = models.TextField('desc4', null=True, blank=True)
-	desc5 = models.TextField('desc5', null=True, blank=True)
-	desc6 = models.TextField('desc6', null=True, blank=True)
-	desc7 = models.TextField('desc7', null=True, blank=True)
-	desc8 = models.TextField('desc8', null=True, blank=True)
-	desc9 = models.TextField('desc9', null=True, blank=True)
-	desc10 = models.TextField('desc10', null=True, blank=True)
+	desc1 = models.TextField('description1', null=True, blank=True)
+	desc2 = models.TextField('description2', null=True, blank=True)
+	desc3 = models.TextField('description3', null=True, blank=True)
+	desc4 = models.TextField('description4', null=True, blank=True)
+	desc5 = models.TextField('description5', null=True, blank=True)
+	desc6 = models.TextField('description6', null=True, blank=True)
+	desc7 = models.TextField('description7', null=True, blank=True)
+	desc8 = models.TextField('description8', null=True, blank=True)
+	desc9 = models.TextField('description9', null=True, blank=True)
+	desc10 = models.TextField('description10', null=True, blank=True)
 	image1 = models.ImageField(default="blank.png",verbose_name="Image", null=True, blank=True)
 	image2 = models.ImageField(default="blank.png",verbose_name="Image", null=True, blank=True)
 	image3 = models.ImageField(default="blank.png",verbose_name="Image", null=True, blank=True)
@@ -125,3 +138,6 @@ class RecipeProduct(models.Model):
 
 	def get_absolute_url(self):
 		return f'/{self.id}'
+
+
+
