@@ -11,7 +11,7 @@ import datetime
 from django.core.mail import send_mail
 import re
 #from .tasks import *
-
+print("\n[  VERSION  ]: 1.7\n\n")
 
 
 def signup(request):
