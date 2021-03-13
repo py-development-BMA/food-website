@@ -1,21 +1,23 @@
 {% extends "main/header.html" %}
 {% load static %}
 {% block content %}
-											<!-- Profile information section -->
+										<!-- Profile information section -->
 <section class="account_info">
 	<div class="profile_photo">
-		<p align="center"><img class="img_profile" src="{% static 'img/profile_ph.png' %}"></p>
+		<img id="blah1" src="{{ request.user.image_profile.url }}" alt="your image" />
+		<p align="center" class="img_pos_change"><label class="customMainSelected1" for="id_image1">Змінити фото</label></p>
 	</div>
 	<div class="profile_info">
-		<form method="POST">
+		<form method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
+			<input type="file" style="display: none;" name="image_profile" accept="image/*" id="id_image1" onchange="readURL(this, 1);">
 			<p class="name_and_lname_change">
 				Ім'я: <input type="text" id="id_first_name" name="first_name" class="change_first_name" value="{{ request.user.first_name }}"> 
 				Прізвище: <input type="text" id="id_last_name" name="last_name" class="change_last_name" value="{{ request.user.last_name }}"> </p>
 			<p class="username_profile_edit">
 				Ім'я користувача: <input type="text" id="id_username" name="username" class="change_username" value="{{ request.user.username }}"></p>
 			<p class="description_profile_edit">
-				Про мене: <textarea name="about" cols="40" rows="2" id="id_about" spellcheck="false" class="about_user_edit" value="{{ request.user.about }}"></textarea></p>
+				Про мене: <textarea name="about" cols="40" rows="2" id="id_about" spellcheck="false" class="about_user_edit">{{ request.user.about }}</textarea></p>
 			<p align="right"><input type="submit" class="save_editinfo" value="Зберегти"></p>
 		</form>
 
@@ -99,6 +101,20 @@
 	</div>
 </section>
 <div style="height: 500px;"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
+	function readURL(input, num) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah'+ num)
+                    .attr('src', e.target.result)
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
 </script>
 {% endblock %}
