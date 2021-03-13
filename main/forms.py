@@ -1,5 +1,5 @@
 from .models import *
-from django.forms import ModelForm, TextInput, DateTimeInput, PasswordInput, EmailInput
+from django.forms import ModelForm, TextInput, DateTimeInput, PasswordInput, EmailInput, ImageField
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
@@ -16,8 +16,8 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 
-class CustomUserEdit(forms.Form):
-	first_name = forms.CharField(max_length=20, required=False)
-	last_name = forms.CharField(max_length=200, required=False)
-	username = forms.CharField(max_length=200, required=False)
-	about = forms.CharField(max_length=200, required=False)
+class CustomUserEdit(ModelForm):
+	class Meta:
+		model = CustomUser
+		fields = "__all__"
+		exclude = ['email', 'amount_of_reciped', 'achievements', 'purchases', 'sex', 'date_joined', 'date_of_birth', 'ip_adress', 'rank', 'rank_percentage', 'access_to_data', 'is_user', 'is_staff', 'is_superuser', 'last_login', 'password']

@@ -45,18 +45,12 @@ def profile(request):
 
 
 def edit_profile(request):
-	form = CustomUserEdit()
+	user = request.user
+	form = CustomUserEdit(instance=user)
 	if request.method == "POST":
-		form = CustomUserEdit(request.POST)
-		user_info = CustomUser.objects.get(email=request.user)
-		print(user_info.email)
-		print(request.POST)
+		form = CustomUserEdit(request.POST, request.FILES, instance=user)
 		if form.is_valid():
-			user_info.first_name = form.cleaned_data.get('first_name')
-			user_info.last_name  = form.cleaned_data.get('last_name')
-			user_info.about = form.cleaned_data.get('about')
-			user_info.username = form.cleaned_data.get('username')
-			user_info.save()
+			form.save()
 			return redirect('profile')
 
 	context = {
