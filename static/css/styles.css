@@ -1795,6 +1795,24 @@ font-family: Montserrat;
 	color:white;
 	border:0px solid white;
 	margin-right: 50px;
+	outline: none;
+	cursor: pointer;
+	ransition: 0.2s;
+	margin-top:-20px;
+}
+.save_editinfo:focus{
+	background: #4AD6AD;
+	transition: 0.2s;
+	border-radius: 15px;
+	height: 30px;
+	width:150px;
+	font-family: Montserrat;
+	font-size: 15px;
+	color:white;
+	border:1px solid white;
+	margin-right: 50px;
+	outline: none;
+	cursor: pointer;
 	margin-top:-20px;
 }
 .img_profile{
@@ -1802,6 +1820,46 @@ font-family: Montserrat;
 	height: 150px;
 	width:150px;
 	border-radius: 500px;
+}
+#blah1{
+
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  border-radius: 100px;
+}
+
+.customMainSelected1{
+  font-family: Montserrat;
+  color:#5C5C5C;
+  font-size: 15px;
+  display: inline-block;
+  padding:6px;
+  width: 138px;
+  background:#F0F0F0; 
+  text-align: center;
+  cursor: pointer;
+    border-radius: 15px;
+}
+.customMain1{
+  font-family: Montserrat;
+  font-size: 15px;
+  color:#5C5C5C;
+    display: inline-block;
+    padding-top:65px;
+    text-align: center;
+    height: 85px;
+    width:150px;
+    cursor: pointer;
+    border-radius: 150px;
+    background-color:#F0F0F0;; 
+}
+.hide{
+	display: none;
+}
+.img_pos_change{
+	height: 150px;
+	width:150px;
 }
 }
 
