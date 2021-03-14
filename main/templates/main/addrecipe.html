@@ -1,0 +1,248 @@
+{% extends "main/header.html" %}
+{% load static %}
+{% block content %}
+
+
+<div class="profileBlock">
+  <h2 align="center" style="font-family:Source Serif Pro; font-weight: normal;color: #5C5C5C;">Добавить рецепт</h2>
+  <div class="flexPhotoInfo">
+    <div class="infoAboutMeAdd">
+       
+      <form method="POST" action="" enctype="multipart/form-data" id="formaddRec">
+        {% csrf_token %}
+      <p class="centerB">{{form.name}}</p>
+      <p class="centerB"><img id="blah0" src="#" alt="your image" class="hide" /></p>
+      <p class="centerPhoto"><label class="customMain0" for="id_image_prod">Добавить фото</label></p>
+       <h4>{{form.description}}</h4>
+      <h4> <i>{{form.time}}</i></h4>
+      <h5 class="catgr">Категория блюда: {{form.category}}</h5>
+      <h5 class="hrdns">Сложность: {{form.hardnessCook}}</h5>
+      
+          <div style="width: 400px; margin-left:30%">
+            <h3 class="step">Ингредиенты</h3>
+          </div>
+      <div class="ingr1" id="ingr1">
+          <h5 id="ingr1_style">{{form.ingredient1}}</h5>
+          <h5 id="ingr2_style">{{form.mas1}}</h5>
+          <p class="center"><span  class="" id="addRecBtnIngr1" onclick="addRecFormIngr(1)"></span></p>
+      </div>
+      <div class="hide" id="ing2">
+      <div id="ingr2">
+          <h5 id="ingr1_style">{{form.ingredient2}}</h5>
+          <h5 id="ingr2_style">{{form.mas2}}</h5>
+          <p class="center"><span  class="" id="addRecBtnIngr2" onclick="addRecFormIngr(2)"></span></p>
+      </div>
+    </div>
+      <div class="hide" id="ing3">
+      <div class="hide" id="ingr3">
+          <h5 id="ingr1_style">{{form.ingredient3}}</h5>
+          <h5 id="ingr2_style">{{form.mas3}}</h5>
+          <p class="center"><span  class="" id="addRecBtnIngr3" onclick="addRecFormIngr(3)"></span></p>
+      </div>
+    </div>
+      <div class="hide" id="ing4">
+      <div class="hide" id="ingr4">
+          <h5 id="ingr1_style">{{form.ingredient4}}</h5>
+          <h5 id="ingr2_style">{{form.mas4}}</h5>
+          <p class="center"><span  class="" id="addRecBtnIngr4" onclick="addRecFormIngr(4)"></span></p>
+      </div>
+    </div>
+      <div class="hide" id="ing5">
+      <div class="hide" id="ingr5">
+          <h5 id="ingr1_style">{{form.ingredient5}}</h5>
+          <h5 id="ingr2_style">{{form.mas5}}</h5>
+          <p class="center"><span  class="" id="addRecBtnIngr5" onclick="addRecFormIngr(5)"></span></p>
+      </div>
+    </div>
+      <div class="hide" id="ing6">
+      <div class="hide" id="ingr6">
+          <h5 id="ingr1_style">{{form.ingredient6}}</h5>
+          <h5 id="ingr2_style">{{form.mas6}}</h5>
+          <p class="center"><span  class="" id="addRecBtnIngr6" onclick="addRecFormIngr(6)"></span></p>
+      </div>
+    </div>
+      <div class="hide" id="ing7">
+      <div class="hide" id="ingr7">
+          <h5 id="ingr1_style">{{form.ingredient7}}</h5>
+          <h5 id="ingr2_style">{{form.mas7}}</h5>
+          <p class="center"><span  class="" id="addRecBtnIngr7" onclick="addRecFormIngr(7)"></span></p>
+      </div>
+    </div>
+      <div class="hide" id="ing8">
+      <div class="hide" id="ingr8">
+          <h5 id="ingr1_style">{{form.ingredient8}}</h5>
+          <h5 id="ingr2_style">{{form.mas8}}</h5>
+          <p class="center"><span  class="" id="addRecBtnIngr8" onclick="addRecFormIngr(8)"></span></p>
+      </div>
+    </div>
+      <div class="hide" id="ing9">
+      <div class="hide" id="ingr9">
+          <h5 id="ingr1_style">{{form.ingredient9}}</h5>
+          <h5 id="ingr2_style">{{form.mas9}}</h5>
+          <p class="center"><span  class="" id="addRecBtnIngr9" onclick="addRecFormIngr(9)"></span></p>
+      </div>
+    </div>
+      <div class="hide" id="ing10">      
+      <div class="hide" id="ingr10">
+          <h5 id="ingr1_style">{{form.ingredient10}}</h5>
+          <h5 id="ingr2_style">{{form.mas10}}</h5>
+          <p class="center"><span  class="" id="addRecBtnIngr10" onclick="addRecFormIngr(10)"></span></p>
+      </div>
+    </div>
+
+      <div class="step1" id="step1">
+          <div style="width: 400px; margin-left:30%">
+            <h3 class="step">Шаг 1</h3>
+          </div>
+          <h5 id="desc1_style">{{form.desc1}}</h5>
+          <p class="centerB"><img id="blah1" src="#" alt="your image" class="hide" /></p>
+          <p class="centerPhoto"><label class="customMain1" for="id_image1">Добавить фото</label></p>
+          <p class="center"><div  class="" id="addRecBtn1" onclick="addRecForm(1)">Добавить шаг</div></p>
+      </div>
+
+
+      <div class="hide" id="step2">
+          <div style="width: 400px; margin-left:30%">
+            <h3 class="step">Шаг 2</h3>
+          </div>
+          <h5 id="desc1_style">{{form.desc2}}</h5>
+          <p class="centerB"><img id="blah2" src="#" alt="your image" class="hide" /></p>
+          <p class="centerPhoto"><label class="customMain2" for="id_image2">Добавить фото</label></p>
+           <p class="center"><div class="" id="addRecBtn2" onclick="addRecForm(2)">Добавить шаг</div></p>
+      </div>
+      <div class="hide" id="step3">
+          <div style="width: 400px; margin-left:30%">
+            <h3 class="step">Шаг 3</h3>
+          </div>
+          <h5 id="desc1_style">{{form.desc3}}</h5>
+          <p class="centerB"><img id="blah3" src="#" alt="your image" class="hide" /></p>
+          <p class="centerPhoto"><label class="customMain3" for="id_image3">Добавить фото</label></p>
+          <p class="lefter"><div  class="" id="addRecBtn3" onclick="addRecForm(3)">Добавить шаг</div></p>
+      </div>
+      <div class="hide" id="step4">
+          <div style="width: 400px; margin-left:30%">
+            <h3 class="step">Шаг 4</h3>
+          </div>
+          <h5 id="desc1_style">{{form.desc4}}</h5>
+          <p class="centerB"><img id="blah4" src="#" alt="your image" class="hide" /></p>
+          <p class="centerPhoto"><label class="customMain4" for="id_image4">Добавить фото</label></p>
+          <p class="lefter"><div  class="" id="addRecBtn4" onclick="addRecForm(4)">Добавить шаг</div></p>
+      </div>
+      <div class="hide" id="step5">
+          <div style="width: 400px; margin-left:30%">
+            <h3 class="step">Шаг 5</h3>
+          </div>
+          <h5 id="desc1_style">{{form.desc5}}</h5>
+          <p class="centerB"><img id="blah5" src="#" alt="your image" class="hide" /></p>
+          <p class="centerPhoto"><label class="customMain5" for="id_image5">Добавить фото</label></p>
+          <p class="lefter"><div  class="" id="addRecBtn5" onclick="addRecForm(5)">Добавить шаг</div></p>
+      </div>
+      <div class="hide" id="step6">
+          <div style="width: 400px; margin-left:30%">
+            <h3 class="step">Шаг 6</h3>
+          </div>
+          <h5 id="desc1_style">{{form.desc6}}</h5>
+          <p class="centerB"><img id="blah6" src="#" alt="your image" class="hide" /></p>
+          <p class="centerPhoto"><label class="customMain6" for="id_image6">Добавить фото</label></p>
+          <p class="lefter"><div  class="" id="addRecBtn6" onclick="addRecForm(6)">Добавить шаг</div></p>
+      </div>
+      <div class="hide" id="step7">
+          <div style="width: 400px; margin-left:30%">
+            <h3 class="step">Шаг 7</h3>
+          </div>
+          <h5 id="desc1_style">{{form.desc7}}</h5>
+          <p class="centerB"><img id="blah7" src="#" alt="your image" class="hide" /></p>
+          <p class="centerPhoto"><label class="customMain7" for="id_image7">Добавить фото</label></p>
+          <p class="lefter"><div  class="" id="addRecBtn7" onclick="addRecForm(7)">Добавить шаг</div></p>
+      </div>
+      <div class="hide" id="step8">
+          <div style="width: 400px; margin-left:30%">
+            <h3 class="step">Шаг 8</h3>
+          </div>
+          <h5 id="desc1_style">{{form.desc8}}</h5>
+          <p class="centerB"><img id="blah8" src="#" alt="your image" class="hide" /></p>
+          <p class="centerPhoto"><label class="customMain8" for="id_image8">Добавить фото</label></p>
+          <p class="lefter"><div  class="" id="addRecBtn8" onclick="addRecForm(8)">Добавить шаг</div></p>
+      </div>
+      <div class="hide" id="step9">
+          <div style="width: 400px; margin-left:30%">
+            <h3 class="step">Шаг 9</h3>
+          </div>
+          <h5 id="desc1_style">{{form.desc9}}</h5>
+          <p class="centerB"><img id="blah9" src="#" alt="your image" class="hide" /></p>
+          <p class="centerPhoto"><label class="customMain9" for="id_image9">Добавить фото</label></p>
+          <p class="lefter"><div  class="" id="addRecBtn9" onclick="addRecForm(9)">Добавить шаг</div></p>
+      </div>
+      <div class="hide" id="step10">
+          <div style="width: 400px; margin-left:30%">
+            <h3 class="step">Шаг 10</h3>
+          </div>
+          <h5 id="desc1_style">{{form.desc10}}</h5>
+          <p class="centerB"><img id="blah10" src="#" alt="your image" class="hide" /></p>
+          <p class="centerPhoto"><label class="customMain10" for="id_image10">Добавить фото</label></p>
+          <p class="lefter"><div  class="" id="addRecBtn10" onclick="alertError()">Добавить шаг</div></p>
+      </div>
+
+
+      <input type="file" name="image_prod" accept="image/*" id="id_image_prod" onchange="readURL(this, 0);">
+      <input type="file" style="display: none;" name="image1" accept="image/*" id="id_image1" onchange="readURL(this, 1);">
+      <input type="file" style="display: none;" name="image2" accept="image/*" id="id_image2" onchange="readURL(this, 2);">
+      <input type="file" style="display: none;" name="image3" accept="image/*" id="id_image3" onchange="readURL(this, 3);">
+      <input type="file" style="display: none;" name="image4" accept="image/*" id="id_image4" onchange="readURL(this, 4);">
+      <input type="file" style="display: none;" name="image5" accept="image/*" id="id_image5" onchange="readURL(this, 5);">
+      <input type="file" style="display: none;" name="image6" accept="image/*" id="id_image6" onchange="readURL(this, 6);">
+      <input type="file" style="display: none;" name="image7" accept="image/*" id="id_image7" onchange="readURL(this, 7);">
+      <input type="file" style="display: none;" name="image8" accept="image/*" id="id_image8" onchange="readURL(this, 8);">
+      <input type="file" style="display: none;" name="image9" accept="image/*" id="id_image9" onchange="readURL(this, 9);">
+      <input type="file" style="display: none;" name="image10" accept="image/*" id="id_image10" onchange="readURL(this, 10);">
+      <h4 style="display: none;"><input type="text" name="adderOf" id="id_adderOf" value="{{request.user.username}}"></h4>
+      <div class="lefter"><input type="submit" name="submiting" value="Сохранить" class="addrButton"></div>
+    </form>
+    </div>  
+</div>
+</body>
+<script type="text/javascript">
+  for(var i = 1;i<=10;i++){ 
+  document.getElementById("id_desc"+i).placeholder = "Опишите "+ i+ " шаг приготовления";
+  document.getElementById("id_ingredient"+i).placeholder = "Введите "+ i+ " ингредиент";
+  document.getElementById("id_mas"+i).placeholder = "Кол-во "
+}
+function readURL(input, num) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah'+ num)
+                    .attr('src', e.target.result)
+                document.getElementById("blah"+ num).classList.remove('hide');
+                $('.customMain'+ num).toggleClass("customMainSelected"+ num);
+                 $('.customMain'+ num).toggleClass("customMain"+ num);
+                 $(".customMainSelected"+ num).text("Изменить фото");
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+function addRecForm(num){
+    $('#step'+(num+1)).fadeIn(800);
+    $('#addRecBtn'+num).toggleClass("hide");
+    window.scrollTo({
+    top: 10000,
+    behavior: "smooth"
+});
+}
+
+function alertError(){
+    alert("Приносим свои извинения, вы достигли максимального количества шагов, ваша проблема записана в статистику")
+}
+
+function addRecFormIngr(num){
+    $('#ing'+(num+1)).fadeIn(800);
+    $('#addRecBtnIngr'+num).toggleClass("hide");
+}
+
+</script>
+
+
+{% endblock %}
