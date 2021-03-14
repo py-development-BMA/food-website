@@ -11,12 +11,24 @@ import datetime
 from django.core.mail import send_mail
 import re
 #from .tasks import *
-print("\n[  VERSION  ]: 1.7\n\n")
+
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+print(f"{bcolors.FAIL}\n[  VERSION  ]: 1.8.1 (created page for adding recipe)\n\n{bcolors.ENDC}")
 
 
 def signup(request):
 	if 1==1:
-		print(1) 
+		print(1)
 		form = CustomUserCreationForm()
 		context = {'form': form}
 
@@ -84,4 +96,24 @@ def logout_page(request):
 	logout(request)
 	return redirect('login_page')
 
+
+def newrecipe(request):
+	user = request.user.username
+	form = RecipeForm()
+
+	if request.method == "POST":
+		form = RecipeForm(request.POST, request.FILES)
+		if form.is_valid():
+			form.save()
+			nameProdField = form.cleaned_data.get('name')
+			OrderOwner.objects.create(
+					OwnerOfRecipe=user,
+					productAdded=nameProdField,
+					)
+			return redirect('account')
+	context = {
+	'form':form,
+	}
+
+	return render(request, 'main/addrecipe.html', context)
 
