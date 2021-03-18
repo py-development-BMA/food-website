@@ -8,7 +8,7 @@
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-	<title>My account</title>
+	<title>{% block title %} {% endblock %}</title>
 </head>
 
 <header>
@@ -18,13 +18,13 @@
 		<input type='text' id="id_findfood" name="findfood" placeholder="Пошук на Food Inc.">
 	</form>
 	<div class="links_btns">
-			<div class="linktomain"><p align="center"><img src="{% static 'img/myacc.png' %}" class="img_head"></p></div>
+			<a class="linktomain" style="text-decoration: none;" href='{% url "profile" %}'><p align="center"><img src="{% static 'img/myacc.png' %}" class="img_head"></p></a>
 			<div class="linktomain"><p align="center"><img src="{% static 'img/mycart.png' %}" class="img_head_norm"></p></div>
 			<div class="linktomain"><p align="center"><img src="{% static 'img/recipesall.png' %}" class="img_head_norm1"></p></div>
 	</div>
 	<div class="create_new_recipe">
 		<img src='{% static "img/settings_icon.png" %}' class="settings_btn">
-		<div class="create_rep_btn"><p>Створити рецепт</p></div>
+		<a class="create_rep_btn" style="text-decoration: none;" href="{% url 'newrecipe' %}"><p>Створити рецепт</p></a>
 	</div>
 </header>
 

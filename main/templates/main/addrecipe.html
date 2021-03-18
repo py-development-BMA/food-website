@@ -2,25 +2,27 @@
 {% load static %}
 {% block content %}
 
-
+<br>
+<br>
+<br>
 <div class="profileBlock">
-  <h2 align="center" style="font-family:Source Serif Pro; font-weight: normal;color: #5C5C5C;">Добавить рецепт</h2>
+  <h2 class="main_head_text">Створити рецепт</h2>
   <div class="flexPhotoInfo">
     <div class="infoAboutMeAdd">
        
       <form method="POST" action="" enctype="multipart/form-data" id="formaddRec">
         {% csrf_token %}
+        {{form.uuid_recipe}}
       <p class="centerB">{{form.name}}</p>
       <p class="centerB"><img id="blah0" src="#" alt="your image" class="hide" /></p>
-      <p class="centerPhoto"><label class="customMain0" for="id_image_prod">Добавить фото</label></p>
-       <h4>{{form.description}}</h4>
-      <h4> <i>{{form.time}}</i></h4>
-      <h5 class="catgr">Категория блюда: {{form.category}}</h5>
-      <h5 class="hrdns">Сложность: {{form.hardnessCook}}</h5>
+      <p class="centerPhoto"><label class="customMain0" for="id_image_prod"><img class="wrapper_photo" src="{% static 'img/add_photo.png' %}"><br>Додати фото обкладинки</label></p>
+       <p class="locate_center">{{form.description}}</p>
+      <p class="locate_center">{{form.time}}</p>
+      <p class="locate_center">Категорія: {{form.category}}</p>
+      <p class="locate_center">Складність: {{form.hardnessCook}}</p>
       
-          <div style="width: 400px; margin-left:30%">
-            <h3 class="step">Ингредиенты</h3>
-          </div>
+            <p class="ingredients_text">Інгредієнти</p>
+
       <div class="ingr1" id="ingr1">
           <h5 id="ingr1_style">{{form.ingredient1}}</h5>
           <h5 id="ingr2_style">{{form.mas1}}</h5>
@@ -91,96 +93,94 @@
     </div>
 
       <div class="step1" id="step1">
-          <div style="width: 400px; margin-left:30%">
-            <h3 class="step">Шаг 1</h3>
-          </div>
-          <h5 id="desc1_style">{{form.desc1}}</h5>
+            <p class="step_inscription">Крок 1</p>
+          <p id="desc1_style">{{form.desc1}}</p>
           <p class="centerB"><img id="blah1" src="#" alt="your image" class="hide" /></p>
-          <p class="centerPhoto"><label class="customMain1" for="id_image1">Добавить фото</label></p>
-          <p class="center"><div  class="" id="addRecBtn1" onclick="addRecForm(1)">Добавить шаг</div></p>
+          <p class="centerPhoto"><label class="customMain1" for="id_image1"><img class="wrapper_photo" src="{% static 'img/add_photo.png' %}"><br>Додати фото кроку</label></p>
+          <p class="center"><div  class="" id="addRecBtn1" onclick="addRecForm(1)">Додати крок</div></p>
       </div>
 
 
       <div class="hide" id="step2">
-          <div style="width: 400px; margin-left:30%">
-            <h3 class="step">Шаг 2</h3>
-          </div>
+          
+            <p class="step_inscription">Крок 2</p>
+          
           <h5 id="desc1_style">{{form.desc2}}</h5>
           <p class="centerB"><img id="blah2" src="#" alt="your image" class="hide" /></p>
-          <p class="centerPhoto"><label class="customMain2" for="id_image2">Добавить фото</label></p>
-           <p class="center"><div class="" id="addRecBtn2" onclick="addRecForm(2)">Добавить шаг</div></p>
+          <p class="centerPhoto"><label class="customMain2" for="id_image2"><img class="wrapper_photo" src="{% static 'img/add_photo.png' %}"><br>Додати фото кроку</label></p>
+           <p class="center"><div class="" id="addRecBtn2" onclick="addRecForm(2)">Додати крок</div></p>
       </div>
       <div class="hide" id="step3">
-          <div style="width: 400px; margin-left:30%">
-            <h3 class="step">Шаг 3</h3>
-          </div>
+          
+            <p class="step_inscription">Крок 3</p>
+
           <h5 id="desc1_style">{{form.desc3}}</h5>
           <p class="centerB"><img id="blah3" src="#" alt="your image" class="hide" /></p>
-          <p class="centerPhoto"><label class="customMain3" for="id_image3">Добавить фото</label></p>
-          <p class="lefter"><div  class="" id="addRecBtn3" onclick="addRecForm(3)">Добавить шаг</div></p>
+          <p class="centerPhoto"><label class="customMain3" for="id_image3"><img class="wrapper_photo" src="{% static 'img/add_photo.png' %}"><br>Додати фото кроку</label></p>
+          <p class="lefter"><div  class="" id="addRecBtn3" onclick="addRecForm(3)">Додати крок</div></p>
       </div>
       <div class="hide" id="step4">
-          <div style="width: 400px; margin-left:30%">
-            <h3 class="step">Шаг 4</h3>
-          </div>
+          
+            <p class="step_inscription">Крок 4</p>
+
           <h5 id="desc1_style">{{form.desc4}}</h5>
           <p class="centerB"><img id="blah4" src="#" alt="your image" class="hide" /></p>
-          <p class="centerPhoto"><label class="customMain4" for="id_image4">Добавить фото</label></p>
-          <p class="lefter"><div  class="" id="addRecBtn4" onclick="addRecForm(4)">Добавить шаг</div></p>
+          <p class="centerPhoto"><label class="customMain4" for="id_image4"><img class="wrapper_photo" src="{% static 'img/add_photo.png' %}"><br>Додати фото кроку</label></p>
+          <p class="lefter"><div  class="" id="addRecBtn4" onclick="addRecForm(4)">Додати крок</div></p>
       </div>
       <div class="hide" id="step5">
-          <div style="width: 400px; margin-left:30%">
-            <h3 class="step">Шаг 5</h3>
-          </div>
+          
+            <p class="step_inscription">Крок 5</p>
+
           <h5 id="desc1_style">{{form.desc5}}</h5>
           <p class="centerB"><img id="blah5" src="#" alt="your image" class="hide" /></p>
-          <p class="centerPhoto"><label class="customMain5" for="id_image5">Добавить фото</label></p>
-          <p class="lefter"><div  class="" id="addRecBtn5" onclick="addRecForm(5)">Добавить шаг</div></p>
+          <p class="centerPhoto"><label class="customMain5" for="id_image5"><img class="wrapper_photo" src="{% static 'img/add_photo.png' %}"><br>Додати фото кроку</label></p>
+          <p class="lefter"><div  class="" id="addRecBtn5" onclick="addRecForm(5)">Додати крок</div></p>
       </div>
       <div class="hide" id="step6">
-          <div style="width: 400px; margin-left:30%">
-            <h3 class="step">Шаг 6</h3>
-          </div>
+          
+            <p class="step_inscription">Крок 6</p>
+
           <h5 id="desc1_style">{{form.desc6}}</h5>
           <p class="centerB"><img id="blah6" src="#" alt="your image" class="hide" /></p>
-          <p class="centerPhoto"><label class="customMain6" for="id_image6">Добавить фото</label></p>
-          <p class="lefter"><div  class="" id="addRecBtn6" onclick="addRecForm(6)">Добавить шаг</div></p>
+          <p class="centerPhoto"><label class="customMain6" for="id_image6"><img class="wrapper_photo" src="{% static 'img/add_photo.png' %}"><br>Додати фото кроку</label></p>
+          <p class="lefter"><div  class="" id="addRecBtn6" onclick="addRecForm(6)">Додати крок</div></p>
       </div>
       <div class="hide" id="step7">
-          <div style="width: 400px; margin-left:30%">
-            <h3 class="step">Шаг 7</h3>
-          </div>
+          
+            <p class="step_inscription">Крок 7</p>
+
           <h5 id="desc1_style">{{form.desc7}}</h5>
           <p class="centerB"><img id="blah7" src="#" alt="your image" class="hide" /></p>
-          <p class="centerPhoto"><label class="customMain7" for="id_image7">Добавить фото</label></p>
-          <p class="lefter"><div  class="" id="addRecBtn7" onclick="addRecForm(7)">Добавить шаг</div></p>
+          <p class="centerPhoto"><label class="customMain7" for="id_image7"><img class="wrapper_photo" src="{% static 'img/add_photo.png' %}"><br>Додати фото кроку</label></p>
+          <p class="lefter"><div  class="" id="addRecBtn7" onclick="addRecForm(7)">Додати крок</div></p>
       </div>
       <div class="hide" id="step8">
-          <div style="width: 400px; margin-left:30%">
-            <h3 class="step">Шаг 8</h3>
-          </div>
+          
+            <p class="step_inscription">Крок 8</p>
+
           <h5 id="desc1_style">{{form.desc8}}</h5>
           <p class="centerB"><img id="blah8" src="#" alt="your image" class="hide" /></p>
-          <p class="centerPhoto"><label class="customMain8" for="id_image8">Добавить фото</label></p>
-          <p class="lefter"><div  class="" id="addRecBtn8" onclick="addRecForm(8)">Добавить шаг</div></p>
+          <p class="centerPhoto"><label class="customMain8" for="id_image8"><img class="wrapper_photo" src="{% static 'img/add_photo.png' %}"><br>Додати фото кроку</label></p>
+          <p class="lefter"><div  class="" id="addRecBtn8" onclick="addRecForm(8)">Додати крок</div></p>
       </div>
       <div class="hide" id="step9">
-          <div style="width: 400px; margin-left:30%">
-            <h3 class="step">Шаг 9</h3>
-          </div>
+          
+            <p class="step_inscription">Крок 9</p>
+
           <h5 id="desc1_style">{{form.desc9}}</h5>
           <p class="centerB"><img id="blah9" src="#" alt="your image" class="hide" /></p>
-          <p class="centerPhoto"><label class="customMain9" for="id_image9">Добавить фото</label></p>
-          <p class="lefter"><div  class="" id="addRecBtn9" onclick="addRecForm(9)">Добавить шаг</div></p>
+          <p class="centerPhoto"><label class="customMain9" for="id_image9"><img class="wrapper_photo" src="{% static 'img/add_photo.png' %}"><br>Додати фото кроку</label></p>
+          <p class="lefter"><div  class="" id="addRecBtn9" onclick="addRecForm(9)">Додати крок</div></p>
       </div>
       <div class="hide" id="step10">
-          <div style="width: 400px; margin-left:30%">
-            <h3 class="step">Шаг 10</h3>
-          </div>
+          
+            <p class="step_inscription">Крок 10</p>
+
           <h5 id="desc1_style">{{form.desc10}}</h5>
           <p class="centerB"><img id="blah10" src="#" alt="your image" class="hide" /></p>
-          <p class="centerPhoto"><label class="customMain10" for="id_image10">Добавить фото</label></p>
-          <p class="lefter"><div  class="" id="addRecBtn10" onclick="alertError()">Добавить шаг</div></p>
+          <p class="centerPhoto"><label class="customMain10" for="id_image10"><img class="wrapper_photo" src="{% static 'img/add_photo.png' %}"><br>Додати фото кроку</label></p>
+          <p class="lefter"><div  class="" id="addRecBtn10" onclick="alertError()">Додати крок</div></p>
       </div>
 
 
@@ -202,14 +202,14 @@
 </div>
 </body>
 <script type="text/javascript">
-  for(var i = 1;i<=10;i++){ 
-  document.getElementById("id_desc"+i).placeholder = "Опишите "+ i+ " шаг приготовления";
-  document.getElementById("id_ingredient"+i).placeholder = "Введите "+ i+ " ингредиент";
-  document.getElementById("id_mas"+i).placeholder = "Кол-во "
+  for(let i = 1;i<=10;i++){ 
+  document.getElementById("id_desc"+i).placeholder = "Опишіть "+ i+ " шаг приготування вашого шедевру";
+  document.getElementById("id_ingredient"+i).placeholder = "Введіть "+ i+ " інгредієнт";
+  document.getElementById("id_mas"+i).placeholder = "К-сть"
 }
 function readURL(input, num) {
         if (input.files && input.files[0]) {
-            var reader = new FileReader();
+            let reader = new FileReader();
 
             reader.onload = function (e) {
                 $('#blah'+ num)
@@ -217,7 +217,7 @@ function readURL(input, num) {
                 document.getElementById("blah"+ num).classList.remove('hide');
                 $('.customMain'+ num).toggleClass("customMainSelected"+ num);
                  $('.customMain'+ num).toggleClass("customMain"+ num);
-                 $(".customMainSelected"+ num).text("Изменить фото");
+                 $(".customMainSelected"+ num).text("Змінити фото");
             };
 
             reader.readAsDataURL(input.files[0]);
@@ -241,7 +241,13 @@ function addRecFormIngr(num){
     $('#ing'+(num+1)).fadeIn(800);
     $('#addRecBtnIngr'+num).toggleClass("hide");
 }
-
+function uuidv4() {
+  return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+  );
+} 
+//console.log(uuidv4())
+$('#id_uuid_recipe').val(uuidv4())
 </script>
 
 
