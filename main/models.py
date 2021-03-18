@@ -38,46 +38,10 @@ class Purchases(models.Model):
 		return self.shop_name
 
 
-class CustomUser(AbstractBaseUser):
-	RANKS = (("Початківець","Початківець"),("Професіонал","Професіонал"))
-	first_name = models.CharField("first_name", max_length=50, blank=True)
-	last_name = models.CharField("last_name", max_length=50, blank=True)
-	email = models.CharField("email", max_length=250, unique=True)
-	about = models.TextField('about', blank=True)
-	amount_of_reciped = models.IntegerField('Recipes amount', default=0)
-	SEX = (('Чоловіча','male'),('Жіноча','female'))
-	username = models.CharField("username", max_length=50, blank=True)
-	achievements = models.ManyToManyField(Achievements, blank=True)
-	purchases = models.ManyToManyField(Purchases, blank=True)
-	sex = models.CharField('Стать', max_length=200, null=True, choices=SEX, blank=True)
-	date_joined = models.DateTimeField('date_creat',auto_now_add=True, null=True)
-	date_of_birth = models.DateTimeField('Birthday', null=True, blank=True)
-	ip_adress = models.CharField('ip_user', max_length=200, null=True, blank=True)
-	rank = models.CharField('rank', max_length=200, null=True, choices=RANKS, blank=True, default=RANKS[0][0])
-	rank_percentage = models.IntegerField("Percents rank", default=15, blank=True)
-	image_profile = models.ImageField( default="default_cook.png", verbose_name="Image", null=True, blank=True)
-	access_to_data = models.BooleanField(default=False)
-	is_user = models.BooleanField(default=True)
-	is_staff = models.BooleanField(default=False)
-	is_superuser = models.BooleanField(default=False)
-	#ADD FIELDS WITH PERSONAL PREFERENCES
-
-	USERNAME_FIELD = 'email'
-
-	REQUIRED_FIELDS = ['access_to_data', 'password']
-	objects = MyAccountManager()
-	def __str__(self):
-		return self.email
-
-	def has_perm(self, perm, obj=None):
-		return True
-
-	def has_module_perms(self, app_label):
-		return True
-
 
 class RecipeProduct(models.Model):
-	creator = models.OneToOneField(CustomUser, null=True, on_delete=models.PROTECT)
+	#creator = models.OneToOneField(CustomUser, null=True, on_delete=models.PROTECT, blank=True)
+	uuid_recipe = models.CharField('uuid', max_length=100, blank=True, null=True)
 	CATEGORY = (
 		('Горячие блюда','Горячие блюда'), ('Бульоны и супы','Бульоны и супы'), ('Салаты','Салаты'), ('Закуски','Закуски'), ('Выпечка','Выпечка'), ('Десерты','Десерты'), ('Соусы','Соусы'))
 	HARDNESS = (
@@ -139,6 +103,46 @@ class RecipeProduct(models.Model):
 
 	def get_absolute_url(self):
 		return f'/{self.id}'
+
+
+class CustomUser(AbstractBaseUser):
+	RANKS = (("Початківець","Початківець"),("Професіонал","Професіонал"))
+	first_name = models.CharField("first_name", max_length=50, blank=True)
+	last_name = models.CharField("last_name", max_length=50, blank=True)
+	email = models.CharField("email", max_length=250, unique=True)
+	about = models.TextField('about', blank=True)
+	amount_of_reciped = models.IntegerField('Recipes amount', default=0)
+	SEX = (('Чоловіча','male'),('Жіноча','female'))
+	username = models.CharField("username", max_length=50, blank=True)
+	achievements = models.ManyToManyField(Achievements, blank=True)
+	purchases = models.ManyToManyField(Purchases, blank=True)
+	sex = models.CharField('Стать', max_length=200, null=True, choices=SEX, blank=True)
+	date_joined = models.DateTimeField('date_creat',auto_now_add=True, null=True)
+	date_of_birth = models.DateTimeField('Birthday', null=True, blank=True)
+	ip_adress = models.CharField('ip_user', max_length=200, null=True, blank=True)
+	rank = models.CharField('rank', max_length=200, null=True, choices=RANKS, blank=True, default=RANKS[0][0])
+	rank_percentage = models.IntegerField("Percents rank", default=15, blank=True)
+	image_profile = models.ImageField( default="default_cook.png", verbose_name="Image", null=True, blank=True)
+	my_recipes = models.ManyToManyField(RecipeProduct, blank=True)
+	access_to_data = models.BooleanField(default=False)
+	is_user = models.BooleanField(default=True)
+	is_staff = models.BooleanField(default=False)
+	is_superuser = models.BooleanField(default=False)
+	#ADD FIELDS WITH PERSONAL PREFERENCES
+
+	USERNAME_FIELD = 'email'
+
+	REQUIRED_FIELDS = ['access_to_data', 'password']
+	objects = MyAccountManager()
+	def __str__(self):
+		return self.email
+
+	def has_perm(self, perm, obj=None):
+		return True
+
+	def has_module_perms(self, app_label):
+		return True
+
 
 
 

@@ -20,7 +20,7 @@ class CustomUserEdit(ModelForm):
 	class Meta:
 		model = CustomUser
 		fields = "__all__"
-		exclude = ['email', 'amount_of_reciped', 'achievements', 'purchases', 'sex', 'date_joined', 'date_of_birth', 'ip_adress', 'rank', 'rank_percentage', 'access_to_data', 'is_user', 'is_staff', 'is_superuser', 'last_login', 'password']
+		exclude = ['my_recipes','email', 'amount_of_reciped', 'achievements', 'purchases', 'sex', 'date_joined', 'date_of_birth', 'ip_adress', 'rank', 'rank_percentage', 'access_to_data', 'is_user', 'is_staff', 'is_superuser', 'last_login', 'password']
 
 
 
@@ -32,14 +32,14 @@ class RecipeForm(ModelForm):
 		widgets = {
 		'name':TextInput(attrs={
 			'class': "nameAdd",
-			'placeholder':"Название блюда"
+			'placeholder':"Назва страви"
 			}),
 		'time':TextInput(attrs={
 			'class': "timeAdd",
-			'placeholder':"Длительность приготовления"
+			'placeholder':"Час для приготування"
 			}),
 		'description':TextInput(attrs={
 			'class': "descriptionAdd",
-			'placeholder':"Короткое описание(5-15 слов)"
+			'placeholder':"Короткий опис"
 			}),
 		}

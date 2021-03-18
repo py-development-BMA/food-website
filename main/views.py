@@ -23,7 +23,7 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-print(f"{bcolors.FAIL}\n[  VERSION  ]: 1.8.1 (created page for adding recipe)\n\n{bcolors.ENDC}")
+print(f"{bcolors.FAIL}\n[  VERSION  ]: 1.8.2 (created page for adding recipe)\n\n{bcolors.ENDC}")
 
 
 def signup(request):
@@ -50,8 +50,11 @@ def homePage(request):
 
 
 def profile(request):
+	users_recipes = CustomUser.objects.get(email=request.user.email)
+	output_recipes = users_recipes.my_recipes.all()
 	context = {
 	'test':123,
+	'myrecipes':output_recipes,
 	}
 	return render(request, 'main/myaccount.html', context)
 
@@ -102,15 +105,17 @@ def newrecipe(request):
 	form = RecipeForm()
 
 	if request.method == "POST":
-		form = RecipeForm(request.POST, request.FILES)
-		if form.is_valid():
-			form.save()
-			nameProdField = form.cleaned_data.get('name')
-			OrderOwner.objects.create(
-					OwnerOfRecipe=user,
-					productAdded=nameProdField,
-					)
-			return redirect('account')
+		form2 = RecipeForm(request.POST, request.FILES)
+		if form2.is_valid():
+			get_uuid = form2.cleaned_data.get('uuid_recipe')
+			form2.save()
+			myrecipe = RecipeProduct.objects.get(uuid_recipe=get_uuid)
+			me_db_get = CustomUser.objects.get(email=request.user.email)
+			me_db_get.my_recipes.add(myrecipe)
+			me_db_get.amount_of_reciped += 1
+			me_db_get.save()
+			nameProdField = form2.cleaned_data.get('name')
+			return redirect('profile')
 	context = {
 	'form':form,
 	}
