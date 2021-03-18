@@ -1,7 +1,12 @@
 {% extends "main/header.html" %}
 {% load static %}
 {% block content %}
-											<!-- Profile information section -->
+	<br>
+<br>
+<br>
+	<br>
+<br>
+<br>										<!-- Profile information section -->
 <section class="account_info">
 	<div class="profile_photo">
 		<p align="center"><img class="img_profile" src="{{ request.user.image_profile.url }}"></p>
@@ -75,33 +80,26 @@
 		<img src="{% static 'img/photo-1481070555726-e2fe8357725c.jpg' %}" class='popular_img'>
 	</div>
 </a>
+
 </section>
-
-
 												<!-- All my recipes section -->
 <p class="my_chedevres_name">Мої шедеври</p>
 <section class="all_recipes_my_profile">
+
 	<a class="recipe_link_profile_add" href="#">
 		<p class="centering_img_addbtn"><img src="{% static 'img/add_recipe.png' %}" class="add_btn_recipe_photo"></p>
 	</a>
+	{% for item in myrecipes %}
 	<div class="recipe_link_profile">
-		<img src="{% static 'img/photo-1481931098730-318b6f776db0.jpg' %}" class="image_recipe">
+		<img src="{{ item.image_prod.url }}" class="image_recipe">
 		<div class="hover_info_show">
-			<p align="center" class="main_in_hidden_recipe">Спагеті з морепродуктами</p>
-			<p align="center" class="normal_hidden">30-40 хв</p>
-			<p align="center" class="normal_hidden">Середня складність</p>
-			<p align="center" class="normal_hidden">Дорогі продукти</p>
+			<p align="center" class="main_in_hidden_recipe">{{ item.name }}</p>
+			<p align="center" class="normal_hidden">{{ item.category }}</p>
+			<p align="center" class="normal_hidden">{{ item.time }}</p>
+			<p align="center" class="normal_hidden">{{ item.hardnessCook }}</p>
 		</div>
 	</div>
-	<div class="recipe_link_profile">
-		<img src="{% static 'img/photo-1467003909585-2f8a72700288.jpg' %}" class="image_recipe">
-		<div class="hover_info_show">
-			<p align="center" class="main_in_hidden_recipe">Суп з філе лосося</p>
-			<p align="center" class="normal_hidden">40-50 хв</p>
-			<p align="center" class="normal_hidden">Легко</p>
-			<p align="center" class="normal_hidden">Популярні продукти</p>
-		</div>
-	</div>
+	{% endfor %}
 </section>
 <script>
 </script>
