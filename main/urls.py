@@ -11,4 +11,5 @@ urlpatterns = [
 	path('login/', views.login_page, name="login_page"),
 	path('logout/', views.logout_page, name="logout_page"),
 	path('newrecipe/', views.newrecipe, name="newrecipe"),
+	path('mystorage/', views.mystorage, name="mystorage"),
 ]	

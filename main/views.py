@@ -122,3 +122,10 @@ def newrecipe(request):
 
 	return render(request, 'main/addrecipe.html', context)
 
+def  mystorage(request):
+
+	context = {
+	'form':1,
+	}
+
+	return render(request, 'main/storage.html', context)
