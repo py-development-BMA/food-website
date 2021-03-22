@@ -536,6 +536,14 @@ font-family: Montserrat;
 	font-size: 20px;
 	font-family: Montserrat;
 }
+.normal_hidden{
+	margin-top:10px;
+	margin-bottom: 0px;
+	color:white;
+	font-size: 20px;
+	font-family: Montserrat;
+}
+
 .change_first_name{
 	height: 30px;
 	width:200px;
@@ -655,7 +663,7 @@ font-family: Montserrat;
 	margin-right: 50px;
 	outline: none;
 	cursor: pointer;
-	ransition: 0.2s;
+	transition: 0.2s;
 	margin-top:-20px;
 }
 .save_editinfo:focus{
@@ -731,7 +739,6 @@ font-family: Montserrat;
 }
 .customMain0:hover{
 background:#FFF4F4;
-}
 }
 #blah1{
 
@@ -1911,6 +1918,7 @@ font-family: Montserrat;
 	font-family: Montserrat;
 
 }
+
 .normal_hidden{
 	margin-top:10px;
 	margin-bottom: 0px;
@@ -1918,6 +1926,7 @@ font-family: Montserrat;
 	font-size: 20px;
 	font-family: Montserrat;
 }
+
 .change_first_name{
 	height: 30px;
 	width:200px;
@@ -2037,7 +2046,7 @@ font-family: Montserrat;
 	margin-right: 50px;
 	outline: none;
 	cursor: pointer;
-	ransition: 0.2s;
+	transition: 0.2s;
 	margin-top:-20px;
 }
 .save_editinfo:focus{
@@ -2113,7 +2122,6 @@ font-family: Montserrat;
 }
 .customMain0:hover{
 background:#FFF4F4;
-}
 }
 #blah1{
 
@@ -3524,7 +3532,6 @@ font-family: Montserrat;
 }
 .customMain0:hover{
 background:#FFF4F4;
-}
 }
 #blah1{
 
