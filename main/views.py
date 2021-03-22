@@ -23,7 +23,7 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-print(f"{bcolors.FAIL}\n[  VERSION  ]: 1.8.2 (created page for adding recipe)\n\n{bcolors.ENDC}")
+print(f"{bcolors.FAIL}\n[  VERSION  ]: 1.8.3 (created page for storage by ALEXEY)\n\n{bcolors.ENDC}")
 
 
 def signup(request):
