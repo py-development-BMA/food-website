@@ -78,7 +78,7 @@ def edit_profile(request):
 def login_page(request):
     if request.user.is_authenticated:
         return redirect('profile')
-    else: 
+    else:
         error = ''
         if request.method == "POST":
             username = request.POST.get('email')
@@ -121,6 +121,14 @@ def newrecipe(request):
 	}
 
 	return render(request, 'main/addrecipe.html', context)
+
+class patternRecipeView(DetailView):
+	model = RecipeProduct
+	template_name = 'main/patternrecipe.html'
+	context_object_name = 'recipe'
+
+
+
 
 def  mystorage(request):
 

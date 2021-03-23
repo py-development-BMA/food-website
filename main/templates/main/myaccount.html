@@ -85,7 +85,7 @@
 		<p class="centering_img_addbtn"><img src="{% static 'img/add_recipe.png' %}" class="add_btn_recipe_photo"></p>
 	</a>
 	{% for item in myrecipes %}
-	<div class="recipe_link_profile">
+	<a class="recipe_link_profile" href="{% url 'viewrecipe' item.id %}">
 		<img src="{{ item.image_prod.url }}" class="image_recipe">
 		<div class="hover_info_show">
 			<p align="center" class="main_in_hidden_recipe">{{ item.name }}</p>
@@ -93,7 +93,7 @@
 			<p align="center" class="normal_hidden">{{ item.time }}</p>
 			<p align="center" class="normal_hidden">{{ item.hardnessCook }}</p>
 		</div>
-	</div>
+	</a>
 	{% endfor %}
 </section>
 <script>

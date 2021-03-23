@@ -1,6 +1,6 @@
 from django.urls import path
 
-from django.contrib.auth import views as auth_views 
+from django.contrib.auth import views as auth_views
 from . import views
 from django.contrib.auth.decorators import login_required
 urlpatterns = [
@@ -12,4 +12,5 @@ urlpatterns = [
 	path('logout/', views.logout_page, name="logout_page"),
 	path('newrecipe/', views.newrecipe, name="newrecipe"),
 	path('mystorage/', views.mystorage, name="mystorage"),
-]	
+	path('<int:pk>/viewrecipe', views.patternRecipeView.as_view(), name="viewrecipe"),
+]
