@@ -1,12 +1,7 @@
 {% extends "main/header.html" %}
 {% load static %}
 {% block content %}
-	<br>
-<br>
-<br>
-	<br>
-<br>
-<br>										<!-- Profile information section -->
+									<!-- Profile information section -->
 <section class="account_info">
 	<div class="profile_photo">
 		<p align="center"><img class="img_profile" src="{{ request.user.image_profile.url }}"></p>
@@ -26,7 +21,7 @@
 				<p class="rank_name">Ранг: {{ request.user.rank }}</p>
 				<div class='grey_progress'>
 					<div style="width:{{ request.user.rank_percentage }}%;height: 8px;border-radius: 10px;background: #F87A5D;">
-					
+
 					</div>
 				</div>
 			</div>

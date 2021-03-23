@@ -178,13 +178,16 @@ header{
 	margin-top:-10px;
 	margin-left:-10px;
 }
+.header-height{
+  height: 60px;
+}
 .logo_div{
 	border-radius: 50px;
 	width: 40px;
 	height: 40px;
 	background: #4AD6AD;
 	margin-left:20px;
-	margin-top:11px; 
+	margin-top:11px;
 }
 .logo_div p {
 	line-height: 40px;
@@ -734,7 +737,7 @@ font-family: Montserrat;
     min-width: 450px;
     cursor: pointer;
     border-radius: 15px;
-    background-color:#F3F3F3; 
+    background-color:#F3F3F3;
     transition: 0.2s;
 }
 .customMain0:hover{
@@ -772,7 +775,7 @@ background:#FFF4F4;
     min-width: 450px;
     cursor: pointer;
     border-radius: 15px;
-    background-color:#F3F3F3; 
+    background-color:#F3F3F3;
     transition: 0.2s;
 }
 .customMain1:hover{
@@ -810,7 +813,7 @@ background:#FFF4F4;
     min-width: 450px;
     cursor: pointer;
     border-radius: 15px;
-    background-color:#F3F3F3; 
+    background-color:#F3F3F3;
     transition: 0.2s;
 }
 .customMain2:hover{
@@ -849,7 +852,7 @@ background:#FFF4F4;
     min-width: 450px;
     cursor: pointer;
     border-radius: 15px;
-    background-color:#F3F3F3; 
+    background-color:#F3F3F3;
     transition: 0.2s;
 }
 .customMain3:hover{
@@ -888,7 +891,7 @@ background:#FFF4F4;
     min-width: 450px;
     cursor: pointer;
     border-radius: 15px;
-    background-color:#F3F3F3; 
+    background-color:#F3F3F3;
     transition: 0.2s;
 }
 .customMain4:hover{
@@ -927,7 +930,7 @@ background:#FFF4F4;
     min-width: 450px;
     cursor: pointer;
     border-radius: 15px;
-    background-color:#F3F3F3; 
+    background-color:#F3F3F3;
     transition: 0.2s;
 }
 .customMain5:hover, .customMain6:hover, .customMain7:hover, .customMain8:hover, .customMain9:hover, .customMain10:hover{
@@ -1114,13 +1117,13 @@ text-align: center;
 height: 25px;
 padding-top: 5px;
 border-radius: 15px;
-color:#5C5C5C; 
+color:#5C5C5C;
 font-family: Montserrat;
 background-color:#BAFFEE;
 }
 
 .edit a{
-  color:#5C5C5C; 
+  color:#5C5C5C;
 font-family: Montserrat;
 }
 .edit{
@@ -1134,13 +1137,13 @@ text-align: center;
 height: 25px;
 padding-top: 5px;
 border-radius: 15px;
-color:#5C5C5C; 
+color:#5C5C5C;
 font-family: Montserrat;
 background-color:#BAFFEE;
 }
 
 .delete a{
-    color:#5C5C5C; 
+    color:#5C5C5C;
 font-family: Montserrat;
 }
 #addRecBtnIngr1:after,#addRecBtnIngr2:after,#addRecBtnIngr3:after, #addRecBtnIngr4:after, #addRecBtnIngr5:after, #addRecBtnIngr6:after, #addRecBtnIngr7:after, #addRecBtnIngr8:after, #addRecBtnIngr9:after, #addRecBtnIngr10:after {
@@ -1198,7 +1201,7 @@ transform: rotate(-90deg);
   font-family: Montserrat;
   font-weight: normal;
   font-size:15px;
-  color:#5C5C5C; 
+  color:#5C5C5C;
 }
 
 .hrdns{
@@ -1206,7 +1209,7 @@ transform: rotate(-90deg);
   font-family: Montserrat;
   font-weight: normal;
   font-size:15px;
-  color:#5C5C5C; 
+  color:#5C5C5C;
 }
 .lefter{
  margin-left:60%;
@@ -1223,7 +1226,7 @@ transform: rotate(-90deg);
   outline: none;
   padding-top: 10px;
   padding-left:10px;
-  width: 590px; 
+  width: 590px;
   background:#F6F6F6;
   border:0px;
   border-radius: 10px;
@@ -1263,7 +1266,7 @@ transform: rotate(-90deg);
     padding:6px;
     cursor: pointer;
     border-radius: 15px;
-    background-color:#FEEAD3; 
+    background-color:#FEEAD3;
 }
 .main_head_text{
 	color:#939393;
@@ -1568,13 +1571,16 @@ header{
 	margin-top:-10px;
 	margin-left:-10px;
 }
+.header-height{
+  height: 60px;
+}
 .logo_div{
 	border-radius: 50px;
 	width: 40px;
 	height: 40px;
 	background: #4AD6AD;
 	margin-left:20px;
-	margin-top:11px; 
+	margin-top:11px;
 }
 .logo_div p {
 	line-height: 40px;
@@ -2117,7 +2123,7 @@ font-family: Montserrat;
     min-width: 450px;
     cursor: pointer;
     border-radius: 15px;
-    background-color:#F3F3F3; 
+    background-color:#F3F3F3;
     transition: 0.2s;
 }
 .customMain0:hover{
@@ -2155,7 +2161,7 @@ background:#FFF4F4;
     min-width: 450px;
     cursor: pointer;
     border-radius: 15px;
-    background-color:#F3F3F3; 
+    background-color:#F3F3F3;
     transition: 0.2s;
 }
 .customMain1:hover{
@@ -2193,7 +2199,7 @@ background:#FFF4F4;
     min-width: 450px;
     cursor: pointer;
     border-radius: 15px;
-    background-color:#F3F3F3; 
+    background-color:#F3F3F3;
     transition: 0.2s;
 }
 .customMain2:hover{
@@ -2232,7 +2238,7 @@ background:#FFF4F4;
     min-width: 450px;
     cursor: pointer;
     border-radius: 15px;
-    background-color:#F3F3F3; 
+    background-color:#F3F3F3;
     transition: 0.2s;
 }
 .customMain3:hover{
@@ -2271,7 +2277,7 @@ background:#FFF4F4;
     min-width: 450px;
     cursor: pointer;
     border-radius: 15px;
-    background-color:#F3F3F3; 
+    background-color:#F3F3F3;
     transition: 0.2s;
 }
 .customMain4:hover{
@@ -2310,7 +2316,7 @@ background:#FFF4F4;
     min-width: 450px;
     cursor: pointer;
     border-radius: 15px;
-    background-color:#F3F3F3; 
+    background-color:#F3F3F3;
     transition: 0.2s;
 }
 .customMain5:hover, .customMain6:hover, .customMain7:hover, .customMain8:hover, .customMain9:hover, .customMain10:hover{
@@ -2497,13 +2503,13 @@ text-align: center;
 height: 25px;
 padding-top: 5px;
 border-radius: 15px;
-color:#5C5C5C; 
+color:#5C5C5C;
 font-family: Montserrat;
 background-color:#BAFFEE;
 }
 
 .edit a{
-  color:#5C5C5C; 
+  color:#5C5C5C;
 font-family: Montserrat;
 }
 .edit{
@@ -2517,13 +2523,13 @@ text-align: center;
 height: 25px;
 padding-top: 5px;
 border-radius: 15px;
-color:#5C5C5C; 
+color:#5C5C5C;
 font-family: Montserrat;
 background-color:#BAFFEE;
 }
 
 .delete a{
-    color:#5C5C5C; 
+    color:#5C5C5C;
 font-family: Montserrat;
 }
 #addRecBtnIngr1:after,#addRecBtnIngr2:after,#addRecBtnIngr3:after, #addRecBtnIngr4:after, #addRecBtnIngr5:after, #addRecBtnIngr6:after, #addRecBtnIngr7:after, #addRecBtnIngr8:after, #addRecBtnIngr9:after, #addRecBtnIngr10:after {
@@ -2581,7 +2587,7 @@ transform: rotate(-90deg);
   font-family: Montserrat;
   font-weight: normal;
   font-size:15px;
-  color:#5C5C5C; 
+  color:#5C5C5C;
 }
 
 .hrdns{
@@ -2589,7 +2595,7 @@ transform: rotate(-90deg);
   font-family: Montserrat;
   font-weight: normal;
   font-size:15px;
-  color:#5C5C5C; 
+  color:#5C5C5C;
 }
 .lefter{
  margin-left:60%;
@@ -2606,7 +2612,7 @@ transform: rotate(-90deg);
   outline: none;
   padding-top: 10px;
   padding-left:10px;
-  width: 590px; 
+  width: 590px;
   background:#F6F6F6;
   border:0px;
   border-radius: 10px;
@@ -2646,7 +2652,7 @@ transform: rotate(-90deg);
     padding:6px;
     cursor: pointer;
     border-radius: 15px;
-    background-color:#FEEAD3; 
+    background-color:#FEEAD3;
 }
 .main_head_text{
 	color:#939393;
@@ -2981,13 +2987,16 @@ header{
 	margin-top:-10px;
 	margin-left:-10px;
 }
+.header-height{
+  height: 60px;
+}
 .logo_div{
 	border-radius: 50px;
 	width: 40px;
 	height: 40px;
 	background: #4AD6AD;
 	margin-left:20px;
-	margin-top:11px; 
+	margin-top:11px;
 }
 .logo_div p {
 	line-height: 40px;
@@ -3527,7 +3536,7 @@ font-family: Montserrat;
     min-width: 450px;
     cursor: pointer;
     border-radius: 15px;
-    background-color:#F3F3F3; 
+    background-color:#F3F3F3;
     transition: 0.2s;
 }
 .customMain0:hover{
@@ -3565,7 +3574,7 @@ background:#FFF4F4;
     min-width: 450px;
     cursor: pointer;
     border-radius: 15px;
-    background-color:#F3F3F3; 
+    background-color:#F3F3F3;
     transition: 0.2s;
 }
 .customMain1:hover{
@@ -3603,7 +3612,7 @@ background:#FFF4F4;
     min-width: 450px;
     cursor: pointer;
     border-radius: 15px;
-    background-color:#F3F3F3; 
+    background-color:#F3F3F3;
     transition: 0.2s;
 }
 .customMain2:hover{
@@ -3642,7 +3651,7 @@ background:#FFF4F4;
     min-width: 450px;
     cursor: pointer;
     border-radius: 15px;
-    background-color:#F3F3F3; 
+    background-color:#F3F3F3;
     transition: 0.2s;
 }
 .customMain3:hover{
@@ -3681,7 +3690,7 @@ background:#FFF4F4;
     min-width: 450px;
     cursor: pointer;
     border-radius: 15px;
-    background-color:#F3F3F3; 
+    background-color:#F3F3F3;
     transition: 0.2s;
 }
 .customMain4:hover{
@@ -3720,7 +3729,7 @@ background:#FFF4F4;
     min-width: 450px;
     cursor: pointer;
     border-radius: 15px;
-    background-color:#F3F3F3; 
+    background-color:#F3F3F3;
     transition: 0.2s;
 }
 .customMain5:hover, .customMain6:hover, .customMain7:hover, .customMain8:hover, .customMain9:hover, .customMain10:hover{
@@ -3907,13 +3916,13 @@ text-align: center;
 height: 25px;
 padding-top: 5px;
 border-radius: 15px;
-color:#5C5C5C; 
+color:#5C5C5C;
 font-family: Montserrat;
 background-color:#BAFFEE;
 }
 
 .edit a{
-  color:#5C5C5C; 
+  color:#5C5C5C;
 font-family: Montserrat;
 }
 .edit{
@@ -3927,13 +3936,13 @@ text-align: center;
 height: 25px;
 padding-top: 5px;
 border-radius: 15px;
-color:#5C5C5C; 
+color:#5C5C5C;
 font-family: Montserrat;
 background-color:#BAFFEE;
 }
 
 .delete a{
-    color:#5C5C5C; 
+    color:#5C5C5C;
 font-family: Montserrat;
 }
 #addRecBtnIngr1:after,#addRecBtnIngr2:after,#addRecBtnIngr3:after, #addRecBtnIngr4:after, #addRecBtnIngr5:after, #addRecBtnIngr6:after, #addRecBtnIngr7:after, #addRecBtnIngr8:after, #addRecBtnIngr9:after, #addRecBtnIngr10:after {
@@ -3991,7 +4000,7 @@ transform: rotate(-90deg);
   font-family: Montserrat;
   font-weight: normal;
   font-size:15px;
-  color:#5C5C5C; 
+  color:#5C5C5C;
 }
 
 .hrdns{
@@ -3999,7 +4008,7 @@ transform: rotate(-90deg);
   font-family: Montserrat;
   font-weight: normal;
   font-size:15px;
-  color:#5C5C5C; 
+  color:#5C5C5C;
 }
 .lefter{
  margin-left:60%;
@@ -4016,7 +4025,7 @@ transform: rotate(-90deg);
   outline: none;
   padding-top: 10px;
   padding-left:10px;
-  width: 590px; 
+  width: 590px;
   background:#F6F6F6;
   border:0px;
   border-radius: 10px;
@@ -4056,7 +4065,7 @@ transform: rotate(-90deg);
     padding:6px;
     cursor: pointer;
     border-radius: 15px;
-    background-color:#FEEAD3; 
+    background-color:#FEEAD3;
 }
 .main_head_text{
 	color:#939393;
@@ -4197,4 +4206,3 @@ By Alexey ######################################################################
 /*
 ###################################################################################################
 */
-

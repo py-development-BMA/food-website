@@ -1,14 +1,9 @@
 {% extends "main/header.html" %}
 {% load static %}
 {% block content %}
-<br>
-<br>
-<br>
-	<br>
-<br>
-<br>									<!-- Profile information section -->
+						<!-- Profile information section -->
 <section class="account_info">
-	
+
 	<div class="profile_photo">
 		<img id="blah1_ava" src="{{ request.user.image_profile.url }}" alt="your image" />
 		<p align="center" class="img_pos_change"><label class="customMainSelected1" for="id_image1">Змінити фото</label></p>
@@ -18,7 +13,7 @@
 			{% csrf_token %}
 			<input type="file" style="display: none;" name="image_profile" accept="image/*" id="id_image1" onchange="readURL(this, 1);">
 			<p class="name_and_lname_change">
-				Ім'я: <input type="text" id="id_first_name" name="first_name" class="change_first_name" value="{{ request.user.first_name }}"> 
+				Ім'я: <input type="text" id="id_first_name" name="first_name" class="change_first_name" value="{{ request.user.first_name }}">
 				Прізвище: <input type="text" id="id_last_name" name="last_name" class="change_last_name" value="{{ request.user.last_name }}"> </p>
 			<p class="username_profile_edit">
 				Ім'я користувача: <input type="text" id="id_username" name="username" class="change_username" value="{{ request.user.username }}"></p>
@@ -28,7 +23,7 @@
 		</form>
 
 
-	
+
 
 
 
