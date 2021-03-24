@@ -6,11 +6,35 @@
     <img src="{{ recipe.image_prod.url }}" class="main_image_recipepg">
   </div>
   <div class="info_recipe_flex">
-    <h1 class="main_text_recipe" id="toUppedCase">{{ recipe.name }}</h1>
-    <p class="recipe_descrption">Невероятно вкусная рыба! Просто и очень быстро приготовить! Сочный лосось в духовке - полезное и замечательное на вкус блюдо. Идеальный легкий ужин, приготовление</p>
+    <h1 class="main_text_recipe toUppedCase" >{{ recipe.name }}</h1>
+    <p class="recipe_descrption">{{ recipe.description }}</p>
+    <div class="extra-info-recipe">
+      <div class="typeOfFood-view">
+        <img src="{% static 'img/restaurant-3-256.png' %}" alt="typeFood" class="typeFood-img">
+        <p class="toUppedCase">{{ recipe.category }}</p>
+      </div>
+      <div class="time-view">
+        <p class="toUppedCase">{{ recipe.time }}</p>
+        <img src="{% static 'img/time-5-256.png' %}" alt="typeFood" class="time-img">
+      </div>
+      <div class="hardness-view">
+        <img src="{% static 'img/physics-256.png' %}" alt="typeFood" class="hardness-img">
+        <p class="toUppedCase">{{ recipe.hardnessCook }}</p>
+      </div>
+
+
+    </div>
   </div>
 </section>
-<script>
-document.getElementById('toUppedCase').innerText = document.getElementById('toUppedCase').innerText.toUpperCase()
+<script type="text/javascript">
+//document.getElementById('toUppedCase').innerText = document.getElementById('toUppedCase').innerText.toUpperCase()
+//document.getElementById('toUppedCase').innerText = document.getElementById('toUppedCase').innerText.toUpperCase()
+let array_toUpper = document.getElementsByClassName('toUppedCase')
+console.log(array_toUpper)
+
+for (let i=0; i<array_toUpper.length; i++){
+    console.log(array_toUpper[i].innerText = array_toUpper[i].innerText.toUpperCase());
+};
+
 </script>
 {% endblock %}

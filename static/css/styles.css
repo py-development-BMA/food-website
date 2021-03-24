@@ -1398,6 +1398,112 @@ transform: rotate(-90deg);
 
 
 }
+.extra-info-recipe{
+  display: flex;
+  flex-flow:row wrap;
+  height: 20vh;
+  width: 40vw;
+}
+.typeOfFood-view{
+  margin-top:20px;
+  width: 17vw;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+}
+.typeOfFood-view p{
+  margin-left:10px;
+  margin-top:4vh;
+  color:#BAA2A2;
+  font-family: Yanone Kaffeesatz;
+  font-size: 25px;
+}
+.typeFood-img{
+  height: 8vh;
+  object-fit: cover;
+}
+.time-view{
+  margin-top:20px;
+  width: 15vw;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+}
+.time-view p{
+  margin-top:4vh;
+  color:#BAA2A2;
+  font-family: Yanone Kaffeesatz;
+  font-size: 25px;
+}
+.time-img{
+  height: 8vh;
+  object-fit: cover;
+}
+.hardness-view{
+  margin-top:20px;
+  width: 15vw;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+}
+.hardness-view p{
+  margin-left:10px;
+  margin-top:1vh;
+  color:#BAA2A2;
+  font-family: Yanone Kaffeesatz;
+  font-size: 25px;
+}
+.hardness-img{
+  height: 8vh;
+  object-fit: cover;
+}
+.name_wrap_recipe{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+
+}
+.image_recipe_flex{
+  width: 50vw;
+  height: 100vh;
+}
+.info_recipe_flex{
+  width: 50vw;
+  height: 100vh;
+
+}
+.main_image_recipepg{
+  height: 75vh;
+  width: 30vw;
+  margin-top:5%;
+  margin-left:33%;
+  object-fit: cover;
+  border-top-left-radius: 55px;
+  border-top-right-radius: 100px;
+  border-bottom-left-radius: 319px;
+  border-bottom-right-radius:142px ;
+}
+.main_text_recipe{
+  font-family: Yanone Kaffeesatz;
+  font-weight: 400;
+  font-style: normal;
+  width: 50%;
+  font-size: 60px;
+  margin-top:60px;
+  color:#FF8D8D;
+  margin-bottom: 10px;
+  transform: scale(1, 1);
+
+}
+.recipe_descrption{
+  font-family: Neucha;
+  width: 60%;
+  margin-left: 10px;
+  margin-top:0px;
+  font-size: 18px;
+  color:#BAA2A2;
+}
 }
 
 
@@ -2856,6 +2962,112 @@ transform: rotate(-90deg);
 
 
 }
+.extra-info-recipe{
+  display: flex;
+  flex-flow:row wrap;
+  height: 20vh;
+  width: 40vw;
+}
+.typeOfFood-view{
+  margin-top:20px;
+  width: 18.5vw;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+}
+.typeOfFood-view p{
+  margin-left:10px;
+  margin-top:4vh;
+  color:#BAA2A2;
+  font-family: Yanone Kaffeesatz;
+  font-size: 30px;
+}
+.typeFood-img{
+  height: 8vh;
+  object-fit: cover;
+}
+.time-view{
+  margin-top:20px;
+  width: 15vw;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+}
+.time-view p{
+  margin-top:4vh;
+  color:#BAA2A2;
+  font-family: Yanone Kaffeesatz;
+  font-size: 30px;
+}
+.time-img{
+  height: 8vh;
+  object-fit: cover;
+}
+.hardness-view{
+  margin-top:20px;
+  width: 15vw;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+}
+.hardness-view p{
+  margin-left:10px;
+  margin-top:1vh;
+  color:#BAA2A2;
+  font-family: Yanone Kaffeesatz;
+  font-size: 30px;
+}
+.hardness-img{
+  height: 8vh;
+  object-fit: cover;
+}
+.name_wrap_recipe{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+
+}
+.image_recipe_flex{
+  width: 50vw;
+  height: 100vh;
+}
+.info_recipe_flex{
+  width: 50vw;
+  height: 100vh;
+
+}
+.main_image_recipepg{
+  height: 75vh;
+  width: 30vw;
+  margin-top:5%;
+  margin-left:33%;
+  object-fit: cover;
+  border-top-left-radius: 55px;
+  border-top-right-radius: 100px;
+  border-bottom-left-radius: 319px;
+  border-bottom-right-radius:142px ;
+}
+.main_text_recipe{
+  font-family: Yanone Kaffeesatz;
+  font-weight: 400;
+  font-style: normal;
+  width: 50%;
+  font-size: 80px;
+  margin-top:80px;
+  color:#FF8D8D;
+  margin-bottom: 20px;
+  transform: scale(1, 1);
+
+}
+.recipe_descrption{
+  font-family: Neucha;
+  width: 60%;
+  margin-left:10px;
+  margin-top:0px;
+  font-size: 24px;
+  color:#BAA2A2;
+}
 }
 
 
@@ -3370,6 +3582,7 @@ font-family: Montserrat;
 	border-radius: 10px;
 	background: #F3F3F3;
 	margin-left:15px;
+  margin-bottom: 30px;
 	margin-right: 15px;
 	transition:0.2s;
 }
@@ -4305,6 +4518,7 @@ transform: rotate(-90deg);
   margin-top:80px;
   color:#FF8D8D;
   margin-bottom: 20px;
+  transform: scale(1, 1);
 
 }
 .recipe_descrption{
@@ -4342,6 +4556,65 @@ transform: rotate(-90deg);
   font-size: 16px;
 
 
+}
+.extra-info-recipe{
+  display: flex;
+  flex-flow:row wrap;
+  height: 20vh;
+  width: 40vw;
+}
+.typeOfFood-view{
+  margin-top:20px;
+  width: 15vw;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+}
+.typeOfFood-view p{
+  margin-left:10px;
+  margin-top:4vh;
+  color:#BAA2A2;
+  font-family: Yanone Kaffeesatz;
+  font-size: 30px;
+}
+.typeFood-img{
+  height: 8vh;
+  object-fit: cover;
+}
+.time-view{
+  margin-top:20px;
+  width: 15vw;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+}
+.time-view p{
+  margin-top:4vh;
+  color:#BAA2A2;
+  font-family: Yanone Kaffeesatz;
+  font-size: 30px;
+}
+.time-img{
+  height: 8vh;
+  object-fit: cover;
+}
+.hardness-view{
+  margin-top:20px;
+  width: 15vw;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+}
+.hardness-view p{
+  margin-left:10px;
+  margin-top:1vh;
+  color:#BAA2A2;
+  font-family: Yanone Kaffeesatz;
+  font-size: 30px;
+}
+.hardness-img{
+  height: 8vh;
+  object-fit: cover;
 }
 }
 
