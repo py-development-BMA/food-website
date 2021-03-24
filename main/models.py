@@ -45,7 +45,7 @@ class RecipeProduct(models.Model):
 	CATEGORY = (
 		('Горячие блюда','Горячие блюда'), ('Бульоны и супы','Бульоны и супы'), ('Салаты','Салаты'), ('Закуски','Закуски'), ('Выпечка','Выпечка'), ('Десерты','Десерты'), ('Соусы','Соусы'))
 	HARDNESS = (
-		('Очень легко', 'Очень легко'),('Легко','Легко'),('Средняя сложность','Средняя сложность'),('Нужен опыт','Нужен опыт'),('Сложно','Сложно'),('Очень сложно','Очень сложно'))	
+		('Очень легко', 'Очень легко'),('Легко','Легко'),('Средняя сложность','Средняя сложность'),('Нужен опыт','Нужен опыт'),('Сложно','Сложно'),('Очень сложно','Очень сложно'))
 	name = models.CharField('name', max_length=250, null=True)
 	time = models.CharField('time', max_length=50, null=True)
 	adderOf = models.CharField("adderOf", max_length=100, null=True)
@@ -96,13 +96,33 @@ class RecipeProduct(models.Model):
 
 
 	image_prod = models.ImageField(default="blank.png",verbose_name="Image", null=True, blank=True)
-	#mg = models.ImageField(upload_to='images/', 
+	#mg = models.ImageField(upload_to='images/',
 	#				height_field=100, width_field=100)
 	def __str__(self):
 		return self.name
 
 	def get_absolute_url(self):
 		return f'/{self.id}'
+
+
+
+
+class Storage(models.Model):
+	is_apple = models.BooleanField(default=False, blank=True)
+	q_apple = models.IntegerField("Quantity of apples", default=0, blank=True)
+
+	is_banana = models.BooleanField(default=False, blank=True)
+	q_banana = models.IntegerField("Quantity of banana", default=0, blank=True)
+
+
+	def __str__(self):
+		return self.name
+
+	def get_absolute_url(self):
+		return f'/{self.id}'
+
+
+
 
 
 class CustomUser(AbstractBaseUser):
@@ -142,7 +162,3 @@ class CustomUser(AbstractBaseUser):
 
 	def has_module_perms(self, app_label):
 		return True
-
-
-
-

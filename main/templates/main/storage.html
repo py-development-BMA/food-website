@@ -1,14 +1,13 @@
 {% extends "main/header.html" %}
 {% load static %}
+{% block title %}
+My Storage
+{% endblock %}
 {% block content %}
-<br>
-<br>
 
-<br>
-
-<br>
-
-
-xcvb
-
+<h1 class="myStorage_label"> Що у мене вдома? </h1>
+<form method="POST">
+    {% csrf_token %}
+    <p align='center'><input type='text' id="id_findinstorage" name="findfood" placeholder="Назва продукту"></p>
+</form>
 {% endblock %}

@@ -1,5 +1,16 @@
 {% extends "main/header.html" %}
 {% load static %}
 {% block content %}
-{{ recipe.name }}
+<section class="name_wrap_recipe">
+  <div class="image_recipe_flex">
+    <img src="{{ recipe.image_prod.url }}" class="main_image_recipepg">
+  </div>
+  <div class="info_recipe_flex">
+    <h1 class="main_text_recipe" id="toUppedCase">{{ recipe.name }}</h1>
+    <p class="recipe_descrption">Невероятно вкусная рыба! Просто и очень быстро приготовить! Сочный лосось в духовке - полезное и замечательное на вкус блюдо. Идеальный легкий ужин, приготовление</p>
+  </div>
+</section>
+<script>
+document.getElementById('toUppedCase').innerText = document.getElementById('toUppedCase').innerText.toUpperCase()
+</script>
 {% endblock %}

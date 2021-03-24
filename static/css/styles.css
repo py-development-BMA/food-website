@@ -1368,7 +1368,80 @@ transform: rotate(-90deg);
 	margin-top:50px;
 	font-size: 20px;
 }
+.myStorage_label{
+  text-align: center;
+  font-family: Montserrat;
+  color:#686868;
+  font-size: 23px;
+  font-weight: normal;
 }
+#id_findinstorage{
+  height: 30px;
+  border-radius: 12px;
+  width:200px;
+  padding-left:60px;
+  outline: none;
+  background: #F0F0F0;
+  margin-left:600px;
+  margin-top:15px;
+  color:#828282;
+  border:0px solid lightgrey;
+  font-family: Montserrat;
+  font-size: 16px;
+  /*background-image: url(../img/search_storage.png)
+    background-repeat: no-repeat;
+    background-position: left center;*/
+}
+#id_findinstorage::placeholder{
+  font-family: Montserrat;
+  font-size: 16px;
+
+
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2753,6 +2826,35 @@ transform: rotate(-90deg);
 	color:grey;
 	margin-top:50px;
 	font-size: 20px;
+}
+.myStorage_label{
+  text-align: center;
+  font-family: Montserrat;
+  color:#686868;
+  font-size: 23px;
+  font-weight: normal;
+}
+#id_findinstorage{
+  height: 30px;
+  border-radius: 12px;
+  width:200px;
+  padding-left:60px;
+  outline: none;
+  background: #F0F0F0;
+  margin:15px auto;
+  color:#828282;
+  border:0px solid lightgrey;
+  font-family: Montserrat;
+  font-size: 16px;
+  /*background-image: url(../img/search_storage.png)
+    background-repeat: no-repeat;
+    background-position: left center;*/
+}
+#id_findinstorage::placeholder{
+  font-family: Montserrat;
+  font-size: 16px;
+
+
 }
 }
 
@@ -4166,6 +4268,80 @@ transform: rotate(-90deg);
 	color:grey;
 	margin-top:50px;
 	font-size: 20px;
+}
+.name_wrap_recipe{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+
+}
+.image_recipe_flex{
+  width: 50vw;
+  height: 100vh;
+}
+.info_recipe_flex{
+  width: 50vw;
+  height: 100vh;
+
+}
+.main_image_recipepg{
+  height: 75vh;
+  width: 30vw;
+  margin-top:5%;
+  margin-left:33%;
+  object-fit: cover;
+  border-top-left-radius: 55px;
+  border-top-right-radius: 100px;
+  border-bottom-left-radius: 319px;
+  border-bottom-right-radius:142px ;
+}
+.main_text_recipe{
+  font-family: Yanone Kaffeesatz;
+  font-weight: 400;
+  font-style: normal;
+  width: 50%;
+  font-size: 80px;
+  margin-top:80px;
+  color:#FF8D8D;
+  margin-bottom: 20px;
+
+}
+.recipe_descrption{
+  font-family: Neucha;
+  width: 60%;
+  margin-top:0px;
+  font-size: 24px;
+  color:#BAA2A2;
+}
+.myStorage_label{
+  text-align: center;
+  font-family: Montserrat;
+  color:#686868;
+  font-size: 23px;
+  font-weight: normal;
+}
+#id_findinstorage{
+  height: 30px;
+  border-radius: 12px;
+  width:300px;
+  text-align: center;
+  outline: none;
+  background: #F0F0F0;
+  margin:15px;
+  color:#828282;
+  border:0px solid lightgrey;
+  font-family: Montserrat;
+  font-size: 16px;
+  /*background-image: url(../img/search_storage.png)
+    background-repeat: no-repeat;
+    background-position: left center;*/
+}
+#id_findinstorage::placeholder{
+  font-family: Montserrat;
+  font-size: 16px;
+
+
 }
 }
 
