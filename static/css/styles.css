@@ -4616,6 +4616,109 @@ transform: rotate(-90deg);
   height: 8vh;
   object-fit: cover;
 }
+.start_cooking{
+  margin-top:10vh;
+  height: 60px;
+  width: 250px;
+  background-color: #B3505A;
+  color:white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 50px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  transition: 0.3s;
+  cursor: pointer;
+
+}
+.start_cooking:hover{
+  border-top-left-radius: 30px;
+  border-top-right-radius: 50px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  height: 60px;
+  transition: 0.3s;
+}
+.start_cooking p{
+  line-height: 70px;
+  margin-top:0px;
+  margin-bottom: 0px;
+  text-align: center;
+  width: 250px;
+  font-size: 30px;
+  font-family: Neucha;
+}
+.step_1_cooking, .step_2_cooking{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+}
+.image_recipe_flex_type2{
+  width: 50vw;
+  height: 100vh;
+}
+.info_recipe_flex{
+  width: 50vw;
+  height: 100vh;
+
+}
+.main_image_recipepg_type2{
+  height: 75vh;
+  width: 30vw;
+  margin-top:5%;
+  margin-left:5%;
+  object-fit: cover;
+  border-top-left-radius: 100px;
+  border-top-right-radius: 55px;
+  border-bottom-left-radius: 142px;
+  border-bottom-right-radius:319px ;
+}
+.info_recipe_flex_type2{
+  width: 50vw;
+  height: 100vh;
+
+}
+
+.construct_step{
+  margin-top: 10px;
+  margin-left:83%;
+  display: flex;
+  flex-direction: row;
+  width:400px;
+
+}
+.stepdesc{
+  font-family: Neucha;
+  text-align: center;
+  font-size: 24px;
+  color: #BAA2A2;
+  width: 45vw;
+  padding-top:20px;
+  margin: auto;
+  margin-top:10px;
+}
+.step_cooking{
+  height: 100vh;
+  width: 100vw;
+}
+.recipe_image_step{
+  height: 60vh;
+  width: 50vw;
+  object-fit: cover;
+  margin-top:20px;
+  border-radius: 40px;
+
+}
+.name_of_step{
+  font-family: Yanone Kaffeesatz;
+font-weight: 400;
+margin-bottom: 0px;
+font-style: normal;
+font-size: 80px;
+text-align: center;
+color: #FF8D8D;
+transform: scale(1, 1);
+}
 }
 
 

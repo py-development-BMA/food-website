@@ -24,8 +24,81 @@
 
 
     </div>
+    <div class="start_cooking">
+      <p>ПРИГОТУВАТИ</p>
+    </div>
   </div>
 </section>
+{% if recipe.desc1 != None and recipe.desc1 != '' and recipe.desc1 != ' '%}
+<section class="step_cooking">
+  <h3 class="name_of_step">КРОК 1</h3>
+      <p class="stepdesc">{{ recipe.desc1 }} {{ recipe.desc1 }} {{ recipe.desc1 }} {{ recipe.desc1 }} {{ recipe.desc1 }} {{ recipe.desc1 }}</p>
+    <p align='center'><img src="{{ recipe.image1.url }}" class='recipe_image_step'></p>
+</section>
+{% endif %}
+{% if recipe.desc2 != None and recipe.desc2 != '' and recipe.desc2 != ' '%}
+<section class="step_cooking">
+  <h3 class="name_of_step">КРОК 2</h3>
+      <p class="stepdesc">{{ recipe.desc2 }}</p>
+    <p align='center'><img src="{{ recipe.image2.url }}" class='recipe_image_step'></p>
+</section>\
+{% endif %}
+{% if recipe.desc3 != None and recipe.desc3 != '' and recipe.desc3 != ' '%}
+<section class="step_cooking">
+  <h3 class="name_of_step">КРОК 3</h3>
+      <p class="stepdesc">{{ recipe.desc3 }}</p>
+    <p align='center'><img src="{{ recipe.image3.url }}" class='recipe_image_step'></p>
+</section>
+{% endif %}
+{% if recipe.desc4 != None and recipe.desc4 != '' and recipe.desc4 != ' '%}
+<section class="step_cooking">
+  <h3 class="name_of_step">КРОК 4</h3>
+      <p class="stepdesc">{{ recipe.desc4 }}</p>
+    <p align='center'><img src="{{ recipe.image4.url }}" class='recipe_image_step'></p>
+</section>
+{% endif %}
+{% if recipe.desc5 != None and recipe.desc5 != '' and recipe.desc5 != ' '%}
+<section class="step_cooking">
+  <h3 class="name_of_step">КРОК 5</h3>
+      <p class="stepdesc">{{ recipe.desc5 }}</p>
+    <p align='center'><img src="{{ recipe.image5.url }}" class='recipe_image_step'></p>
+</section>
+{% endif %}
+{% if recipe.desc6 != None and recipe.desc6 != '' and recipe.desc6 != ' '%}
+<section class="step_cooking">
+  <h3 class="name_of_step">КРОК 6</h3>
+      <p class="stepdesc">{{ recipe.desc6 }}</p>
+    <p align='center'><img src="{{ recipe.image6.url }}" class='recipe_image_step'></p>
+</section>
+{% endif %}
+{% if recipe.desc7 != None and recipe.desc7 != '' and recipe.desc7 != ' '%}
+<section class="step_cooking">
+  <h3 class="name_of_step">КРОК 7</h3>
+      <p class="stepdesc">{{ recipe.desc7 }}</p>
+    <p align='center'><img src="{{ recipe.image7.url }}" class='recipe_image_step'></p>
+</section>
+{% endif %}
+{% if recipe.desc8 != None and recipe.desc8 != '' and recipe.desc8 != ' '%}
+<section class="step_cooking">
+  <h3 class="name_of_step">КРОК 8</h3>
+      <p class="stepdesc">{{ recipe.desc8 }}</p>
+    <p align='center'><img src="{{ recipe.image8.url }}" class='recipe_image_step'></p>
+</section>
+{% endif %}
+{% if recipe.desc9 != None and recipe.desc9 != '' and recipe.desc9 != ' '%}
+<section class="step_cooking">
+  <h3 class="name_of_step">КРОК 9</h3>
+      <p class="stepdesc">{{ recipe.desc9 }}</p>
+    <p align='center'><img src="{{ recipe.image9.url }}" class='recipe_image_step'></p>
+</section>
+{% endif %}
+{% if recipe.desc10 != None and recipe.desc10 != '' and recipe.desc10 != ' '%}
+<section class="step_cooking">
+  <h3 class="name_of_step">КРОК 10</h3>
+      <p class="stepdesc">{{ recipe.desc10 }}</p>
+    <p align='center'><img src="{{ recipe.image10.url }}" class='recipe_image_step'></p>
+</section>
+{% endif %}
 <script type="text/javascript">
 //document.getElementById('toUppedCase').innerText = document.getElementById('toUppedCase').innerText.toUpperCase()
 //document.getElementById('toUppedCase').innerText = document.getElementById('toUppedCase').innerText.toUpperCase()
