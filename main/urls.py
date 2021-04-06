@@ -13,4 +13,5 @@ urlpatterns = [
 	path('newrecipe/', views.newrecipe, name="newrecipe"),
 	path('mystorage/', views.mystorage, name="mystorage"),
 	path('<int:pk>/viewrecipe', views.patternRecipeView.as_view(), name="viewrecipe"),
+	path('feed/', views.feedPage, name="feed"),
 ]

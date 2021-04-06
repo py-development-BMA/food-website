@@ -1,0 +1,111 @@
+{% extends "main/header.html" %}
+{% load static %}
+{% block title %}
+Feed
+{% endblock %}
+{% block content %}
+<h1 class="myStorage_label">Рекомендації</h1>
+<div class="mainFeedBlock">
+  <div class="friendRecommendation">
+    <div class="flexFriendTextHead">
+      <img src="{% static 'img/contacts-128.png' %}" alt="friends">
+      <p class="yourfriendsarelookin">Ваші друзі слідкують за:</p>
+    </div>
+
+  </div>
+  <div class="PostFeed">
+    <div class="feedPostEx">
+      <div class="usersInfoPost">
+        <img src="{{ request.user.image_profile.url }}" class="usersinfoImage">
+        <div class="nameAndUsernamePost">
+          <p class="usersPostName">{{ request.user.first_name }} {{ request.user.last_name }}</p>
+          <div class="rankPost_user">
+            <img src="{% static 'img/cook-128.png' %}" class="medalPost">
+            <p class="rankPostName">{{ request.user.rank }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="textAndImagePost">
+        <p class="descPostFeed">Для багатьох з нас приготовлені вдома млинці — це не тільки символ родинного затишку, але і приємний спогад з дитинства. І справа ж навіть не в тому, чи любите ви готувати, а в тому, що приготувати см</p>
+        <img src="{{ request.user.image_profile.url }}" class="imagePostView">
+      </div>
+      <div class="likeCommentView">
+        <div class="puLikeBtnPost">
+          <img src="{% static 'img/favorite-2-256.png' %}" class="likeimgstyle">
+          <p>Вподобати</p>
+        </div>
+        <div class="openCommentsPost">
+            <input style="display: none" type="checkbox" id="lesonCheck"><p align="left" class="pinSet">Інші коментарі</p>
+            <label class="set_lessons" id="set_les" for="lesonCheck" onclick="openComments(0)">
+              <span id="openComBtn0"></span>
+            </label>
+        </div>
+        <div class="putCommentPost">
+          <input type="text" name="" value="" placeholder="Комментар.." class="leaveCommentForm">
+        </div>
+      </div>
+      <div class="commex0 commentsClosed" id='commm0'>
+
+      </div>
+    </div>
+
+
+
+    <div class="feedPostEx">
+      <div class="usersInfoPost">
+        <img src="{{ request.user.image_profile.url }}" class="usersinfoImage">
+        <div class="nameAndUsernamePost">
+          <p class="usersPostName">{{ request.user.first_name }} {{ request.user.last_name }}</p>
+          <div class="rankPost_user">
+            <img src="{% static 'img/cook-128.png' %}" class="medalPost">
+            <p class="rankPostName">{{ request.user.rank }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="textAndImagePost">
+        <p class="descPostFeed">Для багатьох з нас приготовлені вдома млинці — це не тільки символ родинного затишку, але і приємний спогад з дитинства. І справа ж навіть не в тому, чи любите ви готувати, а в тому, що приготувати см</p>
+        <img src="{{ request.user.image_profile.url }}" class="imagePostView">
+      </div>
+      <div class="likeCommentView">
+        <div class="puLikeBtnPost">
+          <img src="{% static 'img/favorite-2-256.png' %}" class="likeimgstyle">
+          <p>Вподобати</p>
+        </div>
+        <div class="openCommentsPost">
+            <input style="display: none" type="checkbox" id="lesonCheck"><p align="left" class="pinSet">Інші коментарі</p>
+            <label class="set_lessons" id="set_les" for="lesonCheck" onclick="openComments(1)">
+              <span id="openComBtn1"></span>
+            </label>
+        </div>
+        <div class="putCommentPost">
+          <input type="text" name="" value="" placeholder="Комментар.." class="leaveCommentForm">
+        </div>
+      </div>
+      <div class="commex1 commentsClosed" id='commm1'>
+
+      </div>
+    </div>
+
+
+
+  </div>
+  <div class="MakeListProducts">
+
+
+  </div>
+
+</div>
+<script>
+    function openComments(num){
+        $('.commex'+num).toggleClass('commentsOpened');
+        if (document.getElementById("commm" + num).classList.contains('commentsOpened')){
+
+
+        document.getElementById('openComBtn' + num).style.transform = 'rotate(' + 180 + 'deg)';
+      } else{
+        document.getElementById('openComBtn' + num).style.transform = 'rotate(' + 0 + 'deg)';
+      }
+    }
+</script>
+
+{% endblock %}

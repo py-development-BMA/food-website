@@ -22,14 +22,14 @@ SECRET_KEY = '89$@m4&#lob@@+r!-%-*-$)hjos^9zdq+pv-t15c2)9x+ay=+='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    'main', 
+    'main',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -129,4 +129,4 @@ STATICFILES_DIRS = [
 
 
 MEDIA_ROOT = 'static/img'
-AUTH_USER_MODEL = "main.CustomUser" 
+AUTH_USER_MODEL = "main.CustomUser"

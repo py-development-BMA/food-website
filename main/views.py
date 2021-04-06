@@ -131,9 +131,20 @@ class patternRecipeView(DetailView):
 
 
 def  mystorage(request):
+  categories = ['Фрукти','Овочі','Молочні продукти','М\'ясні вироби','Морепродукти','Бакалія','Консерви та приправи','Напої','Заморожені продукти','Улюблені продукти']
+  counter = [0,1,2,3,4,5,6,7,8,9]
+  categories = zip(categories,counter)
+  context = {
+  'categories':categories,
+  }
 
-	context = {
-	'form':1,
-	}
+  return render(request, 'main/storage.html', context)
 
-	return render(request, 'main/storage.html', context)
+
+
+
+
+def feedPage(request):
+    context = {
+      }
+    return render(request, 'main/feedpage.html', context)

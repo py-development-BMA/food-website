@@ -5,9 +5,152 @@ My Storage
 {% endblock %}
 {% block content %}
 
-<h1 class="myStorage_label"> Що у мене вдома? </h1>
-<form method="POST">
-    {% csrf_token %}
-    <p align='center'><input type='text' id="id_findinstorage" name="findfood" placeholder="Назва продукту"></p>
-</form>
+<h1 class="myStorage_label"> Мої продукти </h1>
+
+
+<!--<form method="POST">
+  {% csrf_token %}
+  <div class="search">
+      <span class="fa fa-search"></span>
+      <input type='text' placeholder="Назва продукту">
+  </div>
+</form>-->
+<div class = "storage_screen">
+
+  <div class="categories">
+    <h2 class="category_label"> Категорії  </h2>
+    <p align="right">
+    {% for item,k in categories %}
+
+    <div>
+      <div class="button_categories" onclick="viewDiv('{{ k }}')">
+
+          <div class="flex_circle">
+            {% if item == "Фрукти"%}
+              <div class="categories_circle1"></div>
+
+            {% endif %}
+
+            {% if item == "Овочі"%}
+              <div class="categories_circle2"></div>
+            {% endif %}
+
+            {% if item == "Молочні продукти"%}
+              <div class="categories_circle3"></div>
+            {% endif %}
+
+            {% if item == "М'ясні вироби"%}
+              <div class="categories_circle4"></div>
+            {% endif %}
+
+            {% if item == "Морепродукти"%}
+              <div class="categories_circle5"></div>
+            {% endif %}
+
+            {% if item == "Бакалія"%}
+              <div class="categories_circle6"></div>
+            {% endif %}
+
+            {% if item == "Консерви та приправи"%}
+              <div class="categories_circle7"></div>
+            {% endif %}
+
+            {% if item == "Напої"%}
+              <div class="categories_circle8"></div>
+            {% endif %}
+
+            {% if item == "Заморожені продукти"%}
+              <div class="categories_circle9"></div>
+            {% endif %}
+
+            {% if item == "Улюблені продукти"%}
+              <div class="categories_circle10"></div>
+            {% endif %}
+          </div>
+
+          <div class="flex_stcategory">
+            <p>{{ item }}</p>
+          </div>
+      </div>
+    </div>
+    {% endfor %}
+    </p>
+
+  </div>
+  <div id='hiddenElems' class="hide">
+  <div class="category0_data">
+        0
+      </div>
+      <div class="category1_data ">
+1
+      </div>
+      <div class="category2_data">
+2
+      </div>
+      <div class="category3_data">
+3
+      </div>
+      <div class="category4_data">
+4
+      </div>
+      <div class="category5_data">
+5
+      </div>
+      <div class="category6_data">
+6
+      </div>
+      <div class="category7_data">
+7
+      </div>
+      <div class="category8_data">
+8
+      </div>
+      <div class="category9_data">
+9
+      </div>
+    </div>
+  <div class = "storage_screen2">
+
+    <div class="products_list" id="div1_storage_screen2">
+
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+        let i = 0;
+        let array_openedcategories = []
+        function chan(a){
+          $(".category" + a + "_data").toggleClass("animated_storage_el");
+        }
+        function viewDiv(a){
+          if(array_openedcategories.indexOf(a)==-1){
+            if(i <= 3){
+
+               $(".category" + a + "_data").remove().clone().appendTo('#div1_storage_screen2');
+               setTimeout(chan, 1, a)
+              i++;
+              array_openedcategories.push(a);
+
+            }else{
+              console.log(array_openedcategories)
+              $(".category" + array_openedcategories[0] + "_data").remove().clone().appendTo('#hiddenElems');
+              array_openedcategories.shift()
+              array_openedcategories.push(a)
+              $(".category" + a + "_data").remove().clone().appendTo('#div1_storage_screen2');
+               setTimeout(chan, 1, a)
+              console.log(array_openedcategories)
+
+            }
+          }else{
+            $(".category" + array_openedcategories[array_openedcategories.indexOf(a)] + "_data").remove().clone().appendTo('#hiddenElems');
+            array_openedcategories.splice(array_openedcategories.indexOf(a), 1)
+            i--
+          }
+
+
+        };
+      </script>
 {% endblock %}
