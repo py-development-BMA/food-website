@@ -9,7 +9,15 @@
 	<div class="profile_info">
 
 
-		<p class="name_and_lname">{{ request.user.first_name }} {{ request.user.last_name }}</p>
+		<div class="nameAndSubscribe">
+
+			<p class="name_and_lname">{{ request.user.first_name }} {{ request.user.last_name }}</p>
+			<div id="subscribeButton_id" onclick='subscribe()' class="subscribeBTn">
+				<span class="subplusIcon"></span>
+				<p>Відстежувати</p>
+			</div>
+
+		</div>
 		<p class="username_profile">@{{ request.user.username }}</p>
 		<p class="description_profile">{{ request.user.about }}</p>
 
@@ -96,6 +104,20 @@
 	</a>
 	{% endfor %}
 </section>
-<script>
+<script type="text/javascript">
+function subscribe() {
+
+	if ($('#subscribeButton_id p').text() == 'Відстежувати'){
+			$('#subscribeButton_id p').text('Відстежується');
+			$('.subplusIcon').toggleClass('subscribeActive');
+			$('#subscribeButton_id').toggleClass('subscribeBTnActive')
+
+	} else {
+		$('#subscribeButton_id p').text('Відстежувати');
+		$('.subplusIcon').toggleClass('subscribeActive');
+		$('#subscribeButton_id').toggleClass("subscribeBTnActive");
+	}
+
+};
 </script>
 {% endblock %}

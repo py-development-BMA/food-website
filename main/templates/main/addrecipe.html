@@ -9,7 +9,8 @@
 
       <form method="POST" action="" enctype="multipart/form-data" id="formaddRec">
         {% csrf_token %}
-        {{form.uuid_recipe}}
+        <p style="display:none;">{{form.uuid_recipe}}</p>
+        <p style="display:none;"><input type="text" name="emailof_creator" value="{{ request.user.email }}"></p>
       <p class="centerB">{{form.name}}</p>
       <p class="centerB"><img id="blah0" src="#" alt="your image" class="hide" /></p>
       <p class="centerPhoto"><label class="customMain0" for="id_image_prod"><img class="wrapper_photo" src="{% static 'img/add_photo.png' %}"><br>Додати фото обкладинки</label></p>

@@ -13,15 +13,15 @@ import re
 #from .tasks import *
 
 class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
+	HEADER = '\033[95m'
+	OKBLUE = '\033[94m'
+	OKCYAN = '\033[96m'
+	OKGREEN = '\033[92m'
+	WARNING = '\033[93m'
+	FAIL = '\033[91m'
+	ENDC = '\033[0m'
+	BOLD = '\033[1m'
+	UNDERLINE = '\033[4m'
 
 print(f"{bcolors.FAIL}\n[  VERSION  ]: 1.9.0 (created page for storage by ALEXEY)\n\n{bcolors.ENDC}")
 
@@ -38,6 +38,9 @@ def signup(request):
 			print(request.POST)
 			if form.is_valid():
 				user = form.save()
+				Subscribtion.objects.create(
+					user=user,
+					)
 				print("SAVED!")
 				return redirect('home')
 				#username = form.cleaned_data.get('username')
@@ -76,24 +79,24 @@ def edit_profile(request):
 
 
 def login_page(request):
-    if request.user.is_authenticated:
-        return redirect('profile')
-    else:
-        error = ''
-        if request.method == "POST":
-            username = request.POST.get('email')
-            password = request.POST.get("password1")
-            user = authenticate(request, email=username, password=password)
-            print(user)
-            if user is not None:
-                login(request, user)
-                return redirect('profile')
-            else:
-                error = "Не верное имя пользователя или пароль"
-                context = {'error':error}
-                return render(request, 'main/login.html', context)
-        context = {'error':error}
-        return render(request, 'main/login.html')
+	if request.user.is_authenticated:
+		return redirect('profile')
+	else:
+		error = ''
+		if request.method == "POST":
+			username = request.POST.get('email')
+			password = request.POST.get("password1")
+			user = authenticate(request, email=username, password=password)
+			print(user)
+			if user is not None:
+				login(request, user)
+				return redirect('profile')
+			else:
+				error = "Не верное имя пользователя или пароль"
+				context = {'error':error}
+				return render(request, 'main/login.html', context)
+		context = {'error':error}
+		return render(request, 'main/login.html')
 
 def logout_page(request):
 	logout(request)
@@ -106,7 +109,7 @@ def newrecipe(request):
 
 	if request.method == "POST":
 		form2 = RecipeForm(request.POST, request.FILES)
-		if form2.is_valid():
+		if form2.is_valid() and form2.cleaned_data.get('emailof_creator') == request.user.email:
 			get_uuid = form2.cleaned_data.get('uuid_recipe')
 			form2.save()
 			myrecipe = RecipeProduct.objects.get(uuid_recipe=get_uuid)
@@ -128,6 +131,11 @@ class patternRecipeView(DetailView):
 	context_object_name = 'recipe'
 
 
+class patternUserView(DetailView):
+	model = CustomUser
+	template_name = 'main/patternUser.html'
+	context_object_name = 'user'
+
 
 
 def  mystorage(request):
@@ -145,6 +153,6 @@ def  mystorage(request):
 
 
 def feedPage(request):
-    context = {
-      }
-    return render(request, 'main/feedpage.html', context)
+	context = {
+	  }
+	return render(request, 'main/feedpage.html', context)

@@ -1,0 +1,128 @@
+{% extends "main/header.html" %}
+{% load static %}
+{% block content %}
+									<!-- Profile information section -->
+<section class="account_info">
+	<div class="profile_photo">
+		<p align="center"><img class="img_profile" src="{{ user.image_profile.url }}"></p>
+	</div>
+	<div class="profile_info">
+
+
+		<div class="nameAndSubscribe">
+
+			<p class="name_and_lname">{{ user.first_name }} {{ user.last_name }}</p>
+      <form method="post">
+        {% csrf_token %}
+        <input style='display:none;' type="text" name="emailToFollow" value="{{ user.email }}">
+        <input style='display:none;' type="text" name="emailWhoFollwos" value="{{ request.user.email }}">
+        <input type="submit" style="display:none;" id="sendSubscription">
+			<label id="subscribeButton_id" onclick='subscribe()' class="subscribeBTn" for="sendSubscription">
+				<span class="subplusIcon"></span>
+				<p>Відстежувати</p>
+			</label>
+      </form>
+		</div>
+		<p class="username_profile">@{{ user.username }}</p>
+		<p class="description_profile">{{ user.about }}</p>
+
+
+
+		<div class="flex_rank">
+			<img src="{% static 'img/rank.png' %}" class="my_rank_img">
+			<div class='progress_flex'>
+				<p class="rank_name">Ранг: {{ user.rank }}</p>
+				<div class='grey_progress'>
+					<div style="width:{{ user.rank_percentage }}%;height: 8px;border-radius: 10px;background: #F87A5D;">
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+	</div>
+</section>
+												<!-- Subscribers section -->
+<section class="subs_follows">
+	<div class="sbs_flex_part">
+		<p>12k</p>
+		<p>Підписники</p>
+	</div>
+	<div class="sbs_flex_part">
+		<p>178</p>
+		<p>Підписки</p>
+	</div>
+	<div class="sbs_flex_part">
+		<p>12</p>
+		<p>Публікації</p>
+	</div>
+</section>
+
+
+												<!-- Rewards and best recipes section -->
+<section class="best_recipes_rewards">
+<a class="my_rewards" href="#">
+	<p align="center" class="rew_pra">Нагороди</p>
+<div class="my_rewards_1">
+	<img src="{% static 'img/exreward_1.png' %}" class='reward_img'>
+	<img src="{% static 'img/exreward.png' %}" class='reward_img'>
+	<img src="{% static 'img/exreward_1.png' %}" class='reward_img'>
+	<img src="{% static 'img/exreward.png' %}" class='reward_img'>
+	<img src="{% static 'img/exreward_1.png' %}" class='reward_img'>
+	<img src="{% static 'img/exreward.png' %}" class='reward_img'>
+	<img src="{% static 'img/exreward_1.png' %}" class='reward_img'>
+	<div class="reward_last"><p>+17</p></div>
+</div>
+</a>
+<a class="my_best_recipes" href="#">
+	<p align="center" class="rew_pra">Популярні рецепти</p>
+	<div class="my_popular">
+		<img src="{% static 'img/photo-1467003909585-2f8a72700288.jpg' %}" class='popular_img'>
+		<img src="{% static 'img/photo-1481931098730-318b6f776db0.jpg' %}" class='popular_img'>
+		<img src="{% static 'img/photo-1567620905732-2d1ec7ab7445.jpg' %}" class='popular_img'>
+		<img src="{% static 'img/photo-1484980972926-edee96e0960d.jpg' %}" class='popular_img'>
+		<img src="{% static 'img/photo-1481070555726-e2fe8357725c.jpg' %}" class='popular_img'>
+	</div>
+</a>
+
+</section>
+												<!-- All my recipes section -->
+<p class="my_chedevres_name">Рецепти</p>
+<section class="all_recipes_my_profile">
+
+	<a class="recipe_link_profile_add" href="#">
+		<p class="centering_img_addbtn"><img src="{% static 'img/add_recipe.png' %}" class="add_btn_recipe_photo"></p>
+	</a>
+	{% for item in user.my_recipes.all %}
+	<a class="recipe_link_profile" href="{% url 'viewrecipe' item.id %}">
+		<img src="{{ item.image_prod.url }}" class="image_recipe">
+		<div class="hover_info_show">
+			<p align="center" class="main_in_hidden_recipe">{{ item.name }}</p>
+			<p align="center" class="normal_hidden">{{ item.category }}</p>
+			<p align="center" class="normal_hidden">{{ item.time }}</p>
+			<p align="center" class="normal_hidden">{{ item.hardnessCook }}</p>
+		</div>
+	</a>
+	{% endfor %}
+</section>
+<script type="text/javascript">
+function subscribe() {
+
+	if ($('#subscribeButton_id p').text() == 'Відстежувати'){
+			$('#subscribeButton_id p').text('Відстежується');
+			$('.subplusIcon').toggleClass('subscribeActive');
+			$('#subscribeButton_id').toggleClass('subscribeBTnActive')
+
+	} else {
+		$('#subscribeButton_id p').text('Відстежувати');
+		$('.subplusIcon').toggleClass('subscribeActive');
+		$('#subscribeButton_id').toggleClass("subscribeBTnActive");
+	}
+
+};
+</script>
+{% endblock %}

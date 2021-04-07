@@ -39,8 +39,34 @@ class Purchases(models.Model):
 
 
 
+
+
+
+
+
+class Storage(models.Model):
+	is_apple = models.BooleanField(default=False, blank=True)
+	q_apple = models.IntegerField("Quantity of apples", default=0, blank=True)
+
+	is_banana = models.BooleanField(default=False, blank=True)
+	q_banana = models.IntegerField("Quantity of banana", default=0, blank=True)
+
+
+	def __str__(self):
+		return self.name
+
+	def get_absolute_url(self):
+		return f'/{self.id}'
+
+
+
+
+
+
+
 class RecipeProduct(models.Model):
-	#creator = models.OneToOneField(CustomUser, null=True, on_delete=models.PROTECT, blank=True)
+	#creator = models.OneToOneField(DimensionsRecipes, null=True, on_delete=models.PROTECT, blank=True)
+	emailof_creator = models.CharField('email_creator', max_length=100, blank=True)
 	uuid_recipe = models.CharField('uuid', max_length=100, blank=True, null=True)
 	CATEGORY = (
 		('Горячие блюда','Горячие блюда'), ('Бульоны и супы','Бульоны и супы'), ('Салаты','Салаты'), ('Закуски','Закуски'), ('Выпечка','Выпечка'), ('Десерты','Десерты'), ('Соусы','Соусы'))
@@ -105,26 +131,6 @@ class RecipeProduct(models.Model):
 		return f'/{self.id}'
 
 
-
-
-class Storage(models.Model):
-	is_apple = models.BooleanField(default=False, blank=True)
-	q_apple = models.IntegerField("Quantity of apples", default=0, blank=True)
-
-	is_banana = models.BooleanField(default=False, blank=True)
-	q_banana = models.IntegerField("Quantity of banana", default=0, blank=True)
-
-
-	def __str__(self):
-		return self.name
-
-	def get_absolute_url(self):
-		return f'/{self.id}'
-
-
-
-
-
 class CustomUser(AbstractBaseUser):
 	RANKS = (("Початківець","Початківець"),("Професіонал","Професіонал"))
 	first_name = models.CharField("first_name", max_length=50, blank=True)
@@ -162,3 +168,13 @@ class CustomUser(AbstractBaseUser):
 
 	def has_module_perms(self, app_label):
 		return True
+
+
+
+class Subscribtion(models.Model):
+	user = models.OneToOneField(CustomUser, blank=True, on_delete=models.PROTECT)
+	followed_by = models.ManyToManyField(CustomUser, blank=True, related_name='followed_by')
+	following = models.ManyToManyField(CustomUser, blank=True, related_name='following')
+
+	def __str__(self):
+		return self.user.email
