@@ -10,6 +10,7 @@ from django.utils import timezone
 import datetime
 from django.core.mail import send_mail
 import re
+import random
 #from .tasks import *
 
 class bcolors:
@@ -119,6 +120,9 @@ def newrecipe(request):
 			me_db_get.my_recipes.add(myrecipe)
 			me_db_get.amount_of_reciped += 1
 			me_db_get.save()
+			PostLike.objects.create(
+				post=myrecipe,
+			)
 			nameProdField = form2.cleaned_data.get('name')
 			return redirect('profile')
 	context = {
@@ -148,6 +152,7 @@ class patternUserView(DetailView):
 				break
 		context['subs'] = Subscribtion.objects.get(user=self.object)
 		context['is_followed'] = is_followed
+		context['userRecipes'] = reversed(CustomUser.objects.get(email=self.object.email).my_recipes.all())
 		return context
 
 	def post(self, request, pk):
@@ -192,6 +197,51 @@ def  mystorage(request):
 
 
 def feedPage(request):
-	context = {
-	  }
-	return render(request, 'main/feedpage.html', context)
+	form = PostToLike()
+	if request.method == 'POST':
+		form = PostToLike(request.POST)
+		if form.is_valid():
+			post = PostLike.objects.get(post__uuid_recipe=form.cleaned_data.get('whatToLike'))
+			user = Subscribtion.objects.get(user=request.user)
+			if form.cleaned_data.get('actionToDoLike') == 'like':
+				user.likedPosts.add(RecipeProduct.objects.get(uuid_recipe=form.cleaned_data.get('whatToLike')))
+				post.usersLiked.add(request.user)
+
+			else:
+				user.likedPosts.remove(RecipeProduct.objects.get(uuid_recipe=form.cleaned_data.get('whatToLike')))
+				post.usersLiked.remove(request.user)
+			user.save()
+			post.save()
+			return HttpResponse('profile')
+		else:
+			print('error')
+	else:
+		users_subs = Subscribtion.objects.get(user=request.user)
+		recipesToShow = []
+		count = []
+		user_sh = []
+		is_liked = []
+		k = 0
+		for item in users_subs.following.all():
+			if item.my_recipes.all().count() != 0:
+				stop = 3
+				for recipe in reversed(item.my_recipes.all()):
+					if stop != 0:
+						recipesToShow.append(recipe)
+						count.append(k)
+						user_sh.append(item)
+						k+=1
+						stop -=1
+						if recipe in users_subs.likedPosts.all():
+							is_liked.append(True)
+						else:
+							is_liked.append(False)
+
+					else:
+						break
+		recipesZip = list(zip(recipesToShow, count, user_sh, is_liked))
+		random.shuffle(recipesZip)
+		context = {
+			'recipesFeed':recipesZip,
+		  }
+		return render(request, 'main/feedpage.html', context)

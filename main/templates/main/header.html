@@ -15,7 +15,7 @@
 </head>
 
 <header>
-	<div class="logo_div"><p>F</p></div>
+	<a href="{% url 'feed' %}" class="logo_div"><p>F</p></a>
 	<form method="POST">
 		{% csrf_token %}
 		<input type='text' id="id_findfood" name="findfood" placeholder="Пошук на Food Inc.">

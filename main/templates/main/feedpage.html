@@ -14,77 +14,62 @@ Feed
 
   </div>
   <div class="PostFeed">
+    {% for recipe, k, user, is_liked in recipesFeed %}
     <div class="feedPostEx">
       <div class="usersInfoPost">
-        <img src="{{ request.user.image_profile.url }}" class="usersinfoImage">
-        <div class="nameAndUsernamePost">
-          <p class="usersPostName">{{ request.user.first_name }} {{ request.user.last_name }}</p>
+      <a href='{% url "viewuser" user.pk %}'>  <img src="{{ user.image_profile.url }}" class="usersinfoImage"></a>
+        <a href='{% url "viewuser" user.pk %}' class="nameAndUsernamePost">
+          <p class="usersPostName">{{ user.first_name }} {{ user.last_name }}</p>
           <div class="rankPost_user">
             <img src="{% static 'img/cook-128.png' %}" class="medalPost">
-            <p class="rankPostName">{{ request.user.rank }}</p>
+            <p class="rankPostName">{{ user.rank }}</p>
           </div>
-        </div>
+        </a>
       </div>
       <div class="textAndImagePost">
-        <p class="descPostFeed">Для багатьох з нас приготовлені вдома млинці — це не тільки символ родинного затишку, але і приємний спогад з дитинства. І справа ж навіть не в тому, чи любите ви готувати, а в тому, що приготувати см</p>
-        <img src="{{ request.user.image_profile.url }}" class="imagePostView">
+        <p class="descPostFeed">{{ recipe.description }}</p>
+        {% if recipe.image_prod != None %}
+        <a href='{% url "viewrecipe" recipe.pk %}'><img src="{{ recipe.image_prod.url }}" class="imagePostView"></a>
+        {% endif %}
       </div>
       <div class="likeCommentView">
-        <div class="puLikeBtnPost">
-          <img src="{% static 'img/favorite-2-256.png' %}" class="likeimgstyle">
-          <p>Вподобати</p>
-        </div>
+        <form method="post" style='display:none' onsubmit="putLike({{ k }})" id='PutLikeForm{{ k }}'>
+          {% csrf_token %}
+          {% if is_liked %}
+          <input style='display:none' type="text" id='id_actionToDoLike{{ k }}' name="actionToDoLike" value="removelike">
+          {% else %}
+            <input style='display:none' type="text" id='id_actionToDoLike{{ k }}' name="actionToDoLike" value="like">
+          {% endif %}
+          <input style='display:none' type="text" id='id_whoLikes{{ k }}' name="whoLikes" value="{{ request.user.email }}">
+          <input style='display:none' type="text" id='id_whatToLike{{ k }}' name="whatToLike" value="{{ recipe.uuid_recipe }}">
+          <input style='display:none' type="submit" id='submitLike{{ k }}'>
+        </form>
+        {% if is_liked %}
+        <label class="puLikeBtnPost" for='submitLike{{ k }}'>
+           <span id='heartid{{ k }}' class="heart heartActive"></span>
+        </label>
+        {% else %}
+        <label class="puLikeBtnPost" for='submitLike{{ k }}'>
+           <span id='heartid{{ k }}' class="heart"></span>
+        </label>
+        {% endif %}
         <div class="openCommentsPost">
             <input style="display: none" type="checkbox" id="lesonCheck"><p align="left" class="pinSet">Інші коментарі</p>
-            <label class="set_lessons" id="set_les" for="lesonCheck" onclick="openComments(0)">
-              <span id="openComBtn0"></span>
+            <label class="set_lessons" id="set_les" for="lesonCheck" onclick="openComments({{ k }})">
+              <span id="openComBtn{{ k }}"></span>
             </label>
         </div>
         <div class="putCommentPost">
           <input type="text" name="" value="" placeholder="Комментар.." class="leaveCommentForm">
         </div>
       </div>
-      <div class="commex0 commentsClosed" id='commm0'>
+      <div class="commex{{ k }} commentsClosed" id='commm{{ k }}'>
 
       </div>
     </div>
+    {% endfor %}
 
 
-
-    <div class="feedPostEx">
-      <div class="usersInfoPost">
-        <img src="{{ request.user.image_profile.url }}" class="usersinfoImage">
-        <div class="nameAndUsernamePost">
-          <p class="usersPostName">{{ request.user.first_name }} {{ request.user.last_name }}</p>
-          <div class="rankPost_user">
-            <img src="{% static 'img/cook-128.png' %}" class="medalPost">
-            <p class="rankPostName">{{ request.user.rank }}</p>
-          </div>
-        </div>
-      </div>
-      <div class="textAndImagePost">
-        <p class="descPostFeed">Для багатьох з нас приготовлені вдома млинці — це не тільки символ родинного затишку, але і приємний спогад з дитинства. І справа ж навіть не в тому, чи любите ви готувати, а в тому, що приготувати см</p>
-        <img src="{{ request.user.image_profile.url }}" class="imagePostView">
-      </div>
-      <div class="likeCommentView">
-        <div class="puLikeBtnPost">
-          <img src="{% static 'img/favorite-2-256.png' %}" class="likeimgstyle">
-          <p>Вподобати</p>
-        </div>
-        <div class="openCommentsPost">
-            <input style="display: none" type="checkbox" id="lesonCheck"><p align="left" class="pinSet">Інші коментарі</p>
-            <label class="set_lessons" id="set_les" for="lesonCheck" onclick="openComments(1)">
-              <span id="openComBtn1"></span>
-            </label>
-        </div>
-        <div class="putCommentPost">
-          <input type="text" name="" value="" placeholder="Комментар.." class="leaveCommentForm">
-        </div>
-      </div>
-      <div class="commex1 commentsClosed" id='commm1'>
-
-      </div>
-    </div>
 
 
 
@@ -105,6 +90,27 @@ Feed
       } else{
         document.getElementById('openComBtn' + num).style.transform = 'rotate(' + 0 + 'deg)';
       }
+    }
+
+
+    function putLike(k) {
+      $('#heartid'+k).toggleClass('heartActive')
+      $(document).on('submit', '#PutLikeForm'+k, function(e) {
+        e.preventDefault();
+      });
+      $.ajax({
+        type:'POST',
+        url:'/feed/',
+        data:{
+          actionToDoLike:$('#id_actionToDoLike'+k).val(),
+          whoLikes:$('#id_whoLikes'+k).val(),
+          whatToLike:$('#id_whatToLike'+k).val(),
+          csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+      },
+      success:function(){
+        console.log('liked successfuly')
+      }
+      })
     }
 </script>
 

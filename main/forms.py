@@ -49,3 +49,9 @@ class Subscribe(forms.Form):
 	actionToDo = forms.CharField(max_length=100)
 	emailToFollow = forms.CharField(max_length=100)
 	emailWhoFollows = forms.CharField(max_length=100)
+
+
+class PostToLike(forms.Form):
+	actionToDoLike = forms.CharField(max_length=30)
+	whoLikes = forms.CharField(max_length=100)
+	whatToLike = forms.CharField(max_length=100)

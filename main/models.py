@@ -175,6 +175,13 @@ class Subscribtion(models.Model):
 	user = models.OneToOneField(CustomUser, blank=True, on_delete=models.PROTECT)
 	followed_by = models.ManyToManyField(CustomUser, blank=True, related_name='followed_by')
 	following = models.ManyToManyField(CustomUser, blank=True, related_name='following')
-
+	likedPosts = models.ManyToManyField(RecipeProduct, blank=True, related_name='likedPosts')
 	def __str__(self):
 		return self.user.email
+
+class PostLike(models.Model):
+	post = models.OneToOneField(RecipeProduct, blank=True, on_delete=models.PROTECT)
+	usersLiked = models.ManyToManyField(CustomUser, blank=True)
+
+	def __str__(self):
+		return self.post.name

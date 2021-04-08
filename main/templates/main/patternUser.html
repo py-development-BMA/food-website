@@ -109,7 +109,7 @@
 	<a class="recipe_link_profile_add" href="#">
 		<p class="centering_img_addbtn"><img src="{% static 'img/add_recipe.png' %}" class="add_btn_recipe_photo"></p>
 	</a>
-	{% for item in user.my_recipes.all %}
+	{% for item in userRecipes %}
 	<a class="recipe_link_profile" href="{% url 'viewrecipe' item.id %}">
 		<img src="{{ item.image_prod.url }}" class="image_recipe">
 		<div class="hover_info_show">
