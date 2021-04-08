@@ -12,10 +12,6 @@
 		<div class="nameAndSubscribe">
 
 			<p class="name_and_lname">{{ request.user.first_name }} {{ request.user.last_name }}</p>
-			<div id="subscribeButton_id" onclick='subscribe()' class="subscribeBTn">
-				<span class="subplusIcon"></span>
-				<p>Відстежувати</p>
-			</div>
 
 		</div>
 		<p class="username_profile">@{{ request.user.username }}</p>
@@ -42,20 +38,20 @@
 	</div>
 </section>
 												<!-- Subscribers section -->
-<section class="subs_follows">
-	<div class="sbs_flex_part">
-		<p>12k</p>
-		<p>Підписники</p>
-	</div>
-	<div class="sbs_flex_part">
-		<p>178</p>
-		<p>Підписки</p>
-	</div>
-	<div class="sbs_flex_part">
-		<p>12</p>
-		<p>Публікації</p>
-	</div>
-</section>
+	<section class="subs_follows">
+		<div class="sbs_flex_part">
+			<p>{{ subs.followed_by.all.count }}</p>
+			<p>Підписники</p>
+		</div>
+		<div class="sbs_flex_part">
+			<p>{{ subs.following.all.count }}</p>
+			<p>Підписки</p>
+		</div>
+		<div class="sbs_flex_part">
+			<p>{{ request.user.my_recipes.all.count }}</p>
+			<p>Публікації</p>
+		</div>
+	</section>
 
 
 												<!-- Rewards and best recipes section -->

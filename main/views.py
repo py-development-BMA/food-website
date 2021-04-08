@@ -55,9 +55,11 @@ def homePage(request):
 def profile(request):
 	users_recipes = CustomUser.objects.get(email=request.user.email)
 	output_recipes = users_recipes.my_recipes.all()
+	subscriptions = Subscribtion.objects.get(user=request.user)
 	context = {
 	'test':123,
 	'myrecipes':output_recipes,
+	'subs':subscriptions,
 	}
 	return render(request, 'main/myaccount.html', context)
 
@@ -135,6 +137,14 @@ class patternUserView(DetailView):
 	model = CustomUser
 	template_name = 'main/patternUser.html'
 	context_object_name = 'user'
+	def get_context_data(self, **kwargs):
+		# В первую очередь получаем базовую реализацию контекста
+		context = super(patternUserView, self).get_context_data(**kwargs)
+		# Добавляем новую переменную к контексту и иниуиализируем ее некоторым значением
+		print(self.object)
+		context['subs'] = Subscribtion.objects.get(user=self.object)
+		return context
+
 	def post(self, request, pk):
 		form = Subscribe()
 		if request.method == 'POST':

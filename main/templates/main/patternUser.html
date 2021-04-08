@@ -49,15 +49,15 @@
 												<!-- Subscribers section -->
 <section class="subs_follows">
 	<div class="sbs_flex_part">
-		<p>12k</p>
+		<p>{{ subs.followed_by.all.count }}</p>
 		<p>Підписники</p>
 	</div>
 	<div class="sbs_flex_part">
-		<p>178</p>
+		<p>{{ subs.following.all.count }}</p>
 		<p>Підписки</p>
 	</div>
 	<div class="sbs_flex_part">
-		<p>12</p>
+		<p>{{ user.my_recipes.all.count }}</p>
 		<p>Публікації</p>
 	</div>
 </section>
@@ -124,7 +124,7 @@ $(document).on('submit', '#subscribeForm', function(e) {
         csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
     },
     success:function(){
-      console.log()
+      console.log('subsctibed')
     }
     })
 			$('#subscribeButton_id p').text('Відстежується');
