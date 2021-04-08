@@ -9,7 +9,7 @@ class CustomUserCreationForm(UserCreationForm):
 	class Meta:
 		model = CustomUser
 		fields = ("email", 'access_to_data')
-	
+
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
 		del self.fields['password2']
@@ -43,3 +43,8 @@ class RecipeForm(ModelForm):
 			'placeholder':"Короткий опис"
 			}),
 		}
+
+
+class Subscribe(forms.Form):
+	emailToFollow = forms.CharField(max_length=100)
+	emailWhoFollows = forms.CharField(max_length=100)

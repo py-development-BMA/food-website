@@ -12,12 +12,12 @@
 		<div class="nameAndSubscribe">
 
 			<p class="name_and_lname">{{ user.first_name }} {{ user.last_name }}</p>
-      <form method="post">
+      <form method="post" id="subscribeForm">
         {% csrf_token %}
-        <input style='display:none;' type="text" name="emailToFollow" value="{{ user.email }}">
-        <input style='display:none;' type="text" name="emailWhoFollwos" value="{{ request.user.email }}">
+        <input style='display:none;' type="text" id="id_emailToFollow" name="emailToFollow" value="{{ user.email }}">
+        <input style='display:none;' type="text" id="id_emailWhoFollows" name="emailWhoFollows" value="{{ request.user.email }}">
         <input type="submit" style="display:none;" id="sendSubscription">
-			<label id="subscribeButton_id" onclick='subscribe()' class="subscribeBTn" for="sendSubscription">
+			<label id="subscribeButton_id" class="subscribeBTn" for="sendSubscription">
 				<span class="subplusIcon"></span>
 				<p>Відстежувати</p>
 			</label>
@@ -110,9 +110,23 @@
 	{% endfor %}
 </section>
 <script type="text/javascript">
-function subscribe() {
 
+
+$(document).on('submit', '#subscribeForm', function(e) {
+  e.preventDefault();
 	if ($('#subscribeButton_id p').text() == 'Відстежувати'){
+    $.ajax({
+      type:'POST',
+      url:'/{{ user.pk }}/viewuser',
+      data:{
+        emailToFollow:$('#id_emailToFollow').val(),
+        emailWhoFollows:$('#id_emailWhoFollows').val(),
+        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+    },
+    success:function(){
+      console.log()
+    }
+    })
 			$('#subscribeButton_id p').text('Відстежується');
 			$('.subplusIcon').toggleClass('subscribeActive');
 			$('#subscribeButton_id').toggleClass('subscribeBTnActive')
@@ -123,6 +137,6 @@ function subscribe() {
 		$('#subscribeButton_id').toggleClass("subscribeBTnActive");
 	}
 
-};
+});
 </script>
 {% endblock %}

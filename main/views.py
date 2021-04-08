@@ -135,6 +135,28 @@ class patternUserView(DetailView):
 	model = CustomUser
 	template_name = 'main/patternUser.html'
 	context_object_name = 'user'
+	def post(self, request, pk):
+		form = Subscribe()
+		if request.method == 'POST':
+			form = Subscribe(request.POST)
+			if form.is_valid():
+				emailToFollow = form.cleaned_data.get('emailToFollow')
+				emailWhoFollows = form.cleaned_data.get('emailToFollow')
+
+				toFollowUserCus = CustomUser.objects.get(email=emailToFollow)
+				whoFollowsCus = CustomUser.objects.get(email=request.user)
+
+				toFollowUser = Subscribtion.objects.get(user=toFollowUserCus)
+				whoFollows = Subscribtion.objects.get(user=request.user)
+
+				whoFollows.following.add(toFollowUserCus)
+				toFollowUser.followed_by.add(whoFollowsCus)
+
+				whoFollows.save()
+				toFollowUser.save()
+				return HttpResponse('ready')
+			else:
+				print(form)
 
 
 
