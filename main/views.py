@@ -132,7 +132,6 @@ class patternRecipeView(DetailView):
 	template_name = 'main/patternrecipe.html'
 	context_object_name = 'recipe'
 
-
 class patternUserView(DetailView):
 	model = CustomUser
 	template_name = 'main/patternUser.html'
@@ -142,7 +141,13 @@ class patternUserView(DetailView):
 		context = super(patternUserView, self).get_context_data(**kwargs)
 		# Добавляем новую переменную к контексту и иниуиализируем ее некоторым значением
 		print(self.object)
+		is_followed = False
+		for item in Subscribtion.objects.get(user=self.object).followed_by.all():
+			if item.email == self.request.user.email:
+				is_followed = True
+				break
 		context['subs'] = Subscribtion.objects.get(user=self.object)
+		context['is_followed'] = is_followed
 		return context
 
 	def post(self, request, pk):
@@ -159,15 +164,17 @@ class patternUserView(DetailView):
 				toFollowUser = Subscribtion.objects.get(user=toFollowUserCus)
 				whoFollows = Subscribtion.objects.get(user=request.user)
 
-				whoFollows.following.add(toFollowUserCus)
-				toFollowUser.followed_by.add(whoFollowsCus)
-
+				if form.cleaned_data.get('actionToDo') == 'subscribe':
+					whoFollows.following.add(toFollowUserCus)
+					toFollowUser.followed_by.add(whoFollowsCus)
+				else:
+					whoFollows.following.remove(toFollowUserCus)
+					toFollowUser.followed_by.remove(whoFollowsCus)
 				whoFollows.save()
 				toFollowUser.save()
 				return HttpResponse('ready')
 			else:
 				print(form)
-
 
 
 def  mystorage(request):

@@ -14,14 +14,26 @@
 			<p class="name_and_lname">{{ user.first_name }} {{ user.last_name }}</p>
       <form method="post" id="subscribeForm">
         {% csrf_token %}
+        {% if is_followed %}
+        <input style='display:none;' type="text" id="id_actionToDo" name="actionToDo" value="unsubscribe">
+        {% else %}
+        <input style='display:none;' type="text" id="id_actionToDo" name="actionToDo" value="subscribe">
+        {% endif %}
         <input style='display:none;' type="text" id="id_emailToFollow" name="emailToFollow" value="{{ user.email }}">
         <input style='display:none;' type="text" id="id_emailWhoFollows" name="emailWhoFollows" value="{{ request.user.email }}">
         <input type="submit" style="display:none;" id="sendSubscription">
-			<label id="subscribeButton_id" class="subscribeBTn" for="sendSubscription">
-				<span class="subplusIcon"></span>
-				<p>Відстежувати</p>
-			</label>
-      </form>
+        {% if is_followed %}
+    			<label id="subscribeButton_id" class="subscribeBTn subscribeBTnActive" for="sendSubscription">
+    				<span class="subplusIcon subscribeActive"></span>
+    				<p>Відстежується</p>
+    			</label>
+        {% else %}
+          <label id="subscribeButton_id" class="subscribeBTn" for="sendSubscription">
+    				<span class="subplusIcon"></span>
+    				<p>Відстежувати</p>
+    			</label>
+          </form>
+        {% endif %}
 		</div>
 		<p class="username_profile">@{{ user.username }}</p>
 		<p class="description_profile">{{ user.about }}</p>
@@ -49,7 +61,7 @@
 												<!-- Subscribers section -->
 <section class="subs_follows">
 	<div class="sbs_flex_part">
-		<p>{{ subs.followed_by.all.count }}</p>
+		<p id='usersSubs'>{{ subs.followed_by.all.count }}</p>
 		<p>Підписники</p>
 	</div>
 	<div class="sbs_flex_part">
@@ -115,16 +127,19 @@
 $(document).on('submit', '#subscribeForm', function(e) {
   e.preventDefault();
 	if ($('#subscribeButton_id p').text() == 'Відстежувати'){
+
     $.ajax({
       type:'POST',
       url:'/{{ user.pk }}/viewuser',
       data:{
+        actionToDo:$('#id_actionToDo').val(),
         emailToFollow:$('#id_emailToFollow').val(),
         emailWhoFollows:$('#id_emailWhoFollows').val(),
         csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
     },
     success:function(){
-      console.log('subsctibed')
+      console.log('subscribed')
+      let usersCountSubs = document.getElementById('usersSubs').innerHTML = parseInt(document.getElementById('usersSubs').innerHTML) + 1;
     }
     })
 			$('#subscribeButton_id p').text('Відстежується');
@@ -132,9 +147,24 @@ $(document).on('submit', '#subscribeForm', function(e) {
 			$('#subscribeButton_id').toggleClass('subscribeBTnActive')
 
 	} else {
+    $.ajax({
+      type:'POST',
+      url:'/{{ user.pk }}/viewuser',
+      data:{
+        actionToDo:$('#id_actionToDo').val(),
+        emailToFollow:$('#id_emailToFollow').val(),
+        emailWhoFollows:$('#id_emailWhoFollows').val(),
+        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+    },
+    success:function(){
+      console.log('unsubscribed')
+      let usersCountSubs = document.getElementById('usersSubs').innerHTML = parseInt(document.getElementById('usersSubs').innerHTML) - 1;
+    }
+    })
 		$('#subscribeButton_id p').text('Відстежувати');
 		$('.subplusIcon').toggleClass('subscribeActive');
 		$('#subscribeButton_id').toggleClass("subscribeBTnActive");
+
 	}
 
 });

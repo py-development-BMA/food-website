@@ -46,5 +46,6 @@ class RecipeForm(ModelForm):
 
 
 class Subscribe(forms.Form):
+	actionToDo = forms.CharField(max_length=100)
 	emailToFollow = forms.CharField(max_length=100)
 	emailWhoFollows = forms.CharField(max_length=100)

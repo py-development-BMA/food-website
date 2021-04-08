@@ -1,0 +1,541 @@
+[33mcommit 4c6154199616d46887aef4aed8f8d0b164b57a21[m[33m ([m[1;36mHEAD -> [m[1;32mmisha_linux[m[33m, [m[1;31morigin/misha_linux[m[33m)[m
+Author: Misha <1mgavura@gmail.com>
+Date:   Thu Apr 8 11:06:38 2021 +0300
+
+    subscription count
+
+[33mcommit f5aa52c7dcbe9296b58f3864d6a4a04e4c831fca[m
+Author: Misha <1mgavura@gmail.com>
+Date:   Thu Apr 8 10:43:46 2021 +0300
+
+    subscription with ajax
+
+[33mcommit f3df9d155a05e9f58063ad19f69ba8955c1a3284[m
+Author: Misha <1mgavura@gmail.com>
+Date:   Thu Apr 8 01:41:30 2021 +0300
+
+    u can now view user by link
+
+[33mcommit 181b4ed113f6d26a25e36925e155c738adddbd27[m
+Author: Misha <1mgavura@gmail.com>
+Date:   Wed Apr 7 01:07:04 2021 +0300
+
+    added feed page and animation of opening
+
+[33mcommit ee1c454535359da7793fcf82ac1c0f1e52ddd57a[m
+Author: Misha <1mgavura@gmail.com>
+Date:   Sat Mar 27 16:59:23 2021 +0200
+
+    v 1.9 added recipe page
+
+[33mcommit 8de2f86cdb6481209e333b9dbd499a6b0ef4ad9f[m
+Merge: 87cf25c 44bb410
+Author: Misha <1mgavura@gmail.com>
+Date:   Wed Mar 24 14:12:01 2021 +0200
+
+    added page for recipes
+
+[33mcommit 87cf25c3ef84129d72bcdcc28023bfc1790d1c06[m
+Author: Misha <1mgavura@gmail.com>
+Date:   Wed Mar 24 14:08:37 2021 +0200
+
+    added page for each recipe
+
+[33mcommit 44bb410a59b98f03418e87a8e51cbd5a8efc3fee[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Wed Mar 24 13:14:16 2021 +0200
+
+    Delete GetFileCopyFileHandler.aspx.pdf
+
+[33mcommit 2fba14db767ec03612a6c4b95929908d300da49c[m
+Author: Misha <1mgavura@gmail.com>
+Date:   Wed Mar 24 12:35:17 2021 +0200
+
+    merged styles with Alex
+
+[33mcommit 6e872a0410c0f97b94c1f88102d7bb68b929d82b[m
+Author: Misha <1mgavura@gmail.com>
+Date:   Tue Mar 23 23:52:02 2021 +0200
+
+    added patter for food recipe
+
+[33mcommit 4c448121be1ecb9080091d43b2686be69734339e[m
+Author: Misha <1mgavura@gmail.com>
+Date:   Tue Mar 23 23:12:23 2021 +0200
+
+    fixed header problem
+
+[33mcommit a4ba065c918d72235a900af4d72c5553ac72ca5e[m
+Author: Misha <1mgavura@gmail.com>
+Date:   Tue Mar 23 19:42:01 2021 +0200
+
+    removed hello
+
+[33mcommit 0d0c2f1317c9f4552be414ddbadec93beeb5f020[m
+Author: Misha <1mgavura@gmail.com>
+Date:   Tue Mar 23 19:39:14 2021 +0200
+
+    added txt
+
+[33mcommit 4ecf87cabadfd90d35848c0f3b26f66ef931606c[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Mon Mar 22 02:55:44 2021 +0200
+
+    Update git_save_info.txt
+
+[33mcommit 1f4b9c87b312aa5ec5597a270665a6a57a3dc9d5[m
+Author: misha <1mgavura@gmail.com>
+Date:   Mon Mar 22 02:53:31 2021 +0200
+
+    check
+
+[33mcommit 523ca66b5715ab5698a628ad911481d357aaa21f[m
+Author: misha <1mgavura@gmail.com>
+Date:   Mon Mar 22 02:31:33 2021 +0200
+
+    fixed styles did not work
+
+[33mcommit 68aa586df9c572d6f342a723d7edd55ba6db918c[m
+Author: misha <1mgavura@gmail.com>
+Date:   Mon Mar 22 02:22:58 2021 +0200
+
+    adaptive styles for all screens (MISHA)
+
+[33mcommit 3a138c44e95651855cfda6417d92aa4298ceef96[m
+Author: misha <1mgavura@gmail.com>
+Date:   Mon Mar 22 02:12:40 2021 +0200
+
+    removed l file
+
+[33mcommit b81623cc003bf012da257a7d7b2024bb5e1f4ae7[m
+Author: misha <1mgavura@gmail.com>
+Date:   Mon Mar 22 02:11:01 2021 +0200
+
+    removed useless file sqlite3
+
+[33mcommit 81da2dd46f9df82bc97b92aea50d1d66f95c274a[m
+Author: misha <1mgavura@gmail.com>
+Date:   Mon Mar 22 02:06:48 2021 +0200
+
+    requirements file added
+
+[33mcommit 67389de39d875b116882cc60220bfae43d8e6094[m
+Author: misha <1mgavura@gmail.com>
+Date:   Mon Mar 22 02:03:10 2021 +0200
+
+    requirements added
+
+[33mcommit 8ab9b3bb7d969fe0bb78e1634c4d841f8520d301[m
+Author: alexbud1 <69623580+alexbud1@users.noreply.github.com>
+Date:   Sat Mar 20 22:20:43 2021 +0200
+
+    Add files via upload
+
+[33mcommit a03e6f26bdbd4790198118ce9cd7a81bbdb2750a[m
+Author: alexbud1 <69623580+alexbud1@users.noreply.github.com>
+Date:   Sat Mar 20 22:20:24 2021 +0200
+
+    Add files via upload
+
+[33mcommit ba644aa9567cac41ceb4c07b67c0b004acf0501f[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sat Mar 20 21:37:50 2021 +0200
+
+    Add files via upload
+
+[33mcommit 866672be84ae31fad1b258d5e8078bf1f47bdafd[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sat Mar 20 21:36:48 2021 +0200
+
+    Delete 0015_recipeproduct_uuid_recipe.py
+
+[33mcommit 87608216cd3eff22be4556231bfd7f45ff925b9f[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sat Mar 20 21:36:44 2021 +0200
+
+    Delete 0014_customuser_my_recipes.py
+
+[33mcommit 2b199744499206cb638614225964285cce22b1c9[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sat Mar 20 21:36:40 2021 +0200
+
+    Delete 0013_remove_recipeproduct_creator.py
+
+[33mcommit 78ede7a9b05b957fb01f08e834a9d4d5b4a40422[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sat Mar 20 21:36:32 2021 +0200
+
+    Delete 0012_auto_20210313_1442.py
+
+[33mcommit abace5a64c241dec8e71d215a6219479ce42cb4c[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sat Mar 20 21:36:15 2021 +0200
+
+    Delete 0011_auto_20210313_1402.py
+
+[33mcommit ef6fac45b6dc16288ad0e10bdee67f0b900307f6[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sat Mar 20 21:36:10 2021 +0200
+
+    Delete 0010_auto_20210310_2233.py
+
+[33mcommit d6e0d17dc1fef5cb45e24550cb2bdd8382031f6c[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sat Mar 20 21:36:05 2021 +0200
+
+    Delete 0009_customuser_image_profile.py
+
+[33mcommit c0b5eb82540748227c246188a9cfb97455b1c248[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sat Mar 20 21:36:00 2021 +0200
+
+    Delete 0008_auto_20210310_2154.py
+
+[33mcommit f19cfeeca8254fe4b06f1de5552a0e261ea09e3b[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sat Mar 20 21:35:53 2021 +0200
+
+    Delete 0007_auto_20210310_2054.py
+
+[33mcommit 73deef122c97bec7984e05c30f6e010e24d41c0a[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sat Mar 20 21:35:48 2021 +0200
+
+    Delete 0006_auto_20210310_2053.py
+
+[33mcommit f5cfcbfa40ad3e2912962b954bd2d361338a30d6[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sat Mar 20 21:35:39 2021 +0200
+
+    Delete 0005_auto_20210310_2038.py
+
+[33mcommit 3c547189926a3040f04fd63d06f760857b108238[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sat Mar 20 21:35:35 2021 +0200
+
+    Delete 0004_auto_20210310_1533.py
+
+[33mcommit 2b1bfe89b77a7fb7c602d544d476dc8170f01d83[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sat Mar 20 21:35:31 2021 +0200
+
+    Delete 0003_auto_20210310_0127.py
+
+[33mcommit 29de76f463cfcfc52bebd2dc13fc1a78e61b9747[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sat Mar 20 21:35:26 2021 +0200
+
+    Delete 0002_auto_20210227_0144.py
+
+[33mcommit 0ae0af8ff7c582becf01519c011eb6f7e6490be5[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sat Mar 20 21:35:21 2021 +0200
+
+    Delete 0001_initial.py
+
+[33mcommit c74fccd815f83fb25688b1190abf1c7474668573[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Thu Mar 18 03:05:18 2021 +0200
+
+     version 1.8.2 adding recipes works
+
+[33mcommit 11320c9252d065027d1d754262a48ba1c6c93923[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Thu Mar 18 03:00:00 2021 +0200
+
+     adding recipes works v1.8.2 , header update)
+
+[33mcommit 2d432a16ff6aac1d087138683605a547750494db[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Thu Mar 18 02:59:42 2021 +0200
+
+    Add files via upload
+
+[33mcommit 27754dc4b4b0166c54008ad0dfc42d78e4ffe6bd[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Thu Mar 18 02:59:29 2021 +0200
+
+    adding recipes works v1.8.2 , header update)
+
+[33mcommit 1dc1aef4aaeb7e0a96cb5cf2e1b7e29136f5f5a3[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Thu Mar 18 02:58:44 2021 +0200
+
+    version 1.8.2 adding recipes works
+
+[33mcommit 9e37807c762fed5601fce1ad66562deceeefed52[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Thu Mar 18 02:57:55 2021 +0200
+
+    you can now add recipes
+
+[33mcommit 6c201cc5301fd45260bbddfab19eb301c6becca1[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sun Mar 14 02:17:09 2021 +0200
+
+    header update, jquery connected, addrecipe pag
+
+[33mcommit 9e51c32a42eb671728a06bcb924e39df6f2a5591[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sun Mar 14 02:16:27 2021 +0200
+
+    v1.8.1 (adding recipe)
+
+[33mcommit 7344794a7c1f65a2b2f1e9f594b50b16046bb2c8[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sun Mar 14 02:15:50 2021 +0200
+
+    Add files via upload
+
+[33mcommit 1e719fab3a24364013cffea48a0fdbe66fea1310[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sun Mar 14 02:15:33 2021 +0200
+
+    v 1.8.1 adding recipes
+
+[33mcommit c394979f06e1352c9544d04323c8fe5d38c08e2a[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sat Mar 13 17:06:57 2021 +0200
+
+    Editing profile + changing image (v1.7)
+
+[33mcommit 9124442dc895b644ac0528eb55337c8958d6964e[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sat Mar 13 17:06:08 2021 +0200
+
+    Editing profile + changing image (v1.7)
+    
+    Make sure to have version 1.7 written in console
+
+[33mcommit f14d61ed139acddb670f0fe2886a679567a7b7a8[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sat Mar 13 16:52:22 2021 +0200
+
+    Editing profile + changing image (v1.7)
+    
+    be sure to have version 1.7 written in console when running server
+
+[33mcommit 005731febfec0de246b37dad9a503d369f749691[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sat Mar 13 16:49:03 2021 +0200
+
+    Add files via upload
+
+[33mcommit 241513546c1989aba6e7d9dce551bb1f447e2fd6[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sat Mar 13 16:48:39 2021 +0200
+
+    Add files via upload
+
+[33mcommit 6325291d5566f2dd1977bdeca9a9f2c8c30da359[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Wed Mar 10 22:43:38 2021 +0200
+
+    added edit_profile page
+
+[33mcommit cf979bda0b4fcdd2ca3fad4e230d5207a633a8af[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Wed Mar 10 22:43:21 2021 +0200
+
+    Delete urls.py
+
+[33mcommit 38c38370d005510a9c6c59f105378008a7849fdf[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Wed Mar 10 22:43:10 2021 +0200
+
+    added edit account
+
+[33mcommit 62657ccaef24e5250e03545dc6e109cf5427bb5b[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Wed Mar 10 22:42:49 2021 +0200
+
+    Add files via upload
+
+[33mcommit d1e809e2f3ad20f891c2d54460d8ce821eaa6040[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Wed Mar 10 22:42:23 2021 +0200
+
+    Add files via upload
+
+[33mcommit b6a48a13d9cb9a38e85cc0d3472002c26fa9f5a8[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Wed Mar 10 22:42:09 2021 +0200
+
+    Add files via upload
+
+[33mcommit a70b4311790f09f1e48bcfd4bf40867538ccc36e[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Wed Mar 10 20:40:32 2021 +0200
+
+    users models created, db migrated
+
+[33mcommit 748ec93b480b4436ad770e49cf342f20ec28ec54[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Wed Mar 10 01:30:51 2021 +0200
+
+    Add files via upload
+
+[33mcommit b7c2d7fc938192c282d58c8fe0541fa91adb2e9e[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Wed Mar 10 01:30:23 2021 +0200
+
+    Add files via upload
+
+[33mcommit 4770071e6b3e77222721ca9ba5fe53d342e72817[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Wed Mar 10 01:29:27 2021 +0200
+
+    Add files via upload
+
+[33mcommit cd5f49b73c6f495284698ddf5f8222a20ac28823[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Wed Mar 10 00:59:52 2021 +0200
+
+    Add files via upload
+
+[33mcommit 0e1bb41304422623da0fabb87bd19dcf153d5a81[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Wed Mar 10 00:58:14 2021 +0200
+
+    Add files via upload
+
+[33mcommit af66bfd8e240ed20cb34dac98467745778c3b36d[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Wed Mar 10 00:57:54 2021 +0200
+
+    Add files via upload
+
+[33mcommit 30acc3e4c5c9c273e13937885c5c25a3c090de45[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Thu Mar 4 01:09:47 2021 +0200
+
+    Add files via upload
+
+[33mcommit b4181f4093edb78d143c81571817c7b6837fa5a8[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Thu Mar 4 01:00:26 2021 +0200
+
+    Update styles.css
+
+[33mcommit 29f80be751c34e1f0ff789ac34200483cdb86323[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Thu Mar 4 00:59:38 2021 +0200
+
+    Add files via upload
+
+[33mcommit 0c07d4fbe9cbfecef10aa85dcac15507ac552eff[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Wed Mar 3 13:01:15 2021 +0200
+
+    Add files via upload
+
+[33mcommit ced18b35f3e88a9bd917b0612691e21afc12ba2d[m
+Author: alexbud1 <69623580+alexbud1@users.noreply.github.com>
+Date:   Tue Mar 2 14:21:00 2021 +0200
+
+    Create login_page.png
+    
+    img loaded
+
+[33mcommit 696cc268f5f565fe6f7b2517d55d4936d39df9e5[m
+Author: alexbud1 <69623580+alexbud1@users.noreply.github.com>
+Date:   Tue Mar 2 14:11:17 2021 +0200
+
+    added login and logout pages
+
+[33mcommit 22a83d80faf4f0db32fe64c5b4cdea76047f9742[m
+Author: alexbud1 <69623580+alexbud1@users.noreply.github.com>
+Date:   Tue Mar 2 13:56:29 2021 +0200
+
+    Add files via upload
+
+[33mcommit edb59350e9b253bd11c36a70b3fb46a13897ecb0[m
+Author: alexbud1 <69623580+alexbud1@users.noreply.github.com>
+Date:   Tue Mar 2 13:39:49 2021 +0200
+
+    Add files via upload
+
+[33mcommit 50ef89e4c4a0ca6740a4e8a1f60f3d3d945143d0[m
+Author: alexbud1 <69623580+alexbud1@users.noreply.github.com>
+Date:   Tue Mar 2 13:20:26 2021 +0200
+
+    Add files via upload
+
+[33mcommit 124e233d090832018f2104b72a11ab66e613053c[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sun Feb 28 02:22:20 2021 +0200
+
+    Update README.markdown
+
+[33mcommit 1dc244cfbe455259cf747b1fe7738945b188a4aa[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sun Feb 28 02:21:19 2021 +0200
+
+    Update README.markdown
+
+[33mcommit dbfef1c42f3ab2587299401d152b9a9088bdfe49[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sun Feb 28 02:19:44 2021 +0200
+
+    Update README.markdown
+
+[33mcommit d4963b025878245d49ee1e3ee1a6c1200ec867cf[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sun Feb 28 02:15:36 2021 +0200
+
+    Update README.markdown
+
+[33mcommit 626329a905bdebb124197cde28ab8b03f920eb39[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sun Feb 28 02:11:54 2021 +0200
+
+    Update and rename README.md to README.markdown
+
+[33mcommit 95033a5b10a81b6f2ee134fe25586baf91505f49[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sun Feb 28 02:02:31 2021 +0200
+
+    header using extends
+    
+    you can now add to every file
+    {% extends "main/header.html" %}
+    {% load static %}
+    {% block content %}
+    EVERYTHING HERE WILL BE USED AS BODY FOR PAGE)
+    {% endblock %}
+
+[33mcommit 32276ada1f64e6f5b25676252fab359424ebab47[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sat Feb 27 03:00:39 2021 +0200
+
+    added some comments for labels
+
+[33mcommit 1182fb498e67d9ca8469073fb35d797c73be3db0[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sat Feb 27 02:50:35 2021 +0200
+
+    sign up works fine
+
+[33mcommit 05f4437dc2581ec69d30f41f31846877e816f22f[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Sat Feb 27 02:37:06 2021 +0200
+
+    sign up backend works
+
+[33mcommit 45ab92a4122dcbdcb55ec3f04af25644f6f61fdf[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Fri Feb 26 23:09:20 2021 +0200
+
+    sign up page update
+
+[33mcommit af053ecb72e85ebbe229541da5e7318853e051a5[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Fri Feb 26 20:09:22 2021 +0200
+
+    django-app and project creation
+
+[33mcommit 6b80172ef0b294eb771122af4eb04c9b9b618343[m[33m ([m[1;31morigin/Andrey[m[33m, [m[1;31morigin/Alex[m[33m)[m
+Author: Misha Gavura <43016416+mishagavura@users.noreply.github.com>
+Date:   Tue Feb 16 23:19:12 2021 +0200
+
+    Initial commit
