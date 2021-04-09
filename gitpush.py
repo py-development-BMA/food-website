@@ -18,5 +18,6 @@ os.system('git commit -a -m "{0}"'.format(message))
 time.sleep(1)
 print('SYNC.')
 time.sleep(1)
+users_branch = 'alex_linux'
 os.system('git push -u origin {0}'.format(users_branch))
 print("SUCCESS!")
