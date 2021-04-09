@@ -185,3 +185,26 @@ class PostLike(models.Model):
 
 	def __str__(self):
 		return self.post.name
+
+
+class Product(models.Model):
+	quantity = models.FloatField("Quantity", default=0, blank=True)
+	nameRu = models.CharField("RU", max_length=50, blank=True)
+	nameUa = models.CharField("UA", max_length=50, blank=True)
+	nameEn = models.CharField("EN", max_length=50, blank=True)
+	added_by = models.OneToOneField(CustomUser, null=True, on_delete=models.PROTECT)
+	CHOICESRU = (('г','г'),('шт','шт'),('мл.','мл.'),('кг.','кг.'),('пуч.','пуч.'),('бан.','бан.'),('л.','л.'),('упак.','упак.'))
+	CHOICESUA = (('г','г'),('шт','шт'),('мл.','мл.'),('кг.','кг.'),('пуч.','пуч.'),('бан.','бан.'),('л.','л.'),('упак.','упак.'))
+	CHOICESEN = (('g','g'),('th','th'),('ml.','ml.'),('kg.','kg.'),('bundle','bundle'),('bank','bank'),('l.','l.'),('pack.','pack.'))
+	
+	CATEGORIES = (('Fruits','Fruits'),('Vegetables','Vegetables'),('Dairy products','Dairy products'),('Meat products','Meat products'),('Seafood','Seafood'),('Grocery','Grocery'),('Canned food and condiments','Canned food and condiments'),('Drinks','Drinks'),('Frozen products','Frozen products'),('Favorites','Favorites'),)
+
+	measureRu = models.CharField('measure', max_length=15, null=True, choices=CHOICESRU, blank=True)
+	measureUa = models.CharField('measure', max_length=15, null=True, choices=CHOICESUA, blank=True)
+	measureEn = models.CharField('measure', max_length=15, null=True, choices=CHOICESEN, blank=True)
+	
+	category = models.CharField('Category', max_length=30, null=True, choices=CATEGORIES, blank=True)
+	is_favorite = models.BooleanField(default=False)
+
+	def __str__(self):
+		return self.nameEn

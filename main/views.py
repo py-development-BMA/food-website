@@ -183,15 +183,18 @@ class patternUserView(DetailView):
 
 
 def  mystorage(request):
-  categories = ['Фрукти','Овочі','Молочні продукти','М\'ясні вироби','Морепродукти','Бакалія','Консерви та приправи','Напої','Заморожені продукти','Улюблені продукти']
-  counter = [0,1,2,3,4,5,6,7,8,9]
-  categories = zip(categories,counter)
-  context = {
-  'categories':categories,
-  }
-
-  return render(request, 'main/storage.html', context)
-
+	categories = ['Фрукти','Овочі','Молочні продукти','М\'ясні вироби','Морепродукти','Бакалія','Консерви та приправи','Напої','Заморожені продукти','Улюблені продукти']
+	categories_names = categories
+	counter = [0,1,2,3,4,5,6,7,8,9]
+	categories = zip(categories,counter)
+	products = Product.objects.all()
+	
+	context = {
+	'categories':categories,
+	'categories_names':categories_names,
+	'products':products,
+	}
+	return render(request, 'main/storage.html', context)
 
 
 

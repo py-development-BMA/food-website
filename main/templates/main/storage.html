@@ -78,79 +78,222 @@ My Storage
 
   </div>
   <div id='hiddenElems' class="hide">
-  <div class="category0_data">
-        0
+
+  	  <div class="category0_data ">  	
+  	  	<div class="flex_name_category">
+  	  		<div class="categories_circle1_screen2"></div>
+  	  		<p class="name_of_category_screen2_1">{{categories_names.0}}</p>  	  		
+  	  		<div class="add_product_button1"></div>   	  		
+  	  	</div>  
+  	  	<div class="lines_of_category_1"></div>	
+
+  	  	<ol class="list_of_products"> 	
+   	  		{% for product in products %}
+  	  		{% if product.category == "Fruits"%}
+
+  	  		<li class="category_data">{{product.nameEn}}({{product.quantity}} {{product.measureEn}})</li> 
+  	  		{% endif %}
+  	  		{% endfor %}
+  	  	</ol>
+  	  	
       </div>
+
       <div class="category1_data ">
-1
+      	<div class="flex_name_category">
+      		<div class="categories_circle2_screen2"></div>
+      		<p class="name_of_category_screen2_2" >{{categories_names.1}}</p>
+      		<div class="add_product_button2"></div>
+      	</div>    		
+      		<div class="lines_of_category_2"></div>
+      		<ol> 	
+   	  			{% for product in products %}
+  	  			{% if product.category == "Vegetables"%}
+
+  	  			<li class="category_data">{{product.nameEn}}({{product.quantity}} {{product.measureEn}})</li> 
+  	  			{% endif %}
+  	  			{% endfor %}
+  	  	</ol>
       </div>
-      <div class="category2_data">
-2
+
+      <div class="category2_data ">
+      	<div class="flex_name_category">
+      		<div class="categories_circle3_screen2"></div>
+			<p class="name_of_category_screen2_3">{{categories_names.2}}</p>			
+			<div class="add_product_button3"></div>
+		</div>
+			<div class="lines_of_category_3"></div>
+      		<ol> 	
+   	  			{% for product in products %}
+  	  			{% if product.category == "Dairy products"%}
+
+  	  			<li class="category_data">{{product.nameEn}}({{product.quantity}} {{product.measureEn}})</li> 
+  	  			{% endif %}
+  	  			{% endfor %}
+  	  		</ol>
       </div>
+
       <div class="category3_data">
-3
+      	<div class="flex_name_category">
+      		<div class="categories_circle4_screen2"></div>      		
+      		<p class="name_of_category_screen2_4">{{categories_names.3}}</p>
+      		<div class="add_product_button4"></div>
+      	</div>
+      		<div class="lines_of_category_4"></div>
+      		<ol> 	
+   	  			{% for product in products %}
+  	  			{% if product.category == "Meat products"%}
+
+  	  			<li class="category_data">{{product.nameEn}}({{product.quantity}} {{product.measureEn}})</li> 
+  	  			{% endif %}
+  	  			{% endfor %}
+  	  		</ol>
       </div>
+
       <div class="category4_data">
-4
+      	<div class="flex_name_category">
+      		<div class="categories_circle5_screen2"></div>
+      		<p class="name_of_category_screen2_5">{{categories_names.4}}</p>
+      		<div class="add_product_button5"></div>      		
+      	</div>
+      		<div class="lines_of_category_5"></div>
+      		<ol> 	
+   	  			{% for product in products %}
+  	  			{% if product.category == "Seafood"%}
+
+  	  			<li class="category_data">{{product.nameEn}}({{product.quantity}} {{product.measureEn}})</li> 
+  	  			{% endif %}
+  	  			{% endfor %}
+  	  		</ol>
       </div>
+
       <div class="category5_data">
-5
+      	<div class="flex_name_category">
+      		<div class="categories_circle6_screen2"></div>
+      		<p class="name_of_category_screen2_6">{{categories_names.5}}</p>
+      		<div class="add_product_button6"></div>      		
+        </div>
+        	<div class="lines_of_category_6"></div>
+        	<ol> 	
+   	  			{% for product in products %}
+  	  			{% if product.category == "Grocery"%}
+
+  	  			<li class="category_data">{{product.nameEn}}({{product.quantity}} {{product.measureEn}})</li> 
+  	  			{% endif %}
+  	  			{% endfor %}
+  	  		</ol>
       </div>
+
       <div class="category6_data">
-6
+      	<div class="flex_name_category">
+      		<div class="categories_circle7_screen2"></div>
+      		<p class="name_of_category_screen2_7">{{categories_names.6}}</p>
+      		<div class="add_product_button7"></div>      		
+        </div>
+        	<div class="lines_of_category_7"></div>
+        	<ol> 	
+   	  			{% for product in products %}
+  	  			{% if product.category == "Canned food and condiments"%}
+
+  	  			<li class="category_data">{{product.nameEn}}({{product.quantity}} {{product.measureEn}})</li> 
+  	  			{% endif %}
+  	  			{% endfor %}
+  	  		</ol>
       </div>
+
       <div class="category7_data">
-7
+      	<div class="flex_name_category">
+      		<div class="categories_circle8_screen2"></div>
+      		<p class="name_of_category_screen2_8">{{categories_names.7}}</p>
+      		<div class="add_product_button8"></div>      		
+        </div>
+        	<div class="lines_of_category_8"></div>
+        	<ol> 	
+   	  			{% for product in products %}
+  	  			{% if product.category == "Drinks"%}
+
+  	  			<li class="category_data">{{product.nameEn}}({{product.quantity}} {{product.measureEn}})</li> 
+  	  			{% endif %}
+  	  			{% endfor %}
+  	  		</ol>
       </div>
+
       <div class="category8_data">
-8
+      	<div class="flex_name_category">
+      		<div class="categories_circle9_screen2"></div>
+			<p class="name_of_category_screen2_9">{{categories_names.8}}</p>
+			<div class="add_product_button9"></div>			
+        </div>
+        	<div class="lines_of_category_9"></div>
+        	<ol> 	
+   	  			{% for product in products %}
+  	  			{% if product.category == "Frozen products"%}
+
+  	  			<li class="category_data">{{product.nameEn}}({{product.quantity}} {{product.measureEn}})</li> 
+  	  			{% endif %}
+  	  			{% endfor %}
+  	  		</ol>
       </div>
+
       <div class="category9_data">
-9
+      	<div class="flex_name_category">
+      		<div class="categories_circle10_screen2"></div>
+	  		<p class="name_of_category_screen2_10">{{categories_names.9}}</p>
+	  		<div class="add_product_button10"></div>	  		
+        </div>
+        	<div class="lines_of_category_10"></div>
+        	<ol class="list_of_products"> 	
+   	  			{% for product in products %}
+  	  			{% if product.is_favorite == True%}
+
+  	  			<li class="category_data">{{product.nameEn}}({{product.quantity}} {{product.measureEn}})</li> 
+  	  			{% endif %}
+  	  			{% endfor %}
+  	  		</ol>
       </div>
+
     </div>
+
+
   <div class = "storage_screen2">
 
     <div class="products_list" id="div1_storage_screen2">
-
-
+    	 
     </div>
 
   </div>
 </div>
 
-<script>
+      <script>
         let i = 0;
         let array_openedcategories = []
-        function chan(a){
-          $(".category" + a + "_data").toggleClass("animated_storage_el");
+        function animate_st(a){
+        	console.log("class changed")
+        	$(".category" + a + "_data").toggleClass("animated_storage_el");        	
         }
-        function viewDiv(a){
-          if(array_openedcategories.indexOf(a)==-1){
-            if(i <= 3){
 
-               $(".category" + a + "_data").remove().clone().appendTo('#div1_storage_screen2');
-               setTimeout(chan, 1, a)
+        function viewDiv(a){
+        	 $(".category" + a + "_data").removeClass("animated_storage_el");
+        	 setTimeout(animate_st, 1, a);
+          if(array_openedcategories.indexOf(a)==-1){
+            if(i <= 2){
+           	  $(".category" + a + "_data").remove().clone().appendTo('#div1_storage_screen2');       	  
               i++;
               array_openedcategories.push(a);
-
             }else{
-              console.log(array_openedcategories)
-              $(".category" + array_openedcategories[0] + "_data").remove().clone().appendTo('#hiddenElems');
+              $(".category" + array_openedcategories[0] + "_data").removeClass("animated_storage_el");
+              $(".category" + array_openedcategories[0] + "_data").remove().clone().appendTo('#hiddenElems');          
               array_openedcategories.shift()
               array_openedcategories.push(a)
               $(".category" + a + "_data").remove().clone().appendTo('#div1_storage_screen2');
-               setTimeout(chan, 1, a)
-              console.log(array_openedcategories)
-
             }
           }else{
+          	$(".category" + array_openedcategories[array_openedcategories.indexOf(a)] + "_data").removeClass("animated_storage_el");
             $(".category" + array_openedcategories[array_openedcategories.indexOf(a)] + "_data").remove().clone().appendTo('#hiddenElems');
             array_openedcategories.splice(array_openedcategories.indexOf(a), 1)
             i--
           }
-
-
         };
+
+            
       </script>
 {% endblock %}
