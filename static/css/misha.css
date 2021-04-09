@@ -1371,36 +1371,6 @@ transform: rotate(-90deg);
 	margin-top:50px;
 	font-size: 20px;
 }
-.myStorage_label{
-  text-align: center;
-  font-family: Montserrat;
-  color:#686868;
-  font-size: 23px;
-  font-weight: normal;
-}
-#id_findinstorage{
-  height: 30px;
-  border-radius: 12px;
-  width:200px;
-  padding-left:60px;
-  outline: none;
-  background: #F0F0F0;
-  margin-left:600px;
-  margin-top:15px;
-  color:#828282;
-  border:0px solid lightgrey;
-  font-family: Montserrat;
-  font-size: 16px;
-  /*background-image: url(../img/search_storage.png)
-    background-repeat: no-repeat;
-    background-position: left center;*/
-}
-#id_findinstorage::placeholder{
-  font-family: Montserrat;
-  font-size: 16px;
-
-
-}
 .extra-info-recipe{
   display: flex;
   flex-flow:row wrap;
@@ -1507,6 +1477,554 @@ transform: rotate(-90deg);
   font-size: 18px;
   color:#BAA2A2;
 }
+.extra-info-recipe{
+  display: flex;
+  flex-flow:row wrap;
+  height: 20vh;
+  width: 40vw;
+}
+.typeOfFood-view{
+  margin-top:20px;
+  width: 15vw;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+}
+.typeOfFood-view p{
+  margin-left:10px;
+  margin-top:4vh;
+  color:#BAA2A2;
+  font-family: Yanone Kaffeesatz;
+  font-size: 30px;
+}
+.typeFood-img{
+  height: 8vh;
+  object-fit: cover;
+}
+.time-view{
+  margin-top:20px;
+  width: 15vw;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+}
+.time-view p{
+  margin-top:4vh;
+  color:#BAA2A2;
+  font-family: Yanone Kaffeesatz;
+  font-size: 30px;
+}
+.time-img{
+  height: 8vh;
+  object-fit: cover;
+}
+.hardness-view{
+  margin-top:20px;
+  width: 15vw;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+}
+.hardness-view p{
+  margin-left:10px;
+  margin-top:1vh;
+  color:#BAA2A2;
+  font-family: Yanone Kaffeesatz;
+  font-size: 30px;
+}
+.hardness-img{
+  height: 8vh;
+  object-fit: cover;
+}
+.start_cooking{
+  margin-top:10vh;
+  height: 60px;
+  width: 250px;
+  background-color: #B3505A;
+  color:white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 50px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  transition: 0.3s;
+  cursor: pointer;
+
+}
+.start_cooking:hover{
+  border-top-left-radius: 30px;
+  border-top-right-radius: 50px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  height: 60px;
+  transition: 0.3s;
+}
+.start_cooking p{
+  line-height: 70px;
+  margin-top:0px;
+  margin-bottom: 0px;
+  text-align: center;
+  width: 250px;
+  font-size: 30px;
+  font-family: Neucha;
+}
+.step_1_cooking, .step_2_cooking{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+}
+.image_recipe_flex_type2{
+  width: 50vw;
+  height: 100vh;
+}
+.info_recipe_flex{
+  width: 50vw;
+  height: 100vh;
+
+}
+.main_image_recipepg_type2{
+  height: 75vh;
+  width: 30vw;
+  margin-top:5%;
+  margin-left:5%;
+  object-fit: cover;
+  border-top-left-radius: 100px;
+  border-top-right-radius: 55px;
+  border-bottom-left-radius: 142px;
+  border-bottom-right-radius:319px ;
+}
+.info_recipe_flex_type2{
+  width: 50vw;
+  height: 100vh;
+
+}
+
+.construct_step{
+  margin-top: 10px;
+  margin-left:83%;
+  display: flex;
+  flex-direction: row;
+  width:400px;
+
+}
+.stepdesc{
+  font-family: Neucha;
+  text-align: center;
+  font-size: 24px;
+  color: #BAA2A2;
+  width: 45vw;
+  padding-top:20px;
+  margin: auto;
+  margin-top:10px;
+}
+.step_cooking{
+  height: 100vh;
+  width: 100vw;
+}
+.recipe_image_step{
+  height: 60vh;
+  width: 50vw;
+  object-fit: cover;
+  margin-top:20px;
+  border-radius: 40px;
+
+}
+.name_of_step{
+  font-family: Yanone Kaffeesatz;
+font-weight: 400;
+margin-bottom: 0px;
+font-style: normal;
+font-size: 80px;
+text-align: center;
+color: #FF8D8D;
+transform: scale(1, 1);
+}
+
+.mainFeedBlock{
+  display: flex;
+  flex-direction: row;
+  width: 1400px;
+  margin:10px auto;
+  min-height: 300px;
+
+}
+.friendRecommendation{
+  max-height: 300px;
+  min-width: 300px;
+  /*border:1px solid black;*/
+ background-color: #FFF0F0;
+ border-radius: 15px;
+ margin-top:20px;
+
+}
+.PostFeed{
+  min-height: 300px;
+  min-width: 700px;
+  margin-right: 20px;
+  margin-left:20px;
+  margin: 10px auto;
+}
+.MakeListProducts{
+  max-height: 300px;
+  min-width: 300px;
+  /*border:1px solid black;*/
+ background-color: #FFF0F0;
+ border-radius: 15px;
+  margin-top:20px;
+}
+.flexFriendTextHead{
+  display: flex;
+  flex-direction: row;
+  margin-top:15px;
+  margin-left:15px;
+}
+.flexFriendTextHead img{
+  height: 23px;
+  width: 23px;
+}
+.flexFriendTextHead p {
+  margin-top:0px;
+  color: #797979;
+  font-size: 15px;
+  margin-bottom: 0px;
+  line-height: 24px;
+  margin-left:5px;
+}
+.feedPostEx{
+  min-height: 200px;
+  min-width: 700px;
+  margin-right: 20px;
+  margin-left:20px;
+  margin: 10px auto;
+  background-color: #FFF0F0;
+  border-radius: 15px;
+  margin-bottom:30px;
+}
+.usersInfoPost{
+  height: 50px;
+  margin-top:10px;
+  display: flex;
+  flex-direction: row;
+}
+.usersinfoImage{
+  height: 50px;
+  margin-top:10px;
+  margin-left:10px;
+  width: 50px;
+  object-fit: cover;
+  border-radius: 50px;
+}
+.nameAndUsernamePost{
+  height: 50px;
+  margin-top:15px;
+  margin-left:10px;
+  text-decoration: none;
+}
+.usersPostName{
+  color:#4A4A4A;
+  margin-bottom: 0px;
+  margin-top:0px;
+}
+.rankPost_user{
+  display: flex;
+  flex-direction: row;
+}
+.medalPost{
+  height: 18px;
+  width: 18px;
+}
+.rankPostName{
+  margin-top:0px;
+  margin-bottom: 0px;
+  line-height: 22px;
+  margin-left:2PX;
+  font-size: 13px;
+  color: #DD6A6A;
+}
+.descPostFeed{
+  margin-top:30px;
+  margin-bottom: 25px;
+  color:#9A7E7E;
+  width: 600px;
+  margin-left:50px;
+}
+.imagePostView{
+  width:700px;
+  max-height: 450px;
+  object-fit: cover;
+  border-radius:5px 5px 20px 20px;
+}
+.likeCommentView{
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+  justify-content: space-between;
+}
+.puLikeBtnPost{
+  margin-top:10px;
+  width: 130px;
+  margin-left:30px;
+  display: flex;
+  flex-direction: row;
+}
+.likeimgstyle{
+  height: 25px;
+  width: 25px;
+}
+.puLikeBtnPost p {
+  color:#616161;
+  margin-left:4px;
+  margin-top:0px;
+  margin-bottom:0px;
+  line-height: 28px;
+}
+.leaveCommentForm{
+  height: 25px;
+  width: 150px;
+  margin-right: 20px;
+  margin-top:10px;
+  border:0px solid lightgrey;
+  background-color: #FFE3E3;
+  border-radius: 15px;
+  padding-left:10px;
+  outline:none;
+  color:#616161;
+}
+.set_lessons {
+  display: flex;
+  transition: 0.5s;
+  z-index: 1;
+  height: 30px;
+  margin-top:1px;
+  border-radius: 50%;
+   transition: transform 0.5s linear;
+  transform-origin:center;
+
+}
+
+
+.set_lessons > span{
+	transition: 0.5s;
+	border-radius: 50%;1
+	width: 30px;
+  height: 30px;
+  margin: 0px auto;
+  transform-origin:center;
+  cursor: pointer;
+}
+.set_lessons > span::before,
+.set_lessons > span::after {
+  display: block;
+  margin-top:10px;
+  width: 18px;
+  transition: 0.5s;
+  height: 4px;
+  background-color: #FF8989;
+  border-radius: 5px;
+
+
+}
+.set_lessons > span::before {
+  content: '';
+  transition: 0.5s;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  transform: rotate(45deg);
+}
+.set_lessons > span::after {
+  content: '';
+  margin-left:11.5px;
+  margin-top: -14px;
+  border-radius: 5px;
+  transition: 0.5s;
+  transform: rotate(-45deg);
+}
+.pinSet{
+  color:#CB9A9A;
+  margin-top:10px;
+  margin-bottom: 0px;
+}
+.commentsClosed{
+  height: 0px;
+  transition:0.5s;
+}
+.commentsOpened{
+  height: 300px;
+  transition:0.5s;
+
+}
+.nameAndSubscribe{
+  display: flex;
+  flex-direction: row;
+}
+
+.subscribeBTn{
+  cursor: pointer;
+  height: 35px;
+  width: 180px;
+  border-radius: 10px;
+  background: #FBACAC;
+  margin-left:20px;
+  margin-top:3px;
+  display: flex;
+  flex-direction: row;
+    transition: 0.3s
+}
+.subscribeBTnActive{
+  cursor: pointer;
+  height: 35px;
+  width: 180px;
+  border-radius: 10px;
+  background: #FFF0F0;
+  margin-left:20px;
+  margin-top:3px;
+  display: flex;
+  flex-direction: row;
+    transition: 0.3s
+}
+.subscribeBTnActive:hover{
+  box-shadow: 0 0 3px #F1C5C5;
+  transition: 0.3s
+}
+.subscribeBTn:hover{
+  box-shadow: 0 0 3px #F1C5C5;
+  transition: 0.3s
+}
+.subplusIcon{
+  margin-left:10px;
+  margin-top:5px;
+position: absolute;
+width: 25px;
+height: 25px;
+background-color:#FFD1D1;
+border-radius: 50%;
+cursor: pointer;
+transition: 0.2s;
+}
+.subplusIcon:hover{
+border-radius: 35%;
+}
+.subplusIcon:before, .subplusIcon:after {
+position: absolute;
+left: 11.5px;
+top:5px;
+content: ' ';
+height: 15px;
+width: 2.5px;
+border-radius: 50px;
+background-color: #FF8989;
+transition: 0.3s;
+}
+.subplusIcon:after {
+transform: rotate(-90deg);
+}
+.subscribeBTn p{
+  margin-top:0px;
+  margin-left:40px;
+  margin-bottom:0px;
+  line-height: 35px;
+  color:white;
+  font-size:18px;
+}
+.subscribeBTnActive p{
+  margin-top:0px;
+  margin-left:40px;
+  margin-bottom:0px;
+  line-height: 35px;
+  color:#FF9191;
+  font-size:18px;
+}
+.subscribeActive:before{
+transform: rotate(-40deg);
+transition: 0.3s;
+left: 8.5px;
+height: 10px;
+width: 2.5px;
+top:9px;
+}
+.subscribeActive:after{
+transform: rotate(40deg);
+transition: 0.3s;
+left: 15px;
+height: 12px;
+width: 2.5px;
+top:7px;
+}
+@keyframes pulse {
+  0% { transform: scale(1) rotate(-45deg); }
+  50% { transform: scale(1.2) rotate(-45deg);}
+  100% { transform: scale(1) rotate(-45deg); }
+}
+.heart {
+  cursor: pointer;
+  background-color: #FF8989;
+  display: inline-block;
+  height: 17px;
+  margin: 0 10px;
+  position: relative;
+  top: 10px;
+  transform: rotate(-45deg);
+  width: 17px;
+  opacity: 0.35;
+  transition: 0.2s;
+}
+.heartActive {
+  cursor: pointer;
+  background-color: #FF8989;
+  display: inline-block;
+  height: 17px;
+  margin: 0 10px;
+  position: relative;
+  top: 10px;
+  transform: rotate(-45deg);
+  width: 17px;
+  opacity: 1;
+  transition: 0.2s;
+  animation: pulse 0.3s linear;
+}
+
+.heart:before,
+.heart:after {
+  content: "";
+  background-color: #FF8989;
+  border-radius: 50%;
+  height: 17px;
+  position: absolute;
+  width: 17px;
+}
+
+.heart:before {
+  top: -9px;
+  left: 0;
+
+}
+
+.heart:after {
+  left: 9px;
+  top: 0;
+}
+.heartActive:before,
+.heartActive:after {
+  content: "";
+  background-color: #FF8989;
+  border-radius: 50%;
+  height: 17px;
+  position: absolute;
+  width: 17px;
+}
+
+.heartActive:before {
+  top: -9px;
+  left: 0;
+
+}
+
+.heartActive:after {
+  left: 9px;
+  top: 0;
+}
+
+
 }
 
 
@@ -2939,35 +3457,6 @@ transform: rotate(-90deg);
 	margin-top:50px;
 	font-size: 20px;
 }
-.myStorage_label{
-  text-align: center;
-  font-family: Montserrat;
-  color:#686868;
-  font-size: 23px;
-  font-weight: normal;
-}
-#id_findinstorage{
-  height: 30px;
-  border-radius: 12px;
-  width:200px;
-  padding-left:60px;
-  outline: none;
-  background: #F0F0F0;
-  margin:15px auto;
-  color:#828282;
-  border:0px solid lightgrey;
-  font-family: Montserrat;
-  font-size: 16px;
-  /*background-image: url(../img/search_storage.png)
-    background-repeat: no-repeat;
-    background-position: left center;*/
-}
-#id_findinstorage::placeholder{
-  font-family: Montserrat;
-  font-size: 16px;
-
-
-}
 .extra-info-recipe{
   display: flex;
   flex-flow:row wrap;
@@ -3074,230 +3563,558 @@ transform: rotate(-90deg);
   font-size: 24px;
   color:#BAA2A2;
 }
-.myStorage_label{
+
+
+.extra-info-recipe{
+  display: flex;
+  flex-flow:row wrap;
+  height: 20vh;
+  width: 40vw;
+}
+.typeOfFood-view{
+  margin-top:20px;
+  width: 15vw;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+}
+.typeOfFood-view p{
+  margin-left:10px;
+  margin-top:4vh;
+  color:#BAA2A2;
+  font-family: Yanone Kaffeesatz;
+  font-size: 30px;
+}
+.typeFood-img{
+  height: 8vh;
+  object-fit: cover;
+}
+.time-view{
+  margin-top:20px;
+  width: 15vw;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+}
+.time-view p{
+  margin-top:4vh;
+  color:#BAA2A2;
+  font-family: Yanone Kaffeesatz;
+  font-size: 30px;
+}
+.time-img{
+  height: 8vh;
+  object-fit: cover;
+}
+.hardness-view{
+  margin-top:20px;
+  width: 15vw;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+}
+.hardness-view p{
+  margin-left:10px;
+  margin-top:1vh;
+  color:#BAA2A2;
+  font-family: Yanone Kaffeesatz;
+  font-size: 30px;
+}
+.hardness-img{
+  height: 8vh;
+  object-fit: cover;
+}
+.start_cooking{
+  margin-top:10vh;
+  height: 60px;
+  width: 250px;
+  background-color: #B3505A;
+  color:white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 50px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  transition: 0.3s;
+  cursor: pointer;
+
+}
+.start_cooking:hover{
+  border-top-left-radius: 30px;
+  border-top-right-radius: 50px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  height: 60px;
+  transition: 0.3s;
+}
+.start_cooking p{
+  line-height: 70px;
+  margin-top:0px;
+  margin-bottom: 0px;
   text-align: center;
-  font-family: Montserrat;
-  color:#8E6262;
+  width: 250px;
+  font-size: 30px;
+  font-family: Neucha;
+}
+.step_1_cooking, .step_2_cooking{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+}
+.image_recipe_flex_type2{
+  width: 50vw;
+  height: 100vh;
+}
+.info_recipe_flex{
+  width: 50vw;
+  height: 100vh;
+
+}
+.main_image_recipepg_type2{
+  height: 75vh;
+  width: 30vw;
+  margin-top:5%;
+  margin-left:5%;
+  object-fit: cover;
+  border-top-left-radius: 100px;
+  border-top-right-radius: 55px;
+  border-bottom-left-radius: 142px;
+  border-bottom-right-radius:319px ;
+}
+.info_recipe_flex_type2{
+  width: 50vw;
+  height: 100vh;
+
+}
+
+.construct_step{
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-left:83%;
+  display: flex;
+  flex-direction: row;
+  width:400px;
 
-  font-size: 23px;
-  font-weight: normal;
 }
-
-
-
-
-.search {
-  position: relative;
-  color: #aaa;
-  width:200px;
-  font-size: 16px;
-  margin:15px auto;
-}
-
-.search input {
-  height: 30px;
-  border-radius: 12px;
-  width:200px;
+.stepdesc{
+  font-family: Neucha;
   text-align: center;
-  outline: none;
-  background: #F0F0F0;
-  margin:15px auto;
+  font-size: 24px;
+  color: #BAA2A2;
+  width: 45vw;
+  padding-top:20px;
+  margin: auto;
+  margin-top:10px;
+}
+.step_cooking{
+  height: 100vh;
+  width: 100vw;
+}
+.recipe_image_step{
+  height: 60vh;
+  width: 50vw;
+  object-fit: cover;
+  margin-top:20px;
+  border-radius: 40px;
 
-  color:#828282;
+}
+.name_of_step{
+  font-family: Yanone Kaffeesatz;
+font-weight: 400;
+margin-bottom: 0px;
+font-style: normal;
+font-size: 80px;
+text-align: center;
+color: #FF8D8D;
+transform: scale(1, 1);
+}
+
+.mainFeedBlock{
+  display: flex;
+  flex-direction: row;
+  width: 1400px;
+  margin:10px auto;
+  min-height: 300px;
+
+}
+.friendRecommendation{
+  max-height: 300px;
+  min-width: 300px;
+  /*border:1px solid black;*/
+ background-color: #FFF0F0;
+ border-radius: 15px;
+ margin-top:20px;
+
+}
+.PostFeed{
+  min-height: 300px;
+  min-width: 700px;
+  margin-right: 20px;
+  margin-left:20px;
+  margin: 10px auto;
+}
+.MakeListProducts{
+  max-height: 300px;
+  min-width: 300px;
+  /*border:1px solid black;*/
+ background-color: #FFF0F0;
+ border-radius: 15px;
+  margin-top:20px;
+}
+.flexFriendTextHead{
+  display: flex;
+  flex-direction: row;
+  margin-top:15px;
+  margin-left:15px;
+}
+.flexFriendTextHead img{
+  height: 23px;
+  width: 23px;
+}
+.flexFriendTextHead p {
+  margin-top:0px;
+  color: #797979;
+  font-size: 15px;
+  margin-bottom: 0px;
+  line-height: 24px;
+  margin-left:5px;
+}
+.feedPostEx{
+  min-height: 200px;
+  min-width: 700px;
+  margin-right: 20px;
+  margin-left:20px;
+  margin: 10px auto;
+  background-color: #FFF0F0;
+  border-radius: 15px;
+  margin-bottom:30px;
+}
+.usersInfoPost{
+  height: 50px;
+  margin-top:10px;
+  display: flex;
+  flex-direction: row;
+}
+.usersinfoImage{
+  height: 50px;
+  margin-top:10px;
+  margin-left:10px;
+  width: 50px;
+  object-fit: cover;
+  border-radius: 50px;
+}
+.nameAndUsernamePost{
+  height: 50px;
+  margin-top:15px;
+  margin-left:10px;
+  text-decoration: none;
+}
+.usersPostName{
+  color:#4A4A4A;
+  margin-bottom: 0px;
+  margin-top:0px;
+}
+.rankPost_user{
+  display: flex;
+  flex-direction: row;
+}
+.medalPost{
+  height: 18px;
+  width: 18px;
+}
+.rankPostName{
+  margin-top:0px;
+  margin-bottom: 0px;
+  line-height: 22px;
+  margin-left:2PX;
+  font-size: 13px;
+  color: #DD6A6A;
+}
+.descPostFeed{
+  margin-top:30px;
+  margin-bottom: 25px;
+  color:#9A7E7E;
+  width: 600px;
+  margin-left:50px;
+}
+.imagePostView{
+  width:700px;
+  max-height: 450px;
+  object-fit: cover;
+  border-radius:5px 5px 20px 20px;
+}
+.likeCommentView{
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+  justify-content: space-between;
+}
+.puLikeBtnPost{
+  margin-top:10px;
+  width: 130px;
+  margin-left:30px;
+  display: flex;
+  flex-direction: row;
+}
+.likeimgstyle{
+  height: 25px;
+  width: 25px;
+}
+.puLikeBtnPost p {
+  color:#616161;
+  margin-left:4px;
+  margin-top:0px;
+  margin-bottom:0px;
+  line-height: 28px;
+}
+.leaveCommentForm{
+  height: 25px;
+  width: 150px;
+  margin-right: 20px;
+  margin-top:10px;
   border:0px solid lightgrey;
-  font-family: Montserrat;
-  font-size: 16px;
+  background-color: #FFE3E3;
+  border-radius: 15px;
+  padding-left:10px;
+  outline:none;
+  color:#616161;
+}
+.set_lessons {
+  display: flex;
+  transition: 0.5s;
+  z-index: 1;
+  height: 30px;
+  margin-top:1px;
+  border-radius: 50%;
+   transition: transform 0.5s linear;
+  transform-origin:center;
+
 }
 
-.search input { text-indent: 10px;}
-.search .fa-search {
+
+.set_lessons > span{
+	transition: 0.5s;
+	border-radius: 50%;1
+	width: 30px;
+  height: 30px;
+  margin: 0px auto;
+  transform-origin:center;
+  cursor: pointer;
+}
+.set_lessons > span::before,
+.set_lessons > span::after {
+  display: block;
+  margin-top:10px;
+  width: 18px;
+  transition: 0.5s;
+  height: 4px;
+  background-color: #FF8989;
+  border-radius: 5px;
+
+
+}
+.set_lessons > span::before {
+  content: '';
+  transition: 0.5s;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  transform: rotate(45deg);
+}
+.set_lessons > span::after {
+  content: '';
+  margin-left:11.5px;
+  margin-top: -14px;
+  border-radius: 5px;
+  transition: 0.5s;
+  transform: rotate(-45deg);
+}
+.pinSet{
+  color:#CB9A9A;
+  margin-top:10px;
+  margin-bottom: 0px;
+}
+.commentsClosed{
+  height: 0px;
+  transition:0.5s;
+}
+.commentsOpened{
+  height: 300px;
+  transition:0.5s;
+
+}
+.nameAndSubscribe{
+  display: flex;
+  flex-direction: row;
+}
+
+.subscribeBTn{
+  cursor: pointer;
+  height: 35px;
+  width: 180px;
+  border-radius: 10px;
+  background: #FBACAC;
+  margin-left:20px;
+  margin-top:3px;
+  display: flex;
+  flex-direction: row;
+    transition: 0.3s
+}
+.subscribeBTnActive{
+  cursor: pointer;
+  height: 35px;
+  width: 180px;
+  border-radius: 10px;
+  background: #FFF0F0;
+  margin-left:20px;
+  margin-top:3px;
+  display: flex;
+  flex-direction: row;
+    transition: 0.3s
+}
+.subscribeBTnActive:hover{
+  box-shadow: 0 0 3px #F1C5C5;
+  transition: 0.3s
+}
+.subscribeBTn:hover{
+  box-shadow: 0 0 3px #F1C5C5;
+  transition: 0.3s
+}
+.subplusIcon{
+  margin-left:10px;
+  margin-top:5px;
+position: absolute;
+width: 25px;
+height: 25px;
+background-color:#FFD1D1;
+border-radius: 50%;
+cursor: pointer;
+transition: 0.2s;
+}
+.subplusIcon:hover{
+border-radius: 35%;
+}
+.subplusIcon:before, .subplusIcon:after {
+position: absolute;
+left: 11.5px;
+top:5px;
+content: ' ';
+height: 15px;
+width: 2.5px;
+border-radius: 50px;
+background-color: #FF8989;
+transition: 0.3s;
+}
+.subplusIcon:after {
+transform: rotate(-90deg);
+}
+.subscribeBTn p{
+  margin-top:0px;
+  margin-left:40px;
+  margin-bottom:0px;
+  line-height: 35px;
+  color:white;
+  font-size:18px;
+}
+.subscribeBTnActive p{
+  margin-top:0px;
+  margin-left:40px;
+  margin-bottom:0px;
+  line-height: 35px;
+  color:#FF9191;
+  font-size:18px;
+}
+.subscribeActive:before{
+transform: rotate(-40deg);
+transition: 0.3s;
+left: 8.5px;
+height: 10px;
+width: 2.5px;
+top:9px;
+}
+.subscribeActive:after{
+transform: rotate(40deg);
+transition: 0.3s;
+left: 15px;
+height: 12px;
+width: 2.5px;
+top:7px;
+}
+@keyframes pulse {
+  0% { transform: scale(1) rotate(-45deg); }
+  50% { transform: scale(1.2) rotate(-45deg);}
+  100% { transform: scale(1) rotate(-45deg); }
+}
+.heart {
+  cursor: pointer;
+  background-color: #FF8989;
+  display: inline-block;
+  height: 17px;
+  margin: 0 10px;
+  position: relative;
+  top: 10px;
+  transform: rotate(-45deg);
+  width: 17px;
+  opacity: 0.35;
+  transition: 0.2s;
+}
+.heartActive {
+  cursor: pointer;
+  background-color: #FF8989;
+  display: inline-block;
+  height: 17px;
+  margin: 0 10px;
+  position: relative;
+  top: 10px;
+  transform: rotate(-45deg);
+  width: 17px;
+  opacity: 1;
+  transition: 0.2s;
+  animation: pulse 0.3s linear;
+}
+
+.heart:before,
+.heart:after {
+  content: "";
+  background-color: #FF8989;
+  border-radius: 50%;
+  height: 17px;
   position: absolute;
-  top: 22px;
-  left: 10px;
+  width: 17px;
 }
 
-.category_label{
-  text-align: center;
-  font-family: Montserrat;
-  color:#8E6262;
-  width: 28vw;
-  font-size: 23px;
-  font-weight: normal;
-}
-
-.button_categories{
-	display: flex;
-	flex-direction: row;
-	background-color: #FFF0F0;
-
-	margin-top: 10px;
-	margin-right: 25px;
-	width: 240px;
-	height: 40px;
-	border-radius: 11px;
-	border: none;
-	float: right;
-
-    border:1px solid #FFF0F0;
+.heart:before {
+  top: -9px;
+  left: 0;
 
 }
-.button_categories:active{
-	border: none;
-}
-.categories_circle1{
 
-	margin-top: 17.5px;
-	margin-left: 7.5px;
-	background: #AFE8BC;
-    border-radius: 50%;
-    width: 5px;
-    height: 5px;
+.heart:after {
+  left: 9px;
+  top: 0;
 }
-.categories_circle2{
+.heartActive:before,
+.heartActive:after {
+  content: "";
+  background-color: #FF8989;
+  border-radius: 50%;
+  height: 17px;
+  position: absolute;
+  width: 17px;
+}
 
-	margin-top: 17.5px;
-	margin-left: 7.5px;
-	background: #C2B6DC;
-    border-radius: 50%;
-    width: 5px;
-    height: 5px;
-}
-.categories_circle3{
-
-	margin-top: 17.5px;
-	margin-left: 7.5px;
-	background: #9ADAE3;
-    border-radius: 50%;
-    width: 5px;
-    height: 5px;
-}
-.categories_circle4{
-
-	margin-top: 17.5px;
-	margin-left: 7.5px;
-	background: #8386C4;
-    border-radius: 50%;
-    width: 5px;
-    height: 5px;
-}
-.categories_circle5{
-
-	margin-top: 17.5px;
-	margin-left: 7.5px;
-	background: #D0E772;
-    border-radius: 50%;
-    width: 5px;
-    height: 5px;
-}
-.categories_circle6{
-
-	margin-top: 17.5px;
-	margin-left: 7.5px;
-	background: #FBD285;
-    border-radius: 50%;
-    width: 5px;
-    height: 5px;
-}
-.categories_circle7{
-
-	margin-top: 17.5px;
-	margin-left: 7.5px;
-	background: #97DFBC;
-    border-radius: 50%;
-    width: 5px;
-    height: 5px;
-}
-.categories_circle8{
-
-	margin-top: 17.5px;
-	margin-left: 7.5px;
-	background: #F39595;
-    border-radius: 50%;
-    width: 5px;
-    height: 5px;
-}
-.categories_circle9{
-
-	margin-top: 17.5px;
-	margin-left: 7.5px;
-	background: #A9A7E4;
-    border-radius: 50%;
-    width: 5px;
-    height: 5px;
-}
-.categories_circle10{
-
-	margin-top: 17.5px;
-	margin-left: 7.5px;
-	background: #A9A7E4;
-    border-radius: 50%;
-    width: 5px;
-    height: 5px;
-}
-.flex_circle{
-	width:20px;
-    height: 40px;
-}
-.button_categories p{
-	margin-bottom: 0px;
-	margin-top: 0px;
-	line-height: 40px;
-	font-family: Montserrat;
-	color:#C08080;
-}
-.flex_stcategory{
-	width: 200px;
-	height: 45px;
-}
-.storage_screen{
-	display: flex;
-	flex-direction: row;
-	height: 85vh;
-	width: 100vw;
-}
-.categories{
-	height: 85vh;
-	width: 28vw;
+.heartActive:before {
+  top: -9px;
+  left: 0;
 
 }
-.storage_screen2{
 
-	height: 85vh;
-	width: 72vw;
-	border-left:2px solid #DAAAAA;
+.heartActive:after {
+  left: 9px;
+  top: 0;
+}
 
-}
-.products_list{
-	display: flex;
-	flex-direction: row;
-	margin-top: 75px;
-	margin-left: 25px;
-	height: 65vh;
-	width: 50vw;
-	background-color: #FFF0F0;
-	border-radius: 11px;
 
-}
-.hide{
-	display: none;
-}
-.category0_data,.category1_data,.category2_data,.category3_data,.category4_data,.category5_data,.category6_data,.category7_data,.category8_data,.category9_data{
-	margin-top: 75px;
-	margin-left: 25px;
-	height: 65vh;
-	width: 130px;
-	background-color: #FFF0F0;
-	border-radius: 11px;
-	border: 1px solid black;
-  transition: 0.2s;
-}
-.animated_storage_el {
 
-  transition: 0.2s;
-  width: 170px;
-}
+
 }
 
 
@@ -4761,35 +5578,6 @@ transform: rotate(-90deg);
   font-size: 24px;
   color:#BAA2A2;
 }
-.myStorage_label{
-  text-align: center;
-  font-family: Montserrat;
-  color:#686868;
-  font-size: 23px;
-  font-weight: normal;
-}
-#id_findinstorage{
-  height: 30px;
-  border-radius: 12px;
-  width:300px;
-  text-align: center;
-  outline: none;
-  background: #F0F0F0;
-  margin:15px;
-  color:#828282;
-  border:0px solid lightgrey;
-  font-family: Montserrat;
-  font-size: 16px;
-  /*background-image: url(../img/search_storage.png)
-    background-repeat: no-repeat;
-    background-position: left center;*/
-}
-#id_findinstorage::placeholder{
-  font-family: Montserrat;
-  font-size: 16px;
-
-
-}
 .extra-info-recipe{
   display: flex;
   flex-flow:row wrap;
@@ -4952,225 +5740,7 @@ text-align: center;
 color: #FF8D8D;
 transform: scale(1, 1);
 }
-.myStorage_label{
-  text-align: center;
-  font-family: Montserrat;
-  color:#8E6262;
-  margin-top: 10px;
-  margin-bottom: 20px;
 
-  font-size: 23px;
-  font-weight: normal;
-}
-
-
-
-
-.search {
-  position: relative;
-  color: #aaa;
-  width:200px;
-  font-size: 16px;
-  margin:15px auto;
-}
-
-.search input {
-  height: 30px;
-  border-radius: 12px;
-  width:200px;
-  text-align: center;
-  outline: none;
-  background: #F0F0F0;
-  margin:15px auto;
-
-  color:#828282;
-  border:0px solid lightgrey;
-  font-family: Montserrat;
-  font-size: 16px;
-}
-
-.search input { text-indent: 10px;}
-.search .fa-search {
-  position: absolute;
-  top: 22px;
-  left: 10px;
-}
-
-.category_label{
-  text-align: center;
-  font-family: Montserrat;
-  color:#8E6262;
-  width: 28vw;
-  font-size: 23px;
-  font-weight: normal;
-}
-
-.button_categories{
-	display: flex;
-	flex-direction: row;
-	background-color: #FFF0F0;
-
-	margin-top: 10px;
-	margin-right: 25px;
-	width: 240px;
-	height: 40px;
-	border-radius: 11px;
-	border: none;
-	float: right;
-
-    border:1px solid #FFF0F0;
-
-}
-.button_categories:active{
-	border: none;
-}
-.categories_circle1{
-
-	margin-top: 17.5px;
-	margin-left: 7.5px;
-	background: #AFE8BC;
-    border-radius: 50%;
-    width: 5px;
-    height: 5px;
-}
-.categories_circle2{
-
-	margin-top: 17.5px;
-	margin-left: 7.5px;
-	background: #C2B6DC;
-    border-radius: 50%;
-    width: 5px;
-    height: 5px;
-}
-.categories_circle3{
-
-	margin-top: 17.5px;
-	margin-left: 7.5px;
-	background: #9ADAE3;
-    border-radius: 50%;
-    width: 5px;
-    height: 5px;
-}
-.categories_circle4{
-
-	margin-top: 17.5px;
-	margin-left: 7.5px;
-	background: #8386C4;
-    border-radius: 50%;
-    width: 5px;
-    height: 5px;
-}
-.categories_circle5{
-
-	margin-top: 17.5px;
-	margin-left: 7.5px;
-	background: #D0E772;
-    border-radius: 50%;
-    width: 5px;
-    height: 5px;
-}
-.categories_circle6{
-
-	margin-top: 17.5px;
-	margin-left: 7.5px;
-	background: #FBD285;
-    border-radius: 50%;
-    width: 5px;
-    height: 5px;
-}
-.categories_circle7{
-
-	margin-top: 17.5px;
-	margin-left: 7.5px;
-	background: #97DFBC;
-    border-radius: 50%;
-    width: 5px;
-    height: 5px;
-}
-.categories_circle8{
-
-	margin-top: 17.5px;
-	margin-left: 7.5px;
-	background: #F39595;
-    border-radius: 50%;
-    width: 5px;
-    height: 5px;
-}
-.categories_circle9{
-
-	margin-top: 17.5px;
-	margin-left: 7.5px;
-	background: #A9A7E4;
-    border-radius: 50%;
-    width: 5px;
-    height: 5px;
-}
-.categories_circle10{
-
-	margin-top: 17.5px;
-	margin-left: 7.5px;
-	background: #A9A7E4;
-    border-radius: 50%;
-    width: 5px;
-    height: 5px;
-}
-.flex_circle{
-	width:20px;
-    height: 40px;
-}
-.button_categories p{
-	margin-bottom: 0px;
-	margin-top: 0px;
-	line-height: 40px;
-	font-family: Montserrat;
-	color:#C08080;
-}
-.flex_stcategory{
-	width: 200px;
-	height: 45px;
-}
-.storage_screen{
-	display: flex;
-	flex-direction: row;
-	height: 85vh;
-	width: 100vw;
-}
-.categories{
-	height: 85vh;
-	width: 28vw;
-
-}
-.storage_screen2{
-
-	height: 85vh;
-	width: 72vw;
-	border-left:2px solid #DAAAAA;
-
-}
-.products_list{
-	display: flex;
-	flex-direction: row;
-	margin-top: 75px;
-	margin-left: 25px;
-	height: 65vh;
-	width: 50vw;
-	background-color: #FFF0F0;
-	border-radius: 11px;
-
-}
-.hide{
-	display: none;
-}
-.category0_data,.category1_data,.category2_data,.category3_data,.category4_data,.category5_data,.category6_data,.category7_data,.category8_data,.category9_data{
-	margin-top: 75px;
-	margin-left: 25px;
-	height: 65vh;
-	width: 150px;
-	background-color: #FFF0F0;
-	border-radius: 11px;
-	border: 1px solid black;
-	min-width: 150px;
-}
 .mainFeedBlock{
   display: flex;
   flex-direction: row;
@@ -5554,6 +6124,8 @@ top:7px;
   left: 9px;
   top: 0;
 }
+
+
 }
 
 
