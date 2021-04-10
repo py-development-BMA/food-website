@@ -44,23 +44,6 @@ class Purchases(models.Model):
 
 
 
-class Storage(models.Model):
-	is_apple = models.BooleanField(default=False, blank=True)
-	q_apple = models.IntegerField("Quantity of apples", default=0, blank=True)
-
-	is_banana = models.BooleanField(default=False, blank=True)
-	q_banana = models.IntegerField("Quantity of banana", default=0, blank=True)
-
-
-	def __str__(self):
-		return self.name
-
-	def get_absolute_url(self):
-		return f'/{self.id}'
-
-
-
-
 
 
 
@@ -187,24 +170,16 @@ class PostLike(models.Model):
 		return self.post.name
 
 
-class Product(models.Model):
-	quantity = models.FloatField("Quantity", default=0, blank=True)
-	nameRu = models.CharField("RU", max_length=50, blank=True)
-	nameUa = models.CharField("UA", max_length=50, blank=True)
-	nameEn = models.CharField("EN", max_length=50, blank=True)
-	added_by = models.OneToOneField(CustomUser, null=True, on_delete=models.PROTECT)
-	CHOICESRU = (('г','г'),('шт','шт'),('мл.','мл.'),('кг.','кг.'),('пуч.','пуч.'),('бан.','бан.'),('л.','л.'),('упак.','упак.'))
-	CHOICESUA = (('г','г'),('шт','шт'),('мл.','мл.'),('кг.','кг.'),('пуч.','пуч.'),('бан.','бан.'),('л.','л.'),('упак.','упак.'))
-	CHOICESEN = (('g','g'),('th','th'),('ml.','ml.'),('kg.','kg.'),('bundle','bundle'),('bank','bank'),('l.','l.'),('pack.','pack.'))
-	
-	CATEGORIES = (('Fruits','Fruits'),('Vegetables','Vegetables'),('Dairy products','Dairy products'),('Meat products','Meat products'),('Seafood','Seafood'),('Grocery','Grocery'),('Canned food and condiments','Canned food and condiments'),('Drinks','Drinks'),('Frozen products','Frozen products'),('Favorites','Favorites'),)
-
-	measureRu = models.CharField('measure', max_length=15, null=True, choices=CHOICESRU, blank=True)
-	measureUa = models.CharField('measure', max_length=15, null=True, choices=CHOICESUA, blank=True)
-	measureEn = models.CharField('measure', max_length=15, null=True, choices=CHOICESEN, blank=True)
-	
+class All_product(models.Model):
+	CATEGORIES = (('Фрукти','Фрукти'),('Овочі','Овочі'),('Молочні продукти','Молочні продукти'),('М\'ясо','М\'ясо'),('Риба','Риба'),('Бакалія','Бакалія'),('Консерви та приправи','Консерви та приправи'),('Напої','Напої'),('Заморожені продукти','Заморожені продукти'))
 	category = models.CharField('Category', max_length=30, null=True, choices=CATEGORIES, blank=True)
+	nameUa = models.CharField("UA", max_length=50, blank=True)
+	quantity = models.FloatField("Quantity", default=0, blank=True)	
+	added_by = models.ForeignKey(CustomUser, null=True, on_delete=models.PROTECT)	
+	CHOICESUA = (('г','г'),('шт','шт'),('мл.','мл.'),('кг.','кг.'),('пуч.','пуч.'),('бан.','бан.'),('л.','л.'),('упак.','упак.'))	
+	measureUa = models.CharField('measure', max_length=15, null=True, choices=CHOICESUA, blank=True)	
 	is_favorite = models.BooleanField(default=False)
 
 	def __str__(self):
-		return self.nameEn
+		return self.nameUa
+
