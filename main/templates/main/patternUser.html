@@ -127,7 +127,10 @@
 $(document).on('submit', '#subscribeForm', function(e) {
   e.preventDefault();
 	if ($('#subscribeButton_id p').text() == 'Відстежувати'){
-
+		document.getElementById('sendSubscription').disabled = true;
+		$('#subscribeButton_id p').text('Відстежується');
+		$('.subplusIcon').toggleClass('subscribeActive');
+		$('#subscribeButton_id').toggleClass('subscribeBTnActive')
     $.ajax({
       type:'POST',
       url:'/{{ user.pk }}/viewuser',
@@ -140,13 +143,17 @@ $(document).on('submit', '#subscribeForm', function(e) {
     success:function(){
       console.log('subscribed')
       let usersCountSubs = document.getElementById('usersSubs').innerHTML = parseInt(document.getElementById('usersSubs').innerHTML) + 1;
-    }
+			document.getElementById('id_actionToDo').setAttribute('value','unsubscribe');
+			document.getElementById('sendSubscription').disabled = false;
+			}
     })
-			$('#subscribeButton_id p').text('Відстежується');
-			$('.subplusIcon').toggleClass('subscribeActive');
-			$('#subscribeButton_id').toggleClass('subscribeBTnActive')
+
 
 	} else {
+		document.getElementById('sendSubscription').disabled = true;
+		$('#subscribeButton_id p').text('Відстежувати');
+		$('.subplusIcon').toggleClass('subscribeActive');
+		$('#subscribeButton_id').toggleClass("subscribeBTnActive");
     $.ajax({
       type:'POST',
       url:'/{{ user.pk }}/viewuser',
@@ -159,11 +166,11 @@ $(document).on('submit', '#subscribeForm', function(e) {
     success:function(){
       console.log('unsubscribed')
       let usersCountSubs = document.getElementById('usersSubs').innerHTML = parseInt(document.getElementById('usersSubs').innerHTML) - 1;
-    }
+			document.getElementById('id_actionToDo').setAttribute('value','subscribe');
+			document.getElementById('sendSubscription').disabled = false;
+			}
     })
-		$('#subscribeButton_id p').text('Відстежувати');
-		$('.subplusIcon').toggleClass('subscribeActive');
-		$('#subscribeButton_id').toggleClass("subscribeBTnActive");
+
 
 	}
 

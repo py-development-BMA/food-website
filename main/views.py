@@ -11,6 +11,7 @@ import datetime
 from django.core.mail import send_mail
 import re
 import random
+import itertools
 #from .tasks import *
 
 class bcolors:
@@ -57,10 +58,19 @@ def profile(request):
 	users_recipes = CustomUser.objects.get(email=request.user.email)
 	output_recipes = users_recipes.my_recipes.all()
 	subscriptions = Subscribtion.objects.get(user=request.user)
+	userPostsLikes = []
+	for item in output_recipes:
+		q_likesPost = PostLike.objects.get(post=item)
+		userPostsLikes.append(q_likesPost)
+	userPostsLikes.sort(key=lambda x: x.usersLiked.all().count(), reverse=True)
+	#all_likedPosts = sorted(userPostsLikes, key=operator.attrgetter('usersLiked.count'))
+	#for item in all_likedPosts:
+	#	print(item.usersLiked.count())
 	context = {
 	'test':123,
 	'myrecipes':output_recipes,
 	'subs':subscriptions,
+	'pop_recipes':itertools.islice(userPostsLikes, 5),
 	}
 	return render(request, 'main/myaccount.html', context)
 
@@ -245,3 +255,27 @@ def feedPage(request):
 			'recipesFeed':recipesZip,
 		  }
 		return render(request, 'main/feedpage.html', context)
+
+
+
+
+def alexPost(request):
+
+	if request.method == 'POST':
+		form = AlexEx(request.POST)
+		if form.is_valid():
+			for item in RecipeProduct.objects.all():
+				if item.name == form.cleaned_data.get('alexExText') :
+
+					db_example = Example.objects.get(user2=request.user)
+					db_example.my_products.add(item)
+					db_example.save()
+			return redirect('alexPost')
+	else:
+		text = Example.objects.all()
+
+
+		context = {
+			'text':text,
+		}
+		return render(request, 'main/alexPost.html', context)

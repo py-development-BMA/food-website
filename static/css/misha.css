@@ -443,13 +443,6 @@ font-family: Montserrat;
 	width:380px;
 	margin-left:10px;
 }
-.popular_img{
-	height: 60px;
-	width:60px;
-	object-fit: cover;
-	border-radius: 50px;
-	margin-left:13px;
-}
 .all_recipes_my_profile{
 	display: flex;
 	flex-flow:row wrap;
@@ -2542,13 +2535,7 @@ font-family: Montserrat;
 	width:380px;
 	margin-left:10px;
 }
-.popular_img{
-	height: 60px;
-	width:60px;
-	object-fit: cover;
-	border-radius: 50px;
-	margin-left:13px;
-}
+
 .all_recipes_my_profile{
 	display: flex;
 	flex-flow:row wrap;
@@ -4625,13 +4612,7 @@ font-family: Montserrat;
 	width:380px;
 	margin-left:10px;
 }
-.popular_img{
-	height: 60px;
-	width:60px;
-	object-fit: cover;
-	border-radius: 50px;
-	margin-left:13px;
-}
+
 .all_recipes_my_profile{
 	display: flex;
 	flex-flow:row wrap;
@@ -6146,6 +6127,77 @@ top:7px;
   margin:15px auto;
   font-size: 23px;
   font-weight: normal;
+}
+
+
+
+.hoverPopShow{
+	transition: visibility 0.2s, opacity 0.4s ease-out;
+	cursor: pointer;
+  opacity: 0;
+	height: 60px;
+	width: 60px;
+	position: absolute;
+  margin-left:10px;
+	background: rgba(0,0,0,0.4);
+  margin-top:-64px;
+  border-radius: 50px;
+}
+.popular_img:hover .hoverPopShow{
+  visibility: visible;
+	cursor: pointer;
+	opacity: 1;
+	transition: visibility 0.2s, opacity 0.4s ease-out;
+}
+.popular_img{
+  height: 60px;
+	width:60px;
+  object-fit: cover;
+	border-radius: 50px;
+	background: #F3F3F3;
+	margin-left:10px;
+	transition:0.2s;
+}
+
+
+.qofpoplikes{
+  margin-top:0px;
+  margin-bottom: 0px;
+  line-height: 60px;
+  text-align: center;
+  color:white;
+  font-size: 20px;
+}
+
+
+
+.hover_info_show{
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0.2s, opacity 0.4s ease-out;
+	cursor: pointer;
+	height: 250px;
+	width: 350px;
+	position: absolute;
+	border-radius: 10px;
+	background: rgba(0,0,0,0.3);
+	margin-top:-254px;
+}
+.recipe_link_profile:hover .hover_info_show{
+	visibility: visible;
+	cursor: pointer;
+	opacity: 1;
+	transition: visibility 0.2s, opacity 0.4s ease-out;
+}
+.recipe_link_profile{
+	height: 250px;
+	width:350px;
+	border-radius: 10px;
+	background: #F3F3F3;
+	margin-left:15px;
+	margin-right: 15px;
+  margin-bottom:30px;
+	transition:0.2s;
 }
 }
 

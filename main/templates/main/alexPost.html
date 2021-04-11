@@ -1,0 +1,36 @@
+{% extends "main/header.html" %}
+{% load static %}
+{% block content %}
+<!-- GET, POST !-->
+
+<form method="post">
+  {% csrf_token %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<p align='center'>Send example form</p>
+<p align='center'><input type="text" name="alexExText" placeholder="Type your value.."></p>
+<p align='center'><input type="submit" id='alexLabel' value='sendPOST'></p>
+
+
+
+</form>
+{% for item in text %}
+
+  {% for elem in item.my_products.all %}
+  <div style='height:200px;width:200px;border:1px solid black;margin:20px auto;'>
+
+    <p align='center'>{{ elem.name }}</p>
+    <p align='center'>{{ elem.time }}</p>
+    <p align='center'>{{ elem.category }}</p>
+  </div>
+{% endfor %}
+{% endfor %}
+{% endblock %}
