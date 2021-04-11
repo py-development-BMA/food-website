@@ -43,10 +43,6 @@ class Purchases(models.Model):
 
 
 
-
-
-
-
 class RecipeProduct(models.Model):
 	#creator = models.OneToOneField(DimensionsRecipes, null=True, on_delete=models.PROTECT, blank=True)
 	emailof_creator = models.CharField('email_creator', max_length=100, blank=True)

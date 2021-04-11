@@ -7,4 +7,4 @@ admin.site.register(Purchases)
 admin.site.register(RecipeProduct)
 admin.site.register(Subscribtion)
 admin.site.register(PostLike)
-admin.site.register(Product)
+

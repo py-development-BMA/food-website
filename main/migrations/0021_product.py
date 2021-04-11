@@ -12,20 +12,4 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.CreateModel(
-            name='Product',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('quantity', models.FloatField(blank=True, default=0, verbose_name='Quantity')),
-                ('nameRu', models.CharField(blank=True, max_length=50, verbose_name='RU')),
-                ('nameUa', models.CharField(blank=True, max_length=50, verbose_name='UA')),
-                ('nameEn', models.CharField(blank=True, max_length=50, verbose_name='EN')),
-                ('measureRu', models.CharField(blank=True, choices=[('г', 'г'), ('шт', 'шт'), ('мл.', 'мл.'), ('кг.', 'кг.'), ('пуч.', 'пуч.'), ('бан.', 'бан.'), ('л.', 'л.'), ('упак.', 'упак.')], max_length=15, null=True, verbose_name='measure')),
-                ('measureUa', models.CharField(blank=True, choices=[('г', 'г'), ('шт', 'шт'), ('мл.', 'мл.'), ('кг.', 'кг.'), ('пуч.', 'пуч.'), ('бан.', 'бан.'), ('л.', 'л.'), ('упак.', 'упак.')], max_length=15, null=True, verbose_name='measure')),
-                ('measureEn', models.CharField(blank=True, choices=[('g', 'g'), ('th', 'th'), ('ml.', 'ml.'), ('kg.', 'kg.'), ('bundle', 'bundle'), ('bank', 'bank'), ('l.', 'l.'), ('pack.', 'pack.')], max_length=15, null=True, verbose_name='measure')),
-                ('category', models.CharField(blank=True, choices=[('Fruits', 'Fruits'), ('Vegetables', 'Vegetables'), ('Dairy products', 'Dairy products'), ('Meat products', 'Meat products'), ('Seafood', 'Seafood'), ('Grocery', 'Grocery'), ('Canned food and condiments', 'Canned food and condiments'), ('Drinks', 'Drinks'), ('Frozen products', 'Frozen products'), ('Favorites', 'Favorites')], max_length=30, null=True, verbose_name='Category')),
-                ('is_favorite', models.BooleanField(default=False)),
-                ('added_by', models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, to=settings.AUTH_USER_MODEL)),
-            ],
-        ),
     ]
