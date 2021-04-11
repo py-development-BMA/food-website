@@ -189,20 +189,25 @@ def  mystorage(request):
 	counter = [0,1,2,3,4,5,6,7,8,9]
 	categories = zip(categories,counter)
 
-	all_products = AllProduct.objects.all()
-	quantity_of_product = UserProductQuantity.objects.all()
+	q_array = []
+
+	all_products = CustomUser.objects.get(email=request.user.email).my_products.all()
+	for item in all_products:
+		k = UserProductQuantity.objects.get(user=request.user, nameUa=item)
+		q_array.append(k)
+		print(k.nameUa)
+	
 
 
-
-	products = zip(all_products,quantity_of_product)
+	products = list(zip(all_products,q_array))
 
 	context = {
 	'categories':categories,
 	'categories_names':categories_names,
+	'all_products':all_products,
 	
 	
 	'products_array' : products,
-	
 	}
 	return render(request, 'main/storage.html', context)
 

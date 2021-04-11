@@ -181,7 +181,7 @@ class PostLike(models.Model):
 
 
 class UserProductQuantity(models.Model):
-	owner = models.ForeignKey(CustomUser, null=True, on_delete=models.PROTECT)	
+	user = models.ForeignKey(CustomUser, null=True, on_delete=models.PROTECT)	
 	nameUa = models.ForeignKey(AllProduct, max_length=100, blank=True,on_delete=models.PROTECT)
 	quantity = models.FloatField("Quantity", default=0, blank=True)		
 

@@ -251,12 +251,12 @@
 }
 .category0_data,.category1_data,.category2_data,.category3_data,.category4_data,.category5_data,.category6_data,.category7_data,.category8_data,.category9_data{
 	margin-top: 35px;
-	margin-left: 3px;
+	margin-left: 0px;
 	height: 500px;
 	width: 100px;
 	background-color: #FFF0F0;
-	border-radius: 11px;
 	
+	border-right: 2px solid #DAAAAA;
 	transition-property: width;
 	transition-duration: .1s;	
 }
@@ -360,7 +360,7 @@
 .lines_of_category_2{
 	border-bottom:2px solid #DAAAAA;
 	height: 10px;
-	width: 100%100%;
+	width: 100%;
 	/*margin-left: 60px;*/
 }
 .lines_of_category_3{
