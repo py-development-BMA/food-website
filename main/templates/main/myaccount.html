@@ -1,6 +1,37 @@
 {% extends "main/header.html" %}
 {% load static %}
 {% block content %}
+<div class="subListsback">
+
+</div>
+<div class="subLists active" id='subslist'>
+	<div class="headerSubs">
+<div class="mysubsListHead">
+	<p align='center' class="textSubsListMain">Мої підписники</p>
+</div>
+<div class="myFollowsHead">
+	<p align='center' class="textSubsListMain">Мої підписки</p>
+</div>
+	</div>
+	<div class="listOfSubsReal">
+
+	{% for item in subs.followed_by.all %}
+
+
+	<a class="personFollower" href='{% url "viewuser" item.pk %}'>
+
+		<div class="personsPhotoListSubs">
+			<img src="{{ item.image_profile.url }}">
+		</div>
+		<div class="personsInfoSubList">
+			<p>{{ item.first_name }} {{ item.last_name }}</p>
+			<p>@{{ item.username }}</p>
+		</div>
+
+	</a>
+	{% endfor %}
+	</div>
+</div>
 									<!-- Profile information section -->
 <section class="account_info">
 	<div class="profile_photo">
@@ -73,18 +104,19 @@
 		<p align="center" class="rew_pra">Популярні рецепти</p>
 	<div class="my_popular">
 		{% for item in pop_recipes %}
-		<div class="popular_img">
+		<a class="popular_img" href='{% url "viewrecipe" item.post.pk %}'>
 			<img src='{{ item.post.image_prod.url }}' class='popular_img'>
 			<div class="hoverPopShow">
 				<p class='qofpoplikes'>{{ item.usersLiked.all.count }}</p>
 			</div>
 
-	</div>
+	</a>
 	{% endfor %}
 	</div>
 </div>
 
 </section>
+
 												<!-- All my recipes section -->
 <p class="my_chedevres_name">Мої шедеври</p>
 <section class="all_recipes_my_profile">
@@ -119,5 +151,8 @@ function subscribe() {
 	}
 
 };
+if (document.getElementById('subslist').classList.contains('active')){
+	document.getElementById('html').style.overflow = 'hidden'
+}
 </script>
 {% endblock %}

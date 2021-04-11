@@ -25,7 +25,7 @@ class bcolors:
 	BOLD = '\033[1m'
 	UNDERLINE = '\033[4m'
 
-print(f"{bcolors.FAIL}\n[  VERSION  ]: 1.9.0 (created page for storage by ALEXEY)\n\n{bcolors.ENDC}")
+print(f"{bcolors.FAIL}\n[  VERSION  ]: 2.1.0 (created page for storage by ALEXEY)\n\n{bcolors.ENDC}")
 
 
 def signup(request):
@@ -56,8 +56,8 @@ def homePage(request):
 
 def profile(request):
 	users_recipes = CustomUser.objects.get(email=request.user.email)
-	output_recipes = users_recipes.my_recipes.all()
 	subscriptions = Subscribtion.objects.get(user=request.user)
+	output_recipes = users_recipes.my_recipes.all()
 	userPostsLikes = []
 	for item in output_recipes:
 		q_likesPost = PostLike.objects.get(post=item)
@@ -160,6 +160,13 @@ class patternUserView(DetailView):
 			if item.email == self.request.user.email:
 				is_followed = True
 				break
+		output_recipes = CustomUser.objects.get(email=self.object.email).my_recipes.all()
+		userPostsLikes = []
+		for item in output_recipes:
+			q_likesPost = PostLike.objects.get(post=item)
+			userPostsLikes.append(q_likesPost)
+		userPostsLikes.sort(key=lambda x: x.usersLiked.all().count(), reverse=True)
+		context['pop_recipes'] = itertools.islice(userPostsLikes, 5)
 		context['subs'] = Subscribtion.objects.get(user=self.object)
 		context['is_followed'] = is_followed
 		context['userRecipes'] = reversed(CustomUser.objects.get(email=self.object.email).my_recipes.all())

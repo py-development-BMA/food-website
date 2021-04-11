@@ -6199,6 +6199,92 @@ top:7px;
   margin-bottom:30px;
 	transition:0.2s;
 }
+.subLists{
+  position: absolute;
+
+  height: 500px;
+  width: 500px;
+  background: white;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  margin-top:auto;
+  top:0;
+  margin-bottom: auto;
+  bottom:200px;
+  text-align: center;
+  border-radius: 15px;
+}
+.subListsback{
+  position: absolute;
+  height: 110vh;
+  width: 110vw;
+  margin-top:-100px;
+  margin-left:-100px;
+  overflow: hidden;
+  background: rgb(0,0,0);
+  opacity: 0.1;
+}
+.personFollower{
+  height: 60px;
+  width: 500px;
+  border-bottom:2px solid lightgrey;
+  display: flex;
+  text-decoration: none;
+}
+.headerSubs{
+  display: flex;
+  flex-direction: row;
+}
+.mysubsListHead{
+  height: 50px;
+  width: 250px;
+cursor: pointer;
+}
+.myFollowsHead{
+  height: 50px;
+  width: 250px;
+  border-left: 2px solid lightgrey;
+  cursor: pointer;
+
+}
+.listOfSubsReal{
+  height: 450px;
+  width: 500px;
+  border-top:2px solid lightgrey;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+}
+.textSubsListMain{
+  color:#686868;
+}
+.personsPhotoListSubs{
+  height: 60px;
+  width: 70px;
+}
+.personsPhotoListSubs img{
+  height: 50px;
+  margin-top:5px;
+  margin-left:0px;
+  object-fit: cover;
+  width:50px;
+  border-radius: 50px;
+}
+.personsInfoSubList{
+  height: 60px;
+  width: 400px;
+
+}
+.personsInfoSubList p {
+  text-align: left;
+  margin-top:10px;
+  margin-bottom:-10px;
+  line-height: 20px;
+  color:#686868;
+}
 }
 
 

@@ -4,6 +4,8 @@
 Feed
 {% endblock %}
 {% block content %}
+
+
 <h1 class="myStorage_label1">Рекомендації</h1>
 <div class="mainFeedBlock">
   <div class="friendRecommendation">
@@ -14,6 +16,7 @@ Feed
 
   </div>
   <div class="PostFeed">
+
     {% for recipe, k, user, is_liked in recipesFeed %}
     <div class="feedPostEx">
       <div class="usersInfoPost">

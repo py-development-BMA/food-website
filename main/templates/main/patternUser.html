@@ -90,16 +90,20 @@
 	<div class="reward_last"><p>+17</p></div>
 </div>
 </a>
-<a class="my_best_recipes" href="#">
-	<p align="center" class="rew_pra">Популярні рецепти</p>
+<div class="my_best_recipes">
+		<p align="center" class="rew_pra">Популярні рецепти</p>
 	<div class="my_popular">
-		<img src="{% static 'img/photo-1467003909585-2f8a72700288.jpg' %}" class='popular_img'>
-		<img src="{% static 'img/photo-1481931098730-318b6f776db0.jpg' %}" class='popular_img'>
-		<img src="{% static 'img/photo-1567620905732-2d1ec7ab7445.jpg' %}" class='popular_img'>
-		<img src="{% static 'img/photo-1484980972926-edee96e0960d.jpg' %}" class='popular_img'>
-		<img src="{% static 'img/photo-1481070555726-e2fe8357725c.jpg' %}" class='popular_img'>
+		{% for item in pop_recipes %}
+		<a class="popular_img" href='{% url "viewrecipe" item.post.pk %}'>
+			<img src='{{ item.post.image_prod.url }}' class='popular_img'>
+			<div class="hoverPopShow">
+				<p class='qofpoplikes'>{{ item.usersLiked.all.count }}</p>
+			</div>
+
+	</a>
+	{% endfor %}
 	</div>
-</a>
+</div>
 
 </section>
 												<!-- All my recipes section -->
