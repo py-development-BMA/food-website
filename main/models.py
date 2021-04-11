@@ -110,6 +110,19 @@ class RecipeProduct(models.Model):
 		return f'/{self.id}'
 
 
+
+class AllProduct(models.Model):
+	CATEGORIES = (('Фрукти','Фрукти'),('Овочі','Овочі'),('Молочні продукти','Молочні продукти'),('М\'ясо','М\'ясо'),('Риба','Риба'),('Бакалія','Бакалія'),('Консерви та приправи','Консерви та приправи'),('Напої','Напої'),('Заморожені продукти','Заморожені продукти'))
+	category = models.CharField('Category', max_length=30, null=True, choices=CATEGORIES, blank=True)
+	nameUa = models.CharField("UA", max_length=50, blank=True)
+	added_by = models.IntegerField("added_by", max_length=50, null=True)	
+	CHOICESUA = (('г','г'),('шт','шт'),('мл.','мл.'),('кг.','кг.'),('пуч.','пуч.'),('бан.','бан.'),('л.','л.'),('упак.','упак.'))	
+	measureUa = models.CharField('measure', max_length=15, null=True, choices=CHOICESUA, blank=True)	
+	is_favorite = models.BooleanField(default=False)
+
+	def __str__(self):
+		return self.nameUa
+
 class CustomUser(AbstractBaseUser):
 	RANKS = (("Початківець","Початківець"),("Професіонал","Професіонал"))
 	first_name = models.CharField("first_name", max_length=50, blank=True)
@@ -133,6 +146,7 @@ class CustomUser(AbstractBaseUser):
 	is_user = models.BooleanField(default=True)
 	is_staff = models.BooleanField(default=False)
 	is_superuser = models.BooleanField(default=False)
+	my_products = models.ManyToManyField(AllProduct,blank=True)
 	#ADD FIELDS WITH PERSONAL PREFERENCES
 
 	USERNAME_FIELD = 'email'
@@ -166,16 +180,13 @@ class PostLike(models.Model):
 		return self.post.name
 
 
-class All_product(models.Model):
-	CATEGORIES = (('Фрукти','Фрукти'),('Овочі','Овочі'),('Молочні продукти','Молочні продукти'),('М\'ясо','М\'ясо'),('Риба','Риба'),('Бакалія','Бакалія'),('Консерви та приправи','Консерви та приправи'),('Напої','Напої'),('Заморожені продукти','Заморожені продукти'))
-	category = models.CharField('Category', max_length=30, null=True, choices=CATEGORIES, blank=True)
-	nameUa = models.CharField("UA", max_length=50, blank=True)
-	quantity = models.FloatField("Quantity", default=0, blank=True)	
-	added_by = models.ForeignKey(CustomUser, null=True, on_delete=models.PROTECT)	
-	CHOICESUA = (('г','г'),('шт','шт'),('мл.','мл.'),('кг.','кг.'),('пуч.','пуч.'),('бан.','бан.'),('л.','л.'),('упак.','упак.'))	
-	measureUa = models.CharField('measure', max_length=15, null=True, choices=CHOICESUA, blank=True)	
-	is_favorite = models.BooleanField(default=False)
+class UserProductQuantity(models.Model):
+	owner = models.ForeignKey(CustomUser, null=True, on_delete=models.PROTECT)	
+	nameUa = models.ForeignKey(AllProduct, max_length=100, blank=True,on_delete=models.PROTECT)
+	quantity = models.FloatField("Quantity", default=0, blank=True)		
 
 	def __str__(self):
-		return self.nameUa
+		return self.nameUa.nameUa	
+
+
 

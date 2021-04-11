@@ -88,12 +88,16 @@ My Storage
   	  	<div class="lines_of_category_1"></div>	
 
   	  	<ol class="list_of_products"> 	
-   	  		{% for product in products %}
-  	  		{% if product.category == "Fruits"%}
-
-  	  		<li class="category_data">{{product.nameEn}}({{product.quantity}} {{product.measureEn}})</li> 
-  	  		{% endif %}
+   	  		{% for item,k in products_array %}           
+           
+  	  		     <li class="category_data">{{ item.nameUa }}({{ k.quantity }})</li> 
+          
   	  		{% endfor %}
+          {% for item,k in products_array %}           
+           
+               <li class="category_data">{{ item.nameUa }}({{ k.quantity }})</li> 
+          
+          {% endfor %}
   	  	</ol>
   	  	
       </div>
@@ -105,14 +109,13 @@ My Storage
       		<div class="add_product_button2"></div>
       	</div>    		
       		<div class="lines_of_category_2"></div>
-      		<ol> 	
-   	  			{% for product in products %}
-  	  			{% if product.category == "Vegetables"%}
-
-  	  			<li class="category_data">{{product.nameEn}}({{product.quantity}} {{product.measureEn}})</li> 
-  	  			{% endif %}
-  	  			{% endfor %}
-  	  	</ol>
+      		<ol class="list_of_products">   
+          {% for item,k in products_array %}           
+            {% if item.category == "Фрукти" %}  
+               <li class="category_data">{{ item.nameUa }}({{ k.quantity }})</li> 
+            {% endif %}
+          {% endfor %}
+        </ol>
       </div>
 
       <div class="category2_data ">
@@ -122,14 +125,14 @@ My Storage
 			<div class="add_product_button3"></div>
 		</div>
 			<div class="lines_of_category_3"></div>
-      		<ol> 	
+      		<!--<ol> 	
    	  			{% for product in products %}
   	  			{% if product.category == "Dairy products"%}
 
   	  			<li class="category_data">{{product.nameEn}}({{product.quantity}} {{product.measureEn}})</li> 
   	  			{% endif %}
   	  			{% endfor %}
-  	  		</ol>
+  	  		</ol>-->
       </div>
 
       <div class="category3_data">
@@ -139,14 +142,14 @@ My Storage
       		<div class="add_product_button4"></div>
       	</div>
       		<div class="lines_of_category_4"></div>
-      		<ol> 	
+      		<!--<ol> 	
    	  			{% for product in products %}
   	  			{% if product.category == "Meat products"%}
 
   	  			<li class="category_data">{{product.nameEn}}({{product.quantity}} {{product.measureEn}})</li> 
   	  			{% endif %}
   	  			{% endfor %}
-  	  		</ol>
+  	  		</ol>-->
       </div>
 
       <div class="category4_data">
@@ -156,14 +159,14 @@ My Storage
       		<div class="add_product_button5"></div>      		
       	</div>
       		<div class="lines_of_category_5"></div>
-      		<ol> 	
+      		<!--<ol> 	
    	  			{% for product in products %}
   	  			{% if product.category == "Seafood"%}
 
   	  			<li class="category_data">{{product.nameEn}}({{product.quantity}} {{product.measureEn}})</li> 
   	  			{% endif %}
   	  			{% endfor %}
-  	  		</ol>
+  	  		</ol>-->
       </div>
 
       <div class="category5_data">
@@ -173,14 +176,14 @@ My Storage
       		<div class="add_product_button6"></div>      		
         </div>
         	<div class="lines_of_category_6"></div>
-        	<ol> 	
+        	<!--<ol> 	
    	  			{% for product in products %}
   	  			{% if product.category == "Grocery"%}
 
   	  			<li class="category_data">{{product.nameEn}}({{product.quantity}} {{product.measureEn}})</li> 
   	  			{% endif %}
   	  			{% endfor %}
-  	  		</ol>
+  	  		</ol>-->
       </div>
 
       <div class="category6_data">
@@ -190,14 +193,14 @@ My Storage
       		<div class="add_product_button7"></div>      		
         </div>
         	<div class="lines_of_category_7"></div>
-        	<ol> 	
+        	<!--<ol> 	
    	  			{% for product in products %}
   	  			{% if product.category == "Canned food and condiments"%}
 
   	  			<li class="category_data">{{product.nameEn}}({{product.quantity}} {{product.measureEn}})</li> 
   	  			{% endif %}
   	  			{% endfor %}
-  	  		</ol>
+  	  		</ol>-->
       </div>
 
       <div class="category7_data">
@@ -207,14 +210,14 @@ My Storage
       		<div class="add_product_button8"></div>      		
         </div>
         	<div class="lines_of_category_8"></div>
-        	<ol> 	
+        	<!--<ol> 	
    	  			{% for product in products %}
   	  			{% if product.category == "Drinks"%}
 
   	  			<li class="category_data">{{product.nameEn}}({{product.quantity}} {{product.measureEn}})</li> 
   	  			{% endif %}
   	  			{% endfor %}
-  	  		</ol>
+  	  		</ol>-->
       </div>
 
       <div class="category8_data">
@@ -224,14 +227,14 @@ My Storage
 			<div class="add_product_button9"></div>			
         </div>
         	<div class="lines_of_category_9"></div>
-        	<ol> 	
+        	<!--<ol> 	
    	  			{% for product in products %}
   	  			{% if product.category == "Frozen products"%}
 
   	  			<li class="category_data">{{product.nameEn}}({{product.quantity}} {{product.measureEn}})</li> 
   	  			{% endif %}
   	  			{% endfor %}
-  	  		</ol>
+  	  		</ol>-->
       </div>
 
       <div class="category9_data">
@@ -241,14 +244,14 @@ My Storage
 	  		<div class="add_product_button10"></div>	  		
         </div>
         	<div class="lines_of_category_10"></div>
-        	<ol class="list_of_products"> 	
+        	<!--<ol class="list_of_products"> 	
    	  			{% for product in products %}
   	  			{% if product.is_favorite == True%}
 
   	  			<li class="category_data">{{product.nameEn}}({{product.quantity}} {{product.measureEn}})</li> 
   	  			{% endif %}
   	  			{% endfor %}
-  	  		</ol>
+  	  		</ol>-->
       </div>
 
     </div>
