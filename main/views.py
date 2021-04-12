@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.http import JsonResponse
 from .models import *
 from .forms import *
 from django.views.generic import DetailView, UpdateView, DeleteView
@@ -48,6 +49,19 @@ def signup(request):
 				#username = form.cleaned_data.get('username')
 				#email = form.cleaned_data.get('email')
 		return render(request, 'main/sign_up.html', context)
+
+
+def emailexist(request):
+	data = {'result':''}
+	if request.method == 'GET':
+		emailGet = request.GET.get('email')
+		exists = CustomUser.objects.filter(email=emailGet).exists()
+		if exists:
+			data['result'] = 'exists'
+		else:
+			data['result'] = 'does not exist'
+	return JsonResponse(data)
+
 
 
 def homePage(request):

@@ -3,11 +3,14 @@
 <html style="margin: 0; height: 100%; overflow: hidden">
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	<link rel="stylesheet" href="{% static 'css/misha.css' %}">
+  <link rel="stylesheet" href="{% static 'css/alex.css' %}">
+  <link rel="stylesheet" href="{% static 'css/andrew.css' %}">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 	<link href='https://fonts.googleapis.com/css?family=Montserrat Alternates' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<title>Реєстрація</title>
 </head>
 <body>
@@ -20,18 +23,19 @@
 			<section class="logo_plus_name">
 				<!--<p class="logo_name_company">Food comF</p>
 				<div class="logo_block">
-					
+
 				</div>-->
 			</section>
 			<section class="forms_and_btns">
 				<p class="sign_up_text" align="center">
 					Приєднатися до сотень<br>успішних кухарів
 				</p>
+				<p id='response_msg'></p>
 				<form method="POST">
 					{% csrf_token %}
 					<span class="input-field-label">Ваш email</span>
 					<p align="center" class="email_p_cen">
-						<input type="email" id="id_email" name="email" required ><br>
+						<input type="email" id="id_email" name="email" required oninput='emailCheck()'><br>
 					</p>
 					<span class="input-field-label_ps">Ваш пароль</span>
 					<p align="center" class="pass_p_cen">
@@ -39,8 +43,8 @@
 					</p>
 					<p class="i_agree">
 						<input type="checkbox" class="custom-checkbox" id="id_access_to_data" name="access_to_data" required>
-						<label for="id_access_to_data">Я згоден з умовами користування foodName</label> 
-						
+						<label for="id_access_to_data">Я згоден з умовами користування foodName</label>
+
 					</p>
 					<input type="submit" value="Приєднатись" class="join_sign_up">
 				</form>
@@ -48,4 +52,21 @@
 		</section>
 	</div>
 </body>
+<script type="text/javascript">
+	function emailCheck(e){
+		var email = $('#id_email').val();
+		console.log(email)
+    $.get('/emailexist/',
+          {'email': email},
+          function(response){
+						if (response.result == 'exists'){
+							document.getElementById('id_email').style.borderColor = 'red';
+						} else {
+							document.getElementById('id_email').style.borderColor = 'lightgrey';
+						}
+				 }
+
+    );
+	}
+</script>
 </html>
