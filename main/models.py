@@ -24,7 +24,7 @@ class MyAccountManager(BaseUserManager):
 		user.is_superuser = True
 		user.save(using=self._db)
 		return user
-
+ 
 
 class Achievements(models.Model):
 	fast_start = models.BooleanField(default=False)

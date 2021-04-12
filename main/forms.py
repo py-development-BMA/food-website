@@ -55,3 +55,8 @@ class PostToLike(forms.Form):
 	actionToDoLike = forms.CharField(max_length=30)
 	whoLikes = forms.CharField(max_length=100)
 	whatToLike = forms.CharField(max_length=100)
+
+class AddProduct(forms.Form):
+	nameUa = forms.CharField(max_length=30)
+	quantity = forms.FloatField()
+	

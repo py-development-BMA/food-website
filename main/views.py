@@ -12,7 +12,7 @@ from django.core.mail import send_mail
 import re
 import random
 #from .tasks import *
-
+ 
 class bcolors:
 	HEADER = '\033[95m'
 	OKBLUE = '\033[94m'
@@ -196,10 +196,27 @@ def  mystorage(request):
 		k = UserProductQuantity.objects.get(user=request.user, nameUa=item)
 		q_array.append(k)
 		print(k.nameUa)
-	
-
-
 	products = list(zip(all_products,q_array))
+
+	if request.method == 'POST':
+		form = AddProduct(request.POST)
+		if form.is_valid():
+			for item in AllProduct.objects.all():
+				if item.nameUa == form.cleaned_data.get('nameUa'):
+					db_example = UserProductQuantity.objects.filter()[:1].get()
+					db_example.pk = None
+					db_example.save()
+
+					#db_example = UserProductQuantity.objects.filter()[:1].get()
+					#db_example.user = request.user.email
+					db_example.nameUa = AllProduct.objects.get(nameUa=item.nameUa)
+					db_example.quantity = form.cleaned_data.get('quantity')
+
+					CustomUser.objects.get(email=request.user.email).my_products.add(item)
+					db_example.save()
+			return redirect('mystorage')
+
+	
 
 	context = {
 	'categories':categories,

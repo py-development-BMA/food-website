@@ -6,7 +6,7 @@ My Storage
 {% block content %}
 
 <h1 class="myStorage_label"> Мої продукти </h1>
-
+ 
 
 <!--<form method="POST">
   {% csrf_token %}
@@ -95,6 +95,18 @@ My Storage
           {% endfor %}
   	  	</ol>
   	  	
+        <form method="post">
+          {% csrf_token %}
+
+
+            <p align='center'><input type="text" name="nameUa" placeholder="Type your value.."></p>
+            <p align='center'><input type="number" name="quantity" placeholder="Type your value.."></p>
+            <p align='center'><input type="submit" id='StorageFormSubm' value='ADD'></p>
+
+        </form>
+
+
+
       </div>
 
       <div class="category1_data ">
