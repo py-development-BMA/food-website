@@ -17,4 +17,5 @@ urlpatterns = [
 	path('feed/', views.feedPage, name="feed"),
 	path('alexPost/', views.alexPost, name="alexPost"),
 	path('emailexist/', views.emailexist, name="emailexist"),
+	path('loadsubs/', views.loadSubs, name="loadSubs"),
 ]

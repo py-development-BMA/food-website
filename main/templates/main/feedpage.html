@@ -17,7 +17,7 @@ Feed
   </div>
   <div class="PostFeed">
 
-    {% for recipe, k, user, is_liked in recipesFeed %}
+    {% for recipe, k, user, is_liked, likesCount in recipesFeed %}
     <div class="feedPostEx">
       <div class="usersInfoPost">
       <a href='{% url "viewuser" user.pk %}'>  <img src="{{ user.image_profile.url }}" class="usersinfoImage"></a>
@@ -49,11 +49,11 @@ Feed
         </form>
         {% if is_liked %}
         <label class="puLikeBtnPost" for='submitLike{{ k }}'>
-           <span id='heartid{{ k }}' class="heart heartActive"></span>
+           <span id='heartid{{ k }}' class="heart heartActive"></span><p class='qunLikes' id='likesCountPost{{ k }}'>{{ likesCount }}</p>
         </label>
         {% else %}
         <label class="puLikeBtnPost" for='submitLike{{ k }}'>
-           <span id='heartid{{ k }}' class="heart"></span>
+           <span id='heartid{{ k }}' class="heart"></span><p class='qunLikes' id='likesCountPost{{ k }}'>{{ likesCount }}</p>
         </label>
         {% endif %}
         <div class="openCommentsPost">
@@ -102,6 +102,13 @@ Feed
         e.preventDefault();
       });
         $('#heartid'+k).toggleClass('heartActive')
+        document.getElementById('submitLike'+k).disabled = true
+        if ($('#id_actionToDoLike'+k).val() == 'like'){
+          let usersCountSubs = document.getElementById('likesCountPost'+k).innerHTML = parseInt(document.getElementById('likesCountPost'+k).innerHTML) + 1;
+        } else {
+            let usersCountSubs = document.getElementById('likesCountPost'+k).innerHTML = parseInt(document.getElementById('likesCountPost'+k).innerHTML) - 1;
+        }
+
       $.ajax({
         type:'POST',
         url:'/feed/',
@@ -113,7 +120,7 @@ Feed
       },
       success:function(){
         console.log('liked successfuly')
-
+        document.getElementById('submitLike'+k).disabled = false
         if ($('#id_actionToDoLike'+k).val() == 'removelike'){
           $('#id_actionToDoLike'+k).val('like')
         } else {

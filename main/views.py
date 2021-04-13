@@ -13,6 +13,8 @@ from django.core.mail import send_mail
 import re
 import random
 import itertools
+from django.core import serializers
+import json
 #from .tasks import *
 
 class bcolors:
@@ -87,6 +89,37 @@ def profile(request):
 	'pop_recipes':itertools.islice(userPostsLikes, 5),
 	}
 	return render(request, 'main/myaccount.html', context)
+
+
+def loadSubs(request):
+	if request.method == 'GET':
+		if request.GET.get('wtd') == 'subs':
+			qset = Subscribtion.objects.get(user__email=request.GET.get('email')).followed_by.all()
+			mas = []
+			for item in qset:
+				nmas = []
+				nmas.append(item.pk)
+				nmas.append(item.first_name)
+				nmas.append(item.last_name)
+				nmas.append(item.image_profile.url)
+				nmas.append(item.username)
+				mas.append(nmas)
+
+			return HttpResponse(json.dumps(mas, ensure_ascii=False), content_type='application/json')
+		if request.GET.get('wtd') == 'follows':
+			qset = Subscribtion.objects.get(user__email=request.GET.get('email')).following.all()
+			mas = []
+			for item in qset:
+				nmas = []
+				nmas.append(item.pk)
+				nmas.append(item.first_name)
+				nmas.append(item.last_name)
+				nmas.append(item.image_profile.url)
+				nmas.append(item.username)
+				mas.append(nmas)
+			return HttpResponse(json.dumps(mas, ensure_ascii=False), content_type='application/json')
+		#serialized_qs = serializers.serialize('json', qset)
+
 
 
 def edit_profile(request):
@@ -253,11 +286,13 @@ def feedPage(request):
 		user_sh = []
 		is_liked = []
 		k = 0
+		likesCount = []
 		for item in users_subs.following.all():
 			if item.my_recipes.all().count() != 0:
 				stop = 3
 				for recipe in reversed(item.my_recipes.all()):
 					if stop != 0:
+						likesCount.append(PostLike.objects.get(post=recipe).usersLiked.all().count())
 						recipesToShow.append(recipe)
 						count.append(k)
 						user_sh.append(item)
@@ -270,7 +305,7 @@ def feedPage(request):
 
 					else:
 						break
-		recipesZip = list(zip(recipesToShow, count, user_sh, is_liked))
+		recipesZip = list(zip(recipesToShow, count, user_sh, is_liked, likesCount))
 		random.shuffle(recipesZip)
 		context = {
 			'recipesFeed':recipesZip,

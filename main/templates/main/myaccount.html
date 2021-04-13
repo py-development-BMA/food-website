@@ -1,35 +1,28 @@
 {% extends "main/header.html" %}
 {% load static %}
 {% block content %}
-<div class="subListsback">
+<input type="hidden" id='id_whatToShowSubs' value="subs">
+<input type="hidden" id='id_email' value="{{ request.user.email }}">
+<div class="subListsbackHide hide" id='id_closeSubsList'>
 
 </div>
-<div class="subLists active" id='subslist'>
+<div class="subLists hide" id='subslist'>
 	<div class="headerSubs">
-<div class="mysubsListHead">
-	<p align='center' class="textSubsListMain">Мої підписники</p>
+<div class="mysubsListHead" id='id_mysubs'>
+	<p align='center' class="textSubsListMain selectedSubsList">Мої підписники</p>
 </div>
-<div class="myFollowsHead">
+<div class="myFollowsHead" id='id_myfollows'>
 	<p align='center' class="textSubsListMain">Мої підписки</p>
 </div>
 	</div>
-	<div class="listOfSubsReal">
 
-	{% for item in subs.followed_by.all %}
-
-
-	<a class="personFollower" href='{% url "viewuser" item.pk %}'>
-
-		<div class="personsPhotoListSubs">
-			<img src="{{ item.image_profile.url }}">
-		</div>
-		<div class="personsInfoSubList">
-			<p>{{ item.first_name }} {{ item.last_name }}</p>
-			<p>@{{ item.username }}</p>
-		</div>
-
-	</a>
-	{% endfor %}
+	<div class="listOfSubsReal" id='listUsersAjax'>
+		<div id='preloading' class="linePreloader"></div>
+		<div class='xcloseround'><a href="#" class="close"></a></div>
+	</div>
+	<div class="listOfFollowsReal hide" id='listUsersAjaxFollows'>
+		<div id='preloading1' class="linePreloader"></div>
+		<div class='xcloseround'><a href="#" class="close"></a></div>
 	</div>
 </div>
 									<!-- Profile information section -->
@@ -70,7 +63,7 @@
 </section>
 												<!-- Subscribers section -->
 	<section class="subs_follows">
-		<div class="sbs_flex_part">
+		<div class="sbs_flex_part" id='subsbtnShow' style='cursor:pointer'>
 			<p>{{ subs.followed_by.all.count }}</p>
 			<p>Підписники</p>
 		</div>
@@ -137,6 +130,116 @@
 	{% endfor %}
 </section>
 <script type="text/javascript">
+
+let showSubsBtn = document.getElementById('subsbtnShow');
+let closeSubsList = document.getElementById('id_closeSubsList');
+
+let showSubs = document.getElementById('id_mysubs')
+let showFollows = document.getElementById('id_myfollows')
+
+
+
+
+let is_SubsListOpened = false
+let is_FollowsListOpened = false
+function showBackSubs(){
+	$('#id_closeSubsList').toggleClass('subListsback')
+}
+
+$(document).on({
+	 ajaxStop: function() {
+		 if (document.getElementById('listUsersAjax').classList.contains('hide')){
+			  $('#preloading1').toggleClass('hide');
+				document.getElementById("listUsersAjaxFollows").style.borderTop = '2px solid lightgrey';
+		} else {
+			$('#preloading').toggleClass('hide');
+			document.getElementById("listUsersAjax").style.borderTop = '2px solid lightgrey';
+		}
+
+	 }
+});
+
+
+showFollows.addEventListener('click', function(){
+	$('#listUsersAjaxFollows').toggleClass('hide')
+	$('#listUsersAjax').toggleClass('hide')
+	$('#id_myfollows p ').toggleClass('selectedSubsList')
+	$('#id_mysubs p ').toggleClass('selectedSubsList')
+	$('#id_whatToShowSubs').val('follows')
+	if (is_FollowsListOpened == false){
+		is_FollowsListOpened = true
+	$.get('/loadsubs/',
+				{'wtd':$('#id_whatToShowSubs').val(), 'email':$('#id_email').val()},
+				function(response){
+					console.log(response)
+						for(let item in response){
+							document.getElementById('listUsersAjaxFollows').innerHTML += '<a class="personFollower" href=\'/' + response[item][0] + '/viewuser\'>' +
+								'<div class="personsPhotoListSubs">' +
+									'<img src="'+ response[item][3] +'">' +
+								'</div>' +
+							'<div class="personsInfoSubList">' +
+									'<p>' + response[item][1] + ' ' + response[item][2] + '</p>'+
+									'<p>' + response[item][4] + '</p>'+
+								'</div>'
+							'</a>'
+						}
+			 }
+
+
+	);
+}
+
+
+})
+showSubs.addEventListener('click', function(){
+	$('#listUsersAjaxFollows').toggleClass('hide')
+	$('#listUsersAjax').toggleClass('hide')
+	$('#id_myfollows p ').toggleClass('selectedSubsList')
+	$('#id_mysubs p ').toggleClass('selectedSubsList')
+	$('#id_whatToShowSubs').val('subs')
+})
+
+
+closeSubsList.addEventListener('click', function(){
+	setTimeout(showBackSubs, 1)
+	$('#id_closeSubsList').toggleClass('hide');
+	$('.subLists').toggleClass('hide')
+	$('.subLists').toggleClass('active')
+});
+
+showSubsBtn.addEventListener('click', function(){
+	$('#id_closeSubsList').toggleClass('hide');
+	setTimeout(showBackSubs, 1)
+
+	$('.subLists').toggleClass('hide')
+	$('.subLists').toggleClass('active')
+
+
+	if (is_SubsListOpened == false)	{
+		is_SubsListOpened = true
+	$.get('/loadsubs/',
+				{'wtd':$('#id_whatToShowSubs').val(), 'email':$('#id_email').val()},
+				function(response){
+					console.log(response)
+						for(let item in response){
+							document.getElementById('listUsersAjax').innerHTML += '<a class="personFollower" href=\'/' + response[item][0] + '/viewuser\'>' +
+								'<div class="personsPhotoListSubs">' +
+									'<img src="'+ response[item][3] +'">' +
+								'</div>' +
+							'<div class="personsInfoSubList">' +
+									'<p>' + response[item][1] + ' ' +  response[item][2] + '</p>'+
+									'<p>' + response[item][4] + '</p>'+
+								'</div>'
+							'</a>'
+						}
+			 }
+
+	);
+}
+})
+
+
+
 function subscribe() {
 
 	if ($('#subscribeButton_id p').text() == 'Відстежувати'){
@@ -151,8 +254,5 @@ function subscribe() {
 	}
 
 };
-if (document.getElementById('subslist').classList.contains('active')){
-	document.getElementById('html').style.overflow = 'hidden'
-}
 </script>
 {% endblock %}
