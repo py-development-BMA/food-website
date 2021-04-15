@@ -4468,7 +4468,7 @@ font-family: Montserrat;
 	display: flex;
 	flex-direction: row;
 	width:900px;
-	height: 240px;
+	height: auto;
 	margin:40px auto;
 	margin-bottom: 30px;
 }
@@ -4539,7 +4539,7 @@ font-family: Montserrat;
 	display: flex;
 	justify-content: space-around;
 	margin:0 auto;
-	margin-top:30px;
+	margin-top:80px;
 }
 .subs_follows p{
 	font-family: Montserrat;
@@ -6395,6 +6395,13 @@ cursor: pointer;
     height: 20px;
     margin-top:5px;
     margin-left:10px;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
   }
   .NameInterest p {
     margin-top:0px;
@@ -6402,6 +6409,13 @@ cursor: pointer;
     line-height: 30px;
     margin-left:3px;
     color:#C37070;
+    -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+         -khtml-user-select: none; /* Konqueror HTML */
+           -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+                user-select: none; /* Non-prefixed version, currently
+                                      supported by Chrome, Edge, Opera and Firefox */
   }
   .interestsList{
     position: absolute;
@@ -6450,6 +6464,34 @@ cursor: pointer;
       background-repeat:repeat-y;
       background-position:-25% 0;
       animation:scroll 1.2s ease-in-out infinite;
+    }
+    #id_newInterest{
+      height: 30px;
+      width: 250px;
+      border-radius: 15px;
+      border:0px;
+      outline: none;
+      text-align: center;
+      color:#686868;
+      margin-top:10px;
+      background: #FFF0F0;
+      font-size:15px;
+    }
+    .interestPatternInp{
+      height: 30px;
+      width: auto;
+      display: flex;
+      flex-direction: row;
+      background: #FFE1E1;
+      border-radius: 20px;
+      padding-right:20px;
+      margin-left: 10px;
+      margin-bottom:7px;
+    }
+    .listInputsInterests{
+      margin-top:10px;
+      display: flex;
+      flex-flow: row wrap;
     }
 }
 

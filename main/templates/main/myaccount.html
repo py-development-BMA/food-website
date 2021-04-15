@@ -14,7 +14,11 @@
 	</div>
 	<div class="listOfInterestsReal" id='listInterestsAjax'>
 		<div id='preloading2' class="linePreloader1"></div>
-		</div>
+			<input type="text" id='id_newInterest' value="" placeholder="Пошук">
+			<div class="listInputsInterests" id='id_listInterestToPaste'>
+
+			</div>
+			</div>
 </div>
 
 
@@ -177,6 +181,7 @@ let showFollows = document.getElementById('id_myfollows')
 
 let is_SubsListOpened = false
 let is_FollowsListOpened = false
+let loadInterests = false
 function showBackSubs(){
 	$('#id_closeSubsList').toggleClass('subListsback')
 }
@@ -189,11 +194,34 @@ $(document).on({
 		} else if(document.getElementById('listUsersAjaxFollows').classList.contains('hide') && document.getElementById('intList').classList.contains('active') == false) {
 			$('#preloading').toggleClass('hide');
 			document.getElementById("listUsersAjax").style.borderTop = '2px solid lightgrey';
+		} else {
+			$('#preloading2').toggleClass('hide');
+			document.getElementById("listInterestsAjax").style.borderTop = '2px solid lightgrey';
 		}
 
 	 }
 });
 
+
+
+
+function addInterest(elem){
+	if (document.getElementById('id_' + elem + '_inp').checked == true){
+	//document.getElementById('id_' + elem + '_inp').checked = true
+	document.getElementById('id_' + elem + '_inpBlock').style.border = '2px solid #E46F6F';
+	document.getElementById('id_' + elem + '_inpBlock').style.height = '26px'
+	document.getElementById('id_NameInterest'+elem).style.lineHeight = '26px'
+	document.getElementById('id_iconInter'+elem).style.marginTop = '3px'
+	//alert(document.getElementById('id_' + elem + '_inpBlock').style.width)
+} else {
+	//document.getElementById('id_' + elem + '_inp').checked = false
+	document.getElementById('id_' + elem + '_inpBlock').style.height = '30px'
+	document.getElementById('id_' + elem + '_inpBlock').style.border = '0px solid red'
+	document.getElementById('id_NameInterest'+elem).style.lineHeight = '30px'
+	document.getElementById('id_iconInter'+elem).style.marginTop = '5px'
+
+}
+}
 
 showFollows.addEventListener('click', function(){
 	$('#listUsersAjaxFollows').toggleClass('hide')
@@ -233,12 +261,55 @@ document.getElementById('ShowAllInterests').addEventListener('click', function()
 	$('#id_closeSubsList').toggleClass('hide');
 	$('#intList').toggleClass('hide')
 	$('#intList').toggleClass('active')
+	if (loadInterests == false) {
+		loadInterests = true
 	$.get('/loadInterests/',
 				{'email':$('#id_email').val()},
 				function(response){
 					console.log(response)
+					for(let item in response){
+						console.log(response[item][3])
+						if(response[item][3] == 0){
+					document.getElementById('id_listInterestToPaste').innerHTML += '<input name=\'' + response[item][1] + '\' type="checkbox" style=\'display:none\' id=\'id_' + response[item][1] + '_inp\' onchange=\'addInterest(\"' + response[item][1] + '\")\'>' +
+
+					'<label for=\"id_' + response[item][1] + '_inp\">' +
+						'<div class="interestPatternInp" id=\'id_' + response[item][1] + '_inpBlock\'>' +
+							'<div class="iconInterest">' +
+								'<p id=\'id_iconInter' + response[item][1] + '\'>' + response[item][0] + '</p>' +
+							'</div>' +
+							'<div class="NameInterest">' +
+								'<p id=\'id_NameInterest' + response[item][1] + '\'> ' + response[item][2] + '</p>' +
+							'</div>' +
+						'</div>' +
+					'</label>'
+				}else{
+					document.getElementById('id_listInterestToPaste').innerHTML += '<input name=\'' + response[item][1] + '\' type="checkbox" checked style=\'display:none\' id=\'id_' + response[item][1] + '_inp\' onchange=\'addInterest(\"' + response[item][1] + '\")\'>' +
+
+					'<label for=\"id_' + response[item][1] + '_inp\">' +
+						'<div class="interestPatternInp" id=\'id_' + response[item][1] + '_inpBlock\'>' +
+							'<div class="iconInterest">' +
+								'<p id=\'id_iconInter' + response[item][1] + '\'>' + response[item][0] + '</p>' +
+							'</div>' +
+							'<div class="NameInterest">' +
+								'<p id=\'id_NameInterest' + response[item][1] + '\'> ' + response[item][2] + '</p>' +
+							'</div>' +
+						'</div>' +
+					'</label>'
+				}
+				$("input[type='checkbox']").each(function(){
+			  var name = $(this).attr('name'); // grab name of original
+			  var ischecked = $(this).is(":checked"); //check if checked
+				if (ischecked){
+					document.getElementById('id_' + name + '_inpBlock').style.border = '2px solid #E46F6F';
+					document.getElementById('id_' + name + '_inpBlock').style.height = '26px'
+					document.getElementById('id_NameInterest'+name).style.lineHeight = '26px'
+					document.getElementById('id_iconInter'+name).style.marginTop = '3px'
+				}
+			});
+				}
 			 }
 	);
+}
 
 })
 

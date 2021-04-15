@@ -139,13 +139,25 @@ def profile(request):
 def loadInterests(request):
 	if request.method == 'GET':
 		listOfInters = CustomUser.objects.get(email=request.GET.get('email')).interests.all()
+		allInterests = AllInterests.objects.all()
 		inside_arr = []
+		my_interests = []
 		arr_out = []
 		for item in listOfInters:
+			my_interests.append(item.name)
+
+		for item in allInterests:
 			inside_arr = []
 			inside_arr.append(item.icon)
+			inside_arr.append(item.english)
 			inside_arr.append(item.name)
+			if item.name in my_interests:
+				inside_arr.append(1)
+			else:
+				inside_arr.append(0)
 			arr_out.append(inside_arr)
+		#print(arr_out)
+
 
 		return HttpResponse(json.dumps(arr_out, ensure_ascii=False), content_type='application/json')
 
