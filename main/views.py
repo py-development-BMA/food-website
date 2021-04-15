@@ -32,6 +32,43 @@ print(f"{bcolors.FAIL}\n[  VERSION  ]: 2.1.0 (created page for storage by ALEXEY
 
 
 def signup(request):
+	# usernames = ['qusert', 'morgenshtern', 'slavamarlow', 'olegSls', 'alex_sivak', 'btc_cook']
+	# readNames = open('firstnames/us.txt', 'r', encoding='utf-8')
+	# namesArr = readNames.read().split('\n')
+	# readSurnames = open('surnames/us.txt', 'r', encoding='utf-8')
+	# surnamesArr = readSurnames.read().split('\n')
+	# for surname in surnamesArr:
+	# 	nameRndm = random.choice(namesArr)
+	# 	print('{1}_{0}@gmail.com'.format(nameRndm.lower(), surname.lower()))
+	# 	print('{0}_{1}'.format(nameRndm.lower(), surname.lower()))
+	# 	print(nameRndm)
+	# 	print(surname)
+	# 	print('-------------------------------------')
+	# 	selecteduser = CustomUser.objects.create(
+	# 			email='{1}_{0}@gmail.com'.format(nameRndm.lower(), surname.lower()),
+	# 			username='{0}_{1}'.format(nameRndm.lower(), surname.lower()),
+	# 			first_name=nameRndm,
+	# 			last_name=surname,
+	# 			password='Tornado2004',
+	# 		)
+	# 	Subscribtion.objects.create(
+	# 			user=selecteduser,
+	# 			)
+	# first_names = []
+	# last_names = []
+	# k = 0
+	# for username, first_name, last_name in zip(usernames, first_names, last_names):
+	# 	k+=1
+	# 	CustomUser.objects.create(
+	# 		email='testemail{0}@gmail.com'.format(k),
+	# 		username=username,
+	# 		first_name=first_name,
+	# 		last_name=last_name,
+	# 		password='Tornado2004',
+	# 	)
+	# 	Subscribtion.objects.create(
+	# 		user=user,
+	# 		)
 	if 1==1:
 		print(1)
 		form = CustomUserCreationForm()
@@ -50,6 +87,7 @@ def signup(request):
 				return redirect('home')
 				#username = form.cleaned_data.get('username')
 				#email = form.cleaned_data.get('email')
+
 		return render(request, 'main/sign_up.html', context)
 
 
@@ -82,13 +120,34 @@ def profile(request):
 	#all_likedPosts = sorted(userPostsLikes, key=operator.attrgetter('usersLiked.count'))
 	#for item in all_likedPosts:
 	#	print(item.usersLiked.count())
+
+	icons_interests = []
+	names_interestst = []
+	for item in request.user.interests.all():
+		icons_interests.append(item.icon)
+		names_interestst.append(item.name)
+
 	context = {
 	'test':123,
 	'myrecipes':output_recipes,
 	'subs':subscriptions,
 	'pop_recipes':itertools.islice(userPostsLikes, 5),
+	'interests': itertools.islice(zip(icons_interests, names_interestst), 4)
 	}
 	return render(request, 'main/myaccount.html', context)
+
+def loadInterests(request):
+	if request.method == 'GET':
+		listOfInters = CustomUser.objects.get(email=request.GET.get('email')).interests.all()
+		inside_arr = []
+		arr_out = []
+		for item in listOfInters:
+			inside_arr = []
+			inside_arr.append(item.icon)
+			inside_arr.append(item.name)
+			arr_out.append(inside_arr)
+
+		return HttpResponse(json.dumps(arr_out, ensure_ascii=False), content_type='application/json')
 
 
 def loadSubs(request):
@@ -96,27 +155,37 @@ def loadSubs(request):
 		if request.GET.get('wtd') == 'subs':
 			qset = Subscribtion.objects.get(user__email=request.GET.get('email')).followed_by.all()
 			mas = []
+			k = 35
 			for item in qset:
-				nmas = []
-				nmas.append(item.pk)
-				nmas.append(item.first_name)
-				nmas.append(item.last_name)
-				nmas.append(item.image_profile.url)
-				nmas.append(item.username)
-				mas.append(nmas)
+				if k != 0:
+					nmas = []
+					nmas.append(item.pk)
+					nmas.append(item.first_name)
+					nmas.append(item.last_name)
+					nmas.append(item.image_profile.url)
+					nmas.append(item.username)
+					mas.append(nmas)
+					k-=1
+				else:
+					break
 
 			return HttpResponse(json.dumps(mas, ensure_ascii=False), content_type='application/json')
 		if request.GET.get('wtd') == 'follows':
 			qset = Subscribtion.objects.get(user__email=request.GET.get('email')).following.all()
 			mas = []
+			k = 35
 			for item in qset:
-				nmas = []
-				nmas.append(item.pk)
-				nmas.append(item.first_name)
-				nmas.append(item.last_name)
-				nmas.append(item.image_profile.url)
-				nmas.append(item.username)
-				mas.append(nmas)
+				if k != 0:
+					nmas = []
+					nmas.append(item.pk)
+					nmas.append(item.first_name)
+					nmas.append(item.last_name)
+					nmas.append(item.image_profile.url)
+					nmas.append(item.username)
+					mas.append(nmas)
+					k-=1
+				else:
+					break
 			return HttpResponse(json.dumps(mas, ensure_ascii=False), content_type='application/json')
 		#serialized_qs = serializers.serialize('json', qset)
 
@@ -311,6 +380,17 @@ def feedPage(request):
 			'recipesFeed':recipesZip,
 		  }
 		return render(request, 'main/feedpage.html', context)
+
+
+def friendrec(request):
+	data = {}
+	mas = []
+	arr2 = []
+	if request.method == 'GET':
+
+		data['arr'] = []
+	return HttpResponse(json.dumps(data, ensure_ascii=False), content_type='application/json')
+
 
 
 

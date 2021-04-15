@@ -18,4 +18,6 @@ urlpatterns = [
 	path('alexPost/', views.alexPost, name="alexPost"),
 	path('emailexist/', views.emailexist, name="emailexist"),
 	path('loadsubs/', views.loadSubs, name="loadSubs"),
+	path('friendrec/', views.friendrec, name="friendrec"),
+	path('loadInterests/', views.loadInterests, name="loadInterests"),
 ]

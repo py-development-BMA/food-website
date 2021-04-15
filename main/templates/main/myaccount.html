@@ -6,6 +6,18 @@
 <div class="subListsbackHide hide" id='id_closeSubsList'>
 
 </div>
+
+
+<div class="interestsList hide" id='intList'>
+	<div class="myInterestsList" id='id_interests'>
+		<p align='center' class="textSubsListMain selectedSubsList">Мої Інтереси</p>
+	</div>
+	<div class="listOfInterestsReal" id='listInterestsAjax'>
+		<div id='preloading2' class="linePreloader1"></div>
+		</div>
+</div>
+
+
 <div class="subLists hide" id='subslist'>
 	<div class="headerSubs">
 <div class="mysubsListHead" id='id_mysubs'>
@@ -40,6 +52,29 @@
 		</div>
 		<p class="username_profile">@{{ request.user.username }}</p>
 		<p class="description_profile">{{ request.user.about }}</p>
+
+		<div class="interestsSec">
+			{% for icon, name in interests %}
+			<div class="interestPattern">
+				<div class="iconInterest">
+					<p>{{ icon }}</p>
+				</div>
+				<div class="NameInterest">
+					<p>{{ name }}</p>
+				</div>
+			</div>
+			{% endfor %}
+
+			<div class="interestPattern" style='cursor:pointer;' id='ShowAllInterests'>
+				<div class="iconInterest">
+					<p>👀</p>
+				</div>
+				<div class="NameInterest">
+					<p>Дивитись всі</p>
+				</div>
+			</div>
+
+		</div>
 
 
 
@@ -148,10 +183,10 @@ function showBackSubs(){
 
 $(document).on({
 	 ajaxStop: function() {
-		 if (document.getElementById('listUsersAjax').classList.contains('hide')){
+		 if (document.getElementById('listUsersAjax').classList.contains('hide') && document.getElementById('intList').classList.contains('active') == false){
 			  $('#preloading1').toggleClass('hide');
 				document.getElementById("listUsersAjaxFollows").style.borderTop = '2px solid lightgrey';
-		} else {
+		} else if(document.getElementById('listUsersAjaxFollows').classList.contains('hide') && document.getElementById('intList').classList.contains('active') == false) {
 			$('#preloading').toggleClass('hide');
 			document.getElementById("listUsersAjax").style.borderTop = '2px solid lightgrey';
 		}
@@ -191,6 +226,24 @@ showFollows.addEventListener('click', function(){
 
 
 })
+
+document.getElementById('ShowAllInterests').addEventListener('click', function(){
+
+	setTimeout(showBackSubs, 1)
+	$('#id_closeSubsList').toggleClass('hide');
+	$('#intList').toggleClass('hide')
+	$('#intList').toggleClass('active')
+	$.get('/loadInterests/',
+				{'email':$('#id_email').val()},
+				function(response){
+					console.log(response)
+			 }
+	);
+
+})
+
+
+
 showSubs.addEventListener('click', function(){
 	$('#listUsersAjaxFollows').toggleClass('hide')
 	$('#listUsersAjax').toggleClass('hide')
@@ -203,8 +256,15 @@ showSubs.addEventListener('click', function(){
 closeSubsList.addEventListener('click', function(){
 	setTimeout(showBackSubs, 1)
 	$('#id_closeSubsList').toggleClass('hide');
-	$('.subLists').toggleClass('hide')
-	$('.subLists').toggleClass('active')
+	if (document.getElementById('subslist').classList.contains('hide')){
+		console.log('Hi there)')
+		$('#intList').toggleClass('hide')
+		$('#intList').toggleClass('active')
+	} else{
+		$('.subLists').toggleClass('hide')
+		$('.subLists').toggleClass('active')
+	 }
+
 });
 
 showSubsBtn.addEventListener('click', function(){

@@ -131,6 +131,13 @@ class RecipeProduct(models.Model):
 		return f'/{self.id}'
 
 
+class AllInterests(models.Model):
+	icon = models.CharField(max_length=5, blank=True)
+	name = models.CharField(max_length=60, blank=True)
+
+	def __str__(self):
+		return self.icon + self.name
+
 class CustomUser(AbstractBaseUser):
 	RANKS = (("Початківець","Початківець"),("Професіонал","Професіонал"))
 	first_name = models.CharField("first_name", max_length=50, blank=True)
@@ -138,6 +145,7 @@ class CustomUser(AbstractBaseUser):
 	email = models.CharField("email", max_length=250, unique=True)
 	about = models.TextField('about', blank=True)
 	amount_of_reciped = models.IntegerField('Recipes amount', default=0)
+	interests = models.ManyToManyField(AllInterests, blank=True)
 	SEX = (('Чоловіча','male'),('Жіноча','female'))
 	username = models.CharField("username", max_length=50, blank=True)
 	achievements = models.ManyToManyField(Achievements, blank=True)

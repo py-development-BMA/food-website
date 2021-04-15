@@ -12,6 +12,25 @@ Feed
     <div class="flexFriendTextHead">
       <img src="{% static 'img/contacts-128.png' %}" alt="friends">
       <p class="yourfriendsarelookin">Ваші друзі слідкують за:</p>
+
+      </div>
+      <div class="reclistFriends" id='frList'>
+
+        
+        <div class="frPattern">
+          <div class="imgFriendEx">
+            <img src="{{ request.user.image_profile.url }}" class="usersinfoImageFriendListRec">
+          </div>
+          <div class="infoFriendEx">
+            <p class='infoExFriendText'>{{ request.user.first_name }} {{ request.user.last_name }}</p>
+            <div class="rankFlex">
+              <img src="{% static 'img/cook-128.png' %}" class="medalPost">
+              <p>{{ request.user.rank }}</p>
+            </div>
+          </div>
+        </div>
+
+
     </div>
 
   </div>
@@ -84,6 +103,20 @@ Feed
 
 </div>
 <script>
+
+  window.onload = function(){
+    $.get('/friendrec/',
+          function(response){
+              //document.getElementById('frList').innerHTML += response.misha
+         }
+
+    );
+  }
+
+
+
+
+
     function openComments(num){
         $('.commex'+num).toggleClass('commentsOpened');
         if (document.getElementById("commm" + num).classList.contains('commentsOpened')){
