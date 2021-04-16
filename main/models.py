@@ -135,6 +135,7 @@ class AllInterests(models.Model):
 	icon = models.CharField(max_length=5, blank=True)
 	name = models.CharField(max_length=60, blank=True)
 	english = models.CharField(max_length=60, blank=True)
+	peopleSelected = models.IntegerField('Users selected', default=0, blank=True)
 
 	def __str__(self):
 		return self.icon + self.name

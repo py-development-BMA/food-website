@@ -56,6 +56,9 @@ class PostToLike(forms.Form):
 	whoLikes = forms.CharField(max_length=100)
 	whatToLike = forms.CharField(max_length=100)
 
+class InterestAction(forms.Form):
+	actionToDo = forms.CharField(max_length=100, required=False)
+	newInterest = forms.CharField(max_length=100, required=False)
 
 
 class AlexEx(forms.Form):

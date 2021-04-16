@@ -1,6 +1,8 @@
 {% extends "main/header.html" %}
 {% load static %}
 {% block content %}
+{% csrf_token %}
+<input type="hidden" id='whatIsHappening' value="nothing">
 <input type="hidden" id='id_whatToShowSubs' value="subs">
 <input type="hidden" id='id_email' value="{{ request.user.email }}">
 <div class="subListsbackHide hide" id='id_closeSubsList'>
@@ -176,7 +178,7 @@ let closeSubsList = document.getElementById('id_closeSubsList');
 let showSubs = document.getElementById('id_mysubs')
 let showFollows = document.getElementById('id_myfollows')
 
-
+let wtish = 'nothing'
 
 
 let is_SubsListOpened = false
@@ -194,7 +196,7 @@ $(document).on({
 		} else if(document.getElementById('listUsersAjaxFollows').classList.contains('hide') && document.getElementById('intList').classList.contains('active') == false) {
 			$('#preloading').toggleClass('hide');
 			document.getElementById("listUsersAjax").style.borderTop = '2px solid lightgrey';
-		} else {
+		} else if (document.getElementById('intList').classList.contains('active') == true && wtish == 'nothing') {
 			$('#preloading2').toggleClass('hide');
 			document.getElementById("listInterestsAjax").style.borderTop = '2px solid lightgrey';
 		}
@@ -206,6 +208,8 @@ $(document).on({
 
 
 function addInterest(elem){
+	wtish = 'smt'
+	ninter = $('#id_'+elem+'_inp').attr('name')
 	if (document.getElementById('id_' + elem + '_inp').checked == true){
 	//document.getElementById('id_' + elem + '_inp').checked = true
 	document.getElementById('id_' + elem + '_inpBlock').style.border = '2px solid #E46F6F';
@@ -213,6 +217,21 @@ function addInterest(elem){
 	document.getElementById('id_NameInterest'+elem).style.lineHeight = '26px'
 	document.getElementById('id_iconInter'+elem).style.marginTop = '3px'
 	//alert(document.getElementById('id_' + elem + '_inpBlock').style.width)
+	$.ajax({
+		type:'POST',
+		url:'/loadInterests/',
+		data:{
+
+			actionToDo:'add',
+			newInterest:ninter,
+			csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+	},
+	success:function(){
+		console.log('added')
+		}
+	})
+
+
 } else {
 	//document.getElementById('id_' + elem + '_inp').checked = false
 	document.getElementById('id_' + elem + '_inpBlock').style.height = '30px'
@@ -220,6 +239,19 @@ function addInterest(elem){
 	document.getElementById('id_NameInterest'+elem).style.lineHeight = '30px'
 	document.getElementById('id_iconInter'+elem).style.marginTop = '5px'
 
+	$.ajax({
+		type:'POST',
+		url:'/loadInterests/',
+		data:{
+
+			actionToDo:'remove',
+			newInterest:ninter,
+			csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+	},
+	success:function(){
+		console.log('added')
+		}
+	})
 }
 }
 

@@ -139,7 +139,7 @@ def profile(request):
 def loadInterests(request):
 	if request.method == 'GET':
 		listOfInters = CustomUser.objects.get(email=request.GET.get('email')).interests.all()
-		allInterests = AllInterests.objects.all()
+		allInterests = AllInterests.objects.all().order_by('-peopleSelected')
 		inside_arr = []
 		my_interests = []
 		arr_out = []
@@ -147,6 +147,7 @@ def loadInterests(request):
 			my_interests.append(item.name)
 
 		for item in allInterests:
+			print(item.name)
 			inside_arr = []
 			inside_arr.append(item.icon)
 			inside_arr.append(item.english)
@@ -160,7 +161,22 @@ def loadInterests(request):
 
 
 		return HttpResponse(json.dumps(arr_out, ensure_ascii=False), content_type='application/json')
-
+	if request.method == 'POST':
+		form = InterestAction(request.POST)
+		if form.is_valid():
+			cuser = CustomUser.objects.get(email=request.user.email)
+			interestSelected = AllInterests.objects.get(english=form.cleaned_data.get('newInterest'))
+			if form.cleaned_data.get('actionToDo') == 'add':
+				cuser.interests.add(interestSelected)
+				interestSelected.peopleSelected += 1
+				interestSelected.save()
+				cuser.save()
+			else:
+				cuser.interests.remove(interestSelected)
+				interestSelected.peopleSelected -= 1
+				interestSelected.save()
+				cuser.save()
+		return HttpResponse('')
 
 def loadSubs(request):
 	if request.method == 'GET':
