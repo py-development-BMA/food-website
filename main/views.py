@@ -178,6 +178,9 @@ def loadInterests(request):
 				cuser.save()
 		return HttpResponse('')
 
+
+
+
 def loadSubs(request):
 	if request.method == 'GET':
 		if request.GET.get('wtd') == 'subs':
@@ -412,12 +415,54 @@ def feedPage(request):
 
 def friendrec(request):
 	data = {}
-	mas = []
-	arr2 = []
+	usersRec = []
+	conc_count = []
+	out_Recs = []
+	myInterests = request.user.interests.all()
 	if request.method == 'GET':
+		userSubs = Subscribtion.objects.get(user=request.user)
+		k = 4
+		for user_fol in userSubs.following.all():
+			if k != 0:
+				userExFolowers = Subscribtion.objects.get(user=user_fol).following.all()
+				for item in userExFolowers:
+					if item.email != request.user.email and item not in usersRec and item not in userSubs.following.all():
+						sp = 0
+						if len(myInterests)>=len(item.interests.all()):
+							for inter in myInterests:
+								if inter in item.interests.all():
+									sp += 1
+							if sp >= 3:
+								usersRec.append(item)
+								conc_count.append(sp)
+						else:
+							for inter in item.interests.all():
+								if inter in myInterests:
+									sp += 1
+							if sp >= 3:
+								usersRec.append(item)
+								conc_count.append(sp)
 
-		data['arr'] = []
-	return HttpResponse(json.dumps(data, ensure_ascii=False), content_type='application/json')
+	out_Recs = list(zip(usersRec, conc_count))
+	out_Recs = reversed(sorted(out_Recs, key = lambda x: x[1]))
+	a = []
+	out = []
+	k1 = 0
+	print(out_Recs)
+	for user, conc in out_Recs:
+		if k1 != 4:
+			a = []
+			a.append(user.image_profile.url)
+			a.append(user.first_name)
+			a.append(user.last_name)
+			a.append(user.rank)
+			a.append(conc)
+			a.append(user.pk)
+			k += 1
+			out.append(a)
+		else:
+			break
+	return HttpResponse(json.dumps(out, ensure_ascii=False), content_type='application/json')
 
 
 

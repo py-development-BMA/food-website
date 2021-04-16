@@ -6371,6 +6371,7 @@ cursor: pointer;
     width: 50px;
     margin-left:13px;
     object-fit: cover;
+    border-radius: 50px;
   }
   .interestsSec{
 
