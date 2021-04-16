@@ -6494,6 +6494,22 @@ cursor: pointer;
       display: flex;
       flex-flow: row wrap;
     }
+    .linePreloader2{
+        width:300px;
+        height:2px;
+        background:linear-gradient(to right, #FF8989,#C56565);
+        background-color:#ccc;
+        top:0;
+        bottom:0;
+        left:0;
+        right:0;
+        margin-top:-1px;
+        border-radius:4px;
+        background-size:20%;
+        background-repeat:repeat-y;
+        background-position:-25% 0;
+        animation:scroll 1.2s ease-in-out infinite;
+      }
 }
 
 

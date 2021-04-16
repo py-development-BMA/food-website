@@ -469,22 +469,11 @@ def friendrec(request):
 
 
 def alexPost(request):
-
 	if request.method == 'POST':
 		form = AlexEx(request.POST)
 		if form.is_valid():
-			for item in RecipeProduct.objects.all():
-				if item.name == form.cleaned_data.get('alexExText') :
-
-					db_example = Example.objects.get(user2=request.user)
-					db_example.my_products.add(item)
-					db_example.save()
-			return redirect('alexPost')
-	else:
-		text = Example.objects.all()
-
-
-		context = {
-			'text':text,
-		}
-		return render(request, 'main/alexPost.html', context)
+			ExampleAlex.objects.create(
+				user2=request.user,
+				my_products=form.cleaned_data.get('alexExText')
+			)
+	return render(request, 'main/alexPost.html')

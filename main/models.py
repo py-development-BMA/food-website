@@ -197,6 +197,9 @@ class PostLike(models.Model):
 		return self.post.name
 
 
-class Example(models.Model):
-	my_products = models.ManyToManyField(RecipeProduct, blank=True)
-	user2 = models.OneToOneField(CustomUser, blank=True, on_delete=models.PROTECT, null=True)
+class ExampleAlex(models.Model):
+	my_products = models.CharField(max_length=200, blank=True)
+	user2 = models.ForeignKey(CustomUser, blank=True, on_delete=models.PROTECT, null=True)
+
+	def __str__(self):
+		return self.my_products

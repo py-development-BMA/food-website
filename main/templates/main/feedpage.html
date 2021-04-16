@@ -15,22 +15,7 @@ Feed
 
       </div>
       <div class="reclistFriends" id='frList'>
-
-
-        <div class="frPattern">
-          <div class="imgFriendEx">
-            <img src="{{ request.user.image_profile.url }}" class="usersinfoImageFriendListRec">
-          </div>
-          <div class="infoFriendEx">
-            <p class='infoExFriendText'>{{ request.user.first_name }} {{ request.user.last_name }}</p>
-            <div class="rankFlex">
-              <img src="{% static 'img/cook-128.png' %}" class="medalPost">
-              <p>{{ request.user.rank }}</p>
-            </div>
-          </div>
-        </div>
-
-
+        <div id='preloading4' class="linePreloader2"></div>
     </div>
 
   </div>
@@ -103,6 +88,12 @@ Feed
 
 </div>
 <script>
+  $(document).on({
+  	 ajaxStop: function() {
+       $('#preloading4').toggleClass('hide')
+     }
+   });
+
 
   window.onload = function(){
     $.get('/friendrec/',

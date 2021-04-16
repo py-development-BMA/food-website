@@ -3,8 +3,8 @@
 {% block content %}
 <!-- GET, POST !-->
 
-<form method="post">
-  {% csrf_token %}
+
+{% csrf_token %}
 <br>
 <br>
 <br>
@@ -13,15 +13,14 @@
 <br>
 <br>
 <br>
-<br>
+
 <br>
 <p align='center'>Send example form</p>
-<p align='center'><input type="text" name="alexExText" placeholder="Type your value.."></p>
-<p align='center'><input type="submit" id='alexLabel' value='sendPOST'></p>
+<p align='center'><input type="text" id='alexText' placeholder="Type your value.."></p>
+<p align='center'><input type="submit" id='alexLabel' value='AJAX DO IT!'></p>
 
 
 
-</form>
 {% for item in text %}
 
   {% for elem in item.my_products.all %}
@@ -33,4 +32,23 @@
   </div>
 {% endfor %}
 {% endfor %}
+<script>
+  let ajaxSendBtn = document.getElementById('alexLabel')
+
+  ajaxSendBtn.addEventListener('click', function(e){
+    e.preventDefault();
+    $.ajax({
+      type:'POST',
+      url:'/alexPost/',
+      data:{
+        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+        alexExText:$('#alexText').val(),
+    },
+    success:function(){
+      alert('success')
+    }
+    })
+  })
+
+</script>
 {% endblock %}

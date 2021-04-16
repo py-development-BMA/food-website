@@ -62,4 +62,4 @@ class InterestAction(forms.Form):
 
 
 class AlexEx(forms.Form):
-	alexExText = forms.CharField(max_length=300)
+	alexExText = forms.CharField(max_length=300, required=False)
