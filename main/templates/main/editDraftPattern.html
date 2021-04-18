@@ -1,0 +1,463 @@
+{% extends "main/header.html" %}
+{% load static %}
+{% block content %}
+
+<div class="profileBlock">
+  <h2 class="main_head_text">Створити рецепт</h2>
+  <div class="flexPhotoInfo">
+    <div class="infoAboutMeAdd">
+      <form  style='display:none' method="POST" action='.' id="ajax" enctype="multipart/form-data">
+        {% csrf_token %}
+      <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" id="id_uuid_recipe" value='{{ recipe.uuid_recipe }}'></p>
+      <input type="text" name="wtr" id='wtrFile' value="">
+      <input type="file" name="image" id="inputFile">
+      <input id="submit12" type="submit" value='add'>
+    </form>
+
+
+        <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" id="id_uuid_recipe" value='{{ recipe.uuid_recipe }}'></p>
+        <p style="display:none;"><input type="text" name="emailof_creator" value="{{ request.user.email }}" ></p>
+        <p class="centerB"><input type="text" name="name" class="nameAdd" placeholder="Назва страви" maxlength="250" id="id_name" onchange="saveDraft('name')" {% if recipe.name != None %} value='{{ recipe.name }}'{% endif %}></p>
+        {% if recipe.image_prod == 'blank.png'%}
+        <p class="centerB"><img id="blah0" src="#" alt="your image" class="hide" /></p>
+        <p class="centerPhoto"><label class="customMain0" for="id_image_prod"><img class="wrapper_photo" src="{% static 'img/add_photo.png' %}"><br>Додати фото обкладинки</label></p>
+        {% else %}
+        <p class="centerB"><img id="blah0" src="{{ recipe.image_prod.url }}" alt="your image" class="" /></p>
+        <p class="centerPhoto"><label class="customMainSelected0" for="id_image_prod">Змінити фото</label></p>
+        {% endif %}
+
+       <p class="locate_center"><input type="text" name="description" class="descriptionAdd" placeholder="Короткий опис" maxlength="200" id="id_description" onchange="saveDraft('description')" {% if recipe.description != None %} value='{{ recipe.description }}' {% endif %}></p>
+      <p class="locate_center"><input type="text" name="time" class="timeAdd" placeholder="Час для приготування" maxlength="50" id="id_time" onchange="saveDraft('time')" {% if recipe.time != None %} value='{{ recipe.time }}' {% endif %}></p>
+      <p class="locate_center">Категорія: <select name="category" id="id_category" onchange="saveDraft('category')">
+  <option value="" {% if recipe.category == 'None' %}selected{% endif %}>---------</option>
+
+  <option value="Горячие блюда" {% if recipe.category == 'Горячие блюда' %}selected{% endif %}>Горячие блюда</option>
+
+  <option value="Бульоны и супы" {% if recipe.category == 'Бульоны и супы' %}selected{% endif %}>Бульоны и супы</option>
+
+  <option value="Салаты" {% if recipe.category == 'Салаты' %}selected{% endif %}>Салаты</option>
+
+  <option value="Закуски" {% if recipe.category == 'Закуски' %}selected{% endif %}>Закуски</option>
+
+  <option value="Выпечка" {% if recipe.category == 'Выпечка' %}selected{% endif %}>Выпечка</option>
+
+  <option value="Десерты" {% if recipe.category == 'Десерты' %}selected{% endif %}>Десерты</option>
+
+  <option value="Соусы" {% if recipe.category == 'Соусы' %}selected{% endif %}>Соусы</option>
+
+</select></p>
+      <p class="locate_center">Складність: <select name="hardnessCook" id="id_hardnessCook" onchange="saveDraft('hardnessCook')">
+  <option value="" {% if recipe.hardnessCook == 'None' %}selected{% endif %}>---------</option>
+
+  <option value="Очень легко" {% if recipe.hardnessCook == 'Очень легко' %}selected{% endif %}>Очень легко</option>
+
+  <option value="Легко" {% if recipe.hardnessCook == 'Легко' %}selected{% endif %}>Легко</option>
+
+  <option value="Средняя сложность" {% if recipe.hardnessCook == 'Средняя сложность' %}selected{% endif %}>Средняя сложность</option>
+
+  <option value="Нужен опыт" {% if recipe.hardnessCook == 'Нужен опыт' %}selected{% endif %}>Нужен опыт</option>
+
+  <option value="Сложно" {% if recipe.hardnessCook == 'Сложно' %}selected{% endif %}>Сложно</option>
+
+  <option value="Очень сложно" {% if recipe.hardnessCook == 'Очень сложно' %}selected{% endif %}>Очень сложно</option>
+
+</select></p>
+
+            <p class="ingredients_text">Інгредієнти</p>
+
+      <div class="ingr1" id="ingr1">
+          <h5 id="ingr1_style">{{form.ingredient1}}</h5>
+          <h5 id="ingr2_style">{{form.mas1}}</h5>
+          <p class="center"><span  class="" id="addRecBtnIngr1" onclick="addRecFormIngr(1)"></span></p>
+      </div>
+      <div class="hide" id="ing2">
+      <div id="ingr2">
+          <h5 id="ingr1_style">{{form.ingredient2}}</h5>
+          <h5 id="ingr2_style">{{form.mas2}}</h5>
+          <p class="center"><span  class="" id="addRecBtnIngr2" onclick="addRecFormIngr(2)"></span></p>
+      </div>
+    </div>
+      <div class="hide" id="ing3">
+      <div class="hide" id="ingr3">
+          <h5 id="ingr1_style">{{form.ingredient3}}</h5>
+          <h5 id="ingr2_style">{{form.mas3}}</h5>
+          <p class="center"><span  class="" id="addRecBtnIngr3" onclick="addRecFormIngr(3)"></span></p>
+      </div>
+    </div>
+      <div class="hide" id="ing4">
+      <div class="hide" id="ingr4">
+          <h5 id="ingr1_style">{{form.ingredient4}}</h5>
+          <h5 id="ingr2_style">{{form.mas4}}</h5>
+          <p class="center"><span  class="" id="addRecBtnIngr4" onclick="addRecFormIngr(4)"></span></p>
+      </div>
+    </div>
+      <div class="hide" id="ing5">
+      <div class="hide" id="ingr5">
+          <h5 id="ingr1_style">{{form.ingredient5}}</h5>
+          <h5 id="ingr2_style">{{form.mas5}}</h5>
+          <p class="center"><span  class="" id="addRecBtnIngr5" onclick="addRecFormIngr(5)"></span></p>
+      </div>
+    </div>
+      <div class="hide" id="ing6">
+      <div class="hide" id="ingr6">
+          <h5 id="ingr1_style">{{form.ingredient6}}</h5>
+          <h5 id="ingr2_style">{{form.mas6}}</h5>
+          <p class="center"><span  class="" id="addRecBtnIngr6" onclick="addRecFormIngr(6)"></span></p>
+      </div>
+    </div>
+      <div class="hide" id="ing7">
+      <div class="hide" id="ingr7">
+          <h5 id="ingr1_style">{{form.ingredient7}}</h5>
+          <h5 id="ingr2_style">{{form.mas7}}</h5>
+          <p class="center"><span  class="" id="addRecBtnIngr7" onclick="addRecFormIngr(7)"></span></p>
+      </div>
+    </div>
+      <div class="hide" id="ing8">
+      <div class="hide" id="ingr8">
+          <h5 id="ingr1_style">{{form.ingredient8}}</h5>
+          <h5 id="ingr2_style">{{form.mas8}}</h5>
+          <p class="center"><span  class="" id="addRecBtnIngr8" onclick="addRecFormIngr(8)"></span></p>
+      </div>
+    </div>
+      <div class="hide" id="ing9">
+      <div class="hide" id="ingr9">
+          <h5 id="ingr1_style">{{form.ingredient9}}</h5>
+          <h5 id="ingr2_style">{{form.mas9}}</h5>
+          <p class="center"><span  class="" id="addRecBtnIngr9" onclick="addRecFormIngr(9)"></span></p>
+      </div>
+    </div>
+      <div class="hide" id="ing10">
+      <div class="hide" id="ingr10">
+          <h5 id="ingr1_style">{{form.ingredient10}}</h5>
+          <h5 id="ingr2_style">{{form.mas10}}</h5>
+          <p class="center"><span  class="" id="addRecBtnIngr10" onclick="addRecFormIngr(10)"></span></p>
+      </div>
+    </div>
+
+      <div class="step1" id="step1">
+            <p class="step_inscription">Крок 1</p>
+          <p id="desc1_style"><textarea name="desc1" cols="40" rows="10" id="id_desc1" onchange="saveDraft('desc1')" placeholder="Опишіть 1 шаг приготування вашого шедевру" spellcheck="false">{% if recipe.desc1 != None %}{{ recipe.desc1 }}{% endif %}</textarea></p>
+          {% if recipe.image1 == 'blank.png'%}
+          <p class="centerB"><img id="blah1" src="#" alt="your image" class="hide" /></p>
+          <p class="centerPhoto"><label class="customMain1" for="id_image1"><img class="wrapper_photo" src="{% static 'img/add_photo.png' %}"><br>Додати фото кроку</label></p>
+          {% else %}
+          <p class="centerB"><img id="blah1" src="{{ recipe.image1.url }}" alt="your image" class="" /></p>
+          <p class="centerPhoto"><label class="customMainSelected1" for="id_image1">Змінити фото</label></p>
+          {% endif %}
+
+          <p class="center"><div {% if recipe.image2 != 'blank.png'%}class="hide"{% endif %} id="addRecBtn1" onclick="addRecForm(1)">Додати крок</div></p>
+      </div>
+
+
+      <div {% if recipe.image2 == 'blank.png'%} class="hide" {% endif %} id="step2">
+
+            <p class="step_inscription">Крок 2</p>
+
+          <h5 id="desc1_style"><textarea name="desc2" cols="40" rows="10" id="id_desc2" onchange="saveDraft('desc2')" placeholder="Опишіть 2 крок приготування вашого шедевру" spellcheck="false">{% if recipe.desc2 != None %}{{ recipe.desc2 }}{% endif %}</textarea></h5>
+          {% if recipe.image2 == 'blank.png'%}
+          <p class="centerB"><img id="blah2" src="#" alt="your image" class="hide" /></p>
+          <p class="centerPhoto"><label class="customMain2" for="id_image2"><img class="wrapper_photo" src="{% static 'img/add_photo.png' %}"><br>Додати фото кроку</label></p>
+          {% else %}
+          <p class="centerB"><img id="blah2" src="{{ recipe.image2.url }}" alt="your image" class="" /></p>
+          <p class="centerPhoto"><label class="customMainSelected2" for="id_image2">Змінити фото</label></p>
+          {% endif %}
+           <p class="center"><div {% if recipe.image3 != 'blank.png'%}class="hide"{% endif %} id="addRecBtn2" onclick="addRecForm(2)">Додати крок</div></p>
+      </div>
+      <div {% if recipe.image3 == 'blank.png'%} class="hide" {% endif %} id="step3">
+
+            <p class="step_inscription">Крок 3</p>
+
+          <h5 id="desc1_style"><textarea name="desc3" cols="40" rows="10" id="id_desc3" onchange="saveDraft('desc3')" placeholder="Опишіть 3 крок приготування вашого шедевру" spellcheck="false">{% if recipe.desc3 != None %}{{ recipe.desc3 }}{% endif %}</textarea></h5>
+          {% if recipe.image3 == 'blank.png'%}
+          <p class="centerB"><img id="blah3" src="#" alt="your image" class="hide" /></p>
+          <p class="centerPhoto"><label class="customMain3" for="id_image3"><img class="wrapper_photo" src="{% static 'img/add_photo.png' %}"><br>Додати фото кроку</label></p>
+          {% else %}
+          <p class="centerB"><img id="blah3" src="{{ recipe.image3.url }}" alt="your image" class="" /></p>
+          <p class="centerPhoto"><label class="customMainSelected3" for="id_image3">Змінити фото</label></p>
+          {% endif %}<p class="lefter"><div  {% if recipe.image4 != 'blank.png'%}class="hide"{% endif %} id="addRecBtn3" onclick="addRecForm(3)">Додати крок</div></p>
+      </div>
+      <div {% if recipe.image4 == 'blank.png'%} class="hide" {% endif %} id="step4">
+
+            <p class="step_inscription">Крок 4</p>
+
+          <h5 id="desc1_style"><textarea name="desc4" cols="40" rows="10" id="id_desc4" onchange="saveDraft('desc4')" placeholder="Опишіть 4 крок приготування вашого шедевру" spellcheck="false">{% if recipe.desc4 != None %}{{ recipe.desc4 }}{% endif %}</textarea></h5>
+          {% if recipe.image4 == 'blank.png'%}
+          <p class="centerB"><img id="blah4" src="#" alt="your image" class="hide" /></p>
+          <p class="centerPhoto"><label class="customMain4" for="id_image4"><img class="wrapper_photo" src="{% static 'img/add_photo.png' %}"><br>Додати фото кроку</label></p>
+          {% else %}
+          <p class="centerB"><img id="blah4" src="{{ recipe.image4.url }}" alt="your image" class="" /></p>
+          <p class="centerPhoto"><label class="customMainSelected4" for="id_image4">Змінити фото</label></p>
+          {% endif %}<p class="lefter"><div  {% if recipe.image5 != 'blank.png'%}class="hide"{% endif %} id="addRecBtn4" onclick="addRecForm(4)">Додати крок</div></p>
+      </div>
+      <div {% if recipe.image5 == 'blank.png'%} class="hide" {% endif %} id="step5">
+
+            <p class="step_inscription">Крок 5</p>
+            <h5 id="desc1_style"><textarea name="desc5" cols="40" rows="10" id="id_desc5" onchange="saveDraft('desc5')" placeholder="Опишіть 5 крок приготування вашого шедевру" spellcheck="false">{% if recipe.desc5 != None %}{{ recipe.desc5 }}{% endif %}</textarea></h5>
+            {% if recipe.image5 == 'blank.png'%}
+            <p class="centerB"><img id="blah5" src="#" alt="your image" class="hide" /></p>
+            <p class="centerPhoto"><label class="customMain5" for="id_image5"><img class="wrapper_photo" src="{% static 'img/add_photo.png' %}"><br>Додати фото кроку</label></p>
+            {% else %}
+            <p class="centerB"><img id="blah5" src="{{ recipe.image5.url }}" alt="your image" class="" /></p>
+            <p class="centerPhoto"><label class="customMainSelected5" for="id_image5">Змінити фото</label></p>
+            {% endif %}
+          <p class="lefter"><div  {% if recipe.image6 != 'blank.png'%}class="hide"{% endif %} id="addRecBtn5" onclick="addRecForm(5)">Додати крок</div></p>
+      </div>
+      <div {% if recipe.image6 == 'blank.png'%} class="hide" {% endif %} id="step6">
+
+            <p class="step_inscription">Крок 6</p>
+
+          <h5 id="desc1_style"><textarea name="desc6" cols="40" rows="10" id="id_desc6" onchange="saveDraft('desc6')" placeholder="Опишіть 6 крок приготування вашого шедевру" spellcheck="false">{% if recipe.desc6 != None %}{{ recipe.desc6 }}{% endif %}</textarea></h5>
+          {% if recipe.image6 == 'blank.png'%}
+          <p class="centerB"><img id="blah6" src="#" alt="your image" class="hide" /></p>
+          <p class="centerPhoto"><label class="customMain6" for="id_image6"><img class="wrapper_photo" src="{% static 'img/add_photo.png' %}"><br>Додати фото кроку</label></p>
+          {% else %}
+          <p class="centerB"><img id="blah6" src="{{ recipe.image6.url }}" alt="your image" class="" /></p>
+          <p class="centerPhoto"><label class="customMainSelected6" for="id_image6">Змінити фото</label></p>
+          {% endif %}<p class="lefter"><div  {% if recipe.image7 != 'blank.png'%}class="hide"{% endif %} id="addRecBtn6" onclick="addRecForm(6)">Додати крок</div></p>
+      </div>
+      <div {% if recipe.image7 == 'blank.png'%} class="hide" {% endif %} id="step7">
+
+            <p class="step_inscription">Крок 7</p>
+
+          <h5 id="desc1_style"><textarea name="desc7" cols="40" rows="10" id="id_desc7" onchange="saveDraft('desc7')" placeholder="Опишіть 7 крок приготування вашого шедевру" spellcheck="false">{% if recipe.desc7 != None %}{{ recipe.desc7 }}{% endif %}</textarea></h5>
+          {% if recipe.image7 == 'blank.png'%}
+          <p class="centerB"><img id="blah7" src="#" alt="your image" class="hide" /></p>
+          <p class="centerPhoto"><label class="customMain7" for="id_image7"><img class="wrapper_photo" src="{% static 'img/add_photo.png' %}"><br>Додати фото кроку</label></p>
+          {% else %}
+          <p class="centerB"><img id="blah7" src="{{ recipe.image7.url }}" alt="your image" class="" /></p>
+          <p class="centerPhoto"><label class="customMainSelected7" for="id_image7">Змінити фото</label></p>
+          {% endif %}<p class="lefter"><div  {% if recipe.image8 != 'blank.png'%}class="hide"{% endif %} id="addRecBtn7" onclick="addRecForm(7)">Додати крок</div></p>
+      </div>
+      <div {% if recipe.image8 == 'blank.png'%} class="hide" {% endif %} id="step8">
+
+            <p class="step_inscription">Крок 8</p>
+
+          <h5 id="desc1_style"><textarea name="desc8" cols="40" rows="10" id="id_desc8" onchange="saveDraft('desc8')" placeholder="Опишіть 8 крок приготування вашого шедевру" spellcheck="false">{% if recipe.desc8 != None %}{{ recipe.desc8 }}{% endif %}</textarea></h5>
+          {% if recipe.image8 == 'blank.png'%}
+          <p class="centerB"><img id="blah8" src="#" alt="your image" class="hide" /></p>
+          <p class="centerPhoto"><label class="customMain8" for="id_image8"><img class="wrapper_photo" src="{% static 'img/add_photo.png' %}"><br>Додати фото кроку</label></p>
+          {% else %}
+          <p class="centerB"><img id="blah8" src="{{ recipe.image8.url }}" alt="your image" class="" /></p>
+          <p class="centerPhoto"><label class="customMainSelected8" for="id_image8">Змінити фото</label></p>
+          {% endif %}<p class="lefter"><div  {% if recipe.image9 != 'blank.png'%}class="hide"{% endif %} id="addRecBtn8" onclick="addRecForm(8)">Додати крок</div></p>
+      </div>
+      <div {% if recipe.image9 == 'blank.png'%} class="hide" {% endif %} id="step9">
+
+            <p class="step_inscription">Крок 9</p>
+
+          <h5 id="desc1_style"><textarea name="desc9" cols="40" rows="10" id="id_desc9" onchange="saveDraft('desc9')" placeholder="Опишіть 9 крок приготування вашого шедевру" spellcheck="false">{% if recipe.desc9 != None %}{{ recipe.desc9 }}{% endif %}</textarea></h5>
+          {% if recipe.image9 == 'blank.png'%}
+          <p class="centerB"><img id="blah9" src="#" alt="your image" class="hide" /></p>
+          <p class="centerPhoto"><label class="customMain9" for="id_image8"><img class="wrapper_photo" src="{% static 'img/add_photo.png' %}"><br>Додати фото кроку</label></p>
+          {% else %}
+          <p class="centerB"><img id="blah9" src="{{ recipe.image9.url }}" alt="your image" class="" /></p>
+          <p class="centerPhoto"><label class="customMainSelected9" for="id_image9">Змінити фото</label></p>
+          {% endif %}<p class="lefter"><div  {% if recipe.image10 != 'blank.png'%}class="hide"{% endif %} id="addRecBtn9" onclick="addRecForm(9)">Додати крок</div></p>
+      </div>
+      <div {% if recipe.image10 == 'blank.png'%} class="hide" {% endif %} id="step10">
+
+            <p class="step_inscription">Крок 10</p>
+
+          <h5 id="desc1_style"><textarea name="desc10" cols="40" rows="10" id="id_desc10" onchange="saveDraft('desc10')" placeholder="Опишіть 10 крок приготування вашого шедевру" spellcheck="false">{% if recipe.desc10 != None %}{{ recipe.desc10 }}{% endif %}</textarea></h5>
+          {% if recipe.image10 == 'blank.png'%}
+          <p class="centerB"><img id="blah10" src="#" alt="your image" class="hide" /></p>
+          <p class="centerPhoto"><label class="customMain10" for="id_image10"><img class="wrapper_photo" src="{% static 'img/add_photo.png' %}"><br>Додати фото кроку</label></p>
+          {% else %}
+          <p class="centerB"><img id="blah10" src="{{ recipe.image10.url }}" alt="your image" class="" /></p>
+          <p class="centerPhoto"><label class="customMainSelected10" for="id_image10">Змінити фото</label></p>
+          {% endif %}<p class="lefter"><div  class="" id="addRecBtn10" onclick="alertError()">Додати крок</div></p>
+      </div>
+
+      <form id='formImg0' method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input style="display:none;" type="text" name="wtr" id='wtrFile' value="mainImage">
+            <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" id="id_uuid_recipe" value='{{ recipe.uuid_recipe }}'></p>
+            <input type="file" name="image" accept="image/*" id="id_image_prod" onchange="readURL(this, 0);">
+      </form>
+      <form id='formImg1' method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input style="display:none;" type="text" name="wtr" id='wtrFile' value="img1">
+        <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" id="id_uuid_recipe" value='{{ recipe.uuid_recipe }}'></p>
+
+      <input type="file" style="display: none;" name="image" accept="image/*" id="id_image1" onchange="readURL(this, 1);">
+      </form>
+
+      <form id='formImg2' method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input style="display:none;" type="text" name="wtr" id='wtrFile' value="img2">
+        <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" id="id_uuid_recipe" value='{{ recipe.uuid_recipe }}'></p>
+
+      <input type="file" style="display: none;" name="image" accept="image/*" id="id_image2" onchange="readURL(this, 2);">
+    </form>
+
+    <form id='formImg3' method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input style="display:none;" type="text" name="wtr" id='wtrFile' value="img3">
+      <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" id="id_uuid_recipe" value='{{ recipe.uuid_recipe }}'></p>
+
+      <input type="file" style="display: none;" name="image" accept="image/*" id="id_image3" onchange="readURL(this, 3);">
+    </form>
+
+    <form id='formImg4' method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input style="display:none;" type="text" name="wtr" id='wtrFile' value="img4">
+      <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" id="id_uuid_recipe" value='{{ recipe.uuid_recipe }}'></p>
+      <input type="file" style="display: none;" name="image" accept="image/*" id="id_image4" onchange="readURL(this, 4);">
+    </form>
+    <form id='formImg5' method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input style="display:none;" type="text" name="wtr" id='wtrFile' value="img5">
+      <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" id="id_uuid_recipe" value='{{ recipe.uuid_recipe }}'></p>
+
+      <input type="file" style="display: none;" name="image" accept="image/*" id="id_image5" onchange="readURL(this, 5);">
+    </form>
+    <form id='formImg6' method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input style="display:none;" type="text" name="wtr" id='wtrFile' value="img6">
+      <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" id="id_uuid_recipe" value='{{ recipe.uuid_recipe }}'></p>
+
+      <input type="file" style="display: none;" name="image" accept="image/*" id="id_image6" onchange="readURL(this, 6);">
+    </form>
+    <form id='formImg7' method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input style="display:none;" type="text" name="wtr" id='wtrFile' value="img7">
+      <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" id="id_uuid_recipe" value='{{ recipe.uuid_recipe }}'></p>
+
+      <input type="file" style="display: none;" name="image" accept="image/*" id="id_image7" onchange="readURL(this, 7);">
+    </form>
+    <form id='formImg8' method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input style="display:none;" type="text" name="wtr" id='wtrFile' value="img8">
+      <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" id="id_uuid_recipe" value='{{ recipe.uuid_recipe }}'></p>
+
+      <input type="file" style="display: none;" name="image" accept="image/*" id="id_image8" onchange="readURL(this, 8);">
+    </form>
+    <form id='formImg9' method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input style="display:none;" type="text" name="wtr" id='wtrFile' value="img9">
+      <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" id="id_uuid_recipe" value='{{ recipe.uuid_recipe }}'></p>
+
+      <input type="file" style="display: none;" name="image" accept="image/*" id="id_image9" onchange="readURL(this, 9);">
+    </form>
+    <form id='formImg10' method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input style="display:none;" type="text" name="wtr" id='wtrFile' value="img10">
+      <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" id="id_uuid_recipe" value='{{ recipe.uuid_recipe }}'></p>
+
+      <input type="file" style="display: none;" name="image" accept="image/*" id="id_image10" onchange="readURL(this, 10);">
+    </form>
+      <h4 style="display: none;"><input type="text" name="adderOf" id="id_adderOf" value="{{request.user.username}}"></h4>
+      <div class="lefter"><input type="submit" name="submiting" id='id_submitForm' onclick='saveDraft("submitForm")' value="Сохранить" class="addrButton"></div>
+
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+
+
+
+
+  for(let i = 1;i<=10;i++){
+  document.getElementById("id_desc"+i).placeholder = "Опишіть "+ i+ " шаг приготування вашого шедевру";
+  document.getElementById("id_ingredient"+i).placeholder = "Введіть "+ i+ " інгредієнт";
+  document.getElementById("id_mas"+i).placeholder = "К-сть"
+}
+function readURL(input, num) {
+        if (input.files && input.files[0]) {
+            let reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah'+ num)
+                    .attr('src', e.target.result)
+                document.getElementById("blah"+ num).classList.remove('hide');
+                $('.customMain'+ num).toggleClass("customMainSelected"+ num);
+                 $('.customMain'+ num).toggleClass("customMain"+ num);
+                 $(".customMainSelected"+ num).text("Змінити фото");
+            };
+
+            reader.readAsDataURL(input.files[0]);
+            console.log(input.files[0]);
+            setFile = document.getElementById('inputFile')
+            setFile.files[0] = input.files[0]
+            saveDraftimage(num)
+        }
+    }
+
+function addRecForm(num){
+    $('#step'+(num+1)).fadeIn(800);
+    $('#addRecBtn'+num).toggleClass("hide");
+    window.scrollTo({
+    top: 10000,
+    behavior: "smooth"
+});
+}
+
+function alertError(){
+    alert("Приносим свои извинения, вы достигли максимального количества шагов, ваша проблема записана в статистику")
+}
+
+function saveDraftimage(num){
+  var data = new FormData($('#formImg'+num).get(0));
+  console.log(data)
+
+  $.ajax({
+      url: '/imageRecipeSave/', // same url 'action' in form
+      type: 'POST',
+      data: data,
+      contentType: 'multipart/form-data',
+      processData: false,
+      contentType: false,
+      success: function(data) {
+          console.log('draft updated')
+      }
+  });
+}
+
+
+
+function saveDraft(name){
+  let valOut = $('#id_' + name).val()
+  if (name == 'submitForm'){
+    document.location.href = '/profile'
+  }
+  if ( name == 'category' ){
+    let e = document.getElementById("id_category");
+    valOut = e.options[e.selectedIndex].text;
+  }
+  if ( name == 'hardnessCook' ){
+    let e = document.getElementById("id_hardnessCook");
+    valOut = e.options[e.selectedIndex].text;
+  }
+
+  $.ajax({
+    type:'POST',
+    url:'/newrecipe/',
+    data:{
+      actionToDo:name,
+      value:valOut,
+      uuid_recipe:$('input[name=uuid_recipe]').val(),
+      emailof_creator:$('input[name=emailof_creator]').val(),
+      csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+  },
+  success:function(){
+    console.log('sent successfuly')
+  }
+  })
+}
+
+
+function addRecFormIngr(num){
+    $('#ing'+(num+1)).fadeIn(800);
+    $('#addRecBtnIngr'+num).toggleClass("hide");
+}
+function uuidv4() {
+  return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+  );
+}
+console.log(uuidv4())
+//$('#id_uuid_recipe').val(uuidv4())
+</script>
+
+
+{% endblock %}

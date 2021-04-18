@@ -14,10 +14,12 @@ urlpatterns = [
 	path('mystorage/', views.mystorage, name="mystorage"),
 	path('<int:pk>/viewrecipe', views.patternRecipeView.as_view(), name="viewrecipe"),
 	path('<int:pk>/viewuser', views.patternUserView.as_view(), name="viewuser"),
+	path('<int:pk>/editdraft', views.editdraft.as_view(), name="editdraft"),
 	path('feed/', views.feedPage, name="feed"),
 	path('alexPost/', views.alexPost, name="alexPost"),
 	path('emailexist/', views.emailexist, name="emailexist"),
 	path('loadsubs/', views.loadSubs, name="loadSubs"),
 	path('friendrec/', views.friendrec, name="friendrec"),
 	path('loadInterests/', views.loadInterests, name="loadInterests"),
+	path('imageRecipeSave/', views.imageRecipeSave, name="imageRecipeSave"),
 ]

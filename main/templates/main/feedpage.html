@@ -88,10 +88,14 @@ Feed
 
 </div>
 <script>
+  let recLoaded = false
   $(document).on({
   	 ajaxStop: function() {
+       if (recLoaded == false){
+         recLoaded = true
        $('#preloading4').toggleClass('hide')
      }
+   }
    });
 
 

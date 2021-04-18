@@ -44,6 +44,12 @@ class RecipeForm(ModelForm):
 			}),
 		}
 
+class RecipeAjaxForm(forms.Form):
+	actionToDo = forms.CharField(max_length=200, required=False)
+	value = forms.CharField(max_length=1000, required=False)
+	emailof_creator = forms.CharField(max_length=100, required=False)
+	uuid_recipe = forms.CharField(max_length=100, required=True)
+
 
 class Subscribe(forms.Form):
 	actionToDo = forms.CharField(max_length=100)
@@ -60,6 +66,9 @@ class InterestAction(forms.Form):
 	actionToDo = forms.CharField(max_length=100, required=False)
 	newInterest = forms.CharField(max_length=100, required=False)
 
+
+class imageRecipeS(forms.Form):
+	file = forms.FileField()
 
 class AlexEx(forms.Form):
 	alexExText = forms.CharField(max_length=300, required=False)

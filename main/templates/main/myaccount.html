@@ -1,7 +1,29 @@
 {% extends "main/header.html" %}
 {% load static %}
+
+{% block mydrafts %}
+<a href="{% url 'newrecipe' %}" style='text-decoration:none;' class="addRecipeinDrafts">
+	<span class="subplusIcon1"></span>
+	<div class="sicon">
+
+	</div>
+	<p>Створити новий</p>
+</a>
+{% for item in mydrafts %}
+<a style='text-decoration:none;' href='{% url "editdraft" item.id %}' class="DraftExLink">
+  <div class="imgdraftdiv">
+      <img src="{{ item.image_prod.url }}" class='imgDraft'>
+  </div>
+  <div class="nameDraft">
+    <p class='textNameDraft'>{{ item.name }}</p>
+  </div>
+</a>
+{% endfor %}
+{% endblock %}
+
 {% block content %}
 {% csrf_token %}
+
 <input type="hidden" id='whatIsHappening' value="nothing">
 <input type="hidden" id='id_whatToShowSubs' value="subs">
 <input type="hidden" id='id_email' value="{{ request.user.email }}">
@@ -37,6 +59,7 @@
 	<div class="listOfSubsReal" id='listUsersAjax'>
 		<div id='preloading' class="linePreloader"></div>
 		<div class='xcloseround'><a href="#" class="close"></a></div>
+
 	</div>
 	<div class="listOfFollowsReal hide" id='listUsersAjaxFollows'>
 		<div id='preloading1' class="linePreloader"></div>
@@ -172,6 +195,17 @@
 </section>
 <script type="text/javascript">
 
+  let allDraftsTexts = $('.textNameDraft')
+  for(var i = 0; i < allDraftsTexts.length; i++){
+    newVal = $(allDraftsTexts[i]).text().slice(0, 15);
+    if (newVal.length == 15){
+    $(allDraftsTexts[i]).text(newVal + '..')
+  } else {
+    $(allDraftsTexts[i]).text(newVal)
+  }
+  }
+
+
 let showSubsBtn = document.getElementById('subsbtnShow');
 let closeSubsList = document.getElementById('id_closeSubsList');
 
@@ -192,8 +226,8 @@ $(document).on({
 	 ajaxStop: function() {
 		 if (document.getElementById('listUsersAjax').classList.contains('hide') && document.getElementById('intList').classList.contains('active') == false){
 			  $('#preloading1').toggleClass('hide');
-				document.getElementById("listUsersAjaxFollows").style.borderTop = '2px solid lightgrey';
-		} else if(document.getElementById('listUsersAjaxFollows').classList.contains('hide') && document.getElementById('intList').classList.contains('active') == false) {
+				document.getElementById("Follows").style.borderTop = '2px solid lightgrey';
+		} else if(document.getElementById('Follows').classList.contains('hide') && document.getElementById('intList').classList.contains('active') == false) {
 			$('#preloading').toggleClass('hide');
 			document.getElementById("listUsersAjax").style.borderTop = '2px solid lightgrey';
 		} else if (document.getElementById('intList').classList.contains('active') == true && wtish == 'nothing') {
@@ -277,6 +311,7 @@ showFollows.addEventListener('click', function(){
 									'<p>' + response[item][4] + '</p>'+
 								'</div>'
 							'</a>'
+
 						}
 			 }
 
@@ -417,5 +452,7 @@ function subscribe() {
 	}
 
 };
+
+
 </script>
 {% endblock %}

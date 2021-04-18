@@ -6510,6 +6510,102 @@ cursor: pointer;
         background-position:-25% 0;
         animation:scroll 1.2s ease-in-out infinite;
       }
+      .recipeDrafts{
+        position: absolute;
+        right: 20px;
+        height: auto;
+        width: 200px;
+        border-radius: 10px;
+        background-color: white;
+      }
+      .addRecipeinDrafts{
+        height: 35px;
+        width: 200px;
+        display: flex;
+        flex-direction: row;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .addRecipeinDrafts:hover{
+        background: #F7F7F7;
+        border-top-right-radius: 10px;
+          border-top-left-radius: 10px;
+          transition: 0.3s;
+      }
+      .DraftExLink{
+        height: 35px;
+        width: 200px;
+        border-top:1px solid #EBEBEB  ;
+        display: flex;
+        flex-direction: row;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .DraftExLink:hover{
+        background: #F7F7F7;
+          transition: 0.3s;
+      }
+      .subplusIcon1{
+        margin-left:10px;
+        margin-top:5px;
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background-color:#4AD6AD;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: 0.2s;
+      }
+      .subplusIcon1:hover{
+      border-radius: 35%;
+      }
+      .subplusIcon1:before, .subplusIcon1:after {
+      position: absolute;
+      left: 11.5px;
+      top:5px;
+      content: ' ';
+      height: 15px;
+      width: 2px;
+      border-radius: 50px;
+      background-color: white;
+      transition: 0.3s;
+      }
+      .subplusIcon1:after {
+      transform: rotate(-90deg);
+      }
+      .sicon{
+        height: 35px;
+        width: 41px;
+      }
+      .addRecipeinDrafts p{
+        margin-top:0px;
+        margin-bottom: 0px;
+        line-height: 38px;
+        color:#5A5A5A;
+      }
+      .imgdraftdiv{
+        height: 35px;
+        width: 41px;
+      }
+      .nameDraft{
+        height: 35px;
+        width: 159px;
+        overflow: hidden;
+      }
+      .nameDraft p {
+        margin-top:0px;
+        margin-bottom:0px;
+        line-height: 38px;
+        color:#5A5A5A;
+      }
+      .imgDraft{
+        height: 25px;
+        margin-top:5px;
+        margin-left:10px;
+        object-fit: cover;
+        width:25px;
+        border-radius: 30px;
+      }
 }
 
 

@@ -126,8 +126,10 @@ def profile(request):
 	for item in request.user.interests.all():
 		icons_interests.append(item.icon)
 		names_interestst.append(item.name)
-
+	for item in request.user.recipeDraft.all():
+		print(item.name)
 	context = {
+	'mydrafts':request.user.recipeDraft.all(),
 	'test':123,
 	'myrecipes':output_recipes,
 	'subs':subscriptions,
@@ -135,6 +137,10 @@ def profile(request):
 	'interests': itertools.islice(zip(icons_interests, names_interestst), 4)
 	}
 	return render(request, 'main/myaccount.html', context)
+
+
+
+
 
 def loadInterests(request):
 	if request.method == 'GET':
@@ -263,25 +269,119 @@ def logout_page(request):
 	return redirect('login_page')
 
 
+
+
+def imageRecipeSave(request):
+	if request.method == 'POST':
+		form = imageRecipeS(request.POST, request.FILES)
+		if request.is_ajax():
+			image = request.FILES.get('image')
+			uuid_get = request.POST.get('uuid_recipe')
+			wtr = request.POST.get('wtr')
+			print(wtr)
+			myrecipe = RecipeProduct.objects.get(uuid_recipe=uuid_get)
+			if wtr == 'mainImage':
+				myrecipe.image_prod = image
+			elif wtr == 'img1':
+				myrecipe.image1 = image
+			elif wtr == 'img2':
+				myrecipe.image2 = image
+			elif wtr == 'img3':
+				myrecipe.image3 = image
+			elif wtr == 'img4':
+				myrecipe.image4 = image
+			elif wtr == 'img5':
+				myrecipe.image5 = image
+			elif wtr == 'img6':
+				myrecipe.image6 = image
+			elif wtr == 'img7':
+				myrecipe.image7 = image
+			elif wtr == 'img8':
+				myrecipe.image8 = image
+			elif wtr == 'img9':
+				myrecipe.image9 = image
+			elif wtr == 'img10':
+				myrecipe.image10 = image
+
+
+			myrecipe.save()
+	return HttpResponse('')
+
+
+
 def newrecipe(request):
 	user = request.user.username
 	form = RecipeForm()
 
 	if request.method == "POST":
-		form2 = RecipeForm(request.POST, request.FILES)
+		print(request.FILES)
+		print(request.POST)
+		form2 = RecipeAjaxForm(request.POST, request.FILES)
 		if form2.is_valid() and form2.cleaned_data.get('emailof_creator') == request.user.email:
-			get_uuid = form2.cleaned_data.get('uuid_recipe')
-			form2.save()
-			myrecipe = RecipeProduct.objects.get(uuid_recipe=get_uuid)
-			me_db_get = CustomUser.objects.get(email=request.user.email)
-			me_db_get.my_recipes.add(myrecipe)
-			me_db_get.amount_of_reciped += 1
-			me_db_get.save()
-			PostLike.objects.create(
-				post=myrecipe,
-			)
-			nameProdField = form2.cleaned_data.get('name')
-			return redirect('profile')
+			print(1)
+			if RecipeProduct.objects.filter(uuid_recipe=form2.cleaned_data.get('uuid_recipe')).count() == 0:
+				if form2.cleaned_data.get('actionToDo') == 'name':
+					RecipeProduct.objects.create(
+						uuid_recipe=form2.cleaned_data.get('uuid_recipe'),
+						name=form2.cleaned_data.get('value'),
+						adderOf=request.user.email,
+					)
+					get_uuid = form2.cleaned_data.get('uuid_recipe')
+					myrecipe = RecipeProduct.objects.get(uuid_recipe=get_uuid)
+					me_db_get = CustomUser.objects.get(email=request.user.email)
+					me_db_get.recipeDraft.add(myrecipe)
+					me_db_get.save()
+					return HttpResponse('')
+			else:
+				print(form2.cleaned_data.get('value'))
+				get_uuid = form2.cleaned_data.get('uuid_recipe')
+				myrecipe = RecipeProduct.objects.get(uuid_recipe=get_uuid)
+				if form2.cleaned_data.get('actionToDo') == 'name':
+					myrecipe.name = form2.cleaned_data.get('value')
+				elif form2.cleaned_data.get('actionToDo') == 'submitForm':
+					me = CustomUser.objects.get(email=request.user.email)
+					me.recipeDraft.remove(myrecipe)
+					myrecipe.active = True
+					me.save()
+				elif form2.cleaned_data.get('actionToDo') == 'description':
+					myrecipe.description = form2.cleaned_data.get('value')
+				elif form2.cleaned_data.get('actionToDo') == 'time':
+					myrecipe.time = form2.cleaned_data.get('value')
+				elif form2.cleaned_data.get('actionToDo') == 'category':
+					myrecipe.category = form2.cleaned_data.get('value')
+				elif form2.cleaned_data.get('actionToDo') == 'hardnessCook':
+					myrecipe.hardnessCook = form2.cleaned_data.get('value')
+				elif form2.cleaned_data.get('actionToDo') == 'desc2':
+					myrecipe.desc2 = form2.cleaned_data.get('value')
+				elif form2.cleaned_data.get('actionToDo') == 'desc3':
+					myrecipe.desc3 = form2.cleaned_data.get('value')
+				elif form2.cleaned_data.get('actionToDo') == 'desc4':
+					myrecipe.desc4 = form2.cleaned_data.get('value')
+				elif form2.cleaned_data.get('actionToDo') == 'desc5':
+					myrecipe.desc5 = form2.cleaned_data.get('value')
+				elif form2.cleaned_data.get('actionToDo') == 'desc6':
+					myrecipe.desc6 = form2.cleaned_data.get('value')
+				elif form2.cleaned_data.get('actionToDo') == 'desc7':
+					myrecipe.desc7 = form2.cleaned_data.get('value')
+				elif form2.cleaned_data.get('actionToDo') == 'desc8':
+					myrecipe.desc8 = form2.cleaned_data.get('value')
+				elif form2.cleaned_data.get('actionToDo') == 'desc9':
+					myrecipe.desc9 = form2.cleaned_data.get('value')
+				elif form2.cleaned_data.get('actionToDo') == 'desc10':
+					myrecipe.desc10 = form2.cleaned_data.get('value')
+				#get_uuid = form2.cleaned_data.get('uuid_recipe')
+				myrecipe.save()
+				#myrecipe = RecipeProduct.objects.get(uuid_recipe=get_uuid)
+				#me_db_get = CustomUser.objects.get(email=request.user.email)
+				#me_db_get.my_recipes.add(myrecipe)
+				#me_db_get.recipeDraft = myrecipe
+				#me_db_get.amount_of_reciped += 1
+				#me_db_get.save()
+				#PostLike.objects.create(
+				#	post=myrecipe,
+				#)
+				#nameProdField = form2.cleaned_data.get('name')
+				#return HttpResponse('')
 	context = {
 	'form':form,
 	}
@@ -292,6 +392,16 @@ class patternRecipeView(DetailView):
 	model = RecipeProduct
 	template_name = 'main/patternrecipe.html'
 	context_object_name = 'recipe'
+
+
+
+class editdraft(DetailView):
+	model = RecipeProduct
+	template_name = 'main/editDraftPattern.html'
+	context_object_name = 'recipe'
+
+
+
 
 class patternUserView(DetailView):
 	model = CustomUser

@@ -8,7 +8,7 @@
     <div class="infoAboutMeAdd">
 
         {% csrf_token %}
-        <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" class='uuid_class' value=''></p>
+        <p style="display:none;">{{form.uuid_recipe}}</p>
         <p style="display:none;"><input type="text" name="emailof_creator" value="{{ request.user.email }}"></p>
       <p class="centerB"><input type="text" name="name" class="nameAdd" placeholder="Назва страви" maxlength="250" id="id_name" onchange="saveDraft('name')"></p>
       <p class="centerB"><img id="blah0" src="#" alt="your image" class="hide" /></p>
@@ -215,13 +215,13 @@
       <form id='formImg0' method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <input style="display:none;" type="text" name="wtr" id='wtrFile' value="mainImage">
-            <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" class='uuid_class'></p>
+            <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" id="id_uuid_recipe" value='{{ request.user.recipeDraft.uuid_recipe }}'></p>
             <input type="file" name="image" accept="image/*" id="id_image_prod" onchange="readURL(this, 0);">
       </form>
       <form id='formImg1' method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <input style="display:none;" type="text" name="wtr" id='wtrFile' value="img1">
-        <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" class='uuid_class'></p>
+        <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" id="id_uuid_recipe" value='{{ request.user.recipeDraft.uuid_recipe }}'></p>
 
       <input type="file" style="display: none;" name="image" accept="image/*" id="id_image1" onchange="readURL(this, 1);">
       </form>
@@ -229,7 +229,7 @@
       <form id='formImg2' method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <input style="display:none;" type="text" name="wtr" id='wtrFile' value="img2">
-        <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" class='uuid_class'></p>
+        <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" id="id_uuid_recipe" value='{{ request.user.recipeDraft.uuid_recipe }}'></p>
 
       <input type="file" style="display: none;" name="image" accept="image/*" id="id_image2" onchange="readURL(this, 2);">
     </form>
@@ -237,7 +237,7 @@
     <form id='formImg3' method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <input style="display:none;" type="text" name="wtr" id='wtrFile' value="img3">
-      <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" class='uuid_class'></p>
+      <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" id="id_uuid_recipe" value='{{ request.user.recipeDraft.uuid_recipe }}'></p>
 
       <input type="file" style="display: none;" name="image" accept="image/*" id="id_image3" onchange="readURL(this, 3);">
     </form>
@@ -245,48 +245,48 @@
     <form id='formImg4' method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <input style="display:none;" type="text" name="wtr" id='wtrFile' value="img4">
-      <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" class='uuid_class'></p>
+      <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" id="id_uuid_recipe" value='{{ request.user.recipeDraft.uuid_recipe }}'></p>
       <input type="file" style="display: none;" name="image" accept="image/*" id="id_image4" onchange="readURL(this, 4);">
     </form>
     <form id='formImg5' method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <input style="display:none;" type="text" name="wtr" id='wtrFile' value="img5">
-      <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" class='uuid_class'></p>
+      <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" id="id_uuid_recipe" value='{{ request.user.recipeDraft.uuid_recipe }}'></p>
 
       <input type="file" style="display: none;" name="image" accept="image/*" id="id_image5" onchange="readURL(this, 5);">
     </form>
     <form id='formImg6' method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <input style="display:none;" type="text" name="wtr" id='wtrFile' value="img6">
-      <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" class='uuid_class'></p>
+      <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" id="id_uuid_recipe" value='{{ request.user.recipeDraft.uuid_recipe }}'></p>
 
       <input type="file" style="display: none;" name="image" accept="image/*" id="id_image6" onchange="readURL(this, 6);">
     </form>
     <form id='formImg7' method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <input style="display:none;" type="text" name="wtr" id='wtrFile' value="img7">
-      <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" class='uuid_class'></p>
+      <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" id="id_uuid_recipe" value='{{ request.user.recipeDraft.uuid_recipe }}'></p>
 
       <input type="file" style="display: none;" name="image" accept="image/*" id="id_image7" onchange="readURL(this, 7);">
     </form>
     <form id='formImg8' method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <input style="display:none;" type="text" name="wtr" id='wtrFile' value="img8">
-      <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" class='uuid_class'></p>
+      <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" id="id_uuid_recipe" value='{{ request.user.recipeDraft.uuid_recipe }}'></p>
 
       <input type="file" style="display: none;" name="image" accept="image/*" id="id_image8" onchange="readURL(this, 8);">
     </form>
     <form id='formImg9' method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <input style="display:none;" type="text" name="wtr" id='wtrFile' value="img9">
-      <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" class='uuid_class'></p>
+      <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" id="id_uuid_recipe" value='{{ request.user.recipeDraft.uuid_recipe }}'></p>
 
       <input type="file" style="display: none;" name="image" accept="image/*" id="id_image9" onchange="readURL(this, 9);">
     </form>
     <form id='formImg10' method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <input style="display:none;" type="text" name="wtr" id='wtrFile' value="img10">
-      <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" class='uuid_class'></p>
+      <p style="display:none;"><input type="text" name="uuid_recipe" maxlength="100" id="id_uuid_recipe" value='{{ request.user.recipeDraft.uuid_recipe }}'></p>
 
       <input type="file" style="display: none;" name="image" accept="image/*" id="id_image10" onchange="readURL(this, 10);">
     </form>
@@ -323,6 +323,8 @@ function readURL(input, num) {
 
             reader.readAsDataURL(input.files[0]);
             console.log(input.files[0]);
+            setFile = document.getElementById('inputFile')
+            setFile.files[0] = input.files[0]
             saveDraftimage(num)
         }
     }
@@ -360,10 +362,8 @@ function saveDraftimage(num){
 
 
 function saveDraft(name){
-  if (name == 'submitForm'){
-    document.location.href = '/profile'
-  }
   let valOut = $('#id_' + name).val()
+  alert(valOut)
   if ( name == 'category' ){
     let e = document.getElementById("id_category");
     valOut = e.options[e.selectedIndex].text;
@@ -372,6 +372,7 @@ function saveDraft(name){
     let e = document.getElementById("id_hardnessCook");
     valOut = e.options[e.selectedIndex].text;
   }
+
   $.ajax({
     type:'POST',
     url:'/newrecipe/',
@@ -398,13 +399,8 @@ function uuidv4() {
     (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
   );
 }
-let ucid = uuidv4()
-var inputs = $(".uuid_class");
-for(var i = 0; i < inputs.length; i++){
-  console.log($(inputs[i]).val());
-    $(inputs[i]).val(ucid)
-    console.log($(inputs[i]).val());
-}
+console.log(uuidv4())
+//$('#id_uuid_recipe').val(uuidv4())
 </script>
 
 
