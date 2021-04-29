@@ -20,7 +20,7 @@ class CustomUserEdit(ModelForm):
 	class Meta:
 		model = CustomUser
 		fields = "__all__"
-		exclude = ['my_recipes','email', 'amount_of_reciped', 'achievements', 'purchases', 'sex', 'date_joined', 'date_of_birth', 'ip_adress', 'rank', 'rank_percentage', 'access_to_data', 'is_user', 'is_staff', 'is_superuser', 'last_login', 'password']
+		exclude = ['my_recipes','email', 'amount_of_reciped', 'achievements', 'purchases', 'sex', 'date_joined', 'date_of_birth', 'ip_adress', 'rank', 'rank_percentage', 'access_to_data', 'is_user', 'is_staff', 'is_superuser', 'last_login', 'password', 'recipeDraft', 'my_recipes', 'interests']
 
 
 
@@ -46,6 +46,7 @@ class RecipeForm(ModelForm):
 
 class RecipeAjaxForm(forms.Form):
 	actionToDo = forms.CharField(max_length=200, required=False)
+	ingredient = forms.CharField(max_length=200, required=False)
 	value = forms.CharField(max_length=1000, required=False)
 	emailof_creator = forms.CharField(max_length=100, required=False)
 	uuid_recipe = forms.CharField(max_length=100, required=True)

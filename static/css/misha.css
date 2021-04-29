@@ -6539,11 +6539,36 @@ cursor: pointer;
         display: flex;
         flex-direction: row;
         cursor: pointer;
-        transition: 0.3s;
+        transition: 0.4s;
       }
       .DraftExLink:hover{
         background: #F7F7F7;
           transition: 0.3s;
+      }
+      .deleteDraft{
+        height: 25px;
+        width: 25px;
+        margin-left:5px;
+        margin-top:5px;
+        background: red;
+        transition: 0.4s;
+        margin-right: 0px;
+        border-radius: 35px;
+
+      }
+      .grebgad{
+        background: #F7F7F7;
+        height: 35px;
+        width: 35px;
+      }
+      .exFlexDraft:hover .deleteDraft{
+        width: 25px;
+      }
+      .exFlexDraft:hover .DraftExLink{
+        width: 165px;
+      }
+      .exFlexDraft:hover .imgDraft{
+        margin-left: 3px;
       }
       .subplusIcon1{
         margin-left:10px;
@@ -6573,6 +6598,30 @@ cursor: pointer;
       .subplusIcon1:after {
       transform: rotate(-90deg);
       }
+      .subplusIconX{
+      display:inline-block;
+      width:25px;
+      height:25px;
+      margin-left: 5px;
+      margin-right: 5px;
+      margin-top:5px;
+      float:right;
+      background:
+      linear-gradient(#FEB169,#FEB169),
+      linear-gradient(#FEB169,#FEB169),
+      #F87A5D;
+      background-position:center;
+      background-size: 58% 2px,2px 58%; /*thickness = 2px, length = 50% (25px)*/
+      background-repeat:no-repeat;
+      border-radius:35px;
+      cursor: pointer;
+      transform: rotate(45deg);
+      transition: 0.2s;
+  }
+  .subplusIconX:hover{
+    background-color: #F65D3A;
+  }
+
       .sicon{
         height: 35px;
         width: 41px;
@@ -6580,7 +6629,8 @@ cursor: pointer;
       .addRecipeinDrafts p{
         margin-top:0px;
         margin-bottom: 0px;
-        line-height: 38px;
+        line-height: 38px;ю
+        
         color:#5A5A5A;
       }
       .imgdraftdiv{
@@ -6605,7 +6655,49 @@ cursor: pointer;
         object-fit: cover;
         width:25px;
         border-radius: 30px;
+        transition: 0.3s;
       }
+      .imgDraft:hover{
+        border-radius: 10px;
+        transition: 0.3s;
+      }
+
+      .exFlexDraft{
+        display: flex;
+        flex-direction: row;
+        overflow: hidden;
+        transition: 0.3s;
+        height: 35px;
+        width: 200px;
+      }
+      /* .allBlocks{
+        height: 50px;
+        width: 300px;
+        margin-left:25%;
+        border-radius: 10px;
+        display: flex;
+        border:1px solid red;
+        flex-direction: row;
+      }
+      .bl1{
+        height: 50px;
+        width: 140px;
+        background-color:lightgrey;
+        border-radius: 10px;
+      }
+      .bl2{
+        height: 50px;
+        width: 140px;
+        background:lightgrey;
+        border-radius: 10px;
+      }
+      .allBlocks:hover .bl2{
+        background: grey;
+      }
+      .allBlocks:hover .bl1{
+        background: grey;
+      } */
+}
 }
 
 

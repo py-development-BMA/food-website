@@ -22,4 +22,5 @@ urlpatterns = [
 	path('friendrec/', views.friendrec, name="friendrec"),
 	path('loadInterests/', views.loadInterests, name="loadInterests"),
 	path('imageRecipeSave/', views.imageRecipeSave, name="imageRecipeSave"),
+	path('removeDraft/', views.removeDraft, name="removeDraft"),
 ]

@@ -9,19 +9,47 @@
 	</div>
 	<p>Створити новий</p>
 </a>
-{% for item in mydrafts %}
+{% for item, k in mydrafts %}
+		<input type="hidden" name="" id='id_removeDraft_uuid{{ k }}' value="{{ item.uuid_recipe }}">
+		<input type="submit" style='display:none;' name="" id='id_removeDraft{{ k }}' value="clear" onclick='removeDraftAjax({{ k }})'>
+<div class="exFlexDraft" id='id_exFlexDraft{{ k }}'>
 <a style='text-decoration:none;' href='{% url "editdraft" item.id %}' class="DraftExLink">
-  <div class="imgdraftdiv">
+
+	<div class="imgdraftdiv">
       <img src="{{ item.image_prod.url }}" class='imgDraft'>
   </div>
   <div class="nameDraft">
     <p class='textNameDraft'>{{ item.name }}</p>
   </div>
 </a>
+<div class="grebgad">
+	<label for="id_removeDraft{{ k }}">
+	<span class="subplusIconX"></span>
+	</label>
+</div>
+
+</div>
+
 {% endfor %}
 {% endblock %}
 
 {% block content %}
+
+
+
+<!-- <div class="allBlocks">
+	<div class="bl1">
+		123
+	</div>
+	<div class="bl2">
+		123
+	</div>
+
+</div> -->
+
+
+
+
 {% csrf_token %}
 
 <input type="hidden" id='whatIsHappening' value="nothing">
@@ -57,6 +85,7 @@
 	</div>
 
 	<div class="listOfSubsReal" id='listUsersAjax'>
+		<p id='out' style="position:absolute"></p>
 		<div id='preloading' class="linePreloader"></div>
 		<div class='xcloseround'><a href="#" class="close"></a></div>
 
@@ -131,7 +160,7 @@
 			<p>{{ subs.followed_by.all.count }}</p>
 			<p>Підписники</p>
 		</div>
-		<div class="sbs_flex_part">
+		<div class="sbs_flex_part" id='followsbtnShow' style='cursor:pointer'>
 			<p>{{ subs.following.all.count }}</p>
 			<p>Підписки</p>
 		</div>
@@ -209,35 +238,81 @@
 let showSubsBtn = document.getElementById('subsbtnShow');
 let closeSubsList = document.getElementById('id_closeSubsList');
 
+let showFollowsBtn = document.getElementById('followsbtnShow')
+
 let showSubs = document.getElementById('id_mysubs')
 let showFollows = document.getElementById('id_myfollows')
 
+
+
 let wtish = 'nothing'
-
-
+let recipe_removed = false
+let interest_added = false
 let is_SubsListOpened = false
 let is_FollowsListOpened = false
 let loadInterests = false
+let	loadedNewSubs = false
+let	loadedNewFo = false
+
+let subsAmountLoaded = 0
+let followsAmountLoaded = 0
+let is_loadedNewSubs = false
+let is_loadedNewFollows = false
 function showBackSubs(){
 	$('#id_closeSubsList').toggleClass('subListsback')
 }
 
+
+
+
+
+
+
+
 $(document).on({
 	 ajaxStop: function() {
-		 if (document.getElementById('listUsersAjax').classList.contains('hide') && document.getElementById('intList').classList.contains('active') == false){
-			  $('#preloading1').toggleClass('hide');
-				document.getElementById("Follows").style.borderTop = '2px solid lightgrey';
-		} else if(document.getElementById('Follows').classList.contains('hide') && document.getElementById('intList').classList.contains('active') == false) {
-			$('#preloading').toggleClass('hide');
-			document.getElementById("listUsersAjax").style.borderTop = '2px solid lightgrey';
-		} else if (document.getElementById('intList').classList.contains('active') == true && wtish == 'nothing') {
-			$('#preloading2').toggleClass('hide');
-			document.getElementById("listInterestsAjax").style.borderTop = '2px solid lightgrey';
-		}
+		 console.log('aj stop')
+		 console.log(recipe_removed)
+		 if (recipe_removed == false && interest_added == false && is_loadedNewSubs == false && is_loadedNewFollows == false) {
+			 if (document.getElementById('listUsersAjax').classList.contains('hide') && document.getElementById('intList').classList.contains('active') == false){
+				  $('#preloading1').toggleClass('hide');
+					document.getElementById("listUsersAjaxFollows").style.borderTop = '2px solid lightgrey';
+			} else if(document.getElementById('listUsersAjaxFollows').classList.contains('hide') && document.getElementById('intList').classList.contains('active') == false) {
+				$('#preloading').toggleClass('hide');
+				document.getElementById("listUsersAjax").style.borderTop = '2px solid lightgrey';
+			} else if (document.getElementById('intList').classList.contains('active') == true && wtish == 'nothing') {
+				$('#preloading2').toggleClass('hide');
+				document.getElementById("listInterestsAjax").style.borderTop = '2px solid lightgrey';
+			}
 
 	 }
+	 recipe_removed = false
+	 interest_added = false
+	 }
 });
+function removeDraftSlide(num){
+	document.getElementById('id_exFlexDraft' + num).style.height = '0px'
+}
 
+function removeDraftAjax(num){
+	$.ajax({
+		type:'POST',
+		url:'/removeDraft/',
+		data:{
+			uuid:$('input[id=id_removeDraft_uuid' + num + ']').val(),
+			csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+	},
+	success:function(){
+		console.log('aj success')
+		recipe_removed = true
+		$('#id_exFlexDraft' + num).toggleClass('hide')
+		}
+	})
+
+
+	document.getElementById('id_exFlexDraft' + num).style.width = '0px';
+	setTimeout(removeDraftSlide, 300, num);
+}
 
 
 
@@ -262,6 +337,7 @@ function addInterest(elem){
 	},
 	success:function(){
 		console.log('added')
+		interest_added = true
 		}
 	})
 
@@ -283,7 +359,8 @@ function addInterest(elem){
 			csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
 	},
 	success:function(){
-		console.log('added')
+		console.log('removed')
+		interest_added = true
 		}
 	})
 }
@@ -298,7 +375,7 @@ showFollows.addEventListener('click', function(){
 	if (is_FollowsListOpened == false){
 		is_FollowsListOpened = true
 	$.get('/loadsubs/',
-				{'wtd':$('#id_whatToShowSubs').val(), 'email':$('#id_email').val()},
+				{'wtd':$('#id_whatToShowSubs').val(), 'email':$('#id_email').val(), 'start':followsAmountLoaded},
 				function(response){
 					console.log(response)
 						for(let item in response){
@@ -382,13 +459,125 @@ document.getElementById('ShowAllInterests').addEventListener('click', function()
 
 
 
+
+let out = 1
+let element = 1
+
+function getScroll(element){
+	out = document.getElementById('out');
+	temp = element.scrollTop
+	element.scrollTop = 1 + element.scrollHeight - element.clientHeight;
+	height = element.scrollTop;
+	element.scrollTop = temp;
+	element.onscroll = function() {
+	scroll = element.scrollTop ;
+	console.log(height + '  :  ' + scroll)
+	if( height - scroll < 50 ){
+		if (loadedNewSubs == false) {
+
+
+
+			loadNewSubs()
+		loadedNewSubs = true
+		is_loadedNewSubs = true
+}
+	}
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function loadNewSubs(){
+	for (let i = 0; i<10; i++){
+		console.log(subsAmountLoaded)
+	}
+	$.get('/loadsubs/',
+				{'wtd':$('#id_whatToShowSubs').val(), 'email':$('#id_email').val(), 'start':subsAmountLoaded},
+				function(response){
+					console.log(response)
+						for(let item in response){
+							document.getElementById('listUsersAjax').innerHTML += '<a class="personFollower" href=\'/' + response[item][0] + '/viewuser\'>' +
+								'<div class="personsPhotoListSubs">' +
+									'<img src="'+ response[item][3] +'">' +
+								'</div>' +
+							'<div class="personsInfoSubList">' +
+									'<p>' + response[item][1] + ' ' +  response[item][2] + '</p>'+
+									'<p>' + response[item][4] + '</p>'+
+								'</div>'
+							'</a>'
+						}
+						loadedNewSubs = false;
+						subsAmountLoaded += 35
+						getScroll(document.getElementById('listUsersAjax'))
+
+
+		 }
+
+	);
+}
+
+
+
+
+
+
+
+
+
+
+
 showSubs.addEventListener('click', function(){
+	console.log('SHOW ATTEMTP')
 	$('#listUsersAjaxFollows').toggleClass('hide')
 	$('#listUsersAjax').toggleClass('hide')
 	$('#id_myfollows p ').toggleClass('selectedSubsList')
 	$('#id_mysubs p ').toggleClass('selectedSubsList')
 	$('#id_whatToShowSubs').val('subs')
+	if (is_SubsListOpened == false)	{
+		is_SubsListOpened = true
+	$.get('/loadsubs/',
+				{'wtd':$('#id_whatToShowSubs').val(), 'email':$('#id_email').val(), 'start':subsAmountLoaded},
+				function(response){
+					console.log(response)
+						for(let item in response){
+							document.getElementById('listUsersAjax').innerHTML += '<a class="personFollower" href=\'/' + response[item][0] + '/viewuser\'>' +
+								'<div class="personsPhotoListSubs">' +
+									'<img src="'+ response[item][3] +'">' +
+								'</div>' +
+							'<div class="personsInfoSubList">' +
+									'<p>' + response[item][1] + ' ' +  response[item][2] + '</p>'+
+									'<p>' + response[item][4] + '</p>'+
+								'</div>'
+							'</a>'
+						}
+						loadedNewSubs = false;
+						subsAmountLoaded += 35
+						getScroll(document.getElementById('listUsersAjax'))
+
+    }
+
+
+
+	);
+}
 })
+
+
+
+
+
 
 
 closeSubsList.addEventListener('click', function(){
@@ -416,7 +605,7 @@ showSubsBtn.addEventListener('click', function(){
 	if (is_SubsListOpened == false)	{
 		is_SubsListOpened = true
 	$.get('/loadsubs/',
-				{'wtd':$('#id_whatToShowSubs').val(), 'email':$('#id_email').val()},
+				{'wtd':$('#id_whatToShowSubs').val(), 'email':$('#id_email').val(), 'start':subsAmountLoaded},
 				function(response){
 					console.log(response)
 						for(let item in response){
@@ -430,12 +619,56 @@ showSubsBtn.addEventListener('click', function(){
 								'</div>'
 							'</a>'
 						}
+						loadedNewSubs = false;
+						subsAmountLoaded += 35
+						getScroll(document.getElementById('listUsersAjax'))
 			 }
 
 	);
 }
 })
 
+
+
+showFollowsBtn.addEventListener('click', function(){
+	$('#id_closeSubsList').toggleClass('hide');
+	setTimeout(showBackSubs, 1)
+
+	$('.subLists').toggleClass('hide')
+	$('.subLists').toggleClass('active')
+
+
+	$('#listUsersAjaxFollows').toggleClass('hide')
+	$('#listUsersAjax').toggleClass('hide')
+	$('#id_myfollows p ').toggleClass('selectedSubsList')
+	$('#id_mysubs p ').toggleClass('selectedSubsList')
+	$('#id_whatToShowSubs').val('follows')
+	if (is_FollowsListOpened == false){
+		is_FollowsListOpened = true
+	$.get('/loadsubs/',
+				{'wtd':$('#id_whatToShowSubs').val(), 'email':$('#id_email').val(), 'start':followsAmountLoaded},
+				function(response){
+					console.log(response)
+						for(let item in response){
+							document.getElementById('listUsersAjaxFollows').innerHTML += '<a class="personFollower" href=\'/' + response[item][0] + '/viewuser\'>' +
+								'<div class="personsPhotoListSubs">' +
+									'<img src="'+ response[item][3] +'">' +
+								'</div>' +
+							'<div class="personsInfoSubList">' +
+									'<p>' + response[item][1] + ' ' + response[item][2] + '</p>'+
+									'<p>' + response[item][4] + '</p>'+
+								'</div>'
+							'</a>'
+
+						}
+			 }
+
+
+	);
+}
+
+
+})
 
 
 function subscribe() {

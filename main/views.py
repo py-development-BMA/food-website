@@ -128,8 +128,13 @@ def profile(request):
 		names_interestst.append(item.name)
 	for item in request.user.recipeDraft.all():
 		print(item.name)
+	k = 0
+	quant = []
+	for item in request.user.recipeDraft.all():
+		quant.append(k)
+		k += 1
 	context = {
-	'mydrafts':request.user.recipeDraft.all(),
+	'mydrafts':list(zip(request.user.recipeDraft.all(), quant)),
 	'test':123,
 	'myrecipes':output_recipes,
 	'subs':subscriptions,
@@ -139,7 +144,16 @@ def profile(request):
 	return render(request, 'main/myaccount.html', context)
 
 
-
+def removeDraft(request):
+	if request.method == 'POST':
+		if request.is_ajax():
+			uuid_get = request.POST.get('uuid')
+			user = CustomUser.objects.get(email=request.user.email)
+			recipe = RecipeProduct.objects.get(uuid_recipe=uuid_get)
+			user.recipeDraft.remove(recipe)
+			user.save()
+			recipe.delete()
+		return HttpResponse('1')
 
 
 def loadInterests(request):
@@ -192,37 +206,49 @@ def loadSubs(request):
 		if request.GET.get('wtd') == 'subs':
 			qset = Subscribtion.objects.get(user__email=request.GET.get('email')).followed_by.all()
 			mas = []
+			startFrom = int(request.GET.get('start'))
 			k = 35
+			kn = 0
+			print(startFrom)
 			for item in qset:
-				if k != 0:
-					nmas = []
-					nmas.append(item.pk)
-					nmas.append(item.first_name)
-					nmas.append(item.last_name)
-					nmas.append(item.image_profile.url)
-					nmas.append(item.username)
-					mas.append(nmas)
-					k-=1
+				if kn >= startFrom:
+					if k != 0:
+						nmas = []
+						nmas.append(item.pk)
+						nmas.append(item.first_name)
+						nmas.append(item.last_name)
+						nmas.append(item.image_profile.url)
+						nmas.append(item.username)
+						mas.append(nmas)
+						k-=1
+					else:
+						break
 				else:
-					break
+					kn+=1
 
 			return HttpResponse(json.dumps(mas, ensure_ascii=False), content_type='application/json')
 		if request.GET.get('wtd') == 'follows':
 			qset = Subscribtion.objects.get(user__email=request.GET.get('email')).following.all()
 			mas = []
+			startFrom = request.GET.get('start')
 			k = 35
-			for item in qset:
-				if k != 0:
-					nmas = []
-					nmas.append(item.pk)
-					nmas.append(item.first_name)
-					nmas.append(item.last_name)
-					nmas.append(item.image_profile.url)
-					nmas.append(item.username)
-					mas.append(nmas)
-					k-=1
+			kn = 0
+			print(startFrom)
+			for item in reversed(qset):
+				if kn >= int(startFrom):
+					if k != 0:
+						nmas = []
+						nmas.append(item.pk)
+						nmas.append(item.first_name)
+						nmas.append(item.last_name)
+						nmas.append(item.image_profile.url)
+						nmas.append(item.username)
+						mas.append(nmas)
+						k-=1
+					else:
+						break
 				else:
-					break
+					kn+=1
 			return HttpResponse(json.dumps(mas, ensure_ascii=False), content_type='application/json')
 		#serialized_qs = serializers.serialize('json', qset)
 
@@ -351,6 +377,8 @@ def newrecipe(request):
 					myrecipe.category = form2.cleaned_data.get('value')
 				elif form2.cleaned_data.get('actionToDo') == 'hardnessCook':
 					myrecipe.hardnessCook = form2.cleaned_data.get('value')
+				elif form2.cleaned_data.get('actionToDo') == 'desc1':
+					myrecipe.desc1 = form2.cleaned_data.get('value')
 				elif form2.cleaned_data.get('actionToDo') == 'desc2':
 					myrecipe.desc2 = form2.cleaned_data.get('value')
 				elif form2.cleaned_data.get('actionToDo') == 'desc3':
@@ -369,6 +397,36 @@ def newrecipe(request):
 					myrecipe.desc9 = form2.cleaned_data.get('value')
 				elif form2.cleaned_data.get('actionToDo') == 'desc10':
 					myrecipe.desc10 = form2.cleaned_data.get('value')
+				elif form2.cleaned_data.get('actionToDo') == ('mas1'):
+					myrecipe.ingredient1 = form2.cleaned_data.get('ingredient')
+					myrecipe.mas1 = form2.cleaned_data.get('value')
+				elif form2.cleaned_data.get('actionToDo') == ('mas2'):
+					myrecipe.ingredient2 = form2.cleaned_data.get('ingredient')
+					myrecipe.mas2 = form2.cleaned_data.get('value')
+				elif form2.cleaned_data.get('actionToDo') == ('mas3'):
+					myrecipe.ingredient3 = form2.cleaned_data.get('ingredient')
+					myrecipe.mas3 = form2.cleaned_data.get('value')
+				elif form2.cleaned_data.get('actionToDo') == ('mas4'):
+					myrecipe.ingredient4 = form2.cleaned_data.get('ingredient')
+					myrecipe.mas4 = form2.cleaned_data.get('value')
+				elif form2.cleaned_data.get('actionToDo') == ('mas5'):
+					myrecipe.ingredient5 = form2.cleaned_data.get('ingredient')
+					myrecipe.mas5 = form2.cleaned_data.get('value')
+				elif form2.cleaned_data.get('actionToDo') == ('mas6'):
+					myrecipe.ingredient6 = form2.cleaned_data.get('ingredient')
+					myrecipe.mas6 = form2.cleaned_data.get('value')
+				elif form2.cleaned_data.get('actionToDo') == ('mas7'):
+					myrecipe.ingredient7 = form2.cleaned_data.get('ingredient')
+					myrecipe.mas7 = form2.cleaned_data.get('value')
+				elif form2.cleaned_data.get('actionToDo') == ('mas8'):
+					myrecipe.ingredient8 = form2.cleaned_data.get('ingredient')
+					myrecipe.mas8 = form2.cleaned_data.get('value')
+				elif form2.cleaned_data.get('actionToDo') == ('mas9'):
+					myrecipe.ingredient9 = form2.cleaned_data.get('ingredient')
+					myrecipe.mas9 = form2.cleaned_data.get('value')
+				elif form2.cleaned_data.get('actionToDo') == ('mas10'):
+					myrecipe.ingredient10 = form2.cleaned_data.get('ingredient')
+					myrecipe.mas10 = form2.cleaned_data.get('value')
 				#get_uuid = form2.cleaned_data.get('uuid_recipe')
 				myrecipe.save()
 				#myrecipe = RecipeProduct.objects.get(uuid_recipe=get_uuid)
@@ -399,6 +457,41 @@ class editdraft(DetailView):
 	model = RecipeProduct
 	template_name = 'main/editDraftPattern.html'
 	context_object_name = 'recipe'
+	def get_context_data(self, **kwargs):
+		context = super(editdraft, self).get_context_data(**kwargs)
+		print(self.object.ingredient1)
+		k = 2
+		ks = []
+		ingrs_arr = []
+		mas_arr = []
+		descs_arr = []
+		descs_plone_arr = []
+		img_urls_arr = []
+		img_urls_plone = []
+		k2 = 1
+		k2_arr = []
+		while k != 11:
+			ks.append(k)
+			exec("ingrs_arr.append(self.object.ingredient{})".format(k))
+			exec("mas_arr.append(self.object.mas{})".format(k))
+			exec("descs_arr.append(self.object.desc{})".format(k))
+			exec("img_urls_arr.append(self.object.image{}.url)".format(k))
+			if k != 10:
+				exec("img_urls_plone.append(self.object.image{}.url)".format(k+1))
+				exec("descs_plone_arr.append(self.object.desc{})".format(k+1))
+			else:
+				img_urls_plone.append(1)
+				descs_plone_arr.append(1)
+			k+=1
+		while k2 != 11:
+			k2_arr.append(k2)
+			k2 += 1
+		print(ks)
+		print(ingrs_arr)
+		context['allIngrs'] = list(zip(ingrs_arr, mas_arr, ks))
+		context['allSteps'] = list(zip(descs_arr, img_urls_arr, img_urls_plone, descs_plone_arr, ks))
+		context['k_arr'] = k2_arr
+		return context
 
 
 
