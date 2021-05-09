@@ -13,7 +13,7 @@ import re
 import random
 import json
 #from .tasks import *
- 
+
 class bcolors:
 	HEADER = '\033[95m'
 	OKBLUE = '\033[94m'
@@ -190,7 +190,7 @@ def  mystorage(request):
 	counter = [0,1,2,3,4,5,6,7,8,9]
 	categories = zip(categories,counter)
 	list0 = []
-	
+
 
 	if request.method == 'POST':
 		form = AddProduct(request.POST)
@@ -204,11 +204,11 @@ def  mystorage(request):
 						nameUa=AllProduct.objects.get(nameUa=form.cleaned_data.get('nameUa')),
 						quantity=form.cleaned_data.get('quantity')
 					)
-					CustomUser.objects.get(email=request.user.email).my_products.add(AllProduct.objects.get(nameUa=form.cleaned_data.get('nameUa')))					
+					CustomUser.objects.get(email=request.user.email).my_products.add(AllProduct.objects.get(nameUa=form.cleaned_data.get('nameUa')))
 					return HttpResponse(json.dumps(1, ensure_ascii=False), content_type='application/json')
 			else:
 				return HttpResponse(json.dumps(0, ensure_ascii=False), content_type='application/json')
-			
+
 
 	else:
 		q_array = []
@@ -217,13 +217,13 @@ def  mystorage(request):
 		for item in all_products:
 			k = UserProductQuantity.objects.get(user=request.user, nameUa=item).quantity
 			q_array.append(k)
-			
+
 		products = list(zip(all_products,q_array))
 
 		context = {
 		'categories':categories,
 		'categories_names':categories_names,
-		'all_products':all_products,		
+		'all_products':all_products,
 		'products_array' : products,
 		}
 		return render(request, 'main/storage.html', context)
@@ -238,6 +238,31 @@ def alexPost(request):
 				quantity1=form.cleaned_data.get('quantity1')
 			)
 	return render(request, 'main/alexPost.html')
+
+
+
+
+def showresults(request):
+    if request.method == 'GET':
+        matched1 = []
+        matched2 = []
+        matched = []
+        categories = ['Фрукти','Овочі','Молочні продукти','М\'ясо','Риба','Бакалія','Консерви та приправи','Напої','Заморожені продукти','Улюблені продукти']
+        if request.GET.get('search_data') != '':
+            for item in AllProduct.objects.filter(nameUa__startswith=request.GET.get('search_data')):
+                print(item)
+                mn = []
+                mn.append(item.nameUa)
+                mn.append(categories.index(item.category))
+                matched1.append(mn)
+            matched.append(matched1)
+            matched2.append(len(request.GET.get('search_data')))
+            matched.append(matched2)
+        return HttpResponse(json.dumps(matched, ensure_ascii=False), content_type='application/json')
+
+
+
+
 
 
 def feedPage(request):

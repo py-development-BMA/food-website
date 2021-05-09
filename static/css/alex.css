@@ -60,7 +60,7 @@
     width:25px;
     height:25px;
     margin-left: 625px;
-   
+
     margin-top: 23px;
     float:right;
     background:
@@ -75,7 +75,7 @@
     position: absolute;
 }
 .add_product_button1:hover{
-  background-color: #FBDADA;  
+  background-color: #FBDADA;
 }
 .myStorage_adding_label{
   text-align: center;
@@ -105,7 +105,7 @@
   position: absolute;
 }
 .add_product_form{
-  
+
   /*margin-top: 75px;*/
   /*margin-left: 100px;*/
   height: 8vh;
@@ -136,7 +136,7 @@
 }
 
 .search input { text-indent: 10px;}
-.search .fa-search { 
+.search .fa-search {
   position: absolute;
   top: 22px;
   left: 10px;
@@ -152,6 +152,7 @@
 }
 
 .button_categories{
+  transition: 0.2s;
 	display: flex;
 	flex-direction: row;
 	background-color: #FFF0F0;
@@ -169,10 +170,11 @@
 	border: none;
 }
 .button_categories:hover{
-  background-color: #FBDADA;  
+  transition: 0.2s;
+  background-color: #FBDADA;
 }
 .categories_circle1{
-	
+
 	margin-top: 17.5px;
 	margin-left: 7.5px;
 	background: #AFE8BC;
@@ -181,7 +183,7 @@
     height: 5px;
 }
 .categories_circle2{
-	
+
 	margin-top: 17.5px;
 	margin-left: 7.5px;
 	background: #C2B6DC;
@@ -190,7 +192,7 @@
     height: 5px;
 }
 .categories_circle3{
-	
+
 	margin-top: 17.5px;
 	margin-left: 7.5px;
 	background: #9ADAE3;
@@ -199,7 +201,7 @@
     height: 5px;
 }
 .categories_circle4{
-	
+
 	margin-top: 17.5px;
 	margin-left: 7.5px;
 	background: #8386C4;
@@ -208,7 +210,7 @@
     height: 5px;
 }
 .categories_circle5{
-	
+
 	margin-top: 17.5px;
 	margin-left: 7.5px;
 	background: #D0E772;
@@ -217,7 +219,7 @@
     height: 5px;
 }
 .categories_circle6{
-	
+
 	margin-top: 17.5px;
 	margin-left: 7.5px;
 	background: #FBD285;
@@ -226,7 +228,7 @@
     height: 5px;
 }
 .categories_circle7{
-	
+
 	margin-top: 17.5px;
 	margin-left: 7.5px;
 	background: #97DFBC;
@@ -235,7 +237,7 @@
     height: 5px;
 }
 .categories_circle8{
-	
+
 	margin-top: 17.5px;
 	margin-left: 7.5px;
 	background: #F39595;
@@ -244,7 +246,7 @@
     height: 5px;
 }
 .categories_circle9{
-	
+
 	margin-top: 17.5px;
 	margin-left: 7.5px;
 	background: #A9A7E4;
@@ -253,7 +255,7 @@
     height: 5px;
 }
 .categories_circle10{
-	
+
 	margin-top: 17.5px;
 	margin-left: 7.5px;
 	background: #A9A7E4;
@@ -304,7 +306,7 @@
 	width: 65vw;
 	background-color: #FFF0F0;
 	border-radius: 11px;
-	
+
 }
 .hide{
 	display: none;
@@ -315,10 +317,10 @@
 	height: 500px;
 	width: 100px;
 	background-color: #FFF0F0;
-	
+
 	/*border-right: 2px solid #DAAAAA;*/
 	transition-property: width;
-	transition-duration: .1s;	
+	transition-duration: .1s;
 }
 
 .name_of_category_screen2_1{
@@ -328,7 +330,7 @@
   	color:#C08080;
   	width: 250px;
   	font-size: 23px;
-  	font-weight: normal;  	
+  	font-weight: normal;
 }
 .name_of_category_screen2_2{
 	text-align: center;
@@ -337,16 +339,16 @@
   	color:#C08080;
   	width: 100px;
   	font-size: 23px;
-  	font-weight: normal;  	
+  	font-weight: normal;
 }
 .name_of_category_screen2_3{
 	text-align: center;
-	  
+
   	font-family: Open Sans;
   	color:#C08080;
   	width: 200px;
   	font-size: 23px;
-  	font-weight: normal;  	
+  	font-weight: normal;
 }
 .name_of_category_screen2_4{
 	text-align: center;
@@ -355,7 +357,7 @@
   	color:#C08080;
   	width: 200px;
   	font-size: 23px;
-  	font-weight: normal;  	
+  	font-weight: normal;
 }
 .name_of_category_screen2_5{
 	text-align: center;
@@ -364,7 +366,7 @@
   	color:#C08080;
   	width: 200px;
   	font-size: 23px;
-  	font-weight: normal;  	
+  	font-weight: normal;
 }
 .name_of_category_screen2_6{
 	text-align: center;
@@ -373,16 +375,16 @@
   	color:#C08080;
   	width: 200px;
   	font-size: 23px;
-  	font-weight: normal;  	
+  	font-weight: normal;
 }
 .name_of_category_screen2_7{
 	text-align: center;
-	
+
   	font-family: Open Sans;
   	color:#C08080;
   	width: 250px;
   	font-size: 23px;
-  	font-weight: normal;  	
+  	font-weight: normal;
 }
 .name_of_category_screen2_8{
 	text-align: center;
@@ -391,7 +393,7 @@
   	color:#C08080;
   	width: 200px;
   	font-size: 23px;
-  	font-weight: normal;  	
+  	font-weight: normal;
 }
 .name_of_category_screen2_9{
 	text-align: center;
@@ -400,7 +402,7 @@
   	color:#C08080;
   	width: 250px;
   	font-size: 23px;
-  	font-weight: normal;  	
+  	font-weight: normal;
 }
 .name_of_category_screen2_10{
 	text-align: center;
@@ -409,7 +411,7 @@
   	color:#C08080;
   	width: 250px;
   	font-size: 23px;
-  	font-weight: normal;  	
+  	font-weight: normal;
 }
 .lines_of_category_1{
 	border-bottom:2px solid #DAAAAA;
@@ -472,7 +474,7 @@
 	/*margin-left: 60px;*/
 }
 .categories_circle1_screen2{
-	
+
 	margin-top: 32px;
 	margin-left: 10px;
 	background: #AFE8BC;
@@ -481,7 +483,7 @@
     height: 13px;
 }
 .categories_circle2_screen2{
-	
+
 	margin-top: 32px;
 	margin-left: 12px;
 	background: #C2B6DC;
@@ -490,7 +492,7 @@
     height: 13px;
 }
 .categories_circle3_screen2{
-	
+
 	margin-top: 32px;
 	margin-left: 13px;
 	background: #9ADAE3;
@@ -499,7 +501,7 @@
     height: 13px;
 }
 .categories_circle4_screen2{
-	
+
 	margin-top: 32px;
 	margin-left: 13px;
 	background: #8386C4;
@@ -508,7 +510,7 @@
     height: 13px;
 }
 .categories_circle5_screen2{
-	
+
 	margin-top: 32px;
 	margin-left: 13px;
 	background: #D0E772;
@@ -517,7 +519,7 @@
     height: 13px;
 }
 .categories_circle6_screen2{
-	
+
 	margin-top: 32px;
 	margin-left: 13px;
 	background: #FBD285;
@@ -526,7 +528,7 @@
     height: 13px;
 }
 .categories_circle7_screen2{
-	
+
 	margin-top: 32px;
 	margin-left: 13px;
 	background: #97DFBC;
@@ -535,7 +537,7 @@
     height: 13px;
 }
 .categories_circle8_screen2{
-	
+
 	margin-top: 32px;
 	margin-left: 13px;
 	background: #F39595;
@@ -544,7 +546,7 @@
     height: 13px;
 }
 .categories_circle9_screen2{
-	
+
 	margin-top: 32px;
 	margin-left: 13px;
 	background: #A9A7E4;
@@ -553,7 +555,7 @@
     height: 13px;
 }
 .categories_circle10_screen2{
-	
+
 	margin-top: 32px;
 	margin-left: 13px;
 	background: #A9A7E4;
@@ -561,17 +563,17 @@
     width: 13px;
     height: 13px;
 }
-.animated_storage_el { 
-	width: 46vw;	
-} 
- 
+.animated_storage_el {
+	width: 46vw;
+}
+
 
 
 
 
 
 .div_edit1{
-    
+
     display:inline-block;
     width:25px;
     height:25px;
@@ -584,14 +586,14 @@
     display:inline-block;
     width:25px;
     height:25px;
-    
+
     float:right;
     background: #FBD285;
-   
+
     border-radius:9px;
 }
 .edit_product_button:hover{
-    background-color: #FCE2B3;  
+    background-color: #FCE2B3;
 }
 .edit_btn{
   /*border-radius: 50px;*/
@@ -621,7 +623,7 @@
     cursor: pointer;
 }
 .add_product_button2:hover{
-	background-color: #FFC6C6;	
+	background-color: #FFC6C6;
 }
 .div_edit2{
     display:inline-block;
@@ -652,7 +654,7 @@
     cursor: pointer;
 }
 .add_product_button3:hover{
-	background-color: #FFC6C6;	
+	background-color: #FFC6C6;
 }
 .div_edit3{
     display:inline-block;
@@ -681,7 +683,7 @@
     cursor: pointer;
 }
 .add_product_button4:hover{
-	background-color: #FFC6C6;	
+	background-color: #FFC6C6;
 }
 .div_edit4{
     display:inline-block;
@@ -710,7 +712,7 @@
     cursor: pointer;
 }
 .add_product_button5:hover{
-	background-color: #FFC6C6;	
+	background-color: #FFC6C6;
 }
 .div_edit5{
     display:inline-block;
@@ -739,7 +741,7 @@
     cursor: pointer;
 }
 .add_product_button6:hover{
-	background-color: #FFC6C6;	
+	background-color: #FFC6C6;
 }
 .div_edit6{
     display:inline-block;
@@ -768,7 +770,7 @@
     cursor: pointer;
 }
 .add_product_button7:hover{
-	background-color: #FFC6C6;	
+	background-color: #FFC6C6;
 }
 .div_edit7{
     display:inline-block;
@@ -797,7 +799,7 @@
     cursor: pointer;
 }
 .add_product_button8:hover{
-	background-color: #FFC6C6;	
+	background-color: #FFC6C6;
 }
 .div_edit8{
     display:inline-block;
@@ -826,7 +828,7 @@
     cursor: pointer;
 }
 .add_product_button9:hover{
-	background-color: #FFC6C6;	
+	background-color: #FFC6C6;
 }
 .div_edit9{
     display:inline-block;
@@ -855,7 +857,7 @@
     cursor: pointer;
 }
 .add_product_button10:hover{
-	background-color: #FFC6C6;	
+	background-color: #FFC6C6;
 }
 
 .flex_name_category{
@@ -885,7 +887,7 @@
   	width: 200px;
 }
 .adding_form0,.adding_form1,.adding_form2,.adding_form3,.adding_form4,.adding_form5,.adding_form6,.adding_form7,.adding_form8,.adding_form9{
-  
+
 float:left;
 margin-left: 30px;
 }
@@ -897,7 +899,7 @@ margin-left: 30px;
     margin-left: 30px;
     font-family: Montserrat;
     color:grey;
-    font-size: 15px;   
+    font-size: 15px;
     /*text-align: center;*/
     outline: none;
     background-color: #FFE1E1;
@@ -926,8 +928,8 @@ margin-left: 30px;
   width: 350px;
   font-family: Montserrat;
   color:grey;
-  font-size: 15px;   
-  
+  font-size: 15px;
+
   outline: none;
   background-color: #FFE1E1;
   position: relative;
@@ -940,7 +942,7 @@ margin-left: 30px;
 
 /*when hovering an item:*/
 /*.autocomplete-items div:hover {
-  background-color: #FFD1D1; 
+  background-color: #FFD1D1;
 }*/
 .adding_formstyles_q{
     border-radius: 10px;
@@ -1002,7 +1004,6 @@ margin-left: 30px;
   margin-top: 20px;
   margin-left: 20px;
   /*margin-right: 10px;*/
-  background: #AFE8BC;
     border-radius: 50%;
     width: 10px;
     height: 10px;
@@ -1024,7 +1025,7 @@ margin-left: 30px;
   border: 0px solid black;
   font-family: Montserrat;
   color:grey;
-  font-size: 15px;   
+  font-size: 15px;
   /*margin-top: 5px;*/
   outline: none;
   background-color: #FFE1E1;
@@ -1142,16 +1143,16 @@ span:active {
   border: 0px solid black;
   font-family: Montserrat;
   color:grey;
-  font-size: 15px;   
+  font-size: 15px;
   margin-top: 5px;
   outline: none;
   background-color: #FFE1E1;
 }
 .big_div_adding:hover .ex_search{
-  background-color: #FFD1D1; 
+  background-color: #FFD1D1;
 }
 .big_div_adding:hover .fav_div{
-  background-color: #FFD1D1; 
+  background-color: #FFD1D1;
 }
 .fav_div{
   border-radius: 0px 10px 10px 0px;

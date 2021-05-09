@@ -26,7 +26,6 @@ My Storage
     <h2 class="category_label"> Категорії  </h2>
     <p align="right">
     {% for item,k in categories %}
-
     <div>
       <div class="button_categories" onclick="viewDiv('{{ k }}')">
 
@@ -84,7 +83,7 @@ My Storage
   </div>
   <div id='hiddenElems' class="hide">
 
-      
+
       <div class="adding_product_screen">
         <h1 class="myStorage_adding_label"> Додати продукти </h1>
 
@@ -96,7 +95,7 @@ My Storage
             <!--  <div class="autocomplete">
                 <input type="text" name="nameUa" id="nameUa0" placeholder="Назва продукту.." >
               </div>
- -->          <div class="adding_circle"></div>
+ -->          <div class="adding_circle" id='id_adding_circle'></div>
               <div class="autocomplete"><input type="text" name="nameUa" id="nameUa0" placeholder="Назва продукту.." class="adding_formstyles" autocomplete="off"></div>
               </div>
             <input type="number" step="0.1" name="quantity" id="quantity0" class="adding_formstyles_q" maxlength="4">
@@ -108,32 +107,32 @@ My Storage
 
 
 
-  	  <div class="category0_data" id="category0">  	
+  	  <div class="category0_data" id="category0">
   	  	<div class="flex_name_category">
   	  		<div class="categories_circle1_screen2"></div>
-  	  		<p class="name_of_category_screen2_1">{{categories_names.0}}</p>  	 
+  	  		<p class="name_of_category_screen2_1">{{categories_names.0}}</p>
 
           <!-- <div class="div_edit1">  -->
 
             <!-- <div class="edit_product_button"> <img src='{% static "img/edit_list.png" %}' class="edit_btn"></div> -->
           <!-- </div> 		 -->
-         
-  	  			  		
-  	  	</div>  
-  	  	<div class="lines_of_category_1"></div>	
 
-  	  	<ol class="list_of_products" id="id_list_of_products0"> 	
+
+  	  	</div>
+  	  	<div class="lines_of_category_1"></div>
+
+  	  	<ol class="list_of_products" id="id_list_of_products0">
           {% for item,k in products_array %}
             {%  if item.category == "Фрукти" %}
               <li class="category_data">{{ item.nameUa }}({{ k }})</li>
             {% endif %}
           {% endfor %}
   	  	</ol>
-  	  	
-       
+
+
       </div>
 
-       <!-- 
+       <!--
        <div class="adding_form0">
          {% csrf_token %}
             <p align="center"><input type="text" name="nameUa" id="nameUa0" placeholder="Назва продукту.." class="adding_formstyles"></p>
@@ -151,9 +150,9 @@ My Storage
             <!-- <div class="edit_product_button"> <img src='{% static "img/edit_list.png" %}' class="edit_btn"></div> -->
           <!-- </div>   -->
 
-      	</div>    		
+      	</div>
       		<div class="lines_of_category_2"></div>
-      		<ol class="list_of_products" id="id_list_of_products1">   
+      		<ol class="list_of_products" id="id_list_of_products1">
             {% for item,k in products_array %}
             {%  if item.category == "Овочі" %}
               <li class="category_data">{{ item.nameUa }}({{ k }})</li>
@@ -164,7 +163,7 @@ My Storage
       </div>
 
 
-<!-- 
+<!--
        <div class="adding_form1">
           {% csrf_token %}
             <p align='center'><input type="text" name="nameUa" id="nameUa1" placeholder="Назва продукту.." class="adding_formstyles"></p>
@@ -182,14 +181,14 @@ My Storage
       <div class="category2_data" id="category2">
       	<div class="flex_name_category">
       		<div class="categories_circle3_screen2"></div>
-			<p class="name_of_category_screen2_3">{{categories_names.2}}</p>		
+			<p class="name_of_category_screen2_3">{{categories_names.2}}</p>
 
           <!-- <div class="div_edit3">  -->
             <!-- <div class="edit_product_button"> <img src='{% static "img/edit_list.png" %}' class="edit_btn"></div> -->
           <!-- </div>   -->
 		</div>
 			<div class="lines_of_category_3"></div>
-      		<ol class="list_of_products"  id="id_list_of_products2">   
+      		<ol class="list_of_products"  id="id_list_of_products2">
             {% for item,k in products_array %}
             {%  if item.category == "Молочні продукти" %}
               <li class="category_data">{{ item.nameUa }}({{ k }})</li>
@@ -217,7 +216,7 @@ My Storage
 
       <div class="category3_data" id="category3">
       	<div class="flex_name_category">
-      		<div class="categories_circle4_screen2"></div>      		
+      		<div class="categories_circle4_screen2"></div>
       		<p class="name_of_category_screen2_4">{{categories_names.3}}</p>
 
           <!-- <div class="div_edit4">  -->
@@ -226,7 +225,7 @@ My Storage
 
       	</div>
       		<div class="lines_of_category_4"></div>
-      		<ol class="list_of_products"   id="id_list_of_products3">   
+      		<ol class="list_of_products"   id="id_list_of_products3">
             {% for item,k in products_array %}
             {%  if item.category == "М'ясні вироби" %}
               <li class="category_data">{{ item.nameUa }}({{ k }})</li>
@@ -263,7 +262,7 @@ My Storage
 
       	</div>
       		<div class="lines_of_category_5"></div>
-      		<ol class="list_of_products"   id="id_list_of_products4">   
+      		<ol class="list_of_products"   id="id_list_of_products4">
             {% for item,k in products_array %}
             {%  if item.category == "Морепродукти" %}
               <li class="category_data">{{ item.nameUa }}({{ k }})</li>
@@ -298,7 +297,7 @@ My Storage
 
         </div>
         	<div class="lines_of_category_6"></div>
-        	<ol class="list_of_products"  id="id_list_of_products5">   
+        	<ol class="list_of_products"  id="id_list_of_products5">
             {% for item,k in products_array %}
             {%  if item.category == "Бакалія" %}
               <li class="category_data">{{ item.nameUa }}({{ k }})</li>
@@ -332,7 +331,7 @@ My Storage
 
         </div>
         	<div class="lines_of_category_7"></div>
-        	<ol class="list_of_products"  id="id_list_of_products6">   
+        	<ol class="list_of_products"  id="id_list_of_products6">
             {% for item,k in products_array %}
             {%  if item.category == "Консерви та приправи" %}
               <li class="category_data">{{ item.nameUa }}({{ k }})</li>
@@ -367,7 +366,7 @@ My Storage
 
         </div>
         	<div class="lines_of_category_8"></div>
-        	<ol class="list_of_products"  id="id_list_of_products7">   
+        	<ol class="list_of_products"  id="id_list_of_products7">
             {% for item,k in products_array %}
             {%  if item.category == "Напої" %}
               <li class="category_data">{{ item.nameUa }}({{ k }})</li>
@@ -401,7 +400,7 @@ My Storage
 
         </div>
         	<div class="lines_of_category_9"></div>
-        	<ol class="list_of_products"   id="id_list_of_products8">   
+        	<ol class="list_of_products"   id="id_list_of_products8">
             {% for item,k in products_array %}
             {%  if item.category == "Заморожені продукти" %}
               <li class="category_data">{{ item.nameUa }}({{ k }})</li>
@@ -430,7 +429,7 @@ My Storage
 	  		<p class="name_of_category_screen2_10">{{categories_names.9}}</p>
         </div>
         	<div class="lines_of_category_10"></div>
-        	<ol class="list_of_products"   id="id_list_of_products9">   
+        	<ol class="list_of_products"   id="id_list_of_products9">
             {% for item,k in products_array %}
             {%  if item.category == "Улюблені продукти" %}
               <li class="category_data">{{ item.nameUa }}({{ k }})</li>
@@ -452,7 +451,7 @@ My Storage
   <div class = "storage_screen2" id="storage_screen2">
 
     <div class="products_list" id="div1_storage_screen2">
-    	 
+
     </div>
 
   </div>
@@ -463,33 +462,33 @@ My Storage
         let array_openedcategories = []
         let counters = [0,0,0,0,0,0,0,0,0,0];
         function animate_st(a){
-        	$(".category" + a + "_data").toggleClass("animated_storage_el");        	
+        	$(".category" + a + "_data").toggleClass("animated_storage_el");
         }
         function viewDiv(a){
         	 $(".category" + a + "_data").removeClass("animated_storage_el");
         	 setTimeout(animate_st, 1, a);
           if(array_openedcategories.indexOf(a)==-1){
             if(i <= 2){
-           	  $(".category" + a + "_data").remove().clone().appendTo('#div1_storage_screen2'); 
+           	  $(".category" + a + "_data").remove().clone().appendTo('#div1_storage_screen2');
               if(i == 1){
                 i--
                 document.getElementById('category' + array_openedcategories[0]).style.borderRight = "2px solid #DAAAAA";
                 i++
-              } 
+              }
               if(i == 2){
                 i--
                 document.getElementById('category' + array_openedcategories[1]).style.borderRight = "2px solid #DAAAAA";
                 i++
-              }      	  
+              }
               i++;
               array_openedcategories.push(a);
             }else{
               $(".category" + array_openedcategories[0] + "_data").removeClass("animated_storage_el");
-              $(".category" + array_openedcategories[0] + "_data").remove().clone().appendTo('#hiddenElems'); 
-              document.getElementById('category' + array_openedcategories[0]).style.removeProperty('border-right');        
+              $(".category" + array_openedcategories[0] + "_data").remove().clone().appendTo('#hiddenElems');
+              document.getElementById('category' + array_openedcategories[0]).style.removeProperty('border-right');
               array_openedcategories.shift()
               array_openedcategories.push(a)
-              $(".category" + a + "_data").remove().clone().appendTo('#div1_storage_screen2');     
+              $(".category" + a + "_data").remove().clone().appendTo('#div1_storage_screen2');
               document.getElementById('category' + array_openedcategories[0]).style.borderRight = "2px solid #DAAAAA";
               document.getElementById('category' + array_openedcategories[1]).style.borderRight = "2px solid #DAAAAA";
               $(".adding_form" + a).remove().clone().appendTo('#hiddenElems');
@@ -508,7 +507,7 @@ My Storage
               }
               else{
                 document.getElementById('category' + array_openedcategories[1]).style.removeProperty('border-right');
-              }            
+              }
             }
             if(array_openedcategories[2] == a)
             {
@@ -521,16 +520,16 @@ My Storage
         };
 
 
-        function add_button(){           
+        function add_button(){
             $(".myStorage_label").remove().appendTo('#hiddenElems');
             $(".add_product_button1").remove().appendTo('#hiddenElems');
             $("#div1_storage_screen2").remove().appendTo('#hiddenElems');
-            $(".adding_product_screen").remove().clone().appendTo('#storage_screen2');    
-            autocomplete(document.getElementById("nameUa0"), countries);      
+            $(".adding_product_screen").remove().clone().appendTo('#storage_screen2');
+            autocomplete(document.getElementById("nameUa0"), countries);
         }
 
 
- </script>            
+ </script>
  <script>
   let cat = ['Фрукти','Овочі','Молочні продукти','М\'ясні вироби','Морепродукти','Бакалія','Консерви та приправи','Напої','Заморожені продукти','Улюблені продукти']
 function ajaxbutton_storage(num){
@@ -548,13 +547,13 @@ function ajaxbutton_storage(num){
             if(1){
              document.getElementById('nameUa' + num).value = "";
              document.getElementById('quantity' + num).value = "";
-            }             
+            }
            }else{
             alert("Такого продукту не існує")
-           }        
+           }
       }
       })
- }   
+ }
 
 
 
@@ -566,33 +565,87 @@ function ajaxbutton_storage(num){
 
   function autocomplete(inp, arr) {
   inp.addEventListener("input", function(e) {
-      var a, b, i, val = this.value;
+    $.ajax({
+      type:'GET',
+      url:'/showresults/',
+      data:{
+        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+        search_data:this.value,
+    },
+    success:function(response){
+      colors_arr = ["#AFE8BC","#C2B6DC","#9ADAE3","#8386C4","#D0E772","#FBD285","#97DFBC","#F39595","#A9A7E4","#A9A7E4"]
       closeAllLists();
-      if (!val) { return false;}
+      document.getElementById('id_adding_circle').style.background = colors_arr[parseInt(response[0][0][1])]
       a = document.createElement("DIV");
       a.setAttribute("id", /*this.id + */"autocomplete-list");
       a.setAttribute("class", "autocomplete-items");
-      this.parentNode.appendChild(a);
-      for (i = 0; i < arr.length; i++) {
-        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-          c = document.createElement("DIV");
-          b = document.createElement("DIV");
-          c.setAttribute("class", "big_div_adding");
-          b.setAttribute("class","ex_search")
-          b.setAttribute("id","ex_search"+ i)
-          b.innerHTML ="<div class=\"adding_circle_0\"></div>" + "<div class=\"ex_adding\">"+ "<p class=\"s_text\"><strong>" + arr[i].substr(0, val.length) + "</strong>" + arr[i].substr(val.length) + "</p>" + "</div>";
-          c.innerHTML =  "<div class=\"ex_search\" id=\"ex_search"+ i +"\">" + b.innerHTML+ "<input type='hidden' value='" + arr[i] + "'></div>" + "<div class=\"fav_div\"  id=\"star_add\">" + "<div class=\"click\" id=\"click_add" + i +"\" onclick=\"pressStar(" + i +")\"><span class=\"fa fa-star-o\" id=\"span_add" + i +"\"></span><div class=\"ring\"id=\"ring_add\"></div><div class=\"ring2\"id=\"ring2_add\"></div></div></div>";
-          if(counter <= 4){
-            a.appendChild(c);
-            counter++
-          document.getElementById("ex_search"+i).addEventListener("click", function(e) {
-              inp.value = this.getElementsByTagName("input")[0].value;
-              closeAllLists();
-          });
-          } 
-        }
+      document.getElementById('nameUa0').parentNode.appendChild(a);
+      //console.log('ajaxed successfuly')
+      i = 0
+      //console.log(response)
+      for (item in response[0]){
+        console.log(colors_arr[parseInt(response[0][item][1])])
+        c = document.createElement("DIV");
+        b = document.createElement("DIV");
+        c.setAttribute("class", "big_div_adding");
+        b.setAttribute("class","ex_search")
+        b.setAttribute("id","ex_search"+ i)
+        //console.log(response[1].length)
+        b.innerHTML = "<div class=\"adding_circle_0\" style=\'background:" + colors_arr[parseInt(response[0][item][1])] + "\'></div>" +
+         "<div class=\"ex_adding\">"+
+           "<p class=\"s_text\"><strong>" + response[0][item][0].substr(0, parseInt(response[1])) + "</strong>" +
+             response[0][item][0].substr(parseInt(response[1])) +
+             "</p>" +
+             "</div>";
+        c.innerHTML =  "<div class=\"ex_search\" id=\"ex_search" + i +"\">" + b.innerHTML+ "<input type='hidden' value='" + response[0][item][0] + "'></div>" + "<div class=\"fav_div\"  id=\"star_add\">" + "<div class=\"click\" id=\"click_add" + i +"\" onclick=\"pressStar(" + i +")\"><span class=\"fa fa-star-o\" id=\"span_add" + i +"\"></span><div class=\"ring\"id=\"ring_add\"></div><div class=\"ring2\"id=\"ring2_add\"></div></div></div>";
+        a.appendChild(c);
+
+          // document.getElementById('autocomplete-list').innerHTML += c.innerHTML
+          i+=1
       }
-      counter=0
+
+  }
+
+
+
+
+
+
+
+
+    })
+      // var a, b, i, val = this.value;
+      // closeAllLists();
+      // if (!val) { return false;}
+      // a = document.createElement("DIV");
+      // a.setAttribute("id", /*this.id + */"autocomplete-list");
+      // a.setAttribute("class", "autocomplete-items");
+      // this.parentNode.appendChild(a);
+      // for (i = 0; i < arr.length; i++) {
+      //   if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+      //     c = document.createElement("DIV");
+      //     b = document.createElement("DIV");
+      //     c.setAttribute("class", "big_div_adding");
+      //     b.setAttribute("class","ex_search")
+      //     b.setAttribute("id","ex_search"+ i)
+      //     b.innerHTML = "<div class=\"adding_circle_0\"></div>" +
+      //      "<div class=\"ex_adding\">"+
+      //        "<p class=\"s_text\"><strong>" + arr[i].substr(0, val.length) + "</strong>" +
+      //          arr[i].substr(val.length) +
+      //          "</p>" +
+      //          "</div>";
+      //     c.innerHTML =  "<div class=\"ex_search\" id=\"ex_search" + i +"\">" + b.innerHTML+ "<input type='hidden' value='" + arr[i] + "'></div>" + "<div class=\"fav_div\"  id=\"star_add\">" + "<div class=\"click\" id=\"click_add" + i +"\" onclick=\"pressStar(" + i +")\"><span class=\"fa fa-star-o\" id=\"span_add" + i +"\"></span><div class=\"ring\"id=\"ring_add\"></div><div class=\"ring2\"id=\"ring2_add\"></div></div></div>";
+      //     if(counter <= 4){
+      //       a.appendChild(c);
+      //       counter++
+      //     document.getElementById("ex_search"+i).addEventListener("click", function(e) {
+      //         inp.value = this.getElementsByTagName("input")[0].value;
+      //         closeAllLists();
+      //     });
+      //     }
+      //   }
+      // }
+      // counter=0
   });
   function closeAllLists(elmnt) {
     var x = document.getElementsByClassName("autocomplete-items");
@@ -637,10 +690,10 @@ for(var z = 0;z < countries.length; z++){
                         //   if(1){
                         //    document.getElementById('nameUa' + num).value = "";
                         //    document.getElementById('quantity' + num).value = "";
-                        //   }             
+                        //   }
                         //  }else{
                         //   alert("Такого продукту не існує")
-                        //  }    
+                        //  }
                         alert('success')
 
                     }

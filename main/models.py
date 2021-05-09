@@ -24,7 +24,7 @@ class MyAccountManager(BaseUserManager):
 		user.is_superuser = True
 		user.save(using=self._db)
 		return user
- 
+
 
 class Achievements(models.Model):
 	fast_start = models.BooleanField(default=False)
@@ -115,10 +115,10 @@ class AllProduct(models.Model):
 	CATEGORIES = (('Фрукти','Фрукти'),('Овочі','Овочі'),('Молочні продукти','Молочні продукти'),('М\'ясо','М\'ясо'),('Риба','Риба'),('Бакалія','Бакалія'),('Консерви та приправи','Консерви та приправи'),('Напої','Напої'),('Заморожені продукти','Заморожені продукти'))
 	category = models.CharField('Category', max_length=30, null=True, choices=CATEGORIES, blank=True)
 	nameUa = models.CharField("UA", max_length=50, blank=True)
-	added_by = models.IntegerField("added_by", max_length=50, null=True)	
-	CHOICESUA = (('г','г'),('шт','шт'),('мл.','мл.'),('кг.','кг.'),('пуч.','пуч.'),('бан.','бан.'),('л.','л.'),('упак.','упак.'))	
-	measureUa = models.CharField('measure', max_length=15, null=True, choices=CHOICESUA, blank=True)	
-	
+	added_by = models.IntegerField("added_by", max_length=50, null=True)
+	CHOICESUA = (('г','г'),('шт','шт'),('мл.','мл.'),('кг.','кг.'),('пуч.','пуч.'),('бан.','бан.'),('л.','л.'),('упак.','упак.'))
+	measureUa = models.CharField('measure', max_length=15, null=True, choices=CHOICESUA, blank=True)
+
 
 	def __str__(self):
 		return self.nameUa
@@ -182,12 +182,12 @@ class PostLike(models.Model):
 
 
 class UserProductQuantity(models.Model):
-	user = models.ForeignKey(CustomUser, null=True, on_delete=models.PROTECT)	
+	user = models.ForeignKey(CustomUser, null=True, on_delete=models.PROTECT)
 	nameUa = models.ForeignKey(AllProduct, max_length=100, blank=True,on_delete=models.PROTECT)
-	quantity = models.FloatField("Quantity", default=0, blank=True)		
+	quantity = models.FloatField("Quantity", default=0, blank=True)
 	is_favorite = models.BooleanField(default=False)
 	def __str__(self):
-		return self.nameUa.nameUa	
+		return self.nameUa.nameUa
 
 
 
@@ -195,7 +195,7 @@ class ExampleAlex(models.Model):
 	my_products = models.CharField(max_length=200, blank=True)
 
 	user2 = models.ForeignKey(CustomUser, blank=True, on_delete=models.PROTECT, null=True)
-	quantity1 = models.FloatField("Quantity", default=0, blank=True)		
+	quantity1 = models.FloatField("Quantity", default=0, blank=True)
 
 	def __str__(self):
 		return self.my_products

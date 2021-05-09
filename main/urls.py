@@ -16,4 +16,5 @@ urlpatterns = [
 	path('<int:pk>/viewuser', views.patternUserView.as_view(), name="viewuser"),
 	path('feed/', views.feedPage, name="feed"),
 	path('alexPost/', views.alexPost, name="alexPost"),
+	path('showresults/', views.showresults, name="showresults"),
 ]
