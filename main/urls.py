@@ -17,4 +17,6 @@ urlpatterns = [
 	path('feed/', views.feedPage, name="feed"),
 	path('alexPost/', views.alexPost, name="alexPost"),
 	path('showresults/', views.showresults, name="showresults"),
+	path('addfav/', views.addfav, name="addfav"),
+
 ]

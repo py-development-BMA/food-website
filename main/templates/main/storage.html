@@ -6,7 +6,7 @@ My Storage
 {% block content %}
 
 
-
+ 
   <h1 class="myStorage_label"> Мої продукти </h1>
   <div class="add_product_button1" onclick="add_button()"></div>
 
@@ -581,7 +581,6 @@ function ajaxbutton_storage(num){
       a.setAttribute("class", "autocomplete-items");
       document.getElementById('nameUa0').parentNode.appendChild(a);
       //console.log('ajaxed successfuly')
-      i = 0
       //console.log(response)
       for (item in response[0]){
         console.log(colors_arr[parseInt(response[0][item][1])])
@@ -589,7 +588,7 @@ function ajaxbutton_storage(num){
         b = document.createElement("DIV");
         c.setAttribute("class", "big_div_adding");
         b.setAttribute("class","ex_search")
-        b.setAttribute("id","ex_search"+ i)
+        b.setAttribute("id","ex_search"+ response[0][item][2])
         //console.log(response[1].length)
         b.innerHTML = "<div class=\"adding_circle_0\" style=\'background:" + colors_arr[parseInt(response[0][item][1])] + "\'></div>" +
          "<div class=\"ex_adding\">"+
@@ -597,11 +596,15 @@ function ajaxbutton_storage(num){
              response[0][item][0].substr(parseInt(response[1])) +
              "</p>" +
              "</div>";
-        c.innerHTML =  "<div class=\"ex_search\" id=\"ex_search" + i +"\">" + b.innerHTML+ "<input type='hidden' value='" + response[0][item][0] + "'></div>" + "<div class=\"fav_div\"  id=\"star_add\">" + "<div class=\"click\" id=\"click_add" + i +"\" onclick=\"pressStar(" + i +")\"><span class=\"fa fa-star-o\" id=\"span_add" + i +"\"></span><div class=\"ring\"id=\"ring_add\"></div><div class=\"ring2\"id=\"ring2_add\"></div></div></div>";
-        a.appendChild(c);
+             console.log(response[0][item][3])
+        if (response[0][item][3] == '0'){
+          c.innerHTML =  "<div class=\"ex_search\" id=\"ex_search" + response[0][item][2] +"\">" + b.innerHTML+ "<input type='hidden' value='" + response[0][item][0] + "'></div>" + "<div class=\"fav_div\"  id=\"star_add\">" + "<div class=\"click\" id=\"click_add" + response[0][item][2] +"\" onclick=\"pressStar(" + response[0][item][2] +")\"><span class=\"fa fa-star-o\" id=\"span_add" + response[0][item][2] +"\"></span><div class=\"ring\"id=\"ring_add\"></div><div class=\"ring2\"id=\"ring2_add\"></div></div></div>";
+        }else{
+          c.innerHTML =  "<div class=\"ex_search\" id=\"ex_search" + response[0][item][2] +"\">" + b.innerHTML+ "<input type='hidden' value='" + response[0][item][0] + "'></div>" + "<div class=\"fav_div\"  id=\"star_add\">" + "<div class=\"click active active-2 active-3\" id=\"click_add" + response[0][item][2] +"\" onclick=\"pressStar(" + response[0][item][2] +")\"><span class=\"fa fa-star\" id=\"span_add" + response[0][item][2] +"\"></span><div class=\"ring\"id=\"ring_add\"></div><div class=\"ring2\"id=\"ring2_add\"></div></div></div>";
+        }
+        
 
-          // document.getElementById('autocomplete-list').innerHTML += c.innerHTML
-          i+=1
+        a.appendChild(c);
       }
 
   }
@@ -679,23 +682,13 @@ for(var z = 0;z < countries.length; z++){
                   console.log(k)
                   $.ajax({
                       type:'POST',
-                      url:'/mystorage/',
+                      url:'/addfav/',
                       data:{
                         csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
-                        is_favorite:fav,
-                        prod_id:k,
+                        pk:k,
+                        wtd:"add",
                     },
                     success:function(){
-                        // if(response == 1){
-                        //   if(1){
-                        //    document.getElementById('nameUa' + num).value = "";
-                        //    document.getElementById('quantity' + num).value = "";
-                        //   }
-                        //  }else{
-                        //   alert("Такого продукту не існує")
-                        //  }
-                        alert('success')
-
                     }
                     })
 
@@ -715,7 +708,17 @@ for(var z = 0;z < countries.length; z++){
                 pressed[k]=0
                 fav = false
                   console.log(k)
-
+                  $.ajax({
+                      type:'POST',
+                      url:'/addfav/',
+                      data:{
+                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                        pk:k,
+                        wtd:"remove",
+                    },
+                    success:function(){
+                    }
+                    })
                 }
   }
 
