@@ -24,7 +24,7 @@ class CustomUserEdit(ModelForm):
 
 
 
-
+ 
 class RecipeForm(ModelForm):
 	class Meta:
 		model = RecipeProduct
@@ -59,4 +59,10 @@ class PostToLike(forms.Form):
 class AddProduct(forms.Form):
 	nameUa = forms.CharField(max_length=30)
 	quantity = forms.FloatField()
+
+class FavProduct(forms.Form):
+	is_favorite = forms.BooleanField()
 	
+class AlexEx(forms.Form):
+	alexExText = forms.CharField(max_length=300, required=False)
+	quantity1 = forms.FloatField()

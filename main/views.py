@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .models import *
 from .forms import *
 from django.views.generic import DetailView, UpdateView, DeleteView
@@ -11,6 +11,7 @@ import datetime
 from django.core.mail import send_mail
 import re
 import random
+import json
 #from .tasks import *
  
 class bcolors:
@@ -188,47 +189,55 @@ def  mystorage(request):
 	categories_names = categories
 	counter = [0,1,2,3,4,5,6,7,8,9]
 	categories = zip(categories,counter)
-
-	q_array = []
-
-	all_products = CustomUser.objects.get(email=request.user.email).my_products.all()
-	for item in all_products:
-		k = UserProductQuantity.objects.get(user=request.user, nameUa=item)
-		q_array.append(k)
-		print(k.nameUa)
-	products = list(zip(all_products,q_array))
+	list0 = []
+	
 
 	if request.method == 'POST':
 		form = AddProduct(request.POST)
 		if form.is_valid():
 			for item in AllProduct.objects.all():
-				if item.nameUa == form.cleaned_data.get('nameUa'):
-					db_example = UserProductQuantity.objects.filter()[:1].get()
-					db_example.pk = None
-					db_example.save()
+				list0.append(item.nameUa)
+			if form.cleaned_data.get('nameUa') in list0:
+				if not UserProductQuantity.objects.filter(nameUa=AllProduct.objects.get(nameUa=form.cleaned_data.get('nameUa')) ,user = CustomUser.objects.get(email=request.user.email).id).exists():
+					UserProductQuantity.objects.create(
+						user=request.user,
+						nameUa=AllProduct.objects.get(nameUa=form.cleaned_data.get('nameUa')),
+						quantity=form.cleaned_data.get('quantity')
+					)
+					CustomUser.objects.get(email=request.user.email).my_products.add(AllProduct.objects.get(nameUa=form.cleaned_data.get('nameUa')))					
+					return HttpResponse(json.dumps(1, ensure_ascii=False), content_type='application/json')
+			else:
+				return HttpResponse(json.dumps(0, ensure_ascii=False), content_type='application/json')
+			
 
-					#db_example = UserProductQuantity.objects.filter()[:1].get()
-					#db_example.user = request.user.email
-					db_example.nameUa = AllProduct.objects.get(nameUa=item.nameUa)
-					db_example.quantity = form.cleaned_data.get('quantity')
+	else:
+		q_array = []
 
-					CustomUser.objects.get(email=request.user.email).my_products.add(item)
-					db_example.save()
-			return redirect('mystorage')
+		all_products = CustomUser.objects.get(email=request.user.email).my_products.all()
+		for item in all_products:
+			k = UserProductQuantity.objects.get(user=request.user, nameUa=item).quantity
+			q_array.append(k)
+			
+		products = list(zip(all_products,q_array))
 
-	
+		context = {
+		'categories':categories,
+		'categories_names':categories_names,
+		'all_products':all_products,		
+		'products_array' : products,
+		}
+		return render(request, 'main/storage.html', context)
 
-	context = {
-	'categories':categories,
-	'categories_names':categories_names,
-	'all_products':all_products,
-	
-	
-	'products_array' : products,
-	}
-	return render(request, 'main/storage.html', context)
-
-
+def alexPost(request):
+	if request.method == 'POST':
+		form = AlexEx(request.POST)
+		if form.is_valid():
+			ExampleAlex.objects.create(
+				user2=request.user,
+				my_products=form.cleaned_data.get('alexExText'),
+				quantity1=form.cleaned_data.get('quantity1')
+			)
+	return render(request, 'main/alexPost.html')
 
 
 def feedPage(request):

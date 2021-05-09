@@ -118,7 +118,7 @@ class AllProduct(models.Model):
 	added_by = models.IntegerField("added_by", max_length=50, null=True)	
 	CHOICESUA = (('г','г'),('шт','шт'),('мл.','мл.'),('кг.','кг.'),('пуч.','пуч.'),('бан.','бан.'),('л.','л.'),('упак.','упак.'))	
 	measureUa = models.CharField('measure', max_length=15, null=True, choices=CHOICESUA, blank=True)	
-	is_favorite = models.BooleanField(default=False)
+	
 
 	def __str__(self):
 		return self.nameUa
@@ -146,7 +146,8 @@ class CustomUser(AbstractBaseUser):
 	is_user = models.BooleanField(default=True)
 	is_staff = models.BooleanField(default=False)
 	is_superuser = models.BooleanField(default=False)
-	my_products = models.ManyToManyField(AllProduct,blank=True)
+	my_products = models.ManyToManyField(AllProduct,blank=True,related_name = "my_products")
+	favorites = models.ManyToManyField(AllProduct,blank=True,related_name = "favorites")
 	#ADD FIELDS WITH PERSONAL PREFERENCES
 
 	USERNAME_FIELD = 'email'
@@ -184,9 +185,17 @@ class UserProductQuantity(models.Model):
 	user = models.ForeignKey(CustomUser, null=True, on_delete=models.PROTECT)	
 	nameUa = models.ForeignKey(AllProduct, max_length=100, blank=True,on_delete=models.PROTECT)
 	quantity = models.FloatField("Quantity", default=0, blank=True)		
-
+	is_favorite = models.BooleanField(default=False)
 	def __str__(self):
 		return self.nameUa.nameUa	
 
 
 
+class ExampleAlex(models.Model):
+	my_products = models.CharField(max_length=200, blank=True)
+
+	user2 = models.ForeignKey(CustomUser, blank=True, on_delete=models.PROTECT, null=True)
+	quantity1 = models.FloatField("Quantity", default=0, blank=True)		
+
+	def __str__(self):
+		return self.my_products
