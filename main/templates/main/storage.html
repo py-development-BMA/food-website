@@ -6,7 +6,7 @@ My Storage
 {% block content %}
 
 
- 
+
   <h1 class="myStorage_label"> Мої продукти </h1>
   <div class="add_product_button1" onclick="add_button()"></div>
 
@@ -560,63 +560,69 @@ function ajaxbutton_storage(num){
  let counter = 0;
 
 
+document.addEventListener("DOMContentLoaded", function(){
+  $.ajax({
+    type:'GET',
+    url:'/showresults/',
+    data:{},
+  success:function(response){
+    localStorage.setItem('allproducts', JSON.stringify(response));
+    console.log('LOCAL STORAGE SAVED!')
+}
 
 
+
+
+
+
+
+
+  })
+});
 
   function autocomplete(inp, arr) {
   inp.addEventListener("input", function(e) {
-    $.ajax({
-      type:'GET',
-      url:'/showresults/',
-      data:{
-        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
-        search_data:this.value,
-    },
-    success:function(response){
+    let response = JSON.parse(localStorage.getItem('allproducts'));
+    //console.log(response)
       colors_arr = ["#AFE8BC","#C2B6DC","#9ADAE3","#8386C4","#D0E772","#FBD285","#97DFBC","#F39595","#A9A7E4","#A9A7E4"]
       closeAllLists();
-      document.getElementById('id_adding_circle').style.background = colors_arr[parseInt(response[0][0][1])]
+      document.getElementById('id_adding_circle').style.background = colors_arr[parseInt(response[0][1])]
       a = document.createElement("DIV");
       a.setAttribute("id", /*this.id + */"autocomplete-list");
       a.setAttribute("class", "autocomplete-items");
       document.getElementById('nameUa0').parentNode.appendChild(a);
       //console.log('ajaxed successfuly')
       //console.log(response)
-      for (item in response[0]){
-        console.log(colors_arr[parseInt(response[0][item][1])])
+      for (item in response){
+        if (response[item][0].substr(0, this.value.length).toUpperCase() == this.value.toUpperCase() && this.value != ''){
+        //console.log(colors_arr[parseInt(response[item][1])])
         c = document.createElement("DIV");
         b = document.createElement("DIV");
         c.setAttribute("class", "big_div_adding");
         b.setAttribute("class","ex_search")
-        b.setAttribute("id","ex_search"+ response[0][item][2])
+        b.setAttribute("id","ex_search"+ response[item][2])
         //console.log(response[1].length)
-        b.innerHTML = "<div class=\"adding_circle_0\" style=\'background:" + colors_arr[parseInt(response[0][item][1])] + "\'></div>" +
+        b.innerHTML = "<div class=\"adding_circle_0\" style=\'background:" + colors_arr[parseInt(response[item][1])] + "\'></div>" +
          "<div class=\"ex_adding\">"+
-           "<p class=\"s_text\"><strong>" + response[0][item][0].substr(0, parseInt(response[1])) + "</strong>" +
-             response[0][item][0].substr(parseInt(response[1])) +
+           "<p class=\"s_text\"><strong>" + response[item][0].substr(0, this.value.length) + "</strong>" +
+             response[item][0].substr(this.value.length) +
              "</p>" +
              "</div>";
-             console.log(response[0][item][3])
-        if (response[0][item][3] == '0'){
-          c.innerHTML =  "<div class=\"ex_search\" id=\"ex_search" + response[0][item][2] +"\">" + b.innerHTML+ "<input type='hidden' value='" + response[0][item][0] + "'></div>" + "<div class=\"fav_div\"  id=\"star_add\">" + "<div class=\"click\" id=\"click_add" + response[0][item][2] +"\" onclick=\"pressStar(" + response[0][item][2] +")\"><span class=\"fa fa-star-o\" id=\"span_add" + response[0][item][2] +"\"></span><div class=\"ring\"id=\"ring_add\"></div><div class=\"ring2\"id=\"ring2_add\"></div></div></div>";
+             //console.log(response[item][3])
+        if (response[item][3] == '0'){
+          c.innerHTML =  "<div class=\"ex_search\" id=\"ex_search" + response[item][2] +"\">" + b.innerHTML+ "<input type='hidden' value='" + response[item][0] + "'></div>" + "<div class=\"fav_div\"  id=\"star_add\">" + "<div class=\"click\" id=\"click_add" + response[item][2] +"\" onclick=\"pressStar(" + response[item][2] +")\"><span class=\"fa fa-star-o\" id=\"span_add" + response[item][2] +"\"></span><div class=\"ring\"id=\"ring_add\"></div><div class=\"ring2\"id=\"ring2_add\"></div></div></div>";
         }else{
-          c.innerHTML =  "<div class=\"ex_search\" id=\"ex_search" + response[0][item][2] +"\">" + b.innerHTML+ "<input type='hidden' value='" + response[0][item][0] + "'></div>" + "<div class=\"fav_div\"  id=\"star_add\">" + "<div class=\"click active active-2 active-3\" id=\"click_add" + response[0][item][2] +"\" onclick=\"pressStar(" + response[0][item][2] +")\"><span class=\"fa fa-star\" id=\"span_add" + response[0][item][2] +"\"></span><div class=\"ring\"id=\"ring_add\"></div><div class=\"ring2\"id=\"ring2_add\"></div></div></div>";
+          c.innerHTML =  "<div class=\"ex_search\" id=\"ex_search" + response[item][2] +"\">" + b.innerHTML+ "<input type='hidden' value='" + response[item][0] + "'></div>" + "<div class=\"fav_div\"  id=\"star_add\">" + "<div class=\"click active active-2 active-3\" id=\"click_add" + response[item][2] +"\" onclick=\"pressStar(" + response[item][2] +")\"><span class=\"fa fa-star\" id=\"span_add" + response[item][2] +"\"></span><div class=\"ring\"id=\"ring_add\"></div><div class=\"ring2\"id=\"ring2_add\"></div></div></div>";
         }
-        
+
 
         a.appendChild(c);
       }
-
-  }
-
+    }
 
 
 
 
-
-
-
-    })
       // var a, b, i, val = this.value;
       // closeAllLists();
       // if (!val) { return false;}

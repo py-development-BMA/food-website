@@ -245,25 +245,20 @@ def alexPost(request):
 def showresults(request):
 	if request.method == 'GET':
 		matched1 = []
-		matched2 = []
-		matched = []
 		categories = ['Фрукти','Овочі','Молочні продукти','М\'ясо','Риба','Бакалія','Консерви та приправи','Напої','Заморожені продукти','Улюблені продукти']
-		if request.GET.get('search_data') != '':
-			fav_p = CustomUser.objects.get(email=request.user.email).favorites.all()
-			for item in AllProduct.objects.filter(nameUa__startswith=request.GET.get('search_data')):
-				mn = []
-				mn.append(item.nameUa)
-				mn.append(categories.index(item.category))
-				mn.append(item.pk)
-				if fav_p.filter(pk=item.pk).count() != 0:
-					mn.append(1)
-				else:
-					mn.append(0)
-				matched1.append(mn)
-			matched.append(matched1)
-			matched2.append(len(request.GET.get('search_data')))
-			matched.append(matched2)
-		return HttpResponse(json.dumps(matched, ensure_ascii=False), content_type='application/json')
+		fav_p = CustomUser.objects.get(email=request.user.email).favorites.all()
+		for item in AllProduct.objects.all():
+			mn = []
+			mn.append(item.nameUa)
+			mn.append(categories.index(item.category))
+			mn.append(item.pk)
+			if fav_p.filter(pk=item.pk).count() != 0:
+				mn.append(1)
+			else:
+				mn.append(0)
+			matched1.append(mn)
+		#print(matched1)
+		return HttpResponse(json.dumps(matched1, ensure_ascii=False), content_type='application/json')
 
 def addfav(request):
 	if request.method == 'POST':
