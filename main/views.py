@@ -669,6 +669,21 @@ def friendrec(request):
 
 
 
+def recipeConstructor(request):
+	recipes = RecipeProduct.objects.all()
+	products = ["Картопля", "Курка", "Помідори", "Часник", "Цибуля", "Оцет", "Яйця", "Свинина", "Паста", "Кетчуп"]
+	context = {
+		'recipes':recipes,
+		'products':products,
+	}
+	return render(request, 'main/recipeConstructor.html', context)
+
+def rewards(request):
+	rewards = Achievements.objects.all()
+	context = {
+		'rewards':rewards,
+	}
+	return render(request, 'main/rewards.html', context)
 
 
 def alexPost(request):

@@ -1,0 +1,386 @@
+
+
+
+
+
+
+
+@media screen and (min-width: 720px) and (max-width: 1270px){
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (min-width: 1271px) and (max-width: 1920px){
+.recipesListConstr{
+	background-color: green;
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (min-width: 1921px){
+
+	*{
+		font-family: Montserrat;
+	}
+	/* photo sign up */
+
+.recipesProductsTop{
+  width: 1400px;
+  margin:10px auto;
+  min-height: 100px;
+}
+.recipesProductsTop input{
+    height: 35px;
+    width: 28%;
+    margin-left: 36%;
+    outline: none;
+    background: #F0F0F0;
+    color: #828282;
+    border-radius: 12px;
+    border: 0px;
+    font-family: Montserrat;
+    font-size: 16px;
+    padding-left: 10px;
+}
+
+.recipesProductsConstr{
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.recipesProductsProduct p{
+	font-family: Neucha;
+    font-size: 20px;
+    color: #BAA2A2;
+    margin: 20px;
+ }
+ .recipesProductsProduct{
+ 	background-color: #FFF0F0;
+ 	border-radius: 10px;
+ 	margin: 20px;
+ 	height: 60px;
+ }
+.recipesListConstr{
+  display: flex;
+  flex-direction: column;
+  width: 1400px;
+  margin:10px auto;
+  min-height: 300px;
+}
+.recipeConstr{
+ 	display: flex;
+  	flex-direction: row;
+	min-height: 300px;
+  	min-width: 700px;
+  	margin-right: 20px;
+  	margin-left:20px;
+  	margin: 10px auto;
+	background-color: #FFF0F0;
+	border-radius: 20px;
+}
+
+.recipeConst-img{
+	height: 20px;
+	width: 20px;
+}
+.mainInfoRecipeConst{
+	display: flex;
+  	flex-direction: row;
+  	margin-left: 20px;
+}
+.mainInfoRecipeConstItem{
+	display: flex;
+  	flex-direction: row;
+}
+.mainInfoRecipeConstItem p{
+	margin: 2px 7px 2px 2px;
+}
+.recipeConstrDescription{
+	display: flex;
+  	flex-direction: column;
+}
+.recipeConstrDescription p{
+	font-family: Neucha;
+    font-size: 20px;
+    color: #BAA2A2;
+}
+.recipeConstrDescription h1{
+	width: 300px;
+	font-family: Yanone Kaffeesatz;
+    font-style: normal;
+    font-size: 45px;
+    color: #FF8D8D;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 3px;
+}
+.recipeConstrAdder{
+	margin-left: 20px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+.recipeConstrImg{
+  width:700px;
+  max-height: 480px;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  object-fit: cover;
+  border-radius: 10px 0px 0px 10px;
+}
+.recipeConstrShortDescription{
+	width: 300px;
+	font-family: Neucha;
+    font-size: 20px;
+    color: #BAA2A2;
+    margin-left: 20px;
+}
+
+.ingredientsConstr h3{
+	font-family: Neucha;
+    font-size: 28px;
+    color: #BAA2A2;
+    margin-left: 50px;
+}
+.ingredientsConstr li{
+	font-family: Neucha;
+    font-size: 23px;
+    color: #BAA2A2;
+    margin-left: 0px;
+}
+
+
+
+.rewardsFiltersFirstR, .rewardsFiltersSecondR{
+	display: flex;
+  	flex-direction: row;
+}
+
+.rewardsMain{
+	display: flex;
+  	flex-direction: column;
+    width: 900px;
+    margin: 70px auto;
+}
+.shadowBlock{
+	width: 100px;
+	height: 100px;
+	margin-right: 10px;
+	background-color: #686868;
+	border-radius: 20px;
+	opacity: .3;
+	position: relative;
+	bottom: 95px;
+}
+.rewardsFilters{
+	display: flex;
+	flex-direction: column;
+	list-style: none;
+}
+.rewardsFilters li{
+	margin-left: 20px;
+	margin-top: 0px;
+	list-style-type: none;
+	font-family: Neucha;
+    font-size: 23px;
+    color: #BAA2A2;
+}
+.rewardTypeList {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: -40px;
+	display: flex;
+	flex-direction: row;
+}
+.rewardsList{
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 20px;
+}
+.rewardsFilters h3{
+	font-family: Neucha;
+    font-size: 25px;
+    color: #BAA2A2;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.achievement{
+	width: 100px;
+	height: 100px;
+	margin-left: 10px;
+	margin-right: 10px;
+	background-color: #FFF0F0;
+	border-radius: 20px;
+}
+.rewardImg{
+	margin-left: 10px;
+	margin-top: 10px;
+	width: 80px;
+	height: 80px;
+}
+.rewardInfoBlock{
+	display: none;
+}
+
+
+
+
+
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+By Alexey ###################################################################################################
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+/*
+###################################################################################################
+*/

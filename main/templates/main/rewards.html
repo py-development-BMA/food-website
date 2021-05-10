@@ -1,0 +1,100 @@
+{% extends "main/header.html" %}
+{% load static %}
+{% block title %}
+Rewards
+{% endblock %}
+{% block content %}
+{% csrf_token %}
+
+
+
+
+
+	<section class="account_info">
+	<div class="profile_photo">
+		<p align="center"><img class="img_profile" src="{{ request.user.image_profile.url }}"></p>
+	</div>
+	<div class="profile_info">
+
+
+		<div class="nameAndSubscribe">
+
+			<p class="name_and_lname">{{ request.user.first_name }} {{ request.user.last_name }}</p>
+
+		</div>
+		<p class="username_profile">@{{ request.user.username }}</p>
+
+
+
+		<div class="flex_rank">
+			<img src="{% static 'img/rank.png' %}" class="my_rank_img">
+			<div class='progress_flex'>
+				<p class="rank_name">Ранг: {{ request.user.rank }}</p>
+				<div class='grey_progress'>
+					<div style="width:{{ request.user.rank_percentage }}%;height: 8px;border-radius: 10px;background: #F87A5D;">
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+	</div>
+</section>
+<div class="rewardsMain">
+	<div class="rewardsFilters">
+		<div class="rewardsFiltersFirstR">
+			<h3>Статус</h3>
+			<ol class="rewardTypeList">
+				<li>Здобуті</li>
+				<li>Доступні</li>
+			</ol>
+		</div>
+		<div class="rewardsFiltersSecondR">
+			<h3>Категорія</h3>
+			<ol class="rewardTypeList">
+				<li>Профіль</li>
+				<li>Рецепти</li>
+				<li>Соціальна активність</li>
+			</ol>
+
+			
+		</div>
+	</div>
+	<div class="rewardsList">
+		{% for item in rewards %}
+			<div class="achievement"  onclick="showInfo()">
+				
+				<img src="{{item.icon.url}}" class="rewardImg">
+				{% if item in request.user.achievements.all %}
+					<div class="shadowBlock"></div>
+				{% endif %}
+			</div>
+			<div class="rewardInfoBlock" id="rewardInfo">
+				{{item.rewardDescription}}
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
+<div class="rewardsFriends">
+	
+</div>
+
+<script type="text/javascript">
+function showInfo() {
+	console.log('%s = 1', 100)
+	for (var i = 0; i < {{rewards}}.size(); i++) {
+		  var status = document.getElementById("rewardInfo".format());
+		  if (status.style.display === "none") {
+		    status.style.display = "block";
+		  } else {
+		    status.style.display = "none";
+		  }
+	}
+}
+</script>
+{% endblock %}

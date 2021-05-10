@@ -1,0 +1,95 @@
+{% extends "main/header.html" %}
+{% load static %}
+{% block title %}
+Constructor
+{% endblock %}
+{% block content %}
+{% csrf_token %}
+
+
+
+
+<div class="recipesProductsTop">
+	<input type="text" size="40" placeholder="Пошук рецепту за продуктами">
+	<div class="recipesProductsConstr">
+		{% for item in products %}
+			<div class="recipesProductsProduct">
+				<p>{{item}}</p>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
+
+
+
+
+<div class="recipesListConstr" >
+	{% for item in recipes %}
+	<div class="recipeConstr">
+		<img src="{{item.image_prod.url}}" class="recipeConstrImg">
+		<div class="recipeConstrDescription">
+			<h1>{{item.name}}</h1>
+			
+			<div class="mainInfoRecipeConst">
+				<div class="mainInfoRecipeConstItem">
+					<img src="{% static 'img/restaurant-3-256.png' %}" class="recipeConst-img">
+					<p>{{item.category}}</p>
+				</div>
+				<div class="mainInfoRecipeConstItem">
+					<img src="{% static 'img/time-5-256.png' %}" class="recipeConst-img">
+					<p style="margin-left: 0px;">{{item.time}}</p>
+				</div>
+				<div class="mainInfoRecipeConstItem">
+					<img src="{% static 'img/physics-256.png' %}"  class="recipeConst-img">
+					<p style="margin-left: 3px;">{{item.hardnessCook}}</p>
+				</div>
+			</div>
+			<p class="recipeConstrAdder">Автор: {{item.adderOf}}</p>
+			<div class="ingredientsConstr">
+				<h3 style="margin-bottom: 7px;">Індгридіенти</h3>
+				<ol style="margin-top: 0px;">
+					{% if item.ingredient1 != None %}
+							<li>{{item.ingredient1}} {{item.mas1}}</li>
+					{% endif %}
+					{% if item.ingredient2 != None %}
+							<li>{{item.ingredient2}} {{item.mas2}}</li>
+					{% endif %}
+					{% if item.ingredient3 != None %}
+							<li>{{item.ingredient3}} {{item.mas3}}</li>
+					{% endif %}
+					{% if item.ingredient4 != None %}
+							<li>{{item.ingredient4}} {{item.mas4}}</li>
+					{% endif %}
+					{% if item.ingredient5 != None %}
+							<li>{{item.ingredient5}} {{item.mas5}}</li>
+					{% endif %}
+					{% if item.ingredient6 != None %}
+							<li>{{item.ingredient6}} {{item.mas6}}</li>
+					{% endif %}
+					{% if item.ingredient7 != None %}
+							<li>{{item.ingredient7}} {{item.mas7}}</li>
+					{% endif %}
+					{% if item.ingredient8 != None %}
+							<li>{{item.ingredient8}} {{item.mas8}}</li>
+					{% endif %}
+					{% if item.ingredient9 != None %}
+							<li>{{item.ingredient9}} {{item.mas9}}</li>
+					{% endif %}
+					{% if item.ingredient10 != None %}
+							<li>{{item.ingredient10}} {{item.mas10}}</li>
+					{% endif %}
+			</div>
+		<!--
+		<p class="recipeConstrShortDescription">{{item.description}}</p>
+		-->
+		</div>
+		
+	</div>
+	{% endfor %}
+</div>
+</div>
+<script type="text/javascript">
+
+</script>
+{% endblock %}

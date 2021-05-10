@@ -23,4 +23,6 @@ urlpatterns = [
 	path('loadInterests/', views.loadInterests, name="loadInterests"),
 	path('imageRecipeSave/', views.imageRecipeSave, name="imageRecipeSave"),
 	path('removeDraft/', views.removeDraft, name="removeDraft"),
+	path('recipeConstructor/', views.recipeConstructor, name="recipeConstructor"),
+	path('rewards', views.rewards, name="rewards"),
 ]
