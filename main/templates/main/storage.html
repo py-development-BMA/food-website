@@ -586,7 +586,7 @@ function autocomplete(inp) {
         if (response[item][0].substr(0, this.value.length).toUpperCase() == this.value.toUpperCase() && this.value != ''){
           if(schet == 0){
             document.getElementById('id_adding_circle').style.background = colors_arr[parseInt(response[item][1])]
-          }  
+          }
           schet++
           // console.log(loop_counter)
         c = document.createElement("DIV");
@@ -601,9 +601,9 @@ function autocomplete(inp) {
              "</p>" +
              "</div>";
         if (response[item][3] == '0'){
-          c.innerHTML =  "<div class=\"ex_search\" id=\"ex_search" + response[item][2] +"\">" + b.innerHTML+ "<input type='hidden' value='" + response[item][0] + "'></div>" + "<div class=\"fav_div\"  id=\"star_add\">" + "<div class=\"click\" id=\"click_add" + loop_counter +"\" onclick=\"pressStar(" + loop_counter +")\"><span class=\"fa fa-star-o\" id=\"span_add" + loop_counter +"\"></span><div class=\"ring\"id=\"ring_add\"></div><div class=\"ring2\"id=\"ring2_add\"></div></div></div>";
+          c.innerHTML =  "<div class=\"ex_search\" id=\"ex_search" + response[item][2] +"\">" + b.innerHTML+ "<input type='hidden' value='" + response[item][0] + "'></div>" + "<div class=\"fav_div\"  id=\"star_add\">" + "<div class=\"click\" id=\"click_add" + loop_counter +"\" onclick=\"pressStar(" + loop_counter + ', ' + response[item][2] +")\"><span class=\"fa fa-star-o\" id=\"span_add" + loop_counter +"\"></span><div class=\"ring\"id=\"ring_add\"></div><div class=\"ring2\"id=\"ring2_add\"></div></div></div>";
         }else{
-          c.innerHTML =  "<div class=\"ex_search\" id=\"ex_search" + response[item][2] +"\">" + b.innerHTML+ "<input type='hidden' value='" + response[item][0] + "'></div>" + "<div class=\"fav_div\"  id=\"star_add\">" + "<div class=\"click active active-2 active-3\" id=\"click_add" + loop_counter +"\" onclick=\"pressStar(" + loop_counter +")\"><span class=\"fa fa-star\" id=\"span_add" + loop_counter +"\"></span><div class=\"ring\"id=\"ring_add\"></div><div class=\"ring2\"id=\"ring2_add\"></div></div></div>";
+          c.innerHTML =  "<div class=\"ex_search\" id=\"ex_search" + response[item][2] +"\">" + b.innerHTML+ "<input type='hidden' value='" + response[item][0] + "'></div>" + "<div class=\"fav_div\"  id=\"star_add\">" + "<div class=\"click active active-2 active-3\" id=\"click_add" + loop_counter +"\" onclick=\"pressStar(" + loop_counter + ', ' + response[item][2] + ")\"><span class=\"fa fa-star\" id=\"span_add" + loop_counter +"\"></span><div class=\"ring\"id=\"ring_add\"></div><div class=\"ring2\"id=\"ring2_add\"></div></div></div>";
         }
         if(counter <= 5){
           a.appendChild(c);
@@ -662,7 +662,7 @@ function autocomplete(inp) {
       }
     }
   }
-  
+
 }
 
 // var countries = ["Манго","Молоко","Стегно куряче","Лимон","Груша","Мандарин","Папайя","Огірок","Карась","Мука","Тунец в баночке","Квас Тарас","Заморожена тиква","Апельсин"];
@@ -672,7 +672,7 @@ function autocomplete(inp) {
 // for(var z = 0;z < countries.length; z++){
   // pressed[z] = 0
 // }
-  function pressStar(k){
+  function pressStar(k, pk){
     let k1 = k -1
     let response = JSON.parse(localStorage.getItem('allproducts'));
     console.log(response[k1][0] + response[k-1][3])
@@ -682,7 +682,7 @@ function autocomplete(inp) {
     //   console.log(response[z][0])
     //   console.log(response[z][2])
     // }
-    
+
 
                 if(response[k1][3] == 0){
                   console.log(response[k-1][0]+" added")
@@ -708,6 +708,13 @@ function autocomplete(inp) {
                         wtd:"add",
                     },
                     success:function(){
+                      let nresponse = JSON.parse(localStorage.getItem('allproducts'));
+                      for (item in nresponse){
+                        if (nresponse[item][2] == pk){
+                           nresponse[item][3] = 1
+                           localStorage.setItem('allproducts', JSON.stringify(nresponse));
+                        }
+                      }
                     }
                     })
 
@@ -740,6 +747,13 @@ function autocomplete(inp) {
                         wtd:"remove",
                     },
                     success:function(){
+                      let nresponse = JSON.parse(localStorage.getItem('allproducts'));
+                      for (item in nresponse){
+                        if (nresponse[item][2] == pk){
+                           nresponse[item][3] = 0
+                           localStorage.setItem('allproducts', JSON.stringify(nresponse));
+                        }
+                      }
                     }
                     })
                 }
