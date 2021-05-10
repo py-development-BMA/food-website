@@ -7,7 +7,7 @@ My Storage
 
 
 
-  <h1 class="myStorage_label"> Мої продукти </h1>
+  <h1 class="myStorage_label" id="myStorage_label"> Мої продукти </h1>
   <div class="add_product_button1" onclick="add_button()"></div>
 
 
@@ -92,10 +92,8 @@ My Storage
             {% csrf_token %}
             <div class="storage_form_and_circle">
 
-            <!--  <div class="autocomplete">
-                <input type="text" name="nameUa" id="nameUa0" placeholder="Назва продукту.." >
-              </div>
- -->          <div class="adding_circle" id='id_adding_circle'></div>
+           
+           <div class="adding_circle" id='id_adding_circle'></div>
               <div class="autocomplete"><input type="text" name="nameUa" id="nameUa0" placeholder="Назва продукту.." class="adding_formstyles" autocomplete="off"></div>
               </div>
             <input type="number" step="0.1" name="quantity" id="quantity0" class="adding_formstyles_q" maxlength="4">
@@ -112,10 +110,9 @@ My Storage
   	  		<div class="categories_circle1_screen2"></div>
   	  		<p class="name_of_category_screen2_1">{{categories_names.0}}</p>
 
-          <!-- <div class="div_edit1">  -->
-
-            <!-- <div class="edit_product_button"> <img src='{% static "img/edit_list.png" %}' class="edit_btn"></div> -->
-          <!-- </div> 		 -->
+          <div class="div_edit1"> 
+            <div class="edit_product_button"> <img src='{% static "img/edit_list.png" %}' class="edit_btn"></div>
+          </div> 		 
 
 
   	  	</div>
@@ -420,7 +417,7 @@ My Storage
 
 
 
-
+ 
 
 
       <div class="category9_data"  id="category9">
@@ -459,12 +456,21 @@ My Storage
 
       <script>
         let i = 0;
+        let variable = 0
         let array_openedcategories = []
         let counters = [0,0,0,0,0,0,0,0,0,0];
         function animate_st(a){
         	$(".category" + a + "_data").toggleClass("animated_storage_el");
         }
         function viewDiv(a){
+          if(variable == 1){
+            variable = 0
+            $(".adding_product_screen").remove().clone().appendTo('#hiddenElems');
+            $(".myStorage_label").remove().appendTo('#storage_screen2');
+            // document.getElementById("myStorage_label").style.removeProperty('marginLeft');
+            $(".add_product_button1").remove().appendTo('#storage_screen2');
+            $("#div1_storage_screen2").remove().appendTo('#storage_screen2');
+          
         	 $(".category" + a + "_data").removeClass("animated_storage_el");
         	 setTimeout(animate_st, 1, a);
           if(array_openedcategories.indexOf(a)==-1){
@@ -517,6 +523,60 @@ My Storage
             i--
             $(".adding_form" + a).remove().clone().appendTo('#hiddenElems');
           }
+        }else{
+           $(".category" + a + "_data").removeClass("animated_storage_el");
+           setTimeout(animate_st, 1, a);
+          if(array_openedcategories.indexOf(a)==-1){
+            if(i <= 2){
+              $(".category" + a + "_data").remove().clone().appendTo('#div1_storage_screen2');
+              if(i == 1){
+                i--
+                document.getElementById('category' + array_openedcategories[0]).style.borderRight = "2px solid #DAAAAA";
+                i++
+              }
+              if(i == 2){
+                i--
+                document.getElementById('category' + array_openedcategories[1]).style.borderRight = "2px solid #DAAAAA";
+                i++
+              }
+              i++;
+              array_openedcategories.push(a);
+            }else{
+              $(".category" + array_openedcategories[0] + "_data").removeClass("animated_storage_el");
+              $(".category" + array_openedcategories[0] + "_data").remove().clone().appendTo('#hiddenElems');
+              document.getElementById('category' + array_openedcategories[0]).style.removeProperty('border-right');
+              array_openedcategories.shift()
+              array_openedcategories.push(a)
+              $(".category" + a + "_data").remove().clone().appendTo('#div1_storage_screen2');
+              document.getElementById('category' + array_openedcategories[0]).style.borderRight = "2px solid #DAAAAA";
+              document.getElementById('category' + array_openedcategories[1]).style.borderRight = "2px solid #DAAAAA";
+              $(".adding_form" + a).remove().clone().appendTo('#hiddenElems');
+            }
+          }else{
+            $(".category" + array_openedcategories[array_openedcategories.indexOf(a)] + "_data").removeClass("animated_storage_el");
+            $(".category" + array_openedcategories[array_openedcategories.indexOf(a)] + "_data").remove().clone().appendTo('#hiddenElems');
+            if(array_openedcategories[0] == a)
+            {
+            document.getElementById('category' + array_openedcategories[0]).style.removeProperty('border-right');
+            }
+            if(array_openedcategories[1] == a)
+            {
+              if(array_openedcategories.length == 2){
+                document.getElementById('category' + array_openedcategories[0]).style.removeProperty('border-right');
+              }
+              else{
+                document.getElementById('category' + array_openedcategories[1]).style.removeProperty('border-right');
+              }
+            }
+            if(array_openedcategories[2] == a)
+            {
+            document.getElementById('category' + array_openedcategories[1]).style.removeProperty('border-right');
+            }
+            array_openedcategories.splice(array_openedcategories.indexOf(a), 1)
+            i--
+            $(".adding_form" + a).remove().clone().appendTo('#hiddenElems');
+          }
+        }
         };
 
 
@@ -526,6 +586,7 @@ My Storage
             $("#div1_storage_screen2").remove().appendTo('#hiddenElems');
             $(".adding_product_screen").remove().clone().appendTo('#storage_screen2');
             autocomplete(document.getElementById("nameUa0"));
+            variable = 1
         }
 
 
@@ -588,7 +649,6 @@ function autocomplete(inp) {
             document.getElementById('id_adding_circle').style.background = colors_arr[parseInt(response[item][1])]
           }
           schet++
-          // console.log(loop_counter)
         c = document.createElement("DIV");
         b = document.createElement("DIV");
         c.setAttribute("class", "big_div_adding");
@@ -620,39 +680,6 @@ function autocomplete(inp) {
     schet = 0
     loop_counter = 0
 
-
-      // var a, b, i, val = this.value;
-      // closeAllLists();
-      // if (!val) { return false;}
-      // a = document.createElement("DIV");
-      // a.setAttribute("id", /*this.id + */"autocomplete-list");
-      // a.setAttribute("class", "autocomplete-items");
-      // this.parentNode.appendChild(a);
-      // for (i = 0; i < arr.length; i++) {
-      //   if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-      //     c = document.createElement("DIV");
-      //     b = document.createElement("DIV");
-      //     c.setAttribute("class", "big_div_adding");
-      //     b.setAttribute("class","ex_search")
-      //     b.setAttribute("id","ex_search"+ i)
-      //     b.innerHTML = "<div class=\"adding_circle_0\"></div>" +
-      //      "<div class=\"ex_adding\">"+
-      //        "<p class=\"s_text\"><strong>" + arr[i].substr(0, val.length) + "</strong>" +
-      //          arr[i].substr(val.length) +
-      //          "</p>" +
-      //          "</div>";
-      //     c.innerHTML =  "<div class=\"ex_search\" id=\"ex_search" + i +"\">" + b.innerHTML+ "<input type='hidden' value='" + arr[i] + "'></div>" + "<div class=\"fav_div\"  id=\"star_add\">" + "<div class=\"click\" id=\"click_add" + i +"\" onclick=\"pressStar(" + i +")\"><span class=\"fa fa-star-o\" id=\"span_add" + i +"\"></span><div class=\"ring\"id=\"ring_add\"></div><div class=\"ring2\"id=\"ring2_add\"></div></div></div>";
-      //     if(counter <= 4){
-      //       a.appendChild(c);
-      //       counter++
-          // document.getElementById("ex_search"+i).addEventListener("click", function(e) {
-          //     inp.value = this.getElementsByTagName("input")[0].value;
-          //     closeAllLists();
-          // });
-      //     }
-      //   }
-      // }
-      // counter=0
   });
   function closeAllLists(elmnt) {
     var x = document.getElementsByClassName("autocomplete-items");
@@ -665,27 +692,10 @@ function autocomplete(inp) {
 
 }
 
-// var countries = ["Манго","Молоко","Стегно куряче","Лимон","Груша","Мандарин","Папайя","Огірок","Карась","Мука","Тунец в баночке","Квас Тарас","Заморожена тиква","Апельсин"];
-// let pressed = []
-// let fav = false
-// console.log(countries.length)
-// for(var z = 0;z < countries.length; z++){
-  // pressed[z] = 0
-// }
   function pressStar(k, pk){
     let k1 = k -1
     let response = JSON.parse(localStorage.getItem('allproducts'));
-    console.log(response[k1][0] + response[k-1][3])
-    // console.log(k)
-    // console.log(response[k1][0])
-    // for(var z = 0; z < 16; z++){
-    //   console.log(response[z][0])
-    //   console.log(response[z][2])
-    // }
-
-
                 if(response[k1][3] == 0){
-                  console.log(response[k-1][0]+" added")
                   $('#click_add' + k).addClass('active')
                   $('#click_add' + k).addClass('active-2')
                   setTimeout(function() {
@@ -695,10 +705,7 @@ function autocomplete(inp) {
                   setTimeout(function() {
                     $('#click_add' + k).addClass('active-3')
                   }, 150)
-                  // pressed[k]=1
-                  // fav = true
                   response[k1][3] = 1
-                  console.log(response[k1][0] + response[k-1][3])
                   $.ajax({
                       type:'POST',
                       url:'/addfav/',
@@ -717,11 +724,7 @@ function autocomplete(inp) {
                       }
                     }
                     })
-
-
                 }else{
-                  console.log(response[k1][0]+" deleted")
-
                   if ($('#span_add' + k).hasClass("fa-star")) {
                     $('#click_add' + k).removeClass('active')
                   setTimeout(function() {
@@ -734,10 +737,6 @@ function autocomplete(inp) {
                   }, 15)
                 }
                 response[k1][3] = 0
-                  console.log(response[k1][0] + response[k1][3])
-
-                // pressed[k]=0
-                // fav = false
                   $.ajax({
                       type:'POST',
                       url:'/addfav/',
