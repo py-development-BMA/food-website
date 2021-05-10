@@ -26,16 +26,42 @@ class MyAccountManager(BaseUserManager):
 		return user
 
 
-class Achievements(models.Model):
-	fast_start = models.BooleanField(default=False)
-	#here to put names of achiements they are already connected to CustomUser
-
-
 
 class Purchases(models.Model):
 	shop_name = models.CharField("Shop", max_length=100, blank=True)
 	def __str__(self):
 		return self.shop_name
+
+
+
+class Achievements(models.Model):
+	rewardName = models.CharField(max_length=200, null=True, blank=True)
+	rewardType  = models.CharField(max_length=200, null=True, blank=True)
+	rewardDescription = models.CharField(max_length=200, null=True, blank=True)
+	requirements = models.CharField(max_length=200, null=True, blank=True)
+	POINTS = (('2','2'),('3','3'),('4','4'),('5','5'))
+	rewardPoints = models.IntegerField("Бали", null=True, choices=POINTS, blank=True)
+
+	def __str__(self):
+		return self.rewardName
+
+
+
+
+
+class Storage(models.Model):
+	is_apple = models.BooleanField(default=False, blank=True)
+	q_apple = models.IntegerField("Quantity of apples", default=0, blank=True)
+
+	is_banana = models.BooleanField(default=False, blank=True)
+	q_banana = models.IntegerField("Quantity of banana", default=0, blank=True)
+
+
+	def __str__(self):
+		return self.name
+
+	def get_absolute_url(self):
+		return f'/{self.id}'
 
 
 
@@ -45,17 +71,18 @@ class Purchases(models.Model):
 
 class RecipeProduct(models.Model):
 	#creator = models.OneToOneField(DimensionsRecipes, null=True, on_delete=models.PROTECT, blank=True)
+	active = models.BooleanField(default=False)
 	emailof_creator = models.CharField('email_creator', max_length=100, blank=True)
 	uuid_recipe = models.CharField('uuid', max_length=100, blank=True, null=True)
 	CATEGORY = (
 		('Горячие блюда','Горячие блюда'), ('Бульоны и супы','Бульоны и супы'), ('Салаты','Салаты'), ('Закуски','Закуски'), ('Выпечка','Выпечка'), ('Десерты','Десерты'), ('Соусы','Соусы'))
 	HARDNESS = (
 		('Очень легко', 'Очень легко'),('Легко','Легко'),('Средняя сложность','Средняя сложность'),('Нужен опыт','Нужен опыт'),('Сложно','Сложно'),('Очень сложно','Очень сложно'))
-	name = models.CharField('name', max_length=250, null=True)
-	time = models.CharField('time', max_length=50, null=True)
-	adderOf = models.CharField("adderOf", max_length=100, null=True)
-	category = models.CharField('category', max_length=200, null=True, choices=CATEGORY)
-	hardnessCook = models.CharField('hardness', max_length=200, null=True, choices=HARDNESS)
+	name = models.CharField('name', max_length=250, null=True, blank=True)
+	time = models.CharField('time', max_length=50, null=True, blank=True)
+	adderOf = models.CharField("adderOf", max_length=100, null=True, blank=True)
+	category = models.CharField('category', max_length=200, null=True, choices=CATEGORY, blank=True)
+	hardnessCook = models.CharField('hardness', max_length=200, null=True, choices=HARDNESS, blank=True)
 	ingredient1 = models.CharField('ingredient1', null=True, blank=True, max_length=200)
 	ingredient2 = models.CharField('ingredient2', null=True, blank=True, max_length=200)
 	ingredient3 = models.CharField('ingredient3', null=True, blank=True, max_length=200)
@@ -77,7 +104,7 @@ class RecipeProduct(models.Model):
 	mas9 = models.CharField("massa9", null=True, blank=True, max_length=100)
 	mas10 = models.CharField("masssa10", null=True, blank=True, max_length=100)
 	description = models.CharField('description', max_length=200, null=True, blank=True)
-	date_created = models.DateTimeField('date_creat',auto_now_add=True, null=True)
+	date_created = models.DateTimeField('date_creat',auto_now_add=True, null=True, blank=True)
 	desc1 = models.TextField('description1', null=True, blank=True)
 	desc2 = models.TextField('description2', null=True, blank=True)
 	desc3 = models.TextField('description3', null=True, blank=True)
@@ -109,8 +136,6 @@ class RecipeProduct(models.Model):
 	def get_absolute_url(self):
 		return f'/{self.id}'
 
-
-
 class AllProduct(models.Model):
 	CATEGORIES = (('Фрукти','Фрукти'),('Овочі','Овочі'),('Молочні продукти','Молочні продукти'),('М\'ясо','М\'ясо'),('Риба','Риба'),('Бакалія','Бакалія'),('Консерви та приправи','Консерви та приправи'),('Напої','Напої'),('Заморожені продукти','Заморожені продукти'))
 	category = models.CharField('Category', max_length=30, null=True, choices=CATEGORIES, blank=True)
@@ -122,6 +147,14 @@ class AllProduct(models.Model):
 
 	def __str__(self):
 		return self.nameUa
+class AllInterests(models.Model):
+	icon = models.CharField(max_length=5, blank=True)
+	name = models.CharField(max_length=60, blank=True)
+	english = models.CharField(max_length=60, blank=True)
+	peopleSelected = models.IntegerField('Users selected', default=0, blank=True)
+
+	def __str__(self):
+		return self.icon + self.name
 
 class CustomUser(AbstractBaseUser):
 	RANKS = (("Початківець","Початківець"),("Професіонал","Професіонал"))
@@ -130,6 +163,7 @@ class CustomUser(AbstractBaseUser):
 	email = models.CharField("email", max_length=250, unique=True)
 	about = models.TextField('about', blank=True)
 	amount_of_reciped = models.IntegerField('Recipes amount', default=0)
+	interests = models.ManyToManyField(AllInterests, blank=True)
 	SEX = (('Чоловіча','male'),('Жіноча','female'))
 	username = models.CharField("username", max_length=50, blank=True)
 	achievements = models.ManyToManyField(Achievements, blank=True)
@@ -141,7 +175,8 @@ class CustomUser(AbstractBaseUser):
 	rank = models.CharField('rank', max_length=200, null=True, choices=RANKS, blank=True, default=RANKS[0][0])
 	rank_percentage = models.IntegerField("Percents rank", default=15, blank=True)
 	image_profile = models.ImageField( default="default_cook.png", verbose_name="Image", null=True, blank=True)
-	my_recipes = models.ManyToManyField(RecipeProduct, blank=True)
+	my_recipes = models.ManyToManyField(RecipeProduct, blank=True, related_name='Recipes')
+	recipeDraft = models.ManyToManyField(RecipeProduct, blank=True, related_name='RecipeDraft', null=True)
 	access_to_data = models.BooleanField(default=False)
 	is_user = models.BooleanField(default=True)
 	is_staff = models.BooleanField(default=False)
@@ -180,7 +215,6 @@ class PostLike(models.Model):
 	def __str__(self):
 		return self.post.name
 
-
 class UserProductQuantity(models.Model):
 	user = models.ForeignKey(CustomUser, null=True, on_delete=models.PROTECT)
 	nameUa = models.ForeignKey(AllProduct, max_length=100, blank=True,on_delete=models.PROTECT)
@@ -188,8 +222,6 @@ class UserProductQuantity(models.Model):
 	is_favorite = models.BooleanField(default=False)
 	def __str__(self):
 		return self.nameUa.nameUa
-
-
 
 class ExampleAlex(models.Model):
 	my_products = models.CharField(max_length=200, blank=True)
@@ -199,3 +231,4 @@ class ExampleAlex(models.Model):
 
 	def __str__(self):
 		return self.my_products
+

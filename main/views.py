@@ -13,7 +13,9 @@ import re
 import random
 import json
 #from .tasks import *
+ 
 
+ 
 class bcolors:
 	HEADER = '\033[95m'
 	OKBLUE = '\033[94m'
@@ -264,9 +266,9 @@ def addfav(request):
 	if request.method == 'POST':
 		user = CustomUser.objects.get(email=request.user.email)
 		if request.POST.get("wtd") == "add":
-			user.favorites.add(AllProduct.objects.get(pk = request.POST.get("pk")))
+			user.favorites.add(AllProduct.objects.get(nameUa = request.POST.get("name")))
 		else:
-			user.favorites.remove(AllProduct.objects.get(pk = request.POST.get("pk")))
+			user.favorites.remove(AllProduct.objects.get(nameUa = request.POST.get("name")))
 		user.save()
 	return HttpResponse("1")
 
