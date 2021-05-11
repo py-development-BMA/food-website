@@ -86,12 +86,9 @@
 		font-family: Montserrat;
 	}
 	/* photo sign up */
-
-
-	*{
-		font-family: Montserrat;
-	}
-	/* photo sign up */
+.hide{
+	display: none;
+}
 
 .recipesProductsTop{
   width: 1400px;
@@ -387,6 +384,9 @@
 		font-family: Montserrat;
 	}
 	/* photo sign up */
+.hide{
+	display: none;
+}
 
 .recipesProductsTop{
   width: 1400px;
@@ -630,7 +630,7 @@
 
 
 
-}
+
 }
 
 

@@ -62,7 +62,7 @@ Rewards
 			<div class="achievement" id="achievementBlock{{k}}"onclick="showInfo({{k}})">
 				
 				<img src="{{item.icon.url}}" class="rewardImg">
-				{% if item in request.user.achievements.all %}
+				{% if item not in request.user.achievements.all %}
 					<div class="shadowBlock"></div>
 				{% endif %}
 				<div class="rewardInfoBlock" id="rewardInfo{{k}}">

@@ -866,6 +866,10 @@ def rewards(request):
 	}
 	return render(request, 'main/rewards.html', context)
 
+
+
+
+
 def addfav(request):
 	if request.method == 'POST':
 		user = CustomUser.objects.get(email=request.user.email)
