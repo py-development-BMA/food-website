@@ -25,4 +25,5 @@ urlpatterns = [
 	path('removeDraft/', views.removeDraft, name="removeDraft"),
 	path('recipeConstructor/', views.recipeConstructor, name="recipeConstructor"),
 	path('rewards', views.rewards, name="rewards"),
+	path('showresults/', views.showresults, name="showresults"),
 ]

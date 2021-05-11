@@ -10,8 +10,8 @@ Constructor
 
 
 <div class="recipesProductsTop">
-	<input type="text" size="40" placeholder="Пошук рецепту за продуктами">
-	<div class="recipesProductsConstr">
+	<input type="text" size="40" id='maininput' placeholder="Пошук рецепту за продуктами" oninput="check(this)">
+	<div class="recipesProductsConstr" id='id_allhelps'>
 		{% for item in products %}
 			<div class="recipesProductsProduct">
 				<p>{{item}}</p>
@@ -25,12 +25,12 @@ Constructor
 
 
 <div class="recipesListConstr" >
-	{% for item in recipes %}
-	<div class="recipeConstr">
+	{% for item, k in recipes %}
+	<div class="recipeConstr" id='showRecipe{{ k }}'>
 		<img src="{{item.image_prod.url}}" class="recipeConstrImg">
 		<div class="recipeConstrDescription">
 			<h1>{{item.name}}</h1>
-			
+
 			<div class="mainInfoRecipeConst">
 				<div class="mainInfoRecipeConstItem">
 					<img src="{% static 'img/restaurant-3-256.png' %}" class="recipeConst-img">
@@ -48,7 +48,7 @@ Constructor
 			<p class="recipeConstrAdder">Автор: {{item.adderOf}}</p>
 			<div class="ingredientsConstr">
 				<h3 style="margin-bottom: 7px;">Індгридіенти</h3>
-				<ol style="margin-top: 0px;">
+				<ol style="margin-top: 0px;" id='ingrsls{{ k }}'>
 					{% if item.ingredient1 != None %}
 							<li>{{item.ingredient1}} {{item.mas1}}</li>
 					{% endif %}
@@ -58,7 +58,7 @@ Constructor
 					{% if item.ingredient3 != None %}
 							<li>{{item.ingredient3}} {{item.mas3}}</li>
 					{% endif %}
-					{% if item.ingredient4 != None %}
+					{% if iteaddm.ingredient4 != None %}
 							<li>{{item.ingredient4}} {{item.mas4}}</li>
 					{% endif %}
 					{% if item.ingredient5 != None %}
@@ -84,12 +84,63 @@ Constructor
 		<p class="recipeConstrShortDescription">{{item.description}}</p>
 		-->
 		</div>
-		
+
 	</div>
 	{% endfor %}
 </div>
 </div>
 <script type="text/javascript">
 
+
+
+
+	document.addEventListener("DOMContentLoaded", function(){
+	  $.ajax({
+	    type:'GET',
+	    url:'/showresults/',
+	    data:{},
+	  success:function(response){
+	    localStorage.setItem('allproducts', JSON.stringify(response));
+	    console.log('LOCAL STORAGE SAVED!')
+	}
+	  })
+	});
+
+
+function addtolist(num){
+	document.getElementById('maininput').value = document.getElementById('recipeProsuctEx'+num).innerHTML
+}
+
+
+
+function addtolist(num){
+	for(let i = 0; i<=lenk; i++){
+			if(!document.getElementById('ingrsls' + i).innerHTML.includes(document.getElementById('recipeProsuctEx'+num).innerHTML)){
+				document.getElementById('showRecipe'+i).classList.add('hide')
+			}
+	}
+
+}
+
+	let lenk = {{ ln }}
+	function check(e){
+		if (e.value == ''){
+			document.getElementById('id_allhelps').innerHTML = ''
+		} else{
+
+
+		 let response = JSON.parse(localStorage.getItem('allproducts'));
+		 document.getElementById('id_allhelps').innerHTML = ''
+		 counter = 0
+		for(let i = 0; i<response.length; i++){
+			if(response[i][0].includes(e.value) && counter < 7)	{
+				counter++
+				document.getElementById('id_allhelps').innerHTML += '<div class="recipesProductsProduct" style=\'cursor:pointer\' onclick=\'addtolist('+i+')\'>'+
+					'<p id=\'recipeProsuctEx'+i+'\'>' + response[i][0] + '</p>'+
+				'</div>'
+			}
+		}
+		}
+	}
 </script>
 {% endblock %}

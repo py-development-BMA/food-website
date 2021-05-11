@@ -671,10 +671,14 @@ def friendrec(request):
 
 def recipeConstructor(request):
 	recipes = RecipeProduct.objects.all()
+	k = []
 	products = ["Картопля", "Курка", "Помідори", "Часник", "Цибуля", "Оцет", "Яйця", "Свинина", "Паста", "Кетчуп"]
+	for i in range(recipes.count()):
+		k.append(i)
 	context = {
-		'recipes':recipes,
+		'recipes':list(zip(recipes, k)),
 		'products':products,
+		'ln':recipes.count(),
 	}
 	return render(request, 'main/recipeConstructor.html', context)
 
@@ -684,6 +688,34 @@ def rewards(request):
 		'rewards':rewards,
 	}
 	return render(request, 'main/rewards.html', context)
+
+
+
+
+
+
+def showresults(request):
+	if request.method == 'GET':
+		matched1 = []
+		categories = ['Фрукти','Овочі','Молочні продукти','М\'ясо','Риба','Бакалія','Консерви та приправи','Напої','Заморожені продукти','Улюблені продукти']
+		fav_p = CustomUser.objects.get(email=request.user.email).favorites.all()
+		for item in AllProduct.objects.all():
+			mn = []
+			mn.append(item.nameUa)
+			mn.append(categories.index(item.category))
+			mn.append(item.pk)
+			if fav_p.filter(pk=item.pk).count() != 0:
+				mn.append(1)
+			else:
+				mn.append(0)
+			matched1.append(mn)
+		#print(matched1)
+		return HttpResponse(json.dumps(matched1, ensure_ascii=False), content_type='application/json')
+
+
+
+
+
 
 
 def alexPost(request):

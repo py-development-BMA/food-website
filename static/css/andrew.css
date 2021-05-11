@@ -342,9 +342,11 @@
 
 
 
-
-
+.hide{
+	display: none;
 }
+
+
 }
 
 
