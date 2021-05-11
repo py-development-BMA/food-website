@@ -23,4 +23,7 @@ urlpatterns = [
 	path('loadInterests/', views.loadInterests, name="loadInterests"),
 	path('imageRecipeSave/', views.imageRecipeSave, name="imageRecipeSave"),
 	path('removeDraft/', views.removeDraft, name="removeDraft"),
+	path('openComments/', views.openComments, name="openComments"),
+	path('saveComment/', views.saveComment, name="saveComment"),
+	path('getRecipes/', views.getRecipes, name="getRecipes"),
 ]

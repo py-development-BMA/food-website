@@ -84,13 +84,13 @@
 </div>
 	</div>
 
-	<div class="listOfSubsReal" id='listUsersAjax'>
+	<div class="listOfSubsReal style-3" id='listUsersAjax'>
 		<p id='out' style="position:absolute"></p>
 		<div id='preloading' class="linePreloader"></div>
 		<div class='xcloseround'><a href="#" class="close"></a></div>
 
 	</div>
-	<div class="listOfFollowsReal hide" id='listUsersAjaxFollows'>
+	<div class="listOfFollowsReal hide style-3" id='listUsersAjaxFollows'>
 		<div id='preloading1' class="linePreloader"></div>
 		<div class='xcloseround'><a href="#" class="close"></a></div>
 	</div>
@@ -252,7 +252,7 @@ let is_SubsListOpened = false
 let is_FollowsListOpened = false
 let loadInterests = false
 let	loadedNewSubs = false
-let	loadedNewFo = false
+let loadedNewFollows = false
 
 let subsAmountLoaded = 0
 let followsAmountLoaded = 0
@@ -269,27 +269,27 @@ function showBackSubs(){
 
 
 
-$(document).on({
-	 ajaxStop: function() {
-		 console.log('aj stop')
-		 console.log(recipe_removed)
-		 if (recipe_removed == false && interest_added == false && is_loadedNewSubs == false && is_loadedNewFollows == false) {
-			 if (document.getElementById('listUsersAjax').classList.contains('hide') && document.getElementById('intList').classList.contains('active') == false){
-				  $('#preloading1').toggleClass('hide');
-					document.getElementById("listUsersAjaxFollows").style.borderTop = '2px solid lightgrey';
-			} else if(document.getElementById('listUsersAjaxFollows').classList.contains('hide') && document.getElementById('intList').classList.contains('active') == false) {
-				$('#preloading').toggleClass('hide');
-				document.getElementById("listUsersAjax").style.borderTop = '2px solid lightgrey';
-			} else if (document.getElementById('intList').classList.contains('active') == true && wtish == 'nothing') {
-				$('#preloading2').toggleClass('hide');
-				document.getElementById("listInterestsAjax").style.borderTop = '2px solid lightgrey';
-			}
-
-	 }
-	 recipe_removed = false
-	 interest_added = false
-	 }
-});
+// $(document).on({
+// 	 ajaxStop: function() {
+// 		 console.log('aj stop')
+// 		 console.log(recipe_removed)
+// 		 if (recipe_removed == false && interest_added == false && is_loadedNewSubs == false && is_loadedNewFollows == false) {
+// 			 if (document.getElementById('listUsersAjax').classList.contains('hide') && document.getElementById('intList').classList.contains('active') == false){
+// 				  $('#preloading1').toggleClass('hide');
+// 					document.getElemlet loadedNewFollows = falseentById("listUsersAjaxFollows").style.borderTop = '2px solid lightgrey';
+// 			} else if(document.getElementById('listUsersAjaxFollows').classList.contains('hide') && document.getElementById('intList').classList.contains('active') == false) {
+// 				$('#preloading').toggleClass('hide');
+// 				document.getElementById("listUsersAjax").style.borderTop = '2px solid lightgrey';
+// 			} else if (document.getElementById('intList').classList.contains('active') == true && wtish == 'nothing') {
+// 				$('#preloading2').toggleClass('hide');
+// 				document.getElementById("listInterestsAjax").style.borderTop = '2px solid lightgrey';
+// 			}
+//
+// 	 }
+// 	 recipe_removed = false
+// 	 interest_added = false
+// 	 }
+// });
 function removeDraftSlide(num){
 	document.getElementById('id_exFlexDraft' + num).style.height = '0px'
 }
@@ -377,7 +377,7 @@ showFollows.addEventListener('click', function(){
 	$.get('/loadsubs/',
 				{'wtd':$('#id_whatToShowSubs').val(), 'email':$('#id_email').val(), 'start':followsAmountLoaded},
 				function(response){
-					console.log(response)
+					console.log('FOLLOWS LOADED')
 						for(let item in response){
 							document.getElementById('listUsersAjaxFollows').innerHTML += '<a class="personFollower" href=\'/' + response[item][0] + '/viewuser\'>' +
 								'<div class="personsPhotoListSubs">' +
@@ -390,6 +390,10 @@ showFollows.addEventListener('click', function(){
 							'</a>'
 
 						}
+						followsAmountLoaded += 35
+						$('#preloading1').toggleClass('hide');
+						document.getElementById("listUsersAjaxFollows").style.borderTop = '2px solid lightgrey';
+						getScrollFollows(document.getElementById('listUsersAjaxFollows'))
 			 }
 
 
@@ -410,7 +414,7 @@ document.getElementById('ShowAllInterests').addEventListener('click', function()
 	$.get('/loadInterests/',
 				{'email':$('#id_email').val()},
 				function(response){
-					console.log(response)
+					console.log('LOADED INTERESTS')
 					for(let item in response){
 						console.log(response[item][3])
 						if(response[item][3] == 0){
@@ -451,6 +455,8 @@ document.getElementById('ShowAllInterests').addEventListener('click', function()
 				}
 			});
 				}
+				$('#preloading2').toggleClass('hide');
+				document.getElementById("listInterestsAjax").style.borderTop = '2px solid lightgrey';
 			 }
 	);
 }
@@ -471,7 +477,7 @@ function getScroll(element){
 	element.scrollTop = temp;
 	element.onscroll = function() {
 	scroll = element.scrollTop ;
-	console.log(height + '  :  ' + scroll)
+	console.log('Followers ' + height + '  :  ' + scroll)
 	if( height - scroll < 50 ){
 		if (loadedNewSubs == false) {
 
@@ -529,6 +535,54 @@ function loadNewSubs(){
 }
 
 
+function getScrollFollows(element){
+	tempFollows = element.scrollTop
+	element.scrollTop = 1 + element.scrollHeight - element.clientHeight;
+	heightFollows = element.scrollTop;
+	element.scrollTop = tempFollows;
+	element.onscroll = function() {
+	scrollFollows = element.scrollTop ;
+	console.log('Follows ' + heightFollows + '  :  ' + scrollFollows)
+	if( heightFollows - scrollFollows < 50 ){
+		console.log(loadedNewFollows)
+		if (loadedNewFollows == false) {
+
+
+
+		loadNewFollows()
+		loadedNewFollows = true
+}
+	}
+}
+}
+
+
+function loadNewFollows(){
+	$.get('/loadsubs/',
+				{'wtd':'follows', 'email':$('#id_email').val(), 'start':followsAmountLoaded},
+				function(response){
+					console.log(response)
+						for(let item in response){
+							document.getElementById('listUsersAjaxFollows').innerHTML += '<a class="personFollower" href=\'/' + response[item][0] + '/viewuser\'>' +
+								'<div class="personsPhotoListSubs">' +
+									'<img src="'+ response[item][3] +'">' +
+								'</div>' +
+							'<div class="personsInfoSubList">' +
+									'<p>' + response[item][1] + ' ' + response[item][2] + '</p>'+
+									'<p>' + response[item][4] + '</p>'+
+								'</div>'
+							'</a>'
+
+						}
+						followsAmountLoaded += 35
+						loadedNewFollows = false
+						getScrollFollows(document.getElementById('listUsersAjaxFollows'))
+			 }
+
+
+	);
+}
+
 
 
 
@@ -550,7 +604,7 @@ showSubs.addEventListener('click', function(){
 	$.get('/loadsubs/',
 				{'wtd':$('#id_whatToShowSubs').val(), 'email':$('#id_email').val(), 'start':subsAmountLoaded},
 				function(response){
-					console.log(response)
+					console.log('LOADED SUBSCRIBERS')
 						for(let item in response){
 							document.getElementById('listUsersAjax').innerHTML += '<a class="personFollower" href=\'/' + response[item][0] + '/viewuser\'>' +
 								'<div class="personsPhotoListSubs">' +
@@ -565,6 +619,8 @@ showSubs.addEventListener('click', function(){
 						loadedNewSubs = false;
 						subsAmountLoaded += 35
 						getScroll(document.getElementById('listUsersAjax'))
+						$('#preloading').toggleClass('hide');
+						document.getElementById("listUsersAjax").style.borderTop = '2px solid lightgrey';
 
     }
 
@@ -607,7 +663,7 @@ showSubsBtn.addEventListener('click', function(){
 	$.get('/loadsubs/',
 				{'wtd':$('#id_whatToShowSubs').val(), 'email':$('#id_email').val(), 'start':subsAmountLoaded},
 				function(response){
-					console.log(response)
+					console.log("LOADED SUBSCRIBERS")
 						for(let item in response){
 							document.getElementById('listUsersAjax').innerHTML += '<a class="personFollower" href=\'/' + response[item][0] + '/viewuser\'>' +
 								'<div class="personsPhotoListSubs">' +
@@ -622,6 +678,8 @@ showSubsBtn.addEventListener('click', function(){
 						loadedNewSubs = false;
 						subsAmountLoaded += 35
 						getScroll(document.getElementById('listUsersAjax'))
+						$('#preloading').toggleClass('hide');
+						document.getElementById("listUsersAjax").style.borderTop = '2px solid lightgrey';
 			 }
 
 	);
@@ -661,6 +719,10 @@ showFollowsBtn.addEventListener('click', function(){
 							'</a>'
 
 						}
+						followsAmountLoaded += 35
+						$('#preloading1').toggleClass('hide');
+						document.getElementById("listUsersAjaxFollows").style.borderTop = '2px solid lightgrey';
+						getScrollFollows(document.getElementById('listUsersAjaxFollows'))
 			 }
 
 

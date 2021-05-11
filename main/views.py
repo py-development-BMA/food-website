@@ -516,9 +516,15 @@ class patternUserView(DetailView):
 			q_likesPost = PostLike.objects.get(post=item)
 			userPostsLikes.append(q_likesPost)
 		userPostsLikes.sort(key=lambda x: x.usersLiked.all().count(), reverse=True)
+		icons_interests = []
+		names_interestst = []
+		for item in self.object.interests.all():
+			icons_interests.append(item.icon)
+			names_interestst.append(item.name)
 		context['pop_recipes'] = itertools.islice(userPostsLikes, 5)
 		context['subs'] = Subscribtion.objects.get(user=self.object)
 		context['is_followed'] = is_followed
+		context['interests'] = itertools.islice(zip(icons_interests, names_interestst), 4)
 		context['userRecipes'] = reversed(CustomUser.objects.get(email=self.object.email).my_recipes.all())
 		return context
 
@@ -590,30 +596,69 @@ def feedPage(request):
 		is_liked = []
 		k = 0
 		likesCount = []
+		comment = []
+		postsAmount = 1
+		all_recipesPk = []
 		for item in users_subs.following.all():
-			if item.my_recipes.all().count() != 0:
-				stop = 3
-				for recipe in reversed(item.my_recipes.all()):
-					if stop != 0:
-						likesCount.append(PostLike.objects.get(post=recipe).usersLiked.all().count())
-						recipesToShow.append(recipe)
-						count.append(k)
-						user_sh.append(item)
-						k+=1
-						stop -=1
-						if recipe in users_subs.likedPosts.all():
-							is_liked.append(True)
-						else:
-							is_liked.append(False)
 
-					else:
-						break
+				if item.my_recipes.all().count() != 0:
+					stop = 3
+					for recipe in reversed(item.my_recipes.all()):
+						all_recipesPk.append(recipe.pk)
+		print(all_recipesPk)
+		for i in range(3):
+			rnum = int(random.choice(all_recipesPk))
+			postlike = PostLike.objects.get(post=RecipeProduct.objects.get(pk=rnum))
+			likesCount.append(postlike.usersLiked.all().count())
+			recipesToShow.append(postlike.post)
+			count.append(i)
+			user_sh.append(CustomUser.objects.get(email=postlike.post.emailof_creator))
+			all_recipesPk.remove(rnum)
+			if postlike.post in users_subs.likedPosts.all():
+				is_liked.append(True)
+			else:
+				is_liked.append(False)
+			print(all_recipesPk)
+
+
+
+
 		recipesZip = list(zip(recipesToShow, count, user_sh, is_liked, likesCount))
 		random.shuffle(recipesZip)
 		context = {
 			'recipesFeed':recipesZip,
+			'all_recipesPk':all_recipesPk,
 		  }
 		return render(request, 'main/feedpage.html', context)
+
+
+def openComments(request):
+	if request.method == 'GET':
+		all_comments = Comment.objects.filter(recipe__uuid_recipe=request.GET.get('post'))
+		commReturn = []
+		for item in all_comments:
+			x2arr = []
+			x2arr.append(item.user.image_profile.url)
+			x2arr.append(item.user.first_name + ' ' + item.user.last_name)
+			x2arr.append(item.user.rank)
+			x2arr.append(item.text)
+			x2arr.append(item.pk)
+			commReturn.append(x2arr)
+		out = 1
+
+		commReturn.reverse()
+		return HttpResponse(json.dumps(commReturn, ensure_ascii=False), content_type='application/json')
+
+def saveComment(request):
+	if request.method == 'POST':
+		print(request.POST.get('text'))
+		Comment.objects.create(
+		user=request.user,
+		text=request.POST.get('text'),
+		recipe=RecipeProduct.objects.get(uuid_recipe=request.POST.get('recipe_uuid'))
+		)
+		out = 1
+		return HttpResponse(json.dumps(out, ensure_ascii=False), content_type='application/json')
 
 
 def friendrec(request):
@@ -629,22 +674,24 @@ def friendrec(request):
 			if k != 0:
 				userExFolowers = Subscribtion.objects.get(user=user_fol).following.all()
 				for item in userExFolowers:
-					if item.email != request.user.email and item not in usersRec and item not in userSubs.following.all():
-						sp = 0
-						if len(myInterests)>=len(item.interests.all()):
-							for inter in myInterests:
-								if inter in item.interests.all():
-									sp += 1
-							if sp >= 3:
-								usersRec.append(item)
-								conc_count.append(sp)
-						else:
-							for inter in item.interests.all():
-								if inter in myInterests:
-									sp += 1
-							if sp >= 3:
-								usersRec.append(item)
-								conc_count.append(sp)
+					print(item.email)
+					if item.my_recipes.all().count() >= 5:
+						if item.email != request.user.email and item not in usersRec and item not in userSubs.following.all():
+							sp = 0
+							if len(myInterests)>=len(item.interests.all()):
+								for inter in myInterests:
+									if inter in item.interests.all():
+										sp += 1
+								if sp >= 3:
+									usersRec.append(item)
+									conc_count.append(sp)
+							else:
+								for inter in item.interests.all():
+									if inter in myInterests:
+										sp += 1
+								if sp >= 3:
+									usersRec.append(item)
+									conc_count.append(sp)
 
 	out_Recs = list(zip(usersRec, conc_count))
 	out_Recs = reversed(sorted(out_Recs, key = lambda x: x[1]))
@@ -666,6 +713,57 @@ def friendrec(request):
 		else:
 			break
 	return HttpResponse(json.dumps(out, ensure_ascii=False), content_type='application/json')
+
+
+
+def getRecipes(request):
+	if request.method == 'GET':
+		posts = []
+		post = []
+		users_subs = Subscribtion.objects.get(user=request.user)
+		recipesToShow = []
+		count = []
+		user_sh = []
+		is_liked = []
+		k = int(request.GET.get('data'))
+		likesCount = []
+		comment = []
+		all_recipesPk = request.GET.getlist('notloaded[]')
+		for i in range(3):
+			rnum = int(random.choice(all_recipesPk))
+
+			recipe = RecipeProduct.objects.get(pk=rnum)
+			postlike = PostLike.objects.get(post=recipe)
+			item = CustomUser.objects.get(email=recipe.emailof_creator)
+
+			post = []
+			post.append(item.pk)
+			post.append('{0} {1}'.format(item.first_name, item.last_name)) # USERS NAME + SURNAME
+			post.append(item.rank)
+			post.append(item.image_profile.url)
+			post.append(recipe.description)
+			post.append(recipe.image_prod.url)
+			post.append(postlike.usersLiked.all().count())
+			post.append(k)
+			k+=1
+			if recipe in users_subs.likedPosts.all():
+				post.append(1)
+			else:
+				post.append(0)
+			post.append(item.email)
+			post.append(recipe.uuid_recipe)
+			post.append(recipe.pk)
+			all_recipesPk.remove(str(rnum))
+			posts.append(post)
+
+
+
+		ret_arr = []
+		ret_arr.append(posts)
+		ret_arr.append(all_recipesPk)
+		return HttpResponse(json.dumps(ret_arr, ensure_ascii=False), content_type='application/json')
+
+
 
 
 

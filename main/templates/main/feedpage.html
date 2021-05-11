@@ -4,6 +4,7 @@
 Feed
 {% endblock %}
 {% block content %}
+{{ body|escape }}
 
 
 <h1 class="myStorage_label1">Рекомендації</h1>
@@ -15,11 +16,11 @@ Feed
 
       </div>
       <div class="reclistFriends" id='frList'>
-        <div id='preloading4' class="linePreloader2"></div>
+        <div id='preloadingX' class="linePreloader2"></div>
     </div>
 
   </div>
-  <div class="PostFeed">
+  <div class="PostFeed" id='id_PostFeed'>
 
     {% for recipe, k, user, is_liked, likesCount in recipesFeed %}
     <div class="feedPostEx">
@@ -67,12 +68,29 @@ Feed
             </label>
         </div>
         <div class="putCommentPost">
-          <input type="text" name="" value="" placeholder="Комментар.." class="leaveCommentForm">
+          <!-- <textarea type="text" name="" value="" placeholder="Комментар.." class="leaveCommentForm" id='commentForm{{ k }}'></textarea> -->
+          <p><span class="textarea" id='textareaCom{{ k }}' role="textbox" contenteditable onclick="openComments({{ k }})"></span></p>
         </div>
       </div>
-      <div class="commex{{ k }} commentsClosed" id='commm{{ k }}'>
+      <div class="commex{{ k }} commentsClosed style-2" id='commm{{ k }}'>
+        <input type="hidden" value="{{ recipe.uuid_recipe }}" id='recipeUuid{{ k }}'>
+        <div id='preloading{{ k }}' class="linePreloaderComments"></div>
+        <div class="addComment">
+          <div class="imageProComment">
+            <img class="img_profileComment" src="{{ request.user.image_profile.url }}">
+          </div>
+          <div class="commentArea">
+            <span class="textarea2" id='textareaComBig{{ k }}' role="textbox" contenteditable></span>
+          </div>
+          <div class="sendButtonComment" id='sendCommentBtn{{ k }}' onclick='SaveComment({{ k }})'>
+            <img src="{% static 'img/paper-plane-128.png' %}" class='paperPlaneSend'>
+          </div>
 
-      </div>
+        </div>
+        <div id='allCommentsList{{ k }}'>
+
+        </div>
+        </div>
     </div>
     {% endfor %}
 
@@ -89,17 +107,27 @@ Feed
 </div>
 <script>
   let recLoaded = false
+  let loadedNewPost = false
+  let postsLoaded = 3
+  let notloaded_arr = []
   $(document).on({
   	 ajaxStop: function() {
        if (recLoaded == false){
          recLoaded = true
-       $('#preloading4').toggleClass('hide')
+       $('#preloadingX').toggleClass('hide')
      }
    }
    });
 
+{% for item in all_recipesPk %}
+  notloaded_arr.push({{ item }})
+{% endfor %}
+
+
+
 
   window.onload = function(){
+    getscroll()
     $.get('/friendrec/',
           function(response){
             for (item in response){
@@ -121,17 +149,253 @@ Feed
     );
   }
 
+function getscroll(){
+  element = document.getElementsByTagName('body')[0]
+  body = document.body,
+  html = document.documentElement;
+  console.log(window.innerHeight)
+  let heightFollows = document.body.scrollHeight - window.innerHeight
+  element.onscroll = function() {
+  scrollFollows = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+  console.log('Post page ' + heightFollows + '  :  ' + scrollFollows)
+  if( heightFollows - scrollFollows < 50 ){
+    console.log(loadedNewPost)
+    if (loadedNewPost == false) {
+    loadNewPosts()
+    loadedNewPost = true
+ }
+  }
+ }
+}
+console.log('%s = 1', 100)
+
+function loadNewPosts(){
+  console.log(notloaded_arr)
+
+  $.ajax({
+         type:'GET',
+         url:'/getRecipes/',
+         data:{
+           data:postsLoaded,
+           notloaded:notloaded_arr,
+       },
+       success:function(response){
+         console.log(response)
+         notloaded_arr = response[1]
+         console.log(notloaded_arr)
+         for (item in response[0]){
+           let nstr = ''
+
+            nstr +=
+           '<div class="feedPostEx">' +
+            ' <div class="usersInfoPost">'+
+            "<a href=\'/ + " + response[0][item][0] + " + '/viewuser\'>" + '<img src="' + response[0][item][3] + '" class="usersinfoImage"></a>'+
+               "<a href=\'/ + " + response[0][item][0] + " + '/viewuser\' class=\"nameAndUsernamePost\">" +
+                 '<p class="usersPostName">' + response[0][item][1] + '</p>'+
+                 '<div class="rankPost_user">'+
+                  ' <img src="/static/img/cook-128.png" class="medalPost">'+
+                   '<p class="rankPostName">' + response[0][item][2] + '</p>'+
+                 '</div>'+
+               '</a>'+
+             '</div>'+
+             '<div class="textAndImagePost">'+
+              ' <p class="descPostFeed">' + response[0][item][4] + '</p>' +
+               '<a href=\'/' + response[0][item][11] + '/viewrecipe\'><img src="' + response[0][item][5] + '" class="imagePostView"></a>'+
+             '</div>' +
+             '<div class="likeCommentView">' +
+               '<form method="post" style=\'display:none\' onsubmit="putLike(' + response[0][item][7] + ')" id=\'PutLikeForm' + response[0][item][7] + '\'>'
+                 if (response[0][item][8] == 1){
+                   nstr +=   '<input style=\'display:none\' type="text" id=\'id_actionToDoLike' + response[0][item][7] + '\' name="actionToDoLike" value="removelike">'
+                 }else{
+                   nstr +=  '<input style=\'display:none\' type="text" id=\'id_actionToDoLike' + response[0][item][7] + '\' name="actionToDoLike" value="like">'
+
+                 }
+                 nstr +=  '<input style=\'display:none\' type="text" id=\'id_whoLikes' + response[0][item][7] + '\' name="whoLikes" value="' + response[0][item][9] + '">' +
+                 '<input style=\'display:none\' type="text" id=\'id_whatToLike' + response[0][item][7] + '\' name="whatToLike" value="' + response[0][item][10] + '">'+
+                 '<input style=\'display:none\' type="submit" id=\'submitLike' + response[0][item][7] + '\'>'+
+               '</form>'
+               if (response[0][item][8] == 1){
+                 nstr +=
+              ' <label class="puLikeBtnPost" for=\'submitLike' + response[0][item][7] + '\'>' +
+                  '<span id=\'heartid' + response[0][item][7] + '\' class="heart heartActive"></span><p class=\'qunLikes\' id=\'likesCountPost' + response[0][item][7] + '\'>' + response[0][item][6] + '</p>' +
+               '</label>'
+             }else{
+               nstr +=
+               '<label class="puLikeBtnPost" for=\'submitLike' + response[0][item][7] + '\'>'+
+                  '<span id=\'heartid' + response[0][item][7] + '\' class="heart"></span><p class=\'qunLikes\' id=\'likesCountPost' + response[0][item][7] + '\'>' + response[0][item][6] + '</p>'+
+               '</label>'
+             }
+              nstr +=
+               '<div class="openCommentsPost">'+
+                  ' <input style="display: none" type="checkbox" id="lesonCheck"><p align="left" class="pinSet">Інші коментарі</p>'+
+                   '<label class="set_lessons" id="set_les" for="lesonCheck" onclick="openComments(' + response[0][item][7] + ')">'+
+                     '<span id="openComBtn' + response[0][item][7] + '"></span>'+
+                   '</label>'+
+               '</div>'+
+               '<div class="putCommentPost">'+
+                 '<p><span class="textarea" id=\'textareaCom' + response[0][item][7] + '\' role="textbox" contenteditable onclick="openComments(' + response[0][item][7] + ')"></span></p>'+
+               '</div>'+
+             '</div>'+
+             '<div class="commex' + response[0][item][7] + ' commentsClosed style-2" id=\'commm' + response[0][item][7] + '\'>'+
+               '<input type="hidden" value="' + response[0][item][10] + '" id=\'recipeUuid' + response[0][item][7] + '\'>'+
+               '<div id=\'preloading' + response[0][item][7] + '\' class="linePreloaderComments"></div>'+
+               '<div class="addComment">'+
+                 '<div class="imageProComment">'+
+                  ' <img class="img_profileComment" src="' + imgurlUser + '">'+
+                 '</div>'+
+                 '<div class="commentArea">'+
+                   '<span class="textarea2" id=\'textareaComBig' + response[0][item][7] + '\' role="textbox" contenteditable></span>'+
+                ' </div>' +
+                 '<div class="sendButtonComment" id=\'sendCommentBtn' + response[0][item][7] + '\' onclick=\'SaveComment(' + response[0][item][7] + ')\'>'+
+                  ' <img src="/static/img/paper-plane-128.png" class=\'paperPlaneSend\'>'+
+                 '</div>'+
+
+              " </div>"+
+               '<div id=\'allCommentsList' + response[0][item][7] + '\'>'+
+
+               '</div>'+
+               '</div>'+
+           '</div>'
+           document.getElementById('id_PostFeed').innerHTML += nstr
+         }
+         postsLoaded += 3
+         loadedNewPost = false
+         getscroll()
+       }
+       })
+}
+
+
+  let opened = []
+  let activeNumComments = 11111
+  let loadedFriends = false
+
+
+
+
+
+
+let nameUser = '{{ request.user.first_name }} ' + '{{ request.user.last_name }}'
+let rankUser = '{{ request.user.rank }}'
+let imgurlUser = '{{ request.user.image_profile.url }}'
+let pkUser = '{{ request.user.pk }}'
+let numСommentCount = 0
+
+function CommentAnimation(num, len){
+  let heightComm = 100 + Math.floor(len/65)*19.5
+  console.log(heightComm + 'px')
+  document.getElementById('CommentAnimated' + num).style.height = heightComm + 'px'
+  document.getElementById('CommentAnimated' + num).style.paddingBottom = '10px'
+}
+
+  function SaveComment(num){                                                                  //SAVE COMMENT
+    if (document.getElementById('textareaComBig' + num).innerHTML != ''){
+    $.ajax({
+      type:'POST',
+      url:'/saveComment/',
+      data:{
+        text:document.getElementById('textareaComBig' + num).innerHTML,
+        recipe_uuid:document.getElementById('recipeUuid' + num).value,
+        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+    },
+    success:function(){
+      console.log('sent!')
+      document.getElementById('allCommentsList' + num).insertAdjacentHTML('afterBegin',
+      '<div class="allCommentEx" id=\'CommentAnimated' + numСommentCount + '\'>' +
+      '<div class="commentEx">' +
+        '<div class="imgUserComment">' +
+        '<img src="' + imgurlUser + '">' +
+        '</div>'+
+        '<div class="infoCommentEx">'+
+          '<a class=\'infoExCommentText\' href=\'/' + pkUser + '/viewuser\'>' + nameUser + '</a>'+
+          '<div class="rankFlexComment">'+
+            '<img src="/static/img/cook-128.png" class="medalPost">'+
+            '<p>' + rankUser + '</p>'+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+    '<div class="commentText">'+
+
+          '<p>' + document.getElementById('textareaComBig' + num).innerHTML + '</p>'+
+
+      '</div>'+
+    '</div>')
+    document.getElementById('CommentAnimated' + numСommentCount).style.height = '0px'
+    document.getElementById('CommentAnimated' + numСommentCount).style.transition = '0.4s'
+    document.getElementById('CommentAnimated' + numСommentCount).style.padding = '0px'
+    document.getElementById('CommentAnimated' + numСommentCount).style.overflow = 'hidden'
+    console.log(numСommentCount)
+    setTimeout(CommentAnimation, 1, numСommentCount, document.getElementById('textareaComBig' + num).innerHTML.length)
+      document.getElementById('textareaComBig' + num).innerHTML = ''
+      numСommentCount += 1
+    }
+    })
+
+  } else{
+    console.log('%cERROR, comment field empty, id='+num, 'color:red')
+  }
+    return 0
+  }
+
+
+
+
 
 
 
 
     function openComments(num){
+      console.log(opened.includes(num))
         $('.commex'+num).toggleClass('commentsOpened');
         if (document.getElementById("commm" + num).classList.contains('commentsOpened')){
 
-
+        console.log(opened)
         document.getElementById('openComBtn' + num).style.transform = 'rotate(' + 180 + 'deg)';
+        console.log(document.getElementById('recipeUuid' + num).value)
+        document.getElementById('textareaCom' + num).style.opacity = 0
+        document.getElementById('textareaComBig' + num).focus();
+        if (opened.includes(num) == false){
+          activeNumComments = num
+          opened.push(num)
+        $.ajax({
+          type:'GET',
+          url:'/openComments/',
+          data:{
+            csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+            post:document.getElementById('recipeUuid' + num).value,
+        },
+        success:function(response){
+          console.log('sent successfuly')
+            for (item in response){
+              document.getElementById('allCommentsList' + num).innerHTML += '<div class="allCommentEx">' +
+              '<div class="commentEx">' +
+                '<div class="imgUserComment">' +
+                '<img src="' + response[item][0] + '">' +
+                '</div>'+
+                '<div class="infoCommentEx">'+
+                  '<a class=\'infoExCommentText\' href=\'/' + response[item][4] + '/viewuser\'>' + response[item][1] + '</a>'+
+                  '<div class="rankFlexComment">'+
+                    '<img src="/static/img/cook-128.png" class="medalPost">'+
+                    '<p>' + response[item][2] + '</p>'+
+                  '</div>'+
+                '</div>'+
+              '</div>'+
+            '<div class="commentText">'+
+
+                  '<p>' + response[item][3] + '</p>'+
+
+              '</div>'+
+            '</div>'
+        }
+        document.getElementById('textareaComBig' + num).style.opacity = 1
+        console.log('ACTIVE ELEMENT = ' + activeNumComments)
+        console.log(document.getElementById('preloading'+activeNumComments))
+        document.getElementById('preloading'+activeNumComments).classList.add("hide");
+      }
+        })
+      }
       } else{
+        document.getElementById('textareaCom' + num).style.opacity = 1
         document.getElementById('openComBtn' + num).style.transform = 'rotate(' + 0 + 'deg)';
       }
     }

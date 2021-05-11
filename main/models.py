@@ -205,3 +205,13 @@ class ExampleAlex(models.Model):
 
 	def __str__(self):
 		return self.my_products
+
+
+class Comment(models.Model):
+	user = models.ForeignKey(CustomUser, blank=True, on_delete=models.PROTECT, null=True, related_name='user')
+	text = models.TextField('text comment', null=True)
+	likes = models.ManyToManyField(CustomUser, blank=True, null=True, related_name='likes')
+	recipe = models.ForeignKey(RecipeProduct, blank=True, on_delete=models.PROTECT)
+
+	def __str__(self):
+			return self.recipe.name + ' від ' + self.user.first_name + ' ' + self.user.last_name
