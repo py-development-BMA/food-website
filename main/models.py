@@ -27,8 +27,15 @@ class MyAccountManager(BaseUserManager):
 
 
 class Achievements(models.Model):
-	fast_start = models.BooleanField(default=False)
-	#here to put names of achiements they are already connected to CustomUser
+	rewardName = models.CharField(max_length=200, null=True, blank=True)
+	rewardType  = models.CharField(max_length=200, null=True, blank=True)
+	rewardDescription = models.CharField(max_length=200, null=True, blank=True)
+	requirements = models.CharField(max_length=200, null=True, blank=True)
+	POINTS = (('2','2'),('3','3'),('4','4'),('5','5'))
+	rewardPoints = models.IntegerField("Бали", null=True, choices=POINTS, blank=True)
+
+	def __str__(self):
+		return self.rewardName
 
 
 
@@ -59,6 +66,13 @@ class Storage(models.Model):
 		return f'/{self.id}'
 
 
+class AllProduct(models.Model):
+	CATEGORIES = (('Фрукти','Фрукти'),('Овочі','Овочі'),('Молочні продукти','Молочні продукти'),('М\'ясо','М\'ясо'),('Риба','Риба'),('Бакалія','Бакалія'),('Консерви та приправи','Консерви та приправи'),('Напої','Напої'),('Заморожені продукти','Заморожені продукти'))
+	category = models.CharField('Category', max_length=30, null=True, choices=CATEGORIES, blank=True)
+	nameUa = models.CharField("UA", max_length=50, blank=True)
+	added_by = models.IntegerField("added_by", max_length=50, null=True)
+	CHOICESUA = (('г','г'),('шт','шт'),('мл.','мл.'),('кг.','кг.'),('пуч.','пуч.'),('бан.','бан.'),('л.','л.'),('упак.','упак.'))
+	measureUa = models.CharField('measure', max_length=15, null=True, choices=CHOICESUA, blank=True)
 
 
 
@@ -166,6 +180,8 @@ class CustomUser(AbstractBaseUser):
 	is_user = models.BooleanField(default=True)
 	is_staff = models.BooleanField(default=False)
 	is_superuser = models.BooleanField(default=False)
+	my_products = models.ManyToManyField(AllProduct,blank=True,related_name = "my_products")
+	favorites = models.ManyToManyField(AllProduct,blank=True,related_name = "favorites")
 	#ADD FIELDS WITH PERSONAL PREFERENCES
 
 	USERNAME_FIELD = 'email'
@@ -205,6 +221,15 @@ class ExampleAlex(models.Model):
 
 	def __str__(self):
 		return self.my_products
+
+
+class UserProductQuantity(models.Model):
+	user = models.ForeignKey(CustomUser, null=True, on_delete=models.PROTECT)
+	nameUa = models.ForeignKey(AllProduct, max_length=100, blank=True,on_delete=models.PROTECT)
+	quantity = models.FloatField("Quantity", default=0, blank=True)
+	is_favorite = models.BooleanField(default=False)
+	def __str__(self):
+		return self.nameUa.nameUa
 
 
 class Comment(models.Model):

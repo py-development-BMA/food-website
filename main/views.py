@@ -763,6 +763,92 @@ def getRecipes(request):
 		ret_arr.append(all_recipesPk)
 		return HttpResponse(json.dumps(ret_arr, ensure_ascii=False), content_type='application/json')
 
+def  mystorage(request):
+	categories = ['Фрукти','Овочі','Молочні продукти','М\'ясні вироби','Морепродукти','Бакалія','Консерви та приправи','Напої','Заморожені продукти','Улюблені продукти']
+
+	categories_names = categories
+	counter = [0,1,2,3,4,5,6,7,8,9]
+	categories = zip(categories,counter)
+	list0 = []
+
+
+	if request.method == 'POST':
+		form = AddProduct(request.POST)
+		if form.is_valid():
+			for item in AllProduct.objects.all():
+				list0.append(item.nameUa)
+			if form.cleaned_data.get('nameUa') in list0:
+				if not UserProductQuantity.objects.filter(nameUa=AllProduct.objects.get(nameUa=form.cleaned_data.get('nameUa')) ,user = CustomUser.objects.get(email=request.user.email).id).exists():
+					UserProductQuantity.objects.create(
+						user=request.user,
+						nameUa=AllProduct.objects.get(nameUa=form.cleaned_data.get('nameUa')),
+						quantity=form.cleaned_data.get('quantity')
+					)
+					CustomUser.objects.get(email=request.user.email).my_products.add(AllProduct.objects.get(nameUa=form.cleaned_data.get('nameUa')))
+					return HttpResponse(json.dumps(1, ensure_ascii=False), content_type='application/json')
+			else:
+				return HttpResponse(json.dumps(0, ensure_ascii=False), content_type='application/json')
+
+
+	else:
+		q_array = []
+
+		all_products = CustomUser.objects.get(email=request.user.email).my_products.all()
+		for item in all_products:
+			k = UserProductQuantity.objects.get(user=request.user, nameUa=item).quantity
+			q_array.append(k)
+
+		products = list(zip(all_products,q_array))
+
+		context = {
+		'categories':categories,
+		'categories_names':categories_names,
+		'all_products':all_products,
+		'products_array' : products,
+		}
+		return render(request, 'main/storage.html', context)
+
+def alexPost(request):
+	if request.method == 'POST':
+		form = AlexEx(request.POST)
+		if form.is_valid():
+			ExampleAlex.objects.create(
+				user2=request.user,
+				my_products=form.cleaned_data.get('alexExText'),
+				quantity1=form.cleaned_data.get('quantity1')
+			)
+	return render(request, 'main/alexPost.html')
+
+
+
+
+def showresults(request):
+	if request.method == 'GET':
+		matched1 = []
+		categories = ['Фрукти','Овочі','Молочні продукти','М\'ясо','Риба','Бакалія','Консерви та приправи','Напої','Заморожені продукти','Улюблені продукти']
+		fav_p = CustomUser.objects.get(email=request.user.email).favorites.all()
+		for item in AllProduct.objects.all():
+			mn = []
+			mn.append(item.nameUa)
+			mn.append(categories.index(item.category))
+			mn.append(item.pk)
+			if fav_p.filter(pk=item.pk).count() != 0:
+				mn.append(1)
+			else:
+				mn.append(0)
+			matched1.append(mn)
+		#print(matched1)
+		return HttpResponse(json.dumps(matched1, ensure_ascii=False), content_type='application/json')
+
+def addfav(request):
+	if request.method == 'POST':
+		user = CustomUser.objects.get(email=request.user.email)
+		if request.POST.get("wtd") == "add":
+			user.favorites.add(AllProduct.objects.get(nameUa = request.POST.get("name")))
+		else:
+			user.favorites.remove(AllProduct.objects.get(nameUa = request.POST.get("name")))
+		user.save()
+	return HttpResponse("1")
 
 
 

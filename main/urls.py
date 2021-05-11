@@ -26,4 +26,7 @@ urlpatterns = [
 	path('openComments/', views.openComments, name="openComments"),
 	path('saveComment/', views.saveComment, name="saveComment"),
 	path('getRecipes/', views.getRecipes, name="getRecipes"),
+	path('showresults/', views.showresults, name="showresults"),
+	path('addfav/', views.addfav, name="addfav"),
+
 ]
