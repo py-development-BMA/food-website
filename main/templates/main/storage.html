@@ -92,7 +92,7 @@ My Storage
             {% csrf_token %}
             <div class="storage_form_and_circle">
 
-           
+
            <div class="adding_circle" id='id_adding_circle'></div>
               <div class="autocomplete"><input type="text" name="nameUa" id="nameUa0" placeholder="Назва продукту.." class="adding_formstyles" autocomplete="off"></div>
               </div>
@@ -110,9 +110,9 @@ My Storage
   	  		<div class="categories_circle1_screen2"></div>
   	  		<p class="name_of_category_screen2_1">{{categories_names.0}}</p>
 
-          <div class="div_edit1"> 
+          <div class="div_edit1">
             <div class="edit_product_button"> <img src='{% static "img/edit_list.png" %}' class="edit_btn"></div>
-          </div> 		 
+          </div>
 
 
   	  	</div>
@@ -417,7 +417,7 @@ My Storage
 
 
 
- 
+
 
 
       <div class="category9_data"  id="category9">
@@ -470,7 +470,7 @@ My Storage
             // document.getElementById("myStorage_label").style.removeProperty('marginLeft');
             $(".add_product_button1").remove().appendTo('#storage_screen2');
             $("#div1_storage_screen2").remove().appendTo('#storage_screen2');
-          
+
         	 $(".category" + a + "_data").removeClass("animated_storage_el");
         	 setTimeout(animate_st, 1, a);
           if(array_openedcategories.indexOf(a)==-1){
@@ -636,6 +636,7 @@ document.addEventListener("DOMContentLoaded", function(){
 function autocomplete(inp) {
   inp.addEventListener("input", function(e) {
     let response = JSON.parse(localStorage.getItem('allproducts'));
+    console.log(response)
       colors_arr = ["#AFE8BC","#C2B6DC","#9ADAE3","#8386C4","#D0E772","#FBD285","#97DFBC","#F39595","#A9A7E4","#A9A7E4"]
       closeAllLists();
       a = document.createElement("DIV");
