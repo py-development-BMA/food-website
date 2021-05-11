@@ -28,5 +28,7 @@ urlpatterns = [
 	path('getRecipes/', views.getRecipes, name="getRecipes"),
 	path('showresults/', views.showresults, name="showresults"),
 	path('addfav/', views.addfav, name="addfav"),
+	path('recipeConstructor/', views.recipeConstructor, name="recipeConstructor"),
+	path('rewards/', views.rewards, name="rewards"),
 
 ]

@@ -24,8 +24,8 @@
 	</form>
 	<div class="links_btns">
 			<a class="linktomain" style="text-decoration: none;" href='{% url "profile" %}'><p align="center"><img src="{% static 'img/myacc.png' %}" class="img_head"></p></a>
-			<div class="linktomain"><p align="center"><img src="{% static 'img/mycart.png' %}" class="img_head_norm"></p></div>
-			<div class="linktomain"><p align="center"><img src="{% static 'img/recipesall.png' %}" class="img_head_norm1"></p></div>
+			<a class="linktomain" style="text-decoration: none;" href='{% url "mystorage" %}'><p align="center"><img src="{% static 'img/mycart.png' %}" class="img_head_norm"></p></a>
+			<a class="linktomain" style="text-decoration: none;" href='{% url "recipeConstructor" %}'><p align="center"><img src="{% static 'img/recipesall.png' %}" class="img_head_norm1"></p></a>
 	</div>
 	<div class="create_new_recipe">
 		<img src='{% static "img/settings_icon.png" %}' class="settings_btn">

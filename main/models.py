@@ -46,7 +46,17 @@ class Purchases(models.Model):
 
 
 
-
+class Achievements(models.Model):
+	rewardName = models.CharField(max_length=200, null=True, blank=True)
+	TYPES = (('Профіль','Профіль'),('Рецепти','Рецепти'),('Соцільна активність','Соцільна активність'))
+	rewardType  = models.CharField(max_length=50, null=True, choices=TYPES, blank=True)
+	rewardDescription = models.CharField(max_length=200, null=True, blank=True)
+	requirements = models.CharField(max_length=200, null=True, blank=True)
+	POINTS = ((2,2),(3,3),(4,4),(5,5))
+	rewardPoints = models.IntegerField("Бали", null=True, choices=POINTS, blank=True)
+	icon = models.ImageField(default="blank.png",verbose_name="Image", null=True, blank=True)
+	def __str__(self):
+		return self.rewardName
 
 
 

@@ -840,6 +840,32 @@ def showresults(request):
 		#print(matched1)
 		return HttpResponse(json.dumps(matched1, ensure_ascii=False), content_type='application/json')
 
+
+def recipeConstructor(request):
+	recipes = RecipeProduct.objects.all()
+	k = []
+	products = ["Картопля", "Курка", "Помідори", "Часник", "Цибуля", "Оцет", "Яйця", "Свинина", "Паста", "Кетчуп"]
+	for i in range(recipes.count()):
+		k.append(i)
+	context = {
+		'recipes':list(zip(recipes, k)),
+		'products':products,
+		'ln':recipes.count(),
+	}
+	return render(request, 'main/recipeConstructor.html', context)
+
+def rewards(request):
+	achievements = Achievements.objects.all()
+	numbs = []
+	for i in range(achievements.count()):
+		numbs.append(i)
+	rewards = zip(numbs, achievements)
+	context = {
+		'rewards':rewards,
+		'ln':achievements.count(),
+	}
+	return render(request, 'main/rewards.html', context)
+
 def addfav(request):
 	if request.method == 'POST':
 		user = CustomUser.objects.get(email=request.user.email)

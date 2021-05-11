@@ -1,0 +1,116 @@
+{% extends "main/header.html" %}
+{% load static %}
+{% block title %}
+Rewards
+{% endblock %}
+{% block content %}
+{% csrf_token %}
+
+
+
+
+
+	<section class="account_info">
+	<div class="profile_photo">
+		<p align="center"><img class="img_profile" src="{{ request.user.image_profile.url }}"></p>
+	</div>
+	<div class="profile_info">
+
+
+		<div class="nameAndSubscribe">
+
+			<p class="name_and_lname">{{ request.user.first_name }} {{ request.user.last_name }}</p>
+
+		</div>
+		<p class="username_profile">@{{ request.user.username }}</p>
+
+
+
+		<div class="flex_rank">
+			<img src="{% static 'img/rank.png' %}" class="my_rank_img">
+			<div class='progress_flex'>
+				<p class="rank_name">Ранг: {{ request.user.rank }}</p>
+				<div class='grey_progress'>
+					<div style="width:{{ request.user.rank_percentage }}%;height: 8px;border-radius: 10px;background: #F87A5D;">
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+	</div>
+</section>
+<div class="rewardsMain">
+	<div class="rewardsFilters">
+		<div class="rewardsFiltersSecondR">
+			<h3>Категорія</h3>
+			<ol class="rewardTypeList">
+				<li onclick="showSome('Профіль')">Профіль</li>
+				<li onclick="showSome('Рецепти')">Рецепти</li>
+				<li onclick="showSome('активність')">Соціальна активність</li>
+			</ol>
+
+			
+		</div>
+	</div>
+	<div class="rewardsList">
+		{% for k, item in rewards %}
+			<div class="achievement" id="achievementBlock{{k}}"onclick="showInfo({{k}})">
+				
+				<img src="{{item.icon.url}}" class="rewardImg">
+				{% if item in request.user.achievements.all %}
+					<div class="shadowBlock"></div>
+				{% endif %}
+				<div class="rewardInfoBlock" id="rewardInfo{{k}}">
+					<div class="rewardFullDesc">
+						<img src="{{item.icon.url}}" class="rewardInfoImg">
+						<div class="rewardSmallDesc">
+							<h3>{{item.rewardName}}</h3>
+							<p style="display: none;">{{item.rewardType}}</p>
+							<h6>{{item.rewardDescription}}</h6>
+						</div>
+						
+						</div>
+					</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
+<div class="rewardsFriends">
+	
+</div>
+
+<script type="text/javascript">
+	console.log('%s = 1', 100)
+let leng = {{ln}}
+function showInfo(k){
+	var status = document.getElementById("rewardInfo" + k);
+	if (status.style.display === "none") {
+	for(let i = 0; i < leng; i++)
+		document.getElementById("rewardInfo" + i).style.display = "none";
+		status.style.display = "block";
+	} else {
+		 status.style.display = "none";
+	}
+}
+
+function showSome(type){
+	for(let i = 0; i < leng; i++){
+		if(!document.getElementById('achievementBlock' + i).innerHTML.includes(type)){
+			if (document.getElementById('achievementBlock' + i).style.display === "none") 
+				document.getElementById('achievementBlock' + i).style.display = "block";
+			else
+				document.getElementById('achievementBlock' + i).style.display = "none";
+		}
+	}
+
+
+}
+
+</script>
+{% endblock %}
