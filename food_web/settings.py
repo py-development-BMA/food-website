@@ -76,8 +76,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'foodweb',
         'USER':'postgres',
-        'PASSWORD':'Tornado2004',
-        'HOST':'database-1.chmkknmw7wdf.eu-central-1.rds.amazonaws.com',
+        'PASSWORD':'***********',
+        'HOST':'***********************************************',
         'PORT':'5432'
     }
 }
